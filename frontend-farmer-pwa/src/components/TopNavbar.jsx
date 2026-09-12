@@ -8,6 +8,7 @@ export default function TopNavbar({
   isSpeaking,
   onLogout,
   user,
+  onOpenPassport,
 }) {
   const { t, currentLang, setCurrentLang } = useTranslation();
   const [showLangMenu, setShowLangMenu] = useState(false);
@@ -76,6 +77,18 @@ export default function TopNavbar({
 
         {/* Right Tools */}
         <div className="nav-right-tools">
+          {/* 1-Click Credit Passport Button */}
+          {onOpenPassport && (
+            <button
+              className="nav-passport-btn"
+              onClick={onOpenPassport}
+              title={t('pass_btn_nav')}
+            >
+              <span>📄</span>
+              <span className="passport-btn-text">{t('pass_btn_nav')}</span>
+            </button>
+          )}
+
           {/* Language Dropdown */}
           <div style={{ position: 'relative' }}>
             <button
@@ -191,6 +204,32 @@ export default function TopNavbar({
                     {t('rl_pill')}
                   </div>
                 </div>
+
+                {onOpenPassport && (
+                  <button
+                    onClick={() => {
+                      setShowProfileMenu(false);
+                      onOpenPassport();
+                    }}
+                    style={{
+                      background: '#e2f2e5',
+                      color: '#13532f',
+                      border: '1px solid #c2e2c9',
+                      borderRadius: '8px',
+                      padding: '8px 12px',
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      width: '100%',
+                    }}
+                  >
+                    <span>📄</span>
+                    <span>{t('pass_btn_nav')}</span>
+                  </button>
+                )}
 
                 {onLogout && (
                   <button

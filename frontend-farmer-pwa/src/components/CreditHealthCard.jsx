@@ -1,7 +1,12 @@
 import React from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
 
-export default function CreditHealthCard({ score = 78, maxScore = 100 }) {
+export default function CreditHealthCard({
+  score = 78,
+  maxScore = 100,
+  onOpenSimulator,
+  onOpenPassport,
+}) {
   const { t } = useTranslation();
 
   // SVG circular gauge math
@@ -78,6 +83,32 @@ export default function CreditHealthCard({ score = 78, maxScore = 100 }) {
           </div>
         </div>
       </div>
+
+      {/* Quick Action Buttons for Simulator & Passport */}
+      {(onOpenSimulator || onOpenPassport) && (
+        <div className="card-quick-actions-row">
+          {onOpenSimulator && (
+            <button
+              className="card-action-link-btn"
+              onClick={onOpenSimulator}
+              title={t('sim_title')}
+            >
+              <span>🚀</span>
+              <span>{t('sim_title')}</span>
+            </button>
+          )}
+          {onOpenPassport && (
+            <button
+              className="card-action-link-btn passport-variant"
+              onClick={onOpenPassport}
+              title={t('pass_btn_card')}
+            >
+              <span>📄</span>
+              <span>{t('pass_btn_card')}</span>
+            </button>
+          )}
+        </div>
+      )}
 
       {/* No Agent Fees Lightbulb Notice */}
       <div className="card-footer-notice-box">

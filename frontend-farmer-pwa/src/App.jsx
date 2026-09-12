@@ -17,6 +17,9 @@ import AgriTrustFooter from './components/AgriTrustFooter';
 import RequestLoanModal from './components/RequestLoanModal';
 import CallMitraModal from './components/CallMitraModal';
 import MandiRatesModal from './components/MandiRatesModal';
+import SatelliteFieldMapCard from './components/SatelliteFieldMapCard';
+import CreditScoreSimulatorCard from './components/CreditScoreSimulatorCard';
+import DownloadPassportModal from './components/DownloadPassportModal';
 
 export default function App() {
   const { currentLang, getAdvisorySpeech } = useTranslation();
@@ -38,6 +41,7 @@ export default function App() {
   const [isLoanModalOpen, setIsLoanModalOpen] = useState(false);
   const [isMitraModalOpen, setIsMitraModalOpen] = useState(false);
   const [isMandiModalOpen, setIsMandiModalOpen] = useState(false);
+  const [isPassportModalOpen, setIsPassportModalOpen] = useState(false);
 
   const handleLogin = (userData) => {
     setUser(userData);
@@ -124,6 +128,7 @@ export default function App() {
         isSpeaking={isSpeaking}
         onLogout={handleLogout}
         user={user}
+        onOpenPassport={() => setIsPassportModalOpen(true)}
       />
 
       <main className="agritrust-main-container">
@@ -139,7 +144,12 @@ export default function App() {
           {/* Left Column */}
           <div className="dashboard-col">
             {/* Card 1: Sovereign Rating & Credit Health (78 / 100) */}
-            <CreditHealthCard score={78} maxScore={100} />
+            <CreditHealthCard
+              score={78}
+              maxScore={100}
+              onOpenSimulator={() => document.getElementById('score-simulator-section')?.scrollIntoView({ behavior: 'smooth' })}
+              onOpenPassport={() => setIsPassportModalOpen(true)}
+            />
 
             {/* Card 2: Smart Stress-Free Cap (Safe Limit: ₹1,65,000) */}
             <div id="safe-limit-section">
@@ -159,7 +169,22 @@ export default function App() {
           </div>
         </div>
 
-        {/* 4. Bottom 3-Card Row */}
+        {/* 4. Interactive Satellite Field Map & What-If Credit Score Simulator */}
+        <div className="interactive-features-grid">
+          {/* Option D: Interactive Satellite Field Map (NDVI Heatmap) */}
+          <div id="satellite-map-section">
+            <SatelliteFieldMapCard />
+          </div>
+
+          {/* Option C: What-If Credit Score & Limit Simulator */}
+          <div id="score-simulator-section">
+            <CreditScoreSimulatorCard
+              onOpenPassport={() => setIsPassportModalOpen(true)}
+            />
+          </div>
+        </div>
+
+        {/* 5. Bottom 3-Card Row */}
         <div className="bottom-three-cards-grid" id="mandi-weather-section">
           {/* Card 1: Khanna Mandi Live Price */}
           <KhannaMandiCard onOpenMandiModal={() => setIsMandiModalOpen(true)} />
@@ -172,7 +197,7 @@ export default function App() {
         </div>
       </main>
 
-      {/* 5. Footer */}
+      {/* 6. Footer */}
       <AgriTrustFooter />
 
       {/* Interactive Modals */}
@@ -189,6 +214,13 @@ export default function App() {
       <MandiRatesModal
         isOpen={isMandiModalOpen}
         onClose={() => setIsMandiModalOpen(false)}
+      />
+
+      {/* Option B: Downloadable 1-Click Digital Credit Passport with QR Code */}
+      <DownloadPassportModal
+        isOpen={isPassportModalOpen}
+        onClose={() => setIsPassportModalOpen(false)}
+        farmerData={user}
       />
     </div>
   );

@@ -159,10 +159,55 @@ export const translations = {
     modal_mandi_msp: "MSP Floor",
     modal_mandi_close: "Close",
 
+    // Card 8: Satellite NDVI Heatmap
+    map_category: "SENTINEL-2 SATELLITE RADAR",
+    map_title: "Parcel NDVI & Soil Moisture Heatmap",
+    map_parcel_badge: "Plot #184/A • 4.2 Acres",
+    map_layer_ndvi: "NDVI Biomass",
+    map_layer_moisture: "Soil Moisture",
+    map_layer_satellite: "True Color Optical",
+    map_growth_stage: "Crop Growth Timeline:",
+    map_stage_sowing: "Sowing (Nov)",
+    map_stage_tillering: "Tillering (Dec)",
+    map_stage_heading: "Heading (Jan)",
+    map_stage_current: "Current Pass (Feb)",
+    map_mean_ndvi: "Mean NDVI: 0.74 (Optimal)",
+    map_moisture_val: "Root-Zone Moisture: 22%",
+    map_cloud_cover: "Cloud Cover: 0% (Clear)",
+    map_pass_date: "Sentinel-2 Orbit Pass: Yesterday 10:42 AM IST",
+
+    // Card 9: What-If Credit Score Simulator
+    sim_category: "AI CREDIT SIMULATOR",
+    sim_title: "What-If Score & Limit Booster",
+    sim_subtitle: "Simulate future farm actions to see how your AgriTrust rating and safe borrowing limit increase.",
+    sim_current_score: "Current Score:",
+    sim_projected_score: "Simulated Score:",
+    sim_current_limit: "Current Safe Limit:",
+    sim_projected_limit: "Simulated Safe Limit:",
+    sim_act_pmfby: "Enroll Upcoming Rabi in PMFBY Insurance (+8 pts)",
+    sim_act_early_repay: "Repay KCC Loan 15 Days Before Due Date (+6 pts)",
+    sim_act_mandi_slip: "Upload e-Nam Verified Mandi Sale Slip (+5 pts)",
+    sim_act_soil_test: "Upload Soil Health Card Testing Certificate (+4 pts)",
+    sim_act_gps_photo: "Verify Field Boundary with Geo-Tagged Photo (+3 pts)",
+    sim_reset_btn: "Reset Simulation",
+    sim_save_goals: "Save As Target Goals",
+
+    // PDF Passport & QR Verification
+    pass_btn_nav: "📄 Download Passport",
+    pass_btn_card: "Official Bank Passport >",
+    pass_modal_title: "Digital Agricultural Credit Passport",
+    pass_print_btn: "🖨️ Print / Save as PDF",
+    pass_qr_title: "Cryptographic QR Verification Code",
+    pass_qr_desc: "Scan with any smartphone camera to verify authenticity via Government of India AgriStack registry without sharing PII.",
+    pass_watermark: "SOVEREIGN FINANCIAL DOSSIER",
+    pass_validity: "Passport Validity: 90 Days (Active)",
+    pass_auth_officer: "Authorized by: Digital AgriStack Public Infrastructure & Khanna FPO",
+
     // Footer
     footer_tagline: "AgriTrust — Sovereign Financial Infrastructure for Indian Agriculture",
     footer_rights: "Kisan Seva Kendra Authorized Portal • © 2025 AgriTrust India",
   },
+
 
   hi: {
     // Brand & App Info
@@ -314,10 +359,55 @@ export const translations = {
     modal_mandi_msp: "न्यूनतम समर्थन मूल्य (MSP)",
     modal_mandi_close: "बंद करें",
 
+    // Card 8: Satellite NDVI Heatmap
+    map_category: "सेंटिनल-२ उपग्रह निगरानी",
+    map_title: "खेत हरियाली (NDVI) एवं मृदा नमी हीटमैप",
+    map_parcel_badge: "खेत नं. १८४/अ • ४.२ एकड़",
+    map_layer_ndvi: "फसल हरियाली (NDVI)",
+    map_layer_moisture: "मृदा नमी",
+    map_layer_satellite: "वास्तविक उपग्रह दृश्य",
+    map_growth_stage: "फसल विकास चरण:",
+    map_stage_sowing: "बुआई (नवंबर)",
+    map_stage_tillering: "कल्ले फूटना (दिसंबर)",
+    map_stage_heading: "बालियां आना (जनवरी)",
+    map_stage_current: "वर्तमान उपग्रह पास (फरवरी)",
+    map_mean_ndvi: "औसत हरियाली (NDVI): ०.७४ (उत्कृष्ट)",
+    map_moisture_val: "जड़ क्षेत्र नमी: २२%",
+    map_cloud_cover: "बादल आवरण: ०% (साफ)",
+    map_pass_date: "उपग्रह पास समय: कल प्रातः १०:४२ बजे",
+
+    // Card 9: What-If Credit Score Simulator
+    sim_category: "एआई क्रेडिट सिमुलेटर",
+    sim_title: "भविष्य स्कोर एवं ऋण सीमा बूस्टर",
+    sim_subtitle: "जानें कि भविष्य के कार्यों से आपकी साख रेटिंग और सुरक्षित ऋण सीमा में कितनी वृद्धि होगी।",
+    sim_current_score: "वर्तमान स्कोर:",
+    sim_projected_score: "अनुमानित स्कोर:",
+    sim_current_limit: "वर्तमान सुरक्षित सीमा:",
+    sim_projected_limit: "अनुमानित सुरक्षित सीमा:",
+    sim_act_pmfby: "आगामी रबी का पीएमएफबीवाई फसल बीमा कराएं (+८ अंक)",
+    sim_act_early_repay: "केसीसी ऋण नियत तिथि से १५ दिन पूर्व चुकाएं (+६ अंक)",
+    sim_act_mandi_slip: "ई-नाम सत्यापित मंडी बिक्री पर्ची अपलोड करें (+५ अंक)",
+    sim_act_soil_test: "मृदा स्वास्थ्य कार्ड परीक्षण प्रमाण पत्र जोड़ें (+४ अंक)",
+    sim_act_gps_photo: "भू-टैग फोटो द्वारा खेत सीमा का सत्यापन करें (+३ अंक)",
+    sim_reset_btn: "रीसेट करें",
+    sim_save_goals: "लक्ष्य सुरक्षित करें",
+
+    // PDF Passport & QR Verification
+    pass_btn_nav: "📄 पासपोर्ट डाउनलोड",
+    pass_btn_card: "आधिकारिक बैंक पासपोर्ट देखें >",
+    pass_modal_title: "डिजिटल कृषि साख पासपोर्ट",
+    pass_print_btn: "🖨️ प्रिंट / पीडीएफ सेव करें",
+    pass_qr_title: "क्रिप्टोग्राफिक क्यूआर सत्यापन कोड",
+    pass_qr_desc: "बिना किसी व्यक्तिगत जानकारी के प्रामाणिकता सत्यापित करने हेतु किसी भी स्मार्टफोन कैमरे से स्कैन करें।",
+    pass_watermark: "संप्रभु वित्तीय पासपोर्ट",
+    pass_validity: "पासपोर्ट वैधता: ९० दिन (सक्रिय)",
+    pass_auth_officer: "प्राधिकृत: डिजिटल एग्रीस्टैक अवसंरचना एवं खन्ना एफपीओ",
+
     // Footer
     footer_tagline: "एग्रीट्रस्ट — भारतीय कृषि हेतु संप्रभु वित्तीय अवसंरचना",
     footer_rights: "किसान सेवा केंद्र अधिकृत पोर्टल • © २०२५ एग्रीट्रस्ट इंडिया",
   },
+
 
   mr: {
     // Brand & App Info
@@ -469,10 +559,55 @@ export const translations = {
     modal_mandi_msp: "किमान हमीभाव (MSP)",
     modal_mandi_close: "बंद करा",
 
+    // Card 8: Satellite NDVI Heatmap
+    map_category: "सेंटिनेल-२ उपग्रह निरीक्षण",
+    map_title: "शेताची हिरवळ (NDVI) व जमिनीतील ओलावा हीटमॅप",
+    map_parcel_badge: "गट नं. १८४/अ • ४.२ एकर",
+    map_layer_ndvi: "पिकाची हिरवळ (NDVI)",
+    map_layer_moisture: "जमिनीतील ओलावा",
+    map_layer_satellite: "थेट उपग्रह दृश्य",
+    map_growth_stage: "पीक वाढ टप्पे:",
+    map_stage_sowing: "पेरणी (नोव्हेंबर)",
+    map_stage_tillering: "फुटवे (डिसेंबर)",
+    map_stage_heading: "लोंब्या भरणे (जानेवारी)",
+    map_stage_current: "सध्याचा उपग्रह पास (फेब्रुवारी)",
+    map_mean_ndvi: "सरासरी हिरवळ (NDVI): ०.७४ (उत्कृष्ट)",
+    map_moisture_val: "मुळांमधील ओलावा: २२%",
+    map_cloud_cover: "ढगाळ वातावरण: ०% (निरभ्र)",
+    map_pass_date: "उपग्रह पास वेळ: काल सकाळी १०:४२",
+
+    // Card 9: What-If Credit Score Simulator
+    sim_category: "एआय क्रेडिट सिम्युलेटर",
+    sim_title: "भावी स्कोअर व कर्ज मर्यादा बूस्टर",
+    sim_subtitle: "भविष्यातील कृषी कृतींमुळे तुमचा स्कोअर आणि सुरक्षित कर्ज मर्यादा कशी वाढेल ते पहा.",
+    sim_current_score: "सध्याचा स्कोअर:",
+    sim_projected_score: "अंदाजे स्कोअर:",
+    sim_current_limit: "सध्याची सुरक्षित मर्यादा:",
+    sim_projected_limit: "अंदाजे सुरक्षित मर्यादा:",
+    sim_act_pmfby: "पुढील रब्बीचा पीएमएफबीवाय पीक विमा घ्या (+८ गुण)",
+    sim_act_early_repay: "केसीसी कर्ज मुदतीपूर्वी १५ दिवस परत करा (+६ गुण)",
+    sim_act_mandi_slip: "ई-नाम प्रमाणित बाजार विक्री पावती जोडा (+५ गुण)",
+    sim_act_soil_test: "मृदा आरोग्य पत्रिका चाचणी प्रमाणपत्र जोडा (+४ गुण)",
+    sim_act_gps_photo: "जिओ-टॅग फोटोद्वारे शेताची हद्द पडताळा (+३ गुण)",
+    sim_reset_btn: "रीसेट करा",
+    sim_save_goals: "उद्दिष्टे जतन करा",
+
+    // PDF Passport & QR Verification
+    pass_btn_nav: "📄 पासपोर्ट डाउनलोड",
+    pass_btn_card: "अधिकृत बँक पासपोर्ट पहा >",
+    pass_modal_title: "डिजिटल कृषी पत पासपोर्ट",
+    pass_print_btn: "🖨️ प्रिंट / पीडीएफ सेव्ह करा",
+    pass_qr_title: "क्रिप्टोग्राफिक क्यूआर पडताळणी कोड",
+    pass_qr_desc: "कोणतीही वैयक्तिक माहिती न देता सत्यता तपासण्यासाठी स्मार्टफोन कॅमेऱ्याने स्कॅन करा.",
+    pass_watermark: "संप्रभू वित्तीय पासपोर्ट",
+    pass_validity: "पासपोर्ट वैधता: ९० दिवस (सक्रिय)",
+    pass_auth_officer: "प्रमाणित: डिजिटल ॲग्रीस्टॅक व खन्ना एफपीओ",
+
     // Footer
     footer_tagline: "ॲग्रीट्रस्ट — भारतीय शेतीसाठी संप्रभू वित्तीय पायाभूत सुविधा",
     footer_rights: "शेतकरी सेवा केंद्र अधिकृत पोर्टल • © २०२५ ॲग्रीट्रस्ट इंडिया",
   },
+
 
   ta: {
     // Brand & App Info
@@ -624,8 +759,53 @@ export const translations = {
     modal_mandi_msp: "குறைந்தபட்ச ஆதரவு விலை (MSP)",
     modal_mandi_close: "மூடுக",
 
+    // Card 8: Satellite NDVI Heatmap
+    map_category: "சென்டினல்-2 செயற்கைக்கோள் கண்காணிப்பு",
+    map_title: "பண்ணை பசுமை (NDVI) & மண் ஈரப்பத வரைபடம்",
+    map_parcel_badge: "நில எண் 184/A • 4.2 ஏக்கர்",
+    map_layer_ndvi: "பயிர் பசுமை (NDVI)",
+    map_layer_moisture: "மண் ஈரப்பதம்",
+    map_layer_satellite: "உண்மை வண்ண பார்வை",
+    map_growth_stage: "பயிர் வளர்ச்சி காலவரிசை:",
+    map_stage_sowing: "விதைப்பு (நவம்பர்)",
+    map_stage_tillering: "தூர்கட்டுதல் (டிசம்பர்)",
+    map_stage_heading: "கதிர் வெளிவருதல் (ஜனவரி)",
+    map_stage_current: "தற்போதைய செயற்கைக்கோள் (பிப்ரவரி)",
+    map_mean_ndvi: "சராசரி NDVI: 0.74 (மிகச் சிறந்த)",
+    map_moisture_val: "வேர் பகுதி ஈரப்பதம்: 22%",
+    map_cloud_cover: "மேக மூட்டம்: 0% (தெளிவானது)",
+    map_pass_date: "செயற்கைக்கோள் நேரம்: நேற்று காலை 10:42",
+
+    // Card 9: What-If Credit Score Simulator
+    sim_category: "AI கடன் சிமுலேட்டர்",
+    sim_title: "எதிர்கால மதிப்பெண் & கடன் வரம்பு உயர்த்தி",
+    sim_subtitle: "எதிர்கால விவசாய நடவடிக்கைகள் மூலம் உங்கள் மதிப்பீடு மற்றும் கடன் வரம்பு எவ்வாறு உயரும் என்பதை கணக்கிடுங்கள்.",
+    sim_current_score: "தற்போதைய மதிப்பெண்:",
+    sim_projected_score: "கணிக்கப்பட்ட மதிப்பெண்:",
+    sim_current_limit: "தற்போதைய கடன் வரம்பு:",
+    sim_projected_limit: "கணிக்கப்பட்ட கடன் வரம்பு:",
+    sim_act_pmfby: "ரபி பருவத்திற்கு PMFBY பயிர் காப்பீடு (+8 புள்ளிகள்)",
+    sim_act_early_repay: "KCC கடனை 15 நாட்கள் முன்கூட்டியே செலுத்துங்கள் (+6 புள்ளிகள்)",
+    sim_act_mandi_slip: "e-Nam சரிபார்க்கப்பட்ட மண்டி விற்பனை சீட்டு (+5 புள்ளிகள்)",
+    sim_act_soil_test: "மண் பரிசோதனை அட்டை சான்றிதழ் (+4 புள்ளிகள்)",
+    sim_act_gps_photo: "புவிசார் புகைப்படத்துடன் பண்ணை எல்லை சரிபார்ப்பு (+3 புள்ளிகள்)",
+    sim_reset_btn: "மீட்டமை",
+    sim_save_goals: "இலக்குகளாக சேமிக்க",
+
+    // PDF Passport & QR Verification
+    pass_btn_nav: "📄 பாஸ்போர்ட் பதிவிறக்கம்",
+    pass_btn_card: "வங்கி பாஸ்போர்ட் காண்க >",
+    pass_modal_title: "டிஜிட்டல் விவசாய கடன் பாஸ்போர்ட்",
+    pass_print_btn: "🖨️ அச்சிடுக / PDF சேமி",
+    pass_qr_title: "சரிபார்க்கக்கூடிய QR குறியீடு",
+    pass_qr_desc: "தனிப்பட்ட தரவு பகிர்வு இன்றி நம்பகத்தன்மையை சரிபார்க்க ஸ்மார்ட்போன் கேமராவால் ஸ்கேன் செய்யவும்.",
+    pass_watermark: "இறையாண்மை நிதி ஆவணம்",
+    pass_validity: "பாஸ்போர்ட் செல்லுபடியாகும் காலம்: 90 நாட்கள்",
+    pass_auth_officer: "அங்கீகரிக்கப்பட்டது: டிஜிட்டல் அக்ரிஸ்டாக் & கன்னா FPO",
+
     // Footer
     footer_tagline: "அக்ரிட்ரஸ்ட் — இந்திய விவசாயத்திற்கான இறையாண்மை நிதி உள்கட்டமைப்பு",
     footer_rights: "விவசாயிகள் சேவை மையம் அங்கீகரிக்கப்பட்ட போர்டல் • © 2025 அக்ரிட்ரஸ்ட் இந்தியா",
   }
 };
+
