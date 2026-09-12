@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HackathonPRDTemplate",
+  "description": "Product Requirements Document specification filled during the Forge idea phase",
+  "type": "object",
+  "required": [
+    "problem_statement",
+    "target_vertical",
+    "primary_persona",
+    "core_entities",
+    "key_risk_indicators",
+    "desired_recommendations",
+    "delivery_channels",
+    "watsonx_granite_role"
+  ],
+  "properties": {
+    "problem_statement": {
+      "type": "string",
+      "description": "Clear 2-3 sentence statement of the hackathon challenge being solved"
+    },
+    "target_vertical": {
+      "type": "string",
+      "description": "Filename identifier matching verticals/<target_vertical>.json (e.g. agriculture, healthcare, logistics)"
+    },
+    "primary_persona": {
+      "type": "string",
+      "description": "Primary end-user consuming recommendations (e.g., Smallholder Farmer, Triage Nurse, Operations Manager)"
+    },
+    "core_entities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Crucial variables the Understand stage must extract (e.g., ['crop_type', 'soil_moisture', 'region', 'symptoms'])"
+    },
+    "grounding_data_source": {
+      "type": "string",
+      "description": "Description and location of tabular/CSV dataset placed in data/ for the Analyze stage"
+    },
+    "prediction_targets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Quantifiable projections generated in Predict stage (e.g., ['yield_loss_risk_percentage', 'recovery_window_days'])"
+    },
+    "key_risk_indicators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "threshold": { "type": "string" },
+          "severity": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] }
+        },
+        "required": ["name", "threshold", "severity"]
+      },
+      "description": "Critical thresholds monitored by Detect Risk stage"
+    },
+    "desired_recommendations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Classes of actionable guidance produced by Recommend stage"
+    },
+    "delivery_channels": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["web", "whatsapp", "telegram", "api"] },
+      "description": "Channels enabled in the gateway"
+    },
+    "watsonx_granite_role": {
+      "type": "string",
+      "description": "Specific reasoning responsibilities delegated to IBM Granite model"
+    },
+    "evaluation_metrics": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Hackathon judging criteria addressed (e.g. Accuracy, Latency, Actionability, Social Impact)"
+    }
+  }
+}

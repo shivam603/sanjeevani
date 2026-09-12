@@ -1,0 +1,14 @@
+domain,entity_name,region,metric_a,metric_b,baseline_threshold,status,recommended_action
+agriculture,Tomato,North-District,78,65,70,Vulnerable to Fungal Blight,Apply copper-based fungicide & reduce drip cycle
+agriculture,Wheat,Central-Plains,45,30,50,Moisture Stress,Initiate supplementary irrigation within 48h
+agriculture,Corn,East-Valley,88,90,75,Optimal Growth,Maintain standard fertilization schedule
+agriculture,Soybean,South-Basin,32,40,45,Nutrient Deficiency,Apply zinc-enriched foliar spray
+healthcare,Asthma,Urban-East,85,60,70,Moderate Exacerbation,Review inhaler technique and prescribe short-term corticosteroid
+healthcare,Hypertension,Metro-Central,150,95,130,Elevated Blood Pressure,Reduce sodium intake and schedule follow-up ECG in 7 days
+healthcare,Type-2-Diabetes,Suburban-West,180,110,140,High Glycemic Index,Adjust insulin dosage and initiate dietary monitoring
+education,Grade-10-Math,District-4,54,48,65,At-Risk of Drop-off,Assign targeted remediation modules in algebra
+education,Grade-12-Physics,District-2,82,79,75,On Track,Enroll in advanced problem-solving seminar
+education,Grade-8-English,District-1,42,39,60,Reading Comprehension Deficit,Schedule weekly 1-on-1 reading specialist sessions
+business,Electronics-Inventory,Warehouse-A,14,35,30,Stockout Imminent,Trigger emergency supplier PO for high-demand SKUs
+business,Retail-Cashflow,Main-Branch,42000,68000,50000,Working Capital Deficit,Expedite accounts receivable collections and delay non-critical OPEX
+business,Logistics-Fleet,Depot-South,89,94,80,Fleet Utilization High,Re-route non-priority shipments via regional 3PL partners

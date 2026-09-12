@@ -1,0 +1,17 @@
+{
+  "name": "@kisancred/shared-ui",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo Shared UI library ready"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./tokens.css": "./src/styles/tokens.css"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

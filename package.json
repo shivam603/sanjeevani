@@ -1,0 +1,18 @@
+{
+  "name": "sanjeevani-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "frontend-farmer-pwa",
+    "frontend-fpo-portal",
+    "frontend-lender-dashboard"
+  ],
+  "scripts": {
+    "start": "python scripts/start_all.py",
+    "demo": "python scripts/run_pilot_pipeline.py",
+    "build": "npm run build --workspaces",
+    "dev:farmer": "npm --workspace=frontend-farmer-pwa run dev",
+    "dev:fpo": "npm --workspace=frontend-fpo-portal run dev",
+    "dev:lender": "npm --workspace=frontend-lender-dashboard run dev"
+  }
+}

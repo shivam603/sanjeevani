@@ -1,0 +1,24 @@
+{
+  "onboarding_id": "onb_30222954",
+  "fpo": {
+    "fpo_id": "4759a30f-539c-4bce-afbc-c054ad1d9d33",
+    "fpo_name": "Sahyadri Farmers Cooperative Ltd.",
+    "fpo_code": "NSK-FPO-01",
+    "district": "Nashik",
+    "state": "Maharashtra"
+  },
+  "metrics": {
+    "total_farmers_onboarded": 150,
+    "total_parcels_registered": 150,
+    "total_cropland_acres": 701.03,
+    "kyc_compliance_rate_pct": 100.0,
+    "privacy_zero_pii_enforced": true
+  },
+  "artifacts_generated": {
+    "geojson_parcels": "data\\pilot_onboarding\\NSK-FPO-01_land_parcels.geojson",
+    "farmers_csv": "data\\pilot_onboarding\\NSK-FPO-01_farmers.csv",
+    "crop_cycles_csv": "data\\pilot_onboarding\\NSK-FPO-01_crop_cycles.csv"
+  },
+  "onboarded_at": "2026-09-12T12:58:42.987716+00:00",
+  "status": "PILOT_READY"
+}

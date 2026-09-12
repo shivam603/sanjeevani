@@ -1,0 +1,61 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment variables & secrets
+.env
+.env.local
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Node & Frontend
+node_modules/
+frontend-farmer-pwa/node_modules/
+frontend-fpo-portal/node_modules/
+frontend-lender-dashboard/node_modules/
+frontend-farmer-pwa/dist/
+frontend-fpo-portal/dist/
+frontend-lender-dashboard/dist/
+.vite/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db

@@ -1,0 +1,1272 @@
+/* ==========================================================================
+   AgriTrust / Sanjeevani — Sovereign Farmer Credit & Financial Portal
+   Faithful recreation of the official rural fintech UI design system
+   ========================================================================== */
+
+:root {
+  --font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Canvas & Card Colors */
+  --color-canvas: #f1f7f2;
+  --color-card-bg: #ffffff;
+  --color-card-border: #e2ece3;
+  --color-card-inner-bg: #f4faf5;
+  --color-card-inner-border: #e1efe4;
+  
+  /* Primary Brand Greens */
+  --color-forest-900: #0a2d18;
+  --color-forest-800: #0f4424;
+  --color-forest-700: #13532f;
+  --color-forest-600: #166534;
+  --color-forest-500: #22c55e;
+  --color-forest-100: #dcfce7;
+  --color-forest-50: #f0fdf4;
+
+  /* Accent Tones */
+  --color-amber-bg: #fef3c7;
+  --color-amber-text: #b45309;
+  --color-amber-border: #fde68a;
+  
+  --color-sky-bg: #e0f2fe;
+  --color-sky-text: #0369a1;
+  --color-sky-border: #bae6fd;
+
+  /* Text Colors */
+  --color-text-main: #132a1b;
+  --color-text-muted: #5b7362;
+  --color-text-subtle: #829a88;
+  --color-text-light: #f8fafc;
+
+  /* Geometry & Shadows */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+  
+  --shadow-card: 0 2px 10px rgba(19, 83, 47, 0.04);
+  --shadow-card-hover: 0 6px 18px rgba(19, 83, 47, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-text-main);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Wrapper */
+.agritrust-app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.agritrust-main-container {
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   Top Navigation Bar
+   ========================================================================== */
+.agritrust-navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-card-border);
+  padding: 12px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+}
+
+.agritrust-nav-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nav-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-brand-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-forest-700);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.nav-brand-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--color-forest-700);
+  letter-spacing: -0.2px;
+}
+
+.nav-brand-subtitle {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* Nav Menu Links */
+.nav-links-menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav-link-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #475569;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.nav-link-btn:hover {
+  color: var(--color-forest-700);
+  background-color: #f1f8f3;
+}
+
+.nav-link-btn.active {
+  background-color: #e2f2e5;
+  color: var(--color-forest-700);
+  font-weight: 600;
+}
+
+/* Nav Right Tools */
+.nav-right-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-lang-btn,
+.nav-voice-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #d1ded3;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-lang-btn:hover,
+.nav-voice-btn:hover {
+  background-color: #f8faf8;
+  border-color: #b7ceba;
+  color: var(--color-forest-700);
+}
+
+.nav-voice-btn.active-speaking {
+  background-color: #dcfce7;
+  border-color: #86efac;
+  color: #15803d;
+  animation: pulseSpeaking 1.5s infinite;
+}
+
+@keyframes pulseSpeaking {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.nav-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 6px;
+  border-left: 1px solid #e2ece3;
+}
+
+.nav-profile-avatar {
+  width: 34px;
+  height: 34px;
+  background-color: var(--color-forest-700);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.nav-profile-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.nav-profile-sub {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Hero Greeting & Voice Assistant Banner
+   ========================================================================== */
+.greeting-assistant-bar {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-card);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.farmer-identity-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tractor-icon-box {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-forest-700);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.farmer-greeting-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.fpo-member-pill {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #bbf7d0;
+}
+
+.farmer-crop-cluster-sub {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* Voice Assistant Player Card */
+.audio-assistant-widget {
+  background-color: #eef6f0;
+  border: 1px solid #dbeade;
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.audio-play-circle-btn {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-forest-700);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.audio-play-circle-btn:hover {
+  background-color: var(--color-forest-800);
+  transform: scale(1.04);
+}
+
+.audio-label-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.audio-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-forest-800);
+}
+
+.audio-subtitle-sub {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.audio-speed-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 6px;
+}
+
+.audio-speed-pill {
+  background: #ffffff;
+  border: 1px solid #cde0d1;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #475569;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.audio-speed-pill.active {
+  background-color: var(--color-forest-700);
+  color: #ffffff;
+  border-color: var(--color-forest-700);
+}
+
+.audio-replay-btn {
+  background: transparent;
+  border: none;
+  color: #5b7362;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.audio-replay-btn:hover {
+  color: var(--color-forest-700);
+  transform: rotate(-45deg);
+}
+
+/* ==========================================================================
+   Main 2-Column Dashboard Grid
+   ========================================================================== */
+.main-dashboard-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.dashboard-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card Base */
+.agritrust-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.card-header-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-category-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.card-title-main {
+  font-size: 18px;
+  font-weight: 800;
+  color: #112618;
+  margin-top: 2px;
+}
+
+.status-badge-leaf {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+/* Card 1: Sovereign Rating & Score Gauge */
+.score-gauge-container {
+  background-color: #f3f9f4;
+  border: 1px solid #e1efe4;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.score-circular-gauge-wrapper {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-gauge-center-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.score-gauge-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: #112618;
+  font-family: inherit;
+}
+
+.score-gauge-subtext {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.score-reasons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.score-reasons-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #112618;
+}
+
+.score-reason-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.score-reason-check {
+  width: 16px;
+  height: 16px;
+  background-color: #dcfce7;
+  color: #15803d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.card-footer-notice-box {
+  background-color: #f0f7f2;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.45;
+}
+
+/* Card 2: Smart Stress-Free Cap (Safe Limit) */
+.safe-limit-speaker-btn {
+  background: transparent;
+  border: 1px solid #d1ded3;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.safe-limit-speaker-btn:hover {
+  background-color: #f1f8f3;
+  color: var(--color-forest-700);
+  border-color: var(--color-forest-700);
+}
+
+.safe-limit-dark-hero-box {
+  background: linear-gradient(135deg, #0b3d1f 0%, #0d4624 100%);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.safe-limit-headroom-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #86efac;
+  text-transform: uppercase;
+}
+
+.safe-limit-amount-hero {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.safe-limit-amount-hero span {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.safe-limit-description-text {
+  font-size: 12.5px;
+  color: #d1fae5;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.safe-limit-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.safe-limit-progress-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.safe-limit-borrowed-label {
+  color: #334155;
+}
+
+.safe-limit-headroom-label {
+  color: #15803d;
+}
+
+.split-progress-bar-track {
+  height: 12px;
+  width: 100%;
+  background-color: #cbd5e1;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  display: flex;
+}
+
+.split-progress-used {
+  width: 27%;
+  background-color: #64748b;
+  height: 100%;
+}
+
+.split-progress-free {
+  width: 73%;
+  background-color: #13532f;
+  height: 100%;
+}
+
+.safe-limit-progress-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* Card 3: Pre-Approved Rabi Loan (Hero Card with Wheat Photo) */
+.rabi-loan-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.rabi-hero-banner-image {
+  height: 185px;
+  position: relative;
+  background-image: url('/wheat_field_hero.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.rabi-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(10, 45, 24, 0.9) 0%, rgba(10, 45, 24, 0.3) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.rabi-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rabi-pill-tag {
+  align-self: flex-start;
+  background-color: #bbf7d0;
+  color: #14532d;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.rabi-hero-headline {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.rabi-loan-inner-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rabi-stats-trio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+.rabi-stat-box {
+  background-color: #f7fbf8;
+  border: 1px solid #e1efe4;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rabi-stat-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.rabi-stat-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: #13532f;
+}
+
+.rabi-stat-sub {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.rabi-loan-bottom-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.rabi-dbt-instant-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.rabi-request-loan-btn {
+  background-color: var(--color-forest-700);
+  color: #ffffff;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 12px rgba(19, 83, 47, 0.2);
+}
+
+.rabi-request-loan-btn:hover {
+  background-color: var(--color-forest-800);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(19, 83, 47, 0.28);
+}
+
+/* Card 4: DPDP Act 2023 Verified Vault (Sovereign Consent) */
+.zero-otp-pill {
+  background-color: #f1f8f3;
+  color: #2e7d32;
+  border: 1px solid #cde4d1;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.sovereign-vault-desc {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.sbi-pending-consent-card {
+  background-color: #f9fcf9;
+  border: 1px solid #e2ece3;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sbi-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sbi-name-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sbi-logo-square {
+  width: 32px;
+  height: 32px;
+  background-color: #dcfce7;
+  color: #15803d;
+  font-weight: 800;
+  font-size: 11.5px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sbi-title-text {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.pending-consent-pill {
+  background-color: var(--color-amber-bg);
+  color: var(--color-amber-text);
+  border: 1px solid var(--color-amber-border);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.approved-consent-pill {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.sbi-request-id-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: -6px;
+}
+
+.consent-permissions-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.consent-perm-box {
+  background-color: #ffffff;
+  border: 1px solid #e1efe4;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consent-perm-box-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.consent-perm-box-content {
+  font-size: 12px;
+  color: #1e293b;
+  line-height: 1.4;
+}
+
+.consent-action-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-consent-decline {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-consent-decline:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.btn-consent-allow {
+  background-color: var(--color-forest-700);
+  border: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-consent-allow:hover {
+  background-color: var(--color-forest-800);
+}
+
+/* ==========================================================================
+   Bottom 3-Card Row
+   ========================================================================== */
+.bottom-three-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap: 20px;
+}
+
+.green-tag-pill {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.mandi-big-price-text {
+  font-size: 24px;
+  font-weight: 800;
+  color: #13532f;
+}
+
+.mandi-card-body-text {
+  font-size: 12.5px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.mandi-card-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f1;
+}
+
+.mandi-arrivals-note {
+  color: #64748b;
+}
+
+.mandi-rates-link {
+  color: #15803d;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mandi-rates-link:hover {
+  text-decoration: underline;
+}
+
+/* Sowing Advisory */
+.weather-main-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.weather-temp-text {
+  font-size: 18px;
+  font-weight: 800;
+  color: #112618;
+}
+
+.weather-moisture-pill {
+  background-color: var(--color-sky-bg);
+  color: var(--color-sky-text);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.five-days-forecast-pills-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.weather-day-pill {
+  background-color: #f8faf8;
+  border: 1px solid #e2ece3;
+  border-radius: 8px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  font-size: 11px;
+}
+
+.weather-day-name {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.weather-day-icon {
+  font-size: 14px;
+}
+
+.weather-day-temp {
+  font-weight: 700;
+  color: #112618;
+}
+
+/* DBT Subsidy Tracker */
+.dbt-amount-heading {
+  font-size: 20px;
+  font-weight: 800;
+  color: #13532f;
+}
+
+.dbt-mitra-profile-footer {
+  background-color: #f7fbf8;
+  border: 1px solid #e1efe4;
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dbt-mitra-identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dbt-mitra-avatar {
+  width: 30px;
+  height: 30px;
+  background-color: var(--color-forest-700);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dbt-mitra-name-text {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.dbt-mitra-role-text {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.btn-call-mitra {
+  background: #ffffff;
+  border: 1px solid #cde0d1;
+  color: var(--color-forest-700);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+
+.btn-call-mitra:hover {
+  background-color: #eef6f0;
+  border-color: var(--color-forest-700);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.agritrust-footer {
+  margin-top: auto;
+  background-color: #eaf3ec;
+  border-top: 1px solid #dbe8dd;
+  padding: 16px 32px;
+  font-size: 12.5px;
+  color: #4b6352;
+}
+
+.agritrust-footer-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-left-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #2d4a34;
+}
+
+/* ==========================================================================
+   Interactive Modals
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 30, 18, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.15s ease;
+}
+
+.modal-card {
+  background: #ffffff;
+  border: 1px solid #dbe8dd;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleUp { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.modal-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #112618;
+}
+
+.modal-close-btn {
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .main-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .bottom-three-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .agritrust-navbar {
+    padding: 10px 16px;
+  }
+  .nav-links-menu {
+    display: none;
+  }
+  .agritrust-main-container {
+    padding: 12px 14px 30px;
+  }
+  .rabi-stats-trio-grid {
+    grid-template-columns: 1fr;
+  }
+  .bottom-three-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .consent-permissions-split-grid {
+    grid-template-columns: 1fr;
+  }
+}

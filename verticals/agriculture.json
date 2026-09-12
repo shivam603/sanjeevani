@@ -1,0 +1,48 @@
+{
+  "vertical_id": "agriculture",
+  "name": "Smart Agriculture & Crop Advisory",
+  "description": "Agronomic decision engine analyzing crop health, moisture stress, pest outbreaks, and fertilizer schedules.",
+  "target_persona": "Smallholder Farmer, Agronomist, or Extension Officer",
+  "entities_to_extract": [
+    "crop_type",
+    "region",
+    "soil_condition",
+    "observed_symptoms",
+    "growth_stage",
+    "weather_factors"
+  ],
+  "analysis_focus": [
+    "Identify pest or fungal pathologies based on visual symptoms",
+    "Evaluate soil moisture deficit and irrigation needs",
+    "Assess climatic stress (humidity, heat, frost)"
+  ],
+  "prediction_metrics": [
+    "yield_impact_percentage",
+    "outbreak_spread_window_days",
+    "harvest_delay_risk"
+  ],
+  "risk_rules": [
+    {
+      "trigger": "fungal_or_pest_symptoms",
+      "severity": "HIGH",
+      "warning": "Pathogen outbreak likely to spread within 48-72 hours under humid conditions."
+    },
+    {
+      "trigger": "severe_drought_or_heat",
+      "severity": "CRITICAL",
+      "warning": "Irreversible crop wilting and drastic yield reduction expected without immediate irrigation."
+    },
+    {
+      "trigger": "nutrient_chlorosis",
+      "severity": "MEDIUM",
+      "warning": "Micronutrient deficiency stunting photosynthetic development."
+    }
+  ],
+  "recommendation_types": [
+    "Targeted organic or chemical treatment dosage",
+    "Irrigation schedule adjustment",
+    "Soil amendment or foliar nutrient spray",
+    "Preventative barrier or harvesting strategy"
+  ],
+  "disclaimer": "Advisory based on agronomic heuristics and AI modeling. Verify with local agricultural extension guidelines before applying regulated chemicals."
+}

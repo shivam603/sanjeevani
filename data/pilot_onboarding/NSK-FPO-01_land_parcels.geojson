@@ -1,0 +1,5855 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4a731b9c-3027-4cd0-8152-0d1b8e961c7c",
+        "farmer_id": "62035909-0b1c-45bb-b967-8c20f8e90887",
+        "farmer_code": "NSK-101",
+        "survey_number": "SURV/NAS/214/2",
+        "acreage": 4.98,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.932382,
+              19.882497
+            ],
+            [
+              73.922897,
+              19.891772
+            ],
+            [
+              73.922396,
+              19.892483
+            ],
+            [
+              73.923051,
+              19.883487
+            ],
+            [
+              73.932382,
+              19.882497
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "307c4b09-8961-470a-9b6d-4c29952215f8",
+        "farmer_id": "57007824-db31-4fa2-a768-78c8d0e5a510",
+        "farmer_code": "NSK-102",
+        "survey_number": "SURV/NAS/309/4",
+        "acreage": 3.96,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.900171,
+              20.214966
+            ],
+            [
+              73.891065,
+              20.214687
+            ],
+            [
+              73.891038,
+              20.205833
+            ],
+            [
+              73.899178,
+              20.20696
+            ],
+            [
+              73.900171,
+              20.214966
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "56d34cfd-ccfa-4519-8a01-462ffd6b3132",
+        "farmer_id": "792eff8d-d827-499d-a7dc-e24a221ee7c3",
+        "farmer_code": "NSK-103",
+        "survey_number": "SURV/NAS/646/2",
+        "acreage": 2.08,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.744009,
+              19.993127
+            ],
+            [
+              73.737794,
+              19.999202
+            ],
+            [
+              73.738308,
+              19.998828
+            ],
+            [
+              73.737841,
+              19.993653
+            ],
+            [
+              73.744009,
+              19.993127
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d06eb89b-9536-4def-bc6f-884125ec1f07",
+        "farmer_id": "22f45956-b849-487b-b030-4d8fed0d7ab1",
+        "farmer_code": "NSK-104",
+        "survey_number": "SURV/NAS/230/2",
+        "acreage": 6.41,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.721133,
+              20.097652
+            ],
+            [
+              73.710006,
+              20.096478
+            ],
+            [
+              73.709131,
+              20.097596
+            ],
+            [
+              73.70914,
+              20.085942
+            ],
+            [
+              73.721133,
+              20.097652
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "f096d331-f79e-450f-9e28-c7b918ab1fe6",
+        "farmer_id": "0d8f7589-d027-4eed-af0e-bb583ca8a093",
+        "farmer_code": "NSK-105",
+        "survey_number": "SURV/NAS/740/3",
+        "acreage": 4.6,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.812956,
+              20.206394
+            ],
+            [
+              73.812386,
+              20.21501
+            ],
+            [
+              73.803361,
+              20.215988
+            ],
+            [
+              73.812649,
+              20.20691
+            ],
+            [
+              73.812956,
+              20.206394
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "e57337f8-e8f6-4db2-8f65-62b3a2131386",
+        "farmer_id": "5e5e00d7-68c4-4bf7-88ef-47b94cd87bd2",
+        "farmer_code": "NSK-106",
+        "survey_number": "SURV/NAS/592/3",
+        "acreage": 2.74,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.087724,
+              20.19938
+            ],
+            [
+              74.087846,
+              20.206618
+            ],
+            [
+              74.080971,
+              20.206133
+            ],
+            [
+              74.088179,
+              20.19912
+            ],
+            [
+              74.087724,
+              20.19938
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9fb639df-a2c5-41b0-b469-30b16ad1af3e",
+        "farmer_id": "a1651293-5ed7-4737-aa69-37f8f4901b4b",
+        "farmer_code": "NSK-107",
+        "survey_number": "SURV/NAS/106/3",
+        "acreage": 7.67,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.931852,
+              19.898138
+            ],
+            [
+              73.932725,
+              19.898703
+            ],
+            [
+              73.920115,
+              19.886401
+            ],
+            [
+              73.9311,
+              19.887948
+            ],
+            [
+              73.931852,
+              19.898138
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "57ab5f15-09d6-4e5b-adcb-9156ef00bca0",
+        "farmer_id": "ad65b1bd-84bc-475f-9757-f2f4d4676397",
+        "farmer_code": "NSK-108",
+        "survey_number": "SURV/NAS/698/3",
+        "acreage": 2.87,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.703784,
+              19.892162
+            ],
+            [
+              73.697103,
+              19.898693
+            ],
+            [
+              73.696787,
+              19.892182
+            ],
+            [
+              73.704244,
+              19.891891
+            ],
+            [
+              73.703784,
+              19.892162
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "2db4e501-14b1-4db3-96a8-70b05a96080d",
+        "farmer_id": "6971399f-0d78-4065-8c5b-776637447672",
+        "farmer_code": "NSK-109",
+        "survey_number": "SURV/NAS/419/4",
+        "acreage": 3.03,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.073704,
+              20.053221
+            ],
+            [
+              74.066867,
+              20.059887
+            ],
+            [
+              74.067389,
+              20.059535
+            ],
+            [
+              74.074205,
+              20.052898
+            ],
+            [
+              74.073704,
+              20.053221
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "173e946c-2a73-44b1-a8b0-e5ba901606f7",
+        "farmer_id": "392f99bf-f01d-4071-a507-7dd7ed8b0838",
+        "farmer_code": "NSK-110",
+        "survey_number": "SURV/NAS/318/1",
+        "acreage": 4.04,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.630958,
+              20.309039
+            ],
+            [
+              73.630826,
+              20.308698
+            ],
+            [
+              73.622252,
+              20.300333
+            ],
+            [
+              73.631089,
+              20.300102
+            ],
+            [
+              73.630958,
+              20.309039
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "36e4e654-3faf-48a4-afbb-ecde8781292b",
+        "farmer_id": "77f495f1-0b32-44ee-ae26-b0523c9dde44",
+        "farmer_code": "NSK-111",
+        "survey_number": "SURV/NAS/844/1",
+        "acreage": 3.66,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.814231,
+              19.920703
+            ],
+            [
+              73.815443,
+              19.921707
+            ],
+            [
+              73.806608,
+              19.91308
+            ],
+            [
+              73.807467,
+              19.91411
+            ],
+            [
+              73.814231,
+              19.920703
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "78713437-bcc0-4fc0-bb38-e3393f386e82",
+        "farmer_id": "023383f4-4353-4edd-a5ef-8bcc67880764",
+        "farmer_code": "NSK-112",
+        "survey_number": "SURV/NAS/688/1",
+        "acreage": 3.58,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.695781,
+              19.961734
+            ],
+            [
+              73.696414,
+              19.962177
+            ],
+            [
+              73.688953,
+              19.954906
+            ],
+            [
+              73.688655,
+              19.954787
+            ],
+            [
+              73.695781,
+              19.961734
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "29bfd6d3-4dd8-4a83-abd5-2fac8faed6a7",
+        "farmer_id": "588aa4e4-c936-43bf-a8e7-78233471e03d",
+        "farmer_code": "NSK-113",
+        "survey_number": "SURV/NAS/333/2",
+        "acreage": 6.43,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.702309,
+              19.87561
+            ],
+            [
+              73.692048,
+              19.885579
+            ],
+            [
+              73.69306,
+              19.884859
+            ],
+            [
+              73.693793,
+              19.87562
+            ],
+            [
+              73.702309,
+              19.87561
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "55720b1e-e0f3-4893-be99-a8b74185608f",
+        "farmer_id": "a849c0d7-53c3-4206-b54b-e21cdcc25297",
+        "farmer_code": "NSK-114",
+        "survey_number": "SURV/NAS/547/1",
+        "acreage": 2.95,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.764643,
+              20.305302
+            ],
+            [
+              73.765955,
+              20.306408
+            ],
+            [
+              73.757563,
+              20.298223
+            ],
+            [
+              73.757915,
+              20.298751
+            ],
+            [
+              73.764643,
+              20.305302
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "31a1b13e-503f-4590-82fa-549ce22cdfa8",
+        "farmer_id": "fb41b06f-efd8-48ea-9232-d5f5b0fe782a",
+        "farmer_code": "NSK-115",
+        "survey_number": "SURV/NAS/185/3",
+        "acreage": 2.19,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.641956,
+              20.247049
+            ],
+            [
+              73.642235,
+              20.252568
+            ],
+            [
+              73.635821,
+              20.253184
+            ],
+            [
+              73.636576,
+              20.247178
+            ],
+            [
+              73.641956,
+              20.247049
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "174f8472-e464-42b0-ab20-f7a23f8d8b29",
+        "farmer_id": "9025e61d-b5f9-4eb7-97c3-293579eac8dd",
+        "farmer_code": "NSK-116",
+        "survey_number": "SURV/NAS/838/4",
+        "acreage": 3.41,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.658915,
+              20.196194
+            ],
+            [
+              73.660386,
+              20.203655
+            ],
+            [
+              73.65233,
+              20.195817
+            ],
+            [
+              73.660091,
+              20.195221
+            ],
+            [
+              73.658915,
+              20.196194
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "6c814dd7-1704-4ef4-b776-c9ea3a4da676",
+        "farmer_id": "7eceeedb-15ec-4cd6-afec-1c230e6fb9ee",
+        "farmer_code": "NSK-117",
+        "survey_number": "SURV/NAS/453/3",
+        "acreage": 4.07,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.845848,
+              20.262361
+            ],
+            [
+              73.837379,
+              20.270592
+            ],
+            [
+              73.838172,
+              20.270037
+            ],
+            [
+              73.846036,
+              20.262347
+            ],
+            [
+              73.845848,
+              20.262361
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9a60c646-ddff-46e9-994c-ef024a59c1fb",
+        "farmer_id": "b62175d4-f4b5-4b6f-938a-e5f2bbfe7642",
+        "farmer_code": "NSK-118",
+        "survey_number": "SURV/NAS/612/3",
+        "acreage": 7.36,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.902053,
+              20.073533
+            ],
+            [
+              73.890758,
+              20.08459
+            ],
+            [
+              73.88969,
+              20.085896
+            ],
+            [
+              73.901181,
+              20.074664
+            ],
+            [
+              73.902053,
+              20.073533
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "cba641f9-97c6-42bc-a2b9-13d529d700bd",
+        "farmer_id": "95e9143f-d611-407e-989c-c34862c21792",
+        "farmer_code": "NSK-119",
+        "survey_number": "SURV/NAS/653/2",
+        "acreage": 4.11,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.978295,
+              20.260245
+            ],
+            [
+              73.969091,
+              20.260075
+            ],
+            [
+              73.969766,
+              20.251717
+            ],
+            [
+              73.969218,
+              20.251383
+            ],
+            [
+              73.978295,
+              20.260245
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "f4759b91-27df-4de2-a525-98761941e664",
+        "farmer_id": "40b5d920-a3df-4f04-8174-c767b372645f",
+        "farmer_code": "NSK-120",
+        "survey_number": "SURV/NAS/144/4",
+        "acreage": 1.85,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.750295,
+              20.270097
+            ],
+            [
+              73.745314,
+              20.274947
+            ],
+            [
+              73.745053,
+              20.275339
+            ],
+            [
+              73.751224,
+              20.269319
+            ],
+            [
+              73.750295,
+              20.270097
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9fb7552e-91d6-4649-9ca2-1678b9dc3dec",
+        "farmer_id": "6fa29e8b-1c82-409b-801d-2ca159322214",
+        "farmer_code": "NSK-121",
+        "survey_number": "SURV/NAS/889/2",
+        "acreage": 5.08,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.039915,
+              19.969465
+            ],
+            [
+              74.03879,
+              19.978554
+            ],
+            [
+              74.029591,
+              19.96955
+            ],
+            [
+              74.039904,
+              19.969723
+            ],
+            [
+              74.039915,
+              19.969465
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "befcf4e2-23f0-419c-9e2a-ac3481650b14",
+        "farmer_id": "d9e4b95d-dd86-4e96-b674-8e6c0b0b081a",
+        "farmer_code": "NSK-122",
+        "survey_number": "SURV/NAS/198/2",
+        "acreage": 2.11,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.656188,
+              20.149934
+            ],
+            [
+              73.655611,
+              20.155639
+            ],
+            [
+              73.650022,
+              20.150174
+            ],
+            [
+              73.649525,
+              20.149842
+            ],
+            [
+              73.656188,
+              20.149934
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "5f2d2e12-0181-4f79-a58b-ad446d9ad505",
+        "farmer_id": "c814e17e-777c-458e-bfcd-750a6dcdbb09",
+        "farmer_code": "NSK-123",
+        "survey_number": "SURV/NAS/444/1",
+        "acreage": 7.55,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.939462,
+              20.209604
+            ],
+            [
+              73.940163,
+              20.220778
+            ],
+            [
+              73.929614,
+              20.219452
+            ],
+            [
+              73.939445,
+              20.209877
+            ],
+            [
+              73.939462,
+              20.209604
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "63d38213-8814-49b1-b508-ca7fa80c110e",
+        "farmer_id": "b0ead15a-7692-4e00-8637-d7e6f668111a",
+        "farmer_code": "NSK-124",
+        "survey_number": "SURV/NAS/828/3",
+        "acreage": 6.23,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.028378,
+              20.004644
+            ],
+            [
+              74.016979,
+              20.015778
+            ],
+            [
+              74.016662,
+              20.004589
+            ],
+            [
+              74.016282,
+              20.004507
+            ],
+            [
+              74.028378,
+              20.004644
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9d86c132-b96e-4cbe-9e37-bbf1ccea0793",
+        "farmer_id": "d31e4a4c-783e-4125-a776-441025f9643c",
+        "farmer_code": "NSK-125",
+        "survey_number": "SURV/NAS/806/2",
+        "acreage": 1.54,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.792816,
+              20.245013
+            ],
+            [
+              73.787532,
+              20.245575
+            ],
+            [
+              73.7876,
+              20.239797
+            ],
+            [
+              73.788123,
+              20.240435
+            ],
+            [
+              73.792816,
+              20.245013
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "17be696b-8af2-480b-840c-9c435554898f",
+        "farmer_id": "8f65b23f-923f-4b01-a450-5ce247d5b9d6",
+        "farmer_code": "NSK-126",
+        "survey_number": "SURV/NAS/544/4",
+        "acreage": 4.88,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.863282,
+              20.32379
+            ],
+            [
+              73.864193,
+              20.32448
+            ],
+            [
+              73.854817,
+              20.324772
+            ],
+            [
+              73.863962,
+              20.315838
+            ],
+            [
+              73.863282,
+              20.32379
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "f1388d9a-ccaf-44a1-a619-3b92d6a4044c",
+        "farmer_id": "9f75c6be-d68e-428d-8e38-f6b96fa962d4",
+        "farmer_code": "NSK-127",
+        "survey_number": "SURV/NAS/274/1",
+        "acreage": 3.65,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.868718,
+              20.103684
+            ],
+            [
+              73.862304,
+              20.109941
+            ],
+            [
+              73.862418,
+              20.10365
+            ],
+            [
+              73.861064,
+              20.102512
+            ],
+            [
+              73.868718,
+              20.103684
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "fe9142bc-4c89-42b0-bd38-0c18999e3e11",
+        "farmer_id": "50e96bbd-ddb8-4190-8bd9-40cdcdd7a376",
+        "farmer_code": "NSK-128",
+        "survey_number": "SURV/NAS/750/2",
+        "acreage": 5.28,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.766395,
+              20.085003
+            ],
+            [
+              73.757362,
+              20.084071
+            ],
+            [
+              73.756703,
+              20.084926
+            ],
+            [
+              73.765591,
+              20.076233
+            ],
+            [
+              73.766395,
+              20.085003
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "077699cd-bccb-43f8-a64d-f37a4f202587",
+        "farmer_id": "f4fae45f-10f4-4d7c-97ff-5413d7d8cac9",
+        "farmer_code": "NSK-129",
+        "survey_number": "SURV/NAS/524/3",
+        "acreage": 7.19,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.838898,
+              20.210754
+            ],
+            [
+              73.838034,
+              20.220792
+            ],
+            [
+              73.828412,
+              20.211394
+            ],
+            [
+              73.827654,
+              20.210907
+            ],
+            [
+              73.838898,
+              20.210754
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a120b2a7-1753-4ce2-82b5-61e417de2e74",
+        "farmer_id": "dfe55353-2d17-41e3-a93b-c644640fc524",
+        "farmer_code": "NSK-130",
+        "survey_number": "SURV/NAS/406/4",
+        "acreage": 5.32,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.78803,
+              20.267417
+            ],
+            [
+              73.788811,
+              20.276949
+            ],
+            [
+              73.778219,
+              20.277229
+            ],
+            [
+              73.788901,
+              20.266803
+            ],
+            [
+              73.78803,
+              20.267417
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4d1851f8-52d6-4015-b354-e5b12fe07e9e",
+        "farmer_id": "303d85b8-f215-404f-a143-317a0fd08a03",
+        "farmer_code": "NSK-131",
+        "survey_number": "SURV/NAS/748/3",
+        "acreage": 2.28,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.622244,
+              19.84233
+            ],
+            [
+              73.622035,
+              19.847534
+            ],
+            [
+              73.616583,
+              19.847991
+            ],
+            [
+              73.622978,
+              19.841763
+            ],
+            [
+              73.622244,
+              19.84233
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "bede0380-09d0-4029-9249-afb29faa7968",
+        "farmer_id": "2af5e7ee-d95f-43a8-a5ab-f1bd0bb8243b",
+        "farmer_code": "NSK-132",
+        "survey_number": "SURV/NAS/536/3",
+        "acreage": 3.43,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.047075,
+              20.261548
+            ],
+            [
+              74.039311,
+              20.26283
+            ],
+            [
+              74.039739,
+              20.262623
+            ],
+            [
+              74.047256,
+              20.255263
+            ],
+            [
+              74.047075,
+              20.261548
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "40b5b8c8-f1c8-4905-8b69-23417c915916",
+        "farmer_id": "f94b1d44-eb35-472e-ad40-3edf4df29404",
+        "farmer_code": "NSK-133",
+        "survey_number": "SURV/NAS/654/1",
+        "acreage": 5.75,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.761412,
+              20.284404
+            ],
+            [
+              73.752548,
+              20.293038
+            ],
+            [
+              73.752393,
+              20.28342
+            ],
+            [
+              73.752101,
+              20.28338
+            ],
+            [
+              73.761412,
+              20.284404
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "1e14758e-3b94-4cd9-a440-61217c26ce84",
+        "farmer_id": "816edd7c-be80-492b-a923-67bf0551d5ac",
+        "farmer_code": "NSK-134",
+        "survey_number": "SURV/NAS/655/4",
+        "acreage": 5.7,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.868904,
+              19.923285
+            ],
+            [
+              73.859075,
+              19.922709
+            ],
+            [
+              73.859771,
+              19.922239
+            ],
+            [
+              73.868467,
+              19.913764
+            ],
+            [
+              73.868904,
+              19.923285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9d9b9854-9f71-483e-b413-8dd9b5029dff",
+        "farmer_id": "19f78224-bf19-46f9-8a7e-a374f5e6d4ec",
+        "farmer_code": "NSK-135",
+        "survey_number": "SURV/NAS/619/4",
+        "acreage": 7.51,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.739208,
+              20.24246
+            ],
+            [
+              73.726527,
+              20.243
+            ],
+            [
+              73.727251,
+              20.242598
+            ],
+            [
+              73.72676,
+              20.230323
+            ],
+            [
+              73.739208,
+              20.24246
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4480a74b-f566-48b5-b974-88e17f02eb25",
+        "farmer_id": "69416cba-66e7-4152-a04c-9a8c410b4f49",
+        "farmer_code": "NSK-136",
+        "survey_number": "SURV/NAS/803/3",
+        "acreage": 1.62,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.035058,
+              20.328464
+            ],
+            [
+              74.030024,
+              20.328177
+            ],
+            [
+              74.030145,
+              20.323552
+            ],
+            [
+              74.030042,
+              20.323563
+            ],
+            [
+              74.035058,
+              20.328464
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "1e4821bf-2427-413a-a653-bb13b8f5eff5",
+        "farmer_id": "fedb9e88-79ca-4a0c-8238-8e7457ecad36",
+        "farmer_code": "NSK-137",
+        "survey_number": "SURV/NAS/566/2",
+        "acreage": 7.73,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.665675,
+              20.018345
+            ],
+            [
+              73.653,
+              20.019231
+            ],
+            [
+              73.655478,
+              20.008148
+            ],
+            [
+              73.666871,
+              20.00602
+            ],
+            [
+              73.665675,
+              20.018345
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "3ab26385-4aa2-44b4-8bb4-6ff7df8e3a90",
+        "farmer_id": "18ead2e2-7e5b-4113-8c0b-ee986895b603",
+        "farmer_code": "NSK-138",
+        "survey_number": "SURV/NAS/692/4",
+        "acreage": 5.27,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.961501,
+              19.87454
+            ],
+            [
+              73.952048,
+              19.873585
+            ],
+            [
+              73.952269,
+              19.865308
+            ],
+            [
+              73.961347,
+              19.864728
+            ],
+            [
+              73.961501,
+              19.87454
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "c338dfed-0342-40a8-a46b-021f9f9efe8a",
+        "farmer_id": "427a9f7c-6a99-4872-8ae6-8c2b2b2ddb9d",
+        "farmer_code": "NSK-139",
+        "survey_number": "SURV/NAS/666/3",
+        "acreage": 3.11,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.613644,
+              20.140877
+            ],
+            [
+              73.613767,
+              20.140796
+            ],
+            [
+              73.605828,
+              20.140376
+            ],
+            [
+              73.61333,
+              20.133057
+            ],
+            [
+              73.613644,
+              20.140877
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "1217aaa9-c205-4eb0-8563-f1f131831140",
+        "farmer_id": "5087b2b3-1c1c-4b87-b807-93a934b6a50e",
+        "farmer_code": "NSK-140",
+        "survey_number": "SURV/NAS/791/4",
+        "acreage": 6.13,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.962468,
+              19.906363
+            ],
+            [
+              73.962747,
+              19.917376
+            ],
+            [
+              73.951931,
+              19.916901
+            ],
+            [
+              73.951477,
+              19.906643
+            ],
+            [
+              73.962468,
+              19.906363
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "ddb9a137-d91f-401e-b4e4-294581f5d6a2",
+        "farmer_id": "8dc8a9d6-cf69-4d47-9e56-2789d1ff3046",
+        "farmer_code": "NSK-141",
+        "survey_number": "SURV/NAS/177/1",
+        "acreage": 2.01,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.961069,
+              20.237954
+            ],
+            [
+              73.954656,
+              20.237731
+            ],
+            [
+              73.955479,
+              20.232364
+            ],
+            [
+              73.955229,
+              20.232238
+            ],
+            [
+              73.961069,
+              20.237954
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "50dad9c2-94f8-49be-845c-f12c31c1c7ec",
+        "farmer_id": "b0e73101-452b-4e42-b602-4d698f3da822",
+        "farmer_code": "NSK-142",
+        "survey_number": "SURV/NAS/708/3",
+        "acreage": 1.57,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.964243,
+              20.173564
+            ],
+            [
+              73.95923,
+              20.178455
+            ],
+            [
+              73.959455,
+              20.173693
+            ],
+            [
+              73.964526,
+              20.173411
+            ],
+            [
+              73.964243,
+              20.173564
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "ba96decd-c655-4f0f-ba23-ae232e9ae5ed",
+        "farmer_id": "47436c18-9aec-4de1-916c-81872bf306b5",
+        "farmer_code": "NSK-143",
+        "survey_number": "SURV/NAS/653/1",
+        "acreage": 7.58,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.835988,
+              19.883233
+            ],
+            [
+              73.825272,
+              19.881834
+            ],
+            [
+              73.825026,
+              19.87227
+            ],
+            [
+              73.836976,
+              19.870687
+            ],
+            [
+              73.835988,
+              19.883233
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "8c9e70fb-76db-4c62-9ab0-b70f63aa0e32",
+        "farmer_id": "ff83e9ef-8cbb-4f2b-aecf-de466ed5b0f6",
+        "farmer_code": "NSK-144",
+        "survey_number": "SURV/NAS/647/3",
+        "acreage": 6.88,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.914718,
+              20.192891
+            ],
+            [
+              73.91388,
+              20.191816
+            ],
+            [
+              73.90328,
+              20.192702
+            ],
+            [
+              73.914667,
+              20.18159
+            ],
+            [
+              73.914718,
+              20.192891
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "2bde236e-5eda-406a-8027-f53690eedc81",
+        "farmer_id": "d6a54254-db17-49e2-ab0b-4f1e6d9730ea",
+        "farmer_code": "NSK-145",
+        "survey_number": "SURV/NAS/773/1",
+        "acreage": 5.71,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.715706,
+              20.167818
+            ],
+            [
+              73.716666,
+              20.168512
+            ],
+            [
+              73.706037,
+              20.158148
+            ],
+            [
+              73.716756,
+              20.157791
+            ],
+            [
+              73.715706,
+              20.167818
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d55c35de-8323-48b4-a3db-d585a02553e6",
+        "farmer_id": "2564c118-b980-42c5-844d-cd13ba1e8bc8",
+        "farmer_code": "NSK-146",
+        "survey_number": "SURV/NAS/185/4",
+        "acreage": 2.97,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.728685,
+              20.122386
+            ],
+            [
+              73.720418,
+              20.122443
+            ],
+            [
+              73.720677,
+              20.122386
+            ],
+            [
+              73.728076,
+              20.115149
+            ],
+            [
+              73.728685,
+              20.122386
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "20cacb2d-6832-4d37-bdaf-672635a563be",
+        "farmer_id": "be7bfdd9-ed9e-4e68-b930-36b6b932514f",
+        "farmer_code": "NSK-147",
+        "survey_number": "SURV/NAS/307/2",
+        "acreage": 5.11,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.038617,
+              20.152071
+            ],
+            [
+              74.038425,
+              20.151663
+            ],
+            [
+              74.029595,
+              20.15161
+            ],
+            [
+              74.038725,
+              20.142711
+            ],
+            [
+              74.038617,
+              20.152071
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "669233c5-e50f-4b5b-9ab4-65ae52005808",
+        "farmer_id": "a68fe51c-ad3d-4b04-b577-15cfb5143b74",
+        "farmer_code": "NSK-148",
+        "survey_number": "SURV/NAS/530/2",
+        "acreage": 4.82,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.847622,
+              20.296363
+            ],
+            [
+              73.846784,
+              20.29532
+            ],
+            [
+              73.837878,
+              20.286619
+            ],
+            [
+              73.837803,
+              20.286768
+            ],
+            [
+              73.847622,
+              20.296363
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9d7a5e28-519c-451f-8bd8-bb433f756ea0",
+        "farmer_id": "72ac664f-7694-4c71-9741-0c2c5b0616ec",
+        "farmer_code": "NSK-149",
+        "survey_number": "SURV/NAS/523/1",
+        "acreage": 6.19,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.898134,
+              20.170046
+            ],
+            [
+              73.898154,
+              20.169801
+            ],
+            [
+              73.887881,
+              20.159792
+            ],
+            [
+              73.88729,
+              20.159454
+            ],
+            [
+              73.898134,
+              20.170046
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "e6a12826-6512-4b56-845f-3d5d46be94e5",
+        "farmer_id": "1d259d7d-2616-4328-b97b-9e33710486d0",
+        "farmer_code": "NSK-150",
+        "survey_number": "SURV/NAS/187/3",
+        "acreage": 7.22,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.847969,
+              20.026999
+            ],
+            [
+              73.847852,
+              20.02664
+            ],
+            [
+              73.837229,
+              20.027323
+            ],
+            [
+              73.836686,
+              20.016005
+            ],
+            [
+              73.847969,
+              20.026999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d86d9c59-04a0-4c6b-bdef-129ea63ff383",
+        "farmer_id": "033a6048-fabd-45aa-80af-e0429199264a",
+        "farmer_code": "NSK-151",
+        "survey_number": "SURV/NAS/401/3",
+        "acreage": 5.16,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.642945,
+              20.118934
+            ],
+            [
+              73.632385,
+              20.118758
+            ],
+            [
+              73.634005,
+              20.109994
+            ],
+            [
+              73.632111,
+              20.108366
+            ],
+            [
+              73.642945,
+              20.118934
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "fd40ae5d-31ec-4eb0-b85e-dc3d0b734f4d",
+        "farmer_id": "f351b555-20d0-4ea4-914b-3ae7e7043b52",
+        "farmer_code": "NSK-152",
+        "survey_number": "SURV/NAS/740/3",
+        "acreage": 4.52,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.83017,
+              20.018532
+            ],
+            [
+              73.830324,
+              20.027882
+            ],
+            [
+              73.82139,
+              20.019179
+            ],
+            [
+              73.820386,
+              20.018417
+            ],
+            [
+              73.83017,
+              20.018532
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d37a00b7-f53e-420d-9917-22a0dacab9f7",
+        "farmer_id": "cfee5425-4c15-4e83-af65-8518318f97f7",
+        "farmer_code": "NSK-153",
+        "survey_number": "SURV/NAS/567/4",
+        "acreage": 3.27,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.822196,
+              20.267117
+            ],
+            [
+              73.823002,
+              20.267727
+            ],
+            [
+              73.815062,
+              20.267647
+            ],
+            [
+              73.815781,
+              20.26085
+            ],
+            [
+              73.822196,
+              20.267117
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "13b0f474-4d67-4221-9b51-f45f98bb46e4",
+        "farmer_id": "cd3860e1-10ec-4cd4-bc3e-7f56a9e53350",
+        "farmer_code": "NSK-154",
+        "survey_number": "SURV/NAS/359/2",
+        "acreage": 1.95,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.027422,
+              20.110162
+            ],
+            [
+              74.021268,
+              20.116156
+            ],
+            [
+              74.021997,
+              20.110344
+            ],
+            [
+              74.0213,
+              20.109806
+            ],
+            [
+              74.027422,
+              20.110162
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "fe1f754e-170c-408a-8750-f575b1e58d86",
+        "farmer_id": "51f80234-3a0b-42f0-9719-6879922c5862",
+        "farmer_code": "NSK-155",
+        "survey_number": "SURV/NAS/597/1",
+        "acreage": 6.47,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.795993,
+              19.933798
+            ],
+            [
+              73.786301,
+              19.943261
+            ],
+            [
+              73.786632,
+              19.94316
+            ],
+            [
+              73.795942,
+              19.934079
+            ],
+            [
+              73.795993,
+              19.933798
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d380ff31-a6c0-4737-ba90-ea09f2345dd5",
+        "farmer_id": "644d885b-508a-46d8-966b-d9ba31a92a5c",
+        "farmer_code": "NSK-156",
+        "survey_number": "SURV/NAS/381/3",
+        "acreage": 3.86,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.834192,
+              20.021059
+            ],
+            [
+              73.834667,
+              20.028165
+            ],
+            [
+              73.827275,
+              20.020957
+            ],
+            [
+              73.827473,
+              20.021313
+            ],
+            [
+              73.834192,
+              20.021059
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "84c01dcf-b560-4fd1-8467-e5c29521f92f",
+        "farmer_id": "d3b69ccf-e76d-4d03-aac8-02c87baec907",
+        "farmer_code": "NSK-157",
+        "survey_number": "SURV/NAS/723/1",
+        "acreage": 3.12,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.100374,
+              20.133473
+            ],
+            [
+              74.092947,
+              20.140743
+            ],
+            [
+              74.092858,
+              20.140989
+            ],
+            [
+              74.092511,
+              20.134012
+            ],
+            [
+              74.100374,
+              20.133473
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "43f76b81-93f5-4c88-ad07-7a0c46dc26b9",
+        "farmer_id": "36018cc3-a1af-427e-8535-7be4682f0896",
+        "farmer_code": "NSK-158",
+        "survey_number": "SURV/NAS/173/1",
+        "acreage": 3.29,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.814979,
+              20.036773
+            ],
+            [
+              73.807065,
+              20.044515
+            ],
+            [
+              73.806885,
+              20.037249
+            ],
+            [
+              73.806994,
+              20.037535
+            ],
+            [
+              73.814979,
+              20.036773
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "fa1bd143-a3b7-4d65-81c3-017de2e5c08e",
+        "farmer_id": "22af8b93-1b96-4e87-85a8-097a6ed2f88d",
+        "farmer_code": "NSK-159",
+        "survey_number": "SURV/NAS/359/3",
+        "acreage": 2.11,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.642336,
+              19.895554
+            ],
+            [
+              73.636001,
+              19.901746
+            ],
+            [
+              73.635962,
+              19.901928
+            ],
+            [
+              73.636229,
+              19.896271
+            ],
+            [
+              73.642336,
+              19.895554
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d523c6d2-1d74-419c-b391-be6dcf88f8d5",
+        "farmer_id": "ab271c11-4b4a-464c-978b-a8566bac5590",
+        "farmer_code": "NSK-160",
+        "survey_number": "SURV/NAS/433/1",
+        "acreage": 5.86,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.961958,
+              20.075749
+            ],
+            [
+              73.961957,
+              20.086316
+            ],
+            [
+              73.95112,
+              20.086587
+            ],
+            [
+              73.962387,
+              20.075598
+            ],
+            [
+              73.961958,
+              20.075749
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a6200241-a9be-4ad5-a7e9-e9cd3ac2add5",
+        "farmer_id": "49ffedc9-ca9c-431e-8985-c68605617bde",
+        "farmer_code": "NSK-161",
+        "survey_number": "SURV/NAS/162/2",
+        "acreage": 1.82,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.866035,
+              20.005334
+            ],
+            [
+              73.86674,
+              20.005893
+            ],
+            [
+              73.861377,
+              20.005261
+            ],
+            [
+              73.866831,
+              19.999958
+            ],
+            [
+              73.866035,
+              20.005334
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "b77bf613-b623-4bed-872e-a346eef1d6d5",
+        "farmer_id": "ea1bb8d2-f71f-42c2-8cc0-13dbf2281f73",
+        "farmer_code": "NSK-162",
+        "survey_number": "SURV/NAS/178/1",
+        "acreage": 6.35,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.639621,
+              19.864753
+            ],
+            [
+              73.628221,
+              19.865017
+            ],
+            [
+              73.628348,
+              19.85348
+            ],
+            [
+              73.640058,
+              19.853744
+            ],
+            [
+              73.639621,
+              19.864753
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "6f3c7a74-66b2-4564-918c-77cb4b587c34",
+        "farmer_id": "b1944b2d-a106-4d2d-805e-7cd01f044658",
+        "farmer_code": "NSK-163",
+        "survey_number": "SURV/NAS/152/1",
+        "acreage": 3.37,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.877287,
+              20.155402
+            ],
+            [
+              73.878574,
+              20.162368
+            ],
+            [
+              73.87015,
+              20.162539
+            ],
+            [
+              73.878471,
+              20.154415
+            ],
+            [
+              73.877287,
+              20.155402
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "2ad535c5-ad59-4bc2-ba00-b4eb73bdd7ba",
+        "farmer_id": "330d3f05-c44f-4d22-8540-f1091f4f2158",
+        "farmer_code": "NSK-164",
+        "survey_number": "SURV/NAS/566/1",
+        "acreage": 3.06,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.092306,
+              19.889997
+            ],
+            [
+              74.085002,
+              19.897104
+            ],
+            [
+              74.085677,
+              19.896626
+            ],
+            [
+              74.093553,
+              19.88896
+            ],
+            [
+              74.092306,
+              19.889997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "e02d01d3-553c-4ee4-ac68-116d4db4c4b7",
+        "farmer_id": "98ee7abd-c44f-4394-9f1e-963d4e168cbd",
+        "farmer_code": "NSK-165",
+        "survey_number": "SURV/NAS/387/1",
+        "acreage": 5.51,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.616812,
+              20.006858
+            ],
+            [
+              73.61824,
+              20.015929
+            ],
+            [
+              73.608295,
+              20.015375
+            ],
+            [
+              73.617821,
+              20.006085
+            ],
+            [
+              73.616812,
+              20.006858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "ee665c84-8631-4427-83a0-a90798775b85",
+        "farmer_id": "9a7280a5-15b0-426c-a90f-490f131e534b",
+        "farmer_code": "NSK-166",
+        "survey_number": "SURV/NAS/493/1",
+        "acreage": 7.54,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.737179,
+              20.213271
+            ],
+            [
+              73.739036,
+              20.224379
+            ],
+            [
+              73.727785,
+              20.213445
+            ],
+            [
+              73.727221,
+              20.213128
+            ],
+            [
+              73.737179,
+              20.213271
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "2aac4772-5616-4bfc-ba73-b418dae22493",
+        "farmer_id": "b3c1b570-7be5-478c-bbdc-ba0584a56f49",
+        "farmer_code": "NSK-167",
+        "survey_number": "SURV/NAS/366/4",
+        "acreage": 3.54,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.940882,
+              20.053212
+            ],
+            [
+              73.940849,
+              20.061756
+            ],
+            [
+              73.933468,
+              20.054583
+            ],
+            [
+              73.932557,
+              20.053859
+            ],
+            [
+              73.940882,
+              20.053212
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "0f48604d-b4a9-426f-81b0-42ebf9822761",
+        "farmer_id": "eafcf5fb-e12c-4e73-9d91-2fb56958e62c",
+        "farmer_code": "NSK-168",
+        "survey_number": "SURV/NAS/694/3",
+        "acreage": 1.55,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.811402,
+              20.130286
+            ],
+            [
+              73.805836,
+              20.130036
+            ],
+            [
+              73.806349,
+              20.125234
+            ],
+            [
+              73.811486,
+              20.124655
+            ],
+            [
+              73.811402,
+              20.130286
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "88da4402-f447-4fe1-be84-7cd194f442fd",
+        "farmer_id": "5c8240ae-df46-47fa-a17f-1e6895410c11",
+        "farmer_code": "NSK-169",
+        "survey_number": "SURV/NAS/149/3",
+        "acreage": 1.89,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.677867,
+              19.986985
+            ],
+            [
+              73.672131,
+              19.992585
+            ],
+            [
+              73.672297,
+              19.987197
+            ],
+            [
+              73.671734,
+              19.986788
+            ],
+            [
+              73.677867,
+              19.986985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "1e1ef294-b3f1-4a3b-a19e-4f764eff58c2",
+        "farmer_id": "957d9e97-64f1-4e6b-ad8b-93f5ea546414",
+        "farmer_code": "NSK-170",
+        "survey_number": "SURV/NAS/553/3",
+        "acreage": 5.27,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.727175,
+              20.138523
+            ],
+            [
+              73.719449,
+              20.138378
+            ],
+            [
+              73.718887,
+              20.139125
+            ],
+            [
+              73.718004,
+              20.129606
+            ],
+            [
+              73.727175,
+              20.138523
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "324f3208-0523-4132-841c-30769b08ac7d",
+        "farmer_id": "667e6885-4702-4df9-8096-ec74d826c9ed",
+        "farmer_code": "NSK-171",
+        "survey_number": "SURV/NAS/668/1",
+        "acreage": 5.19,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.634602,
+              19.995305
+            ],
+            [
+              73.635916,
+              19.996361
+            ],
+            [
+              73.625482,
+              19.99621
+            ],
+            [
+              73.625671,
+              19.986604
+            ],
+            [
+              73.634602,
+              19.995305
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "b1949b24-8e30-4499-a284-e17731c9aa2e",
+        "farmer_id": "c421a34b-7387-4439-894f-18d769f2a5ab",
+        "farmer_code": "NSK-172",
+        "survey_number": "SURV/NAS/339/1",
+        "acreage": 6.62,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.913554,
+              20.10234
+            ],
+            [
+              73.912913,
+              20.113348
+            ],
+            [
+              73.902124,
+              20.102812
+            ],
+            [
+              73.902715,
+              20.103636
+            ],
+            [
+              73.913554,
+              20.10234
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "bc370b78-3377-408e-a6c7-56f5bffccb74",
+        "farmer_id": "ebce942e-b71b-45ed-8de0-f5b7b23afb3d",
+        "farmer_code": "NSK-173",
+        "survey_number": "SURV/NAS/222/2",
+        "acreage": 8.0,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.969732,
+              20.117243
+            ],
+            [
+              73.970157,
+              20.117427
+            ],
+            [
+              73.960117,
+              20.117556
+            ],
+            [
+              73.95811,
+              20.105953
+            ],
+            [
+              73.969732,
+              20.117243
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "fe4f27ca-8214-4e06-84e7-bedf8bf0d816",
+        "farmer_id": "c9b455f4-b060-4aaa-865f-3d9e88d37df4",
+        "farmer_code": "NSK-174",
+        "survey_number": "SURV/NAS/126/1",
+        "acreage": 7.69,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.992251,
+              19.957617
+            ],
+            [
+              73.979946,
+              19.969607
+            ],
+            [
+              73.981651,
+              19.958368
+            ],
+            [
+              73.980585,
+              19.957587
+            ],
+            [
+              73.992251,
+              19.957617
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "44cba872-c4a5-4fc0-a83f-b9ab6a5b2f0b",
+        "farmer_id": "49d2280e-3567-4a6e-b40e-c98d8ce98504",
+        "farmer_code": "NSK-175",
+        "survey_number": "SURV/NAS/884/2",
+        "acreage": 2.87,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.609901,
+              20.212653
+            ],
+            [
+              73.603403,
+              20.218973
+            ],
+            [
+              73.603585,
+              20.211849
+            ],
+            [
+              73.603493,
+              20.211931
+            ],
+            [
+              73.609901,
+              20.212653
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "7c80739e-9181-4c9e-a596-7292ea35ef88",
+        "farmer_id": "8fa1cf6e-0ee8-4b5e-bc36-7f43cec36d37",
+        "farmer_code": "NSK-176",
+        "survey_number": "SURV/NAS/631/1",
+        "acreage": 2.93,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.013958,
+              20.233629
+            ],
+            [
+              74.013595,
+              20.240018
+            ],
+            [
+              74.006556,
+              20.233125
+            ],
+            [
+              74.014364,
+              20.233407
+            ],
+            [
+              74.013958,
+              20.233629
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d0deffcd-5a29-4c6f-9fe8-3fb858417864",
+        "farmer_id": "51428c8d-5768-4079-94b6-8fbfc3385595",
+        "farmer_code": "NSK-177",
+        "survey_number": "SURV/NAS/715/4",
+        "acreage": 5.21,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.073561,
+              19.988082
+            ],
+            [
+              74.073012,
+              19.987325
+            ],
+            [
+              74.063841,
+              19.978362
+            ],
+            [
+              74.062919,
+              19.977713
+            ],
+            [
+              74.073561,
+              19.988082
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "8a98c790-660e-4dac-9cbc-5c95bec113ec",
+        "farmer_id": "1e274eab-8319-4b1d-9ad1-df27de7b494a",
+        "farmer_code": "NSK-178",
+        "survey_number": "SURV/NAS/437/1",
+        "acreage": 2.75,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.006401,
+              20.284546
+            ],
+            [
+              74.006551,
+              20.284501
+            ],
+            [
+              73.998857,
+              20.277002
+            ],
+            [
+              74.006308,
+              20.276902
+            ],
+            [
+              74.006401,
+              20.284546
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9ff37169-5885-448b-8e06-e97d7ede94ef",
+        "farmer_id": "72a61d93-cd83-4e96-9dde-a30bd3255f1a",
+        "farmer_code": "NSK-179",
+        "survey_number": "SURV/NAS/816/2",
+        "acreage": 4.34,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.81121,
+              20.202032
+            ],
+            [
+              73.812537,
+              20.203124
+            ],
+            [
+              73.802985,
+              20.203016
+            ],
+            [
+              73.802482,
+              20.193548
+            ],
+            [
+              73.81121,
+              20.202032
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a6211039-ba1a-49e6-9fae-ef464207554a",
+        "farmer_id": "05d2be36-1f49-4694-86a7-6dd0568a1de0",
+        "farmer_code": "NSK-180",
+        "survey_number": "SURV/NAS/687/4",
+        "acreage": 2.7,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.731426,
+              20.172286
+            ],
+            [
+              73.73174,
+              20.172433
+            ],
+            [
+              73.724661,
+              20.165521
+            ],
+            [
+              73.731879,
+              20.16561
+            ],
+            [
+              73.731426,
+              20.172286
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "e447f51a-c794-4711-8b1a-5f574e252d82",
+        "farmer_id": "6df0f5dd-e854-42f0-aeaf-73e1a90fa4b1",
+        "farmer_code": "NSK-181",
+        "survey_number": "SURV/NAS/851/2",
+        "acreage": 5.97,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.627387,
+              20.303679
+            ],
+            [
+              73.617302,
+              20.313507
+            ],
+            [
+              73.617814,
+              20.313252
+            ],
+            [
+              73.627701,
+              20.303603
+            ],
+            [
+              73.627387,
+              20.303679
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "b5faa8c2-2df8-4dd9-9a68-d01e349227ec",
+        "farmer_id": "c055af05-9f6a-4724-824f-e1b8ddc14ff1",
+        "farmer_code": "NSK-182",
+        "survey_number": "SURV/NAS/273/2",
+        "acreage": 7.48,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.73702,
+              20.280639
+            ],
+            [
+              73.72546,
+              20.280136
+            ],
+            [
+              73.724747,
+              20.268367
+            ],
+            [
+              73.725339,
+              20.269234
+            ],
+            [
+              73.73702,
+              20.280639
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a5722ea9-9a02-4fb4-8225-4ad11c75721c",
+        "farmer_id": "3e856d6a-94bb-498d-b83d-96869da3ac84",
+        "farmer_code": "NSK-183",
+        "survey_number": "SURV/NAS/514/1",
+        "acreage": 4.47,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.660096,
+              19.961106
+            ],
+            [
+              73.650557,
+              19.960937
+            ],
+            [
+              73.650783,
+              19.951792
+            ],
+            [
+              73.651676,
+              19.952861
+            ],
+            [
+              73.660096,
+              19.961106
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "67ea8e3a-94a2-4e4f-a62a-bbd6d4b20b4a",
+        "farmer_id": "a46aee42-3929-40ff-8060-6c6d2336fb93",
+        "farmer_code": "NSK-184",
+        "survey_number": "SURV/NAS/224/4",
+        "acreage": 6.78,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.659115,
+              20.012491
+            ],
+            [
+              73.660577,
+              20.022885
+            ],
+            [
+              73.649789,
+              20.021816
+            ],
+            [
+              73.648126,
+              20.011028
+            ],
+            [
+              73.659115,
+              20.012491
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "f75d4180-4e6e-4b00-975f-26cf8e3cdc6f",
+        "farmer_id": "9e16aab4-e457-468d-b985-78341f9a2803",
+        "farmer_code": "NSK-185",
+        "survey_number": "SURV/NAS/746/3",
+        "acreage": 1.99,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.023949,
+              20.047933
+            ],
+            [
+              74.0179,
+              20.047947
+            ],
+            [
+              74.018115,
+              20.042099
+            ],
+            [
+              74.017676,
+              20.041819
+            ],
+            [
+              74.023949,
+              20.047933
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "0cbde2e2-40c3-4c15-b914-15e49fd61431",
+        "farmer_id": "0a7d2209-2b3d-40c7-97b2-1e143ae7f185",
+        "farmer_code": "NSK-186",
+        "survey_number": "SURV/NAS/731/4",
+        "acreage": 6.56,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.726248,
+              19.884265
+            ],
+            [
+              73.726443,
+              19.893631
+            ],
+            [
+              73.71653,
+              19.893983
+            ],
+            [
+              73.727873,
+              19.882942
+            ],
+            [
+              73.726248,
+              19.884265
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "5e865b81-cde5-4364-b45e-7cd6ff839d76",
+        "farmer_id": "fa14f1a6-8d05-40ec-a1aa-1f1e924d8863",
+        "farmer_code": "NSK-187",
+        "survey_number": "SURV/NAS/166/2",
+        "acreage": 5.4,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.637036,
+              20.021738
+            ],
+            [
+              73.62634,
+              20.032177
+            ],
+            [
+              73.626667,
+              20.032107
+            ],
+            [
+              73.626653,
+              20.022188
+            ],
+            [
+              73.637036,
+              20.021738
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "24b428c5-b06e-4a5b-983d-9aad4379e920",
+        "farmer_id": "21730dd5-0f39-4262-a90d-2b87fbe3980e",
+        "farmer_code": "NSK-188",
+        "survey_number": "SURV/NAS/269/3",
+        "acreage": 4.9,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.897392,
+              20.090895
+            ],
+            [
+              73.889289,
+              20.091001
+            ],
+            [
+              73.889859,
+              20.083362
+            ],
+            [
+              73.89827,
+              20.082448
+            ],
+            [
+              73.897392,
+              20.090895
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "c9033339-bc5f-49c6-9e4b-3ffc51709978",
+        "farmer_id": "202cf036-bd32-4158-8049-0c73948d7aac",
+        "farmer_code": "NSK-189",
+        "survey_number": "SURV/NAS/605/3",
+        "acreage": 4.45,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.963878,
+              20.297199
+            ],
+            [
+              73.964499,
+              20.305225
+            ],
+            [
+              73.956076,
+              20.305001
+            ],
+            [
+              73.965062,
+              20.296252
+            ],
+            [
+              73.963878,
+              20.297199
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "52226637-bef9-433f-a151-a22b79132086",
+        "farmer_id": "ce9f9e8c-efe7-44c4-9479-789594631d48",
+        "farmer_code": "NSK-190",
+        "survey_number": "SURV/NAS/798/3",
+        "acreage": 5.64,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.873551,
+              20.116168
+            ],
+            [
+              73.865275,
+              20.124241
+            ],
+            [
+              73.865579,
+              20.116257
+            ],
+            [
+              73.873625,
+              20.116288
+            ],
+            [
+              73.873551,
+              20.116168
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "35d2e1c8-2087-4c36-b60d-8c164f5317ff",
+        "farmer_id": "01bf94ba-d45c-4f03-956d-a91fdb04ee81",
+        "farmer_code": "NSK-191",
+        "survey_number": "SURV/NAS/184/3",
+        "acreage": 4.76,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.664765,
+              20.129638
+            ],
+            [
+              73.655731,
+              20.128649
+            ],
+            [
+              73.655301,
+              20.120174
+            ],
+            [
+              73.654454,
+              20.119584
+            ],
+            [
+              73.664765,
+              20.129638
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "382e55a2-d674-4c90-a521-e147a386e1fd",
+        "farmer_id": "62486dd3-6604-4dac-97c0-ee7eb7f1eb4e",
+        "farmer_code": "NSK-192",
+        "survey_number": "SURV/NAS/855/4",
+        "acreage": 3.08,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.967198,
+              20.262093
+            ],
+            [
+              73.959927,
+              20.269156
+            ],
+            [
+              73.961026,
+              20.261693
+            ],
+            [
+              73.968389,
+              20.261096
+            ],
+            [
+              73.967198,
+              20.262093
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a6400778-ffd4-4899-a02b-367ddd9cd516",
+        "farmer_id": "4629f056-c746-4a58-ac45-946f793af46e",
+        "farmer_code": "NSK-193",
+        "survey_number": "SURV/NAS/299/1",
+        "acreage": 7.89,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.868168,
+              19.913397
+            ],
+            [
+              73.868902,
+              19.913806
+            ],
+            [
+              73.856518,
+              19.912851
+            ],
+            [
+              73.866828,
+              19.902767
+            ],
+            [
+              73.868168,
+              19.913397
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "17581b10-474b-4c56-9276-f45b5eb56fd4",
+        "farmer_id": "55f95243-3987-478a-8c52-2aad1d9756fa",
+        "farmer_code": "NSK-194",
+        "survey_number": "SURV/NAS/319/2",
+        "acreage": 2.29,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.701823,
+              20.145947
+            ],
+            [
+              73.701591,
+              20.145593
+            ],
+            [
+              73.696302,
+              20.145885
+            ],
+            [
+              73.702123,
+              20.140211
+            ],
+            [
+              73.701823,
+              20.145947
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "00e84c69-b436-4e22-9d7f-7e744ecf97fa",
+        "farmer_id": "2bd1bb2e-82bc-4b47-9275-764cc0f4d626",
+        "farmer_code": "NSK-195",
+        "survey_number": "SURV/NAS/203/2",
+        "acreage": 4.65,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.764558,
+              20.311963
+            ],
+            [
+              73.757185,
+              20.311715
+            ],
+            [
+              73.756954,
+              20.31212
+            ],
+            [
+              73.764583,
+              20.30467
+            ],
+            [
+              73.764558,
+              20.311963
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a866ef3e-451b-40d1-9f8e-8ebd9501a4bf",
+        "farmer_id": "3e123730-6e4b-4e18-8ed8-e06ae05e47c2",
+        "farmer_code": "NSK-196",
+        "survey_number": "SURV/NAS/656/2",
+        "acreage": 2.57,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.70172,
+              20.238412
+            ],
+            [
+              73.702116,
+              20.243806
+            ],
+            [
+              73.69634,
+              20.238171
+            ],
+            [
+              73.696333,
+              20.238299
+            ],
+            [
+              73.70172,
+              20.238412
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "7253a2f5-d759-4f8c-ab23-1d8c58b58f69",
+        "farmer_id": "a43f2b7b-3279-4316-8d5d-301401287383",
+        "farmer_code": "NSK-197",
+        "survey_number": "SURV/NAS/365/3",
+        "acreage": 6.97,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.045127,
+              20.089898
+            ],
+            [
+              74.045474,
+              20.089936
+            ],
+            [
+              74.034579,
+              20.088189
+            ],
+            [
+              74.044975,
+              20.078077
+            ],
+            [
+              74.045127,
+              20.089898
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a39f44f7-21e1-4161-b2f8-672a2c39a43a",
+        "farmer_id": "3b5031e8-54df-462a-9373-a7d060a774a7",
+        "farmer_code": "NSK-198",
+        "survey_number": "SURV/NAS/824/3",
+        "acreage": 3.64,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.858617,
+              19.905591
+            ],
+            [
+              73.84964,
+              19.914345
+            ],
+            [
+              73.850275,
+              19.905891
+            ],
+            [
+              73.858143,
+              19.906247
+            ],
+            [
+              73.858617,
+              19.905591
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "62507724-60db-4ba5-b863-08c93a2d7194",
+        "farmer_id": "24f21d19-5b18-4d8d-9e41-db3a886a5b8e",
+        "farmer_code": "NSK-199",
+        "survey_number": "SURV/NAS/831/3",
+        "acreage": 7.26,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.103821,
+              20.191153
+            ],
+            [
+              74.104792,
+              20.191843
+            ],
+            [
+              74.093254,
+              20.191867
+            ],
+            [
+              74.104963,
+              20.180446
+            ],
+            [
+              74.103821,
+              20.191153
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "45b4f142-58a6-41f0-a38c-7f3f3b2c39fc",
+        "farmer_id": "dc1eb0fa-d56c-42ed-a982-1308c1b7db8e",
+        "farmer_code": "NSK-200",
+        "survey_number": "SURV/NAS/688/4",
+        "acreage": 2.36,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.893156,
+              19.910871
+            ],
+            [
+              73.893375,
+              19.916788
+            ],
+            [
+              73.887222,
+              19.910785
+            ],
+            [
+              73.89322,
+              19.910948
+            ],
+            [
+              73.893156,
+              19.910871
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9f209435-1a2f-4bb4-93e7-c3291841755b",
+        "farmer_id": "f6374e7a-ba57-4b17-a5c8-792f17d6cd42",
+        "farmer_code": "NSK-201",
+        "survey_number": "SURV/NAS/482/2",
+        "acreage": 6.19,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.780762,
+              19.969031
+            ],
+            [
+              73.770671,
+              19.967873
+            ],
+            [
+              73.769957,
+              19.968805
+            ],
+            [
+              73.769077,
+              19.957639
+            ],
+            [
+              73.780762,
+              19.969031
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4a7615e9-6ac9-4b61-8e1c-c604045ae837",
+        "farmer_id": "af5b7689-26c4-4bfb-ba3b-7a014f086d73",
+        "farmer_code": "NSK-202",
+        "survey_number": "SURV/NAS/563/2",
+        "acreage": 7.41,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.947491,
+              20.004756
+            ],
+            [
+              73.93593,
+              20.016033
+            ],
+            [
+              73.936674,
+              20.005072
+            ],
+            [
+              73.935561,
+              20.004261
+            ],
+            [
+              73.947491,
+              20.004756
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "9649b9f7-f82a-4908-bd06-0cfa7bb97b10",
+        "farmer_id": "ea9726bd-fce8-416f-8a21-c196d80e70e5",
+        "farmer_code": "NSK-203",
+        "survey_number": "SURV/NAS/423/4",
+        "acreage": 7.14,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.92597,
+              20.301544
+            ],
+            [
+              73.913945,
+              20.300782
+            ],
+            [
+              73.913888,
+              20.301113
+            ],
+            [
+              73.924424,
+              20.290802
+            ],
+            [
+              73.92597,
+              20.301544
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "3188c68b-71c3-4eb5-9e8b-a8b1fec2aca2",
+        "farmer_id": "a2e70c27-6b77-49ab-88af-236f708a8d7a",
+        "farmer_code": "NSK-204",
+        "survey_number": "SURV/NAS/715/3",
+        "acreage": 2.95,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.059074,
+              20.155417
+            ],
+            [
+              74.059323,
+              20.155518
+            ],
+            [
+              74.052134,
+              20.156672
+            ],
+            [
+              74.06016,
+              20.148834
+            ],
+            [
+              74.059074,
+              20.155417
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d91759b6-e93b-4362-b1e1-f304b46dd9a0",
+        "farmer_id": "91e1cdb3-b97e-4cf3-92c3-e5865990ee11",
+        "farmer_code": "NSK-205",
+        "survey_number": "SURV/NAS/629/3",
+        "acreage": 6.11,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.865556,
+              20.263128
+            ],
+            [
+              73.86565,
+              20.263018
+            ],
+            [
+              73.856337,
+              20.263997
+            ],
+            [
+              73.856761,
+              20.254553
+            ],
+            [
+              73.865556,
+              20.263128
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "c493454a-580b-43c8-a823-df32da779cc1",
+        "farmer_id": "326fd30f-f385-4dee-9ae1-ec630e78a0ca",
+        "farmer_code": "NSK-206",
+        "survey_number": "SURV/NAS/202/3",
+        "acreage": 7.78,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.092504,
+              20.10252
+            ],
+            [
+              74.093606,
+              20.103335
+            ],
+            [
+              74.080878,
+              20.104266
+            ],
+            [
+              74.092595,
+              20.092788
+            ],
+            [
+              74.092504,
+              20.10252
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "c5397ec7-3363-450c-b933-66d14346b42e",
+        "farmer_id": "af626c2a-8950-4251-9e51-aa336d12c196",
+        "farmer_code": "NSK-207",
+        "survey_number": "SURV/NAS/653/1",
+        "acreage": 5.99,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.739442,
+              19.919998
+            ],
+            [
+              73.729687,
+              19.918382
+            ],
+            [
+              73.729217,
+              19.909772
+            ],
+            [
+              73.738454,
+              19.910032
+            ],
+            [
+              73.739442,
+              19.919998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "83706091-a961-4867-a261-6c81d388f8b5",
+        "farmer_id": "70bfc4c3-42db-48ff-a513-2dc4a2ce1f7c",
+        "farmer_code": "NSK-208",
+        "survey_number": "SURV/NAS/502/2",
+        "acreage": 6.33,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.002051,
+              19.860455
+            ],
+            [
+              73.991747,
+              19.870548
+            ],
+            [
+              73.991751,
+              19.861928
+            ],
+            [
+              74.00096,
+              19.861774
+            ],
+            [
+              74.002051,
+              19.860455
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "29c3c5d9-22d9-4360-99ff-7198c8da531c",
+        "farmer_id": "50d0ce58-6d24-4fe6-96a3-8b4ec0aa3824",
+        "farmer_code": "NSK-209",
+        "survey_number": "SURV/NAS/297/1",
+        "acreage": 7.04,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.757713,
+              20.197142
+            ],
+            [
+              73.75961,
+              20.207255
+            ],
+            [
+              73.748742,
+              20.206114
+            ],
+            [
+              73.759124,
+              20.196001
+            ],
+            [
+              73.757713,
+              20.197142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "968a8133-b2eb-4e25-af80-deffda678845",
+        "farmer_id": "3d187818-68a4-41e3-b5d8-1318533522f7",
+        "farmer_code": "NSK-210",
+        "survey_number": "SURV/NAS/620/3",
+        "acreage": 1.52,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.945582,
+              20.008938
+            ],
+            [
+              73.941127,
+              20.009043
+            ],
+            [
+              73.941047,
+              20.009234
+            ],
+            [
+              73.940902,
+              20.004381
+            ],
+            [
+              73.945582,
+              20.008938
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "7473067e-8f9d-43d9-9ae3-161915722ad0",
+        "farmer_id": "47f86b9a-6ba8-4d23-8c35-79097d445e0a",
+        "farmer_code": "NSK-211",
+        "survey_number": "SURV/NAS/781/4",
+        "acreage": 6.16,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.919186,
+              20.185808
+            ],
+            [
+              73.907742,
+              20.196985
+            ],
+            [
+              73.907924,
+              20.186209
+            ],
+            [
+              73.919089,
+              20.186178
+            ],
+            [
+              73.919186,
+              20.185808
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "15ab5ce1-e441-4417-a7c7-3b882e0ec13d",
+        "farmer_id": "eb13e016-4c61-4e42-a5ef-35ae509460f4",
+        "farmer_code": "NSK-212",
+        "survey_number": "SURV/NAS/771/3",
+        "acreage": 2.29,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.804717,
+              19.8864
+            ],
+            [
+              73.805257,
+              19.886785
+            ],
+            [
+              73.799137,
+              19.886499
+            ],
+            [
+              73.798225,
+              19.880087
+            ],
+            [
+              73.804717,
+              19.8864
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "1ce0612a-ab96-4d6e-9b8a-465873f62bdc",
+        "farmer_id": "419c6867-c79c-496c-98b7-12a994fdf4b8",
+        "farmer_code": "NSK-213",
+        "survey_number": "SURV/NAS/593/2",
+        "acreage": 4.03,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.667269,
+              19.931954
+            ],
+            [
+              73.65852,
+              19.940515
+            ],
+            [
+              73.657852,
+              19.941372
+            ],
+            [
+              73.665874,
+              19.933511
+            ],
+            [
+              73.667269,
+              19.931954
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "5ac909aa-dcd6-45f1-b887-412bb2ba06cd",
+        "farmer_id": "8f5f23d9-998c-4cf1-aa7e-a979dbe6f2c0",
+        "farmer_code": "NSK-214",
+        "survey_number": "SURV/NAS/749/3",
+        "acreage": 3.21,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.855971,
+              20.071323
+            ],
+            [
+              73.855787,
+              20.070968
+            ],
+            [
+              73.848954,
+              20.064306
+            ],
+            [
+              73.847735,
+              20.063299
+            ],
+            [
+              73.855971,
+              20.071323
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "930eb608-340a-424e-8e66-a27e9a1e282d",
+        "farmer_id": "81c2c1f1-df7a-4552-8978-22668cdf7569",
+        "farmer_code": "NSK-215",
+        "survey_number": "SURV/NAS/851/2",
+        "acreage": 5.28,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.63859,
+              20.077283
+            ],
+            [
+              73.637801,
+              20.076276
+            ],
+            [
+              73.629246,
+              20.067939
+            ],
+            [
+              73.63883,
+              20.066606
+            ],
+            [
+              73.63859,
+              20.077283
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "5e366ced-14ab-43bb-97c4-d0056d022a7c",
+        "farmer_id": "6f076fce-6d94-4e06-ac4b-3f619fe1fa1a",
+        "farmer_code": "NSK-216",
+        "survey_number": "SURV/NAS/385/1",
+        "acreage": 5.67,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.639592,
+              19.876833
+            ],
+            [
+              73.631126,
+              19.876808
+            ],
+            [
+              73.629997,
+              19.867239
+            ],
+            [
+              73.640842,
+              19.867555
+            ],
+            [
+              73.639592,
+              19.876833
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "5c161d97-056b-442d-bd81-0b629b06fd38",
+        "farmer_id": "311bccbf-914f-43df-9e0b-af51b806095a",
+        "farmer_code": "NSK-217",
+        "survey_number": "SURV/NAS/492/3",
+        "acreage": 4.3,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.6716,
+              19.892263
+            ],
+            [
+              73.67266,
+              19.900178
+            ],
+            [
+              73.663492,
+              19.900371
+            ],
+            [
+              73.663822,
+              19.891761
+            ],
+            [
+              73.6716,
+              19.892263
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "98dd811b-eb14-4400-b388-76f32dfcd20d",
+        "farmer_id": "4c1f544f-2162-452e-82ef-a7ae518f51a9",
+        "farmer_code": "NSK-218",
+        "survey_number": "SURV/NAS/331/3",
+        "acreage": 2.7,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.784335,
+              20.315769
+            ],
+            [
+              73.784532,
+              20.315828
+            ],
+            [
+              73.777902,
+              20.316828
+            ],
+            [
+              73.777835,
+              20.30945
+            ],
+            [
+              73.784335,
+              20.315769
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "27028053-92ed-462b-b223-b204444fbb4d",
+        "farmer_id": "3b663d4c-f73b-4f3b-a35e-b05709ee1129",
+        "farmer_code": "NSK-219",
+        "survey_number": "SURV/NAS/280/3",
+        "acreage": 7.74,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.869248,
+              20.075651
+            ],
+            [
+              73.870709,
+              20.087646
+            ],
+            [
+              73.857898,
+              20.075163
+            ],
+            [
+              73.858201,
+              20.075734
+            ],
+            [
+              73.869248,
+              20.075651
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "87b07d89-d7c2-43c1-8de0-eee59d60f62f",
+        "farmer_id": "5c09581e-7b7c-40b7-a8f2-9fc54949ff67",
+        "farmer_code": "NSK-220",
+        "survey_number": "SURV/NAS/284/4",
+        "acreage": 4.25,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.617251,
+              19.936694
+            ],
+            [
+              73.617306,
+              19.936583
+            ],
+            [
+              73.609042,
+              19.928485
+            ],
+            [
+              73.618819,
+              19.928498
+            ],
+            [
+              73.617251,
+              19.936694
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "f1c61342-bb3d-4bb8-8c89-3bca4d1b0534",
+        "farmer_id": "ef9cfe65-beeb-46b7-9160-be570007e7de",
+        "farmer_code": "NSK-221",
+        "survey_number": "SURV/NAS/655/4",
+        "acreage": 2.78,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.831189,
+              20.09185
+            ],
+            [
+              73.831343,
+              20.097967
+            ],
+            [
+              73.82501,
+              20.091787
+            ],
+            [
+              73.831033,
+              20.092144
+            ],
+            [
+              73.831189,
+              20.09185
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "68ba1e38-c635-4a13-8e35-778c35b84a38",
+        "farmer_id": "674224cc-5c0f-46ad-b520-8c86b148babd",
+        "farmer_code": "NSK-222",
+        "survey_number": "SURV/NAS/750/1",
+        "acreage": 7.23,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.802834,
+              20.240641
+            ],
+            [
+              73.791106,
+              20.240187
+            ],
+            [
+              73.790758,
+              20.240811
+            ],
+            [
+              73.803252,
+              20.22862
+            ],
+            [
+              73.802834,
+              20.240641
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "3b74bee1-b78b-4cfc-8b35-6a2bfec52f75",
+        "farmer_id": "3934eb9d-b25e-4eb9-8374-733009da9d59",
+        "farmer_code": "NSK-223",
+        "survey_number": "SURV/NAS/834/2",
+        "acreage": 4.1,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.745125,
+              20.240677
+            ],
+            [
+              73.74428,
+              20.248864
+            ],
+            [
+              73.736815,
+              20.241579
+            ],
+            [
+              73.744301,
+              20.241681
+            ],
+            [
+              73.745125,
+              20.240677
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "e5f094da-3baf-44be-964b-4562a96b1472",
+        "farmer_id": "79eb6a22-d2c7-41b7-ab0b-7c0789f48e37",
+        "farmer_code": "NSK-224",
+        "survey_number": "SURV/NAS/239/4",
+        "acreage": 5.13,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.929172,
+              20.041509
+            ],
+            [
+              73.920224,
+              20.050254
+            ],
+            [
+              73.920059,
+              20.050622
+            ],
+            [
+              73.919001,
+              20.040969
+            ],
+            [
+              73.929172,
+              20.041509
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "472838f8-b5cf-428f-a7ae-afc8da81f75c",
+        "farmer_id": "8d93d118-cdb5-4eb1-8ae5-b53c8decee23",
+        "farmer_code": "NSK-225",
+        "survey_number": "SURV/NAS/825/3",
+        "acreage": 6.82,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.018716,
+              20.173624
+            ],
+            [
+              74.017759,
+              20.172417
+            ],
+            [
+              74.007928,
+              20.162835
+            ],
+            [
+              74.007301,
+              20.162456
+            ],
+            [
+              74.018716,
+              20.173624
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "b28f6117-2b2e-4efe-964b-5f77c9774d34",
+        "farmer_id": "87315273-1e73-438a-94d7-b046e60bfeb4",
+        "farmer_code": "NSK-226",
+        "survey_number": "SURV/NAS/372/2",
+        "acreage": 7.49,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.882956,
+              19.876574
+            ],
+            [
+              73.881834,
+              19.875212
+            ],
+            [
+              73.870785,
+              19.864403
+            ],
+            [
+              73.870896,
+              19.864795
+            ],
+            [
+              73.882956,
+              19.876574
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4fabeec8-6000-447a-bdfb-bb9826b35173",
+        "farmer_id": "db235e3e-265e-4a62-9de5-c8e1193b3230",
+        "farmer_code": "NSK-227",
+        "survey_number": "SURV/NAS/818/4",
+        "acreage": 6.38,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.751095,
+              19.935901
+            ],
+            [
+              73.740909,
+              19.945883
+            ],
+            [
+              73.740904,
+              19.946092
+            ],
+            [
+              73.740035,
+              19.936916
+            ],
+            [
+              73.751095,
+              19.935901
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "02efb104-7fd1-4455-b38c-83738eccb72e",
+        "farmer_id": "5e196ecb-fbc7-4819-a7ae-5bf567afbe00",
+        "farmer_code": "NSK-228",
+        "survey_number": "SURV/NAS/756/4",
+        "acreage": 4.12,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.697599,
+              19.908054
+            ],
+            [
+              73.696774,
+              19.90706
+            ],
+            [
+              73.68918,
+              19.899635
+            ],
+            [
+              73.697429,
+              19.899683
+            ],
+            [
+              73.697599,
+              19.908054
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "701d529a-88ba-4957-9cf6-eaed96b83147",
+        "farmer_id": "a3a272cc-11fc-4b12-a75a-30422cdaf8fd",
+        "farmer_code": "NSK-229",
+        "survey_number": "SURV/NAS/363/3",
+        "acreage": 2.89,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.93129,
+              19.842594
+            ],
+            [
+              73.925252,
+              19.842454
+            ],
+            [
+              73.924977,
+              19.842873
+            ],
+            [
+              73.932483,
+              19.835568
+            ],
+            [
+              73.93129,
+              19.842594
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a416ec83-e1cb-4113-a807-de3e77a9d5b9",
+        "farmer_id": "a574d185-33dc-4e6d-86a4-544d90d05e42",
+        "farmer_code": "NSK-230",
+        "survey_number": "SURV/NAS/339/3",
+        "acreage": 6.85,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.874508,
+              19.890831
+            ],
+            [
+              73.873562,
+              19.900431
+            ],
+            [
+              73.864372,
+              19.891451
+            ],
+            [
+              73.873615,
+              19.891937
+            ],
+            [
+              73.874508,
+              19.890831
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "e9164d26-ec08-4a11-90a9-80b1e0606a01",
+        "farmer_id": "efb98994-e4e4-4702-902b-5f6e0dcf6606",
+        "farmer_code": "NSK-231",
+        "survey_number": "SURV/NAS/766/4",
+        "acreage": 5.94,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.080449,
+              20.198499
+            ],
+            [
+              74.079849,
+              20.208215
+            ],
+            [
+              74.070789,
+              20.199378
+            ],
+            [
+              74.080115,
+              20.199068
+            ],
+            [
+              74.080449,
+              20.198499
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "314b8525-f28a-48e2-bcab-56259822db43",
+        "farmer_id": "5957bf6d-6f74-474a-abe9-e2fadf3f5bbf",
+        "farmer_code": "NSK-232",
+        "survey_number": "SURV/NAS/737/1",
+        "acreage": 7.71,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.836877,
+              20.272369
+            ],
+            [
+              73.825482,
+              20.283518
+            ],
+            [
+              73.824434,
+              20.272385
+            ],
+            [
+              73.835918,
+              20.273579
+            ],
+            [
+              73.836877,
+              20.272369
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4a4c4f12-ac84-4859-9bf3-27f34a07a09d",
+        "farmer_id": "c954c4c5-f4d3-4079-a6dc-960b14924cbd",
+        "farmer_code": "NSK-233",
+        "survey_number": "SURV/NAS/282/1",
+        "acreage": 2.3,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.684909,
+              20.118856
+            ],
+            [
+              73.684797,
+              20.118599
+            ],
+            [
+              73.678239,
+              20.119194
+            ],
+            [
+              73.679032,
+              20.113109
+            ],
+            [
+              73.684909,
+              20.118856
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "116da19e-5d68-4117-9ca9-42d1249c0096",
+        "farmer_id": "0247ff10-c1bf-4e63-8a72-f0589ebc494e",
+        "farmer_code": "NSK-234",
+        "survey_number": "SURV/NAS/407/1",
+        "acreage": 7.59,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.785609,
+              20.291616
+            ],
+            [
+              73.772639,
+              20.304279
+            ],
+            [
+              73.772869,
+              20.291911
+            ],
+            [
+              73.786015,
+              20.291541
+            ],
+            [
+              73.785609,
+              20.291616
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "25a01a1e-7764-4119-a1d7-7130fe1254cd",
+        "farmer_id": "749da04a-fbbd-4545-aac6-fb6b37b8a928",
+        "farmer_code": "NSK-235",
+        "survey_number": "SURV/NAS/411/1",
+        "acreage": 6.63,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.78475,
+              20.282354
+            ],
+            [
+              73.772502,
+              20.282066
+            ],
+            [
+              73.772932,
+              20.270536
+            ],
+            [
+              73.785047,
+              20.270119
+            ],
+            [
+              73.78475,
+              20.282354
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4fe599f4-7a1e-4422-9ccf-c5a6a3221b81",
+        "farmer_id": "3a5c82c0-8430-4267-b5ef-e56257e1e443",
+        "farmer_code": "NSK-236",
+        "survey_number": "SURV/NAS/749/2",
+        "acreage": 3.19,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.864903,
+              19.934778
+            ],
+            [
+              73.858117,
+              19.934489
+            ],
+            [
+              73.857948,
+              19.934816
+            ],
+            [
+              73.864857,
+              19.92807
+            ],
+            [
+              73.864903,
+              19.934778
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "d28a2a09-0758-4098-a0d3-ec428e1a9a97",
+        "farmer_id": "fc77b612-bc18-4420-8aae-0e335d42c162",
+        "farmer_code": "NSK-237",
+        "survey_number": "SURV/NAS/610/4",
+        "acreage": 4.61,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.863762,
+              20.150309
+            ],
+            [
+              73.853963,
+              20.159861
+            ],
+            [
+              73.854908,
+              20.159163
+            ],
+            [
+              73.854063,
+              20.150081
+            ],
+            [
+              73.863762,
+              20.150309
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "a723e80b-0c51-4321-b037-2fe66e747648",
+        "farmer_id": "f2baec21-2560-40d0-8ec1-aefd174ca2e8",
+        "farmer_code": "NSK-238",
+        "survey_number": "SURV/NAS/797/4",
+        "acreage": 6.44,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.063521,
+              20.147956
+            ],
+            [
+              74.054457,
+              20.148284
+            ],
+            [
+              74.054244,
+              20.13868
+            ],
+            [
+              74.053363,
+              20.13808
+            ],
+            [
+              74.063521,
+              20.147956
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "62fb9d42-d484-4cc3-8587-a30fa3f10653",
+        "farmer_id": "68ea6b15-685e-45ab-98c2-0308731447cf",
+        "farmer_code": "NSK-239",
+        "survey_number": "SURV/NAS/582/4",
+        "acreage": 7.35,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.879107,
+              20.082822
+            ],
+            [
+              73.867464,
+              20.084027
+            ],
+            [
+              73.868255,
+              20.083548
+            ],
+            [
+              73.879677,
+              20.072395
+            ],
+            [
+              73.879107,
+              20.082822
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "aa8f4c9c-0bbb-4e63-83a0-5b890bc2fff1",
+        "farmer_id": "25ae627e-18de-47a7-a8a1-48215422161c",
+        "farmer_code": "NSK-240",
+        "survey_number": "SURV/NAS/675/3",
+        "acreage": 3.09,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.813206,
+              20.149744
+            ],
+            [
+              73.813281,
+              20.156014
+            ],
+            [
+              73.807032,
+              20.155918
+            ],
+            [
+              73.806437,
+              20.149496
+            ],
+            [
+              73.813206,
+              20.149744
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "44d4d93c-3741-410c-927b-8de1c0da8737",
+        "farmer_id": "8be5d51c-9a3f-4d39-9262-8d0767a08220",
+        "farmer_code": "NSK-241",
+        "survey_number": "SURV/NAS/832/2",
+        "acreage": 1.55,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.026098,
+              20.017135
+            ],
+            [
+              74.021364,
+              20.01652
+            ],
+            [
+              74.02123,
+              20.012268
+            ],
+            [
+              74.026391,
+              20.011732
+            ],
+            [
+              74.026098,
+              20.017135
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "188515c5-abeb-4e2a-bdf7-be2fae81e220",
+        "farmer_id": "a224d3e6-0ffe-4a3c-abe2-5639acdb4844",
+        "farmer_code": "NSK-242",
+        "survey_number": "SURV/NAS/523/2",
+        "acreage": 2.11,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.615218,
+              20.176475
+            ],
+            [
+              73.609354,
+              20.175859
+            ],
+            [
+              73.609214,
+              20.170471
+            ],
+            [
+              73.615006,
+              20.170476
+            ],
+            [
+              73.615218,
+              20.176475
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "c4c56fc9-f54d-414b-b045-6cc68494a6bd",
+        "farmer_id": "8cfa5447-b949-446b-9542-2e5cfd2478a5",
+        "farmer_code": "NSK-243",
+        "survey_number": "SURV/NAS/810/4",
+        "acreage": 3.02,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Drip Irrigation (Borewell)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.043619,
+              20.080643
+            ],
+            [
+              74.044333,
+              20.081163
+            ],
+            [
+              74.036427,
+              20.081095
+            ],
+            [
+              74.036984,
+              20.074163
+            ],
+            [
+              74.043619,
+              20.080643
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4d391f2c-605c-4e85-8a43-9d237ed24cbc",
+        "farmer_id": "605341b6-f7d4-4815-b9ee-fba237a476cf",
+        "farmer_code": "NSK-244",
+        "survey_number": "SURV/NAS/546/3",
+        "acreage": 2.14,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.908825,
+              19.857022
+            ],
+            [
+              73.908769,
+              19.856842
+            ],
+            [
+              73.902779,
+              19.850976
+            ],
+            [
+              73.908662,
+              19.851962
+            ],
+            [
+              73.908825,
+              19.857022
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "eb0f3f4a-dd6f-4665-9c0e-d36cafd9b9e2",
+        "farmer_id": "a7ef93b2-358c-4ebb-afba-ff7fd1484b61",
+        "farmer_code": "NSK-245",
+        "survey_number": "SURV/NAS/218/3",
+        "acreage": 5.0,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.916151,
+              20.027965
+            ],
+            [
+              73.905894,
+              20.037955
+            ],
+            [
+              73.906356,
+              20.027459
+            ],
+            [
+              73.915859,
+              20.028464
+            ],
+            [
+              73.916151,
+              20.027965
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "7101125e-e7c7-48c4-8eae-bba341b119e4",
+        "farmer_id": "faa3d6cf-6641-430c-b889-1875f1c43ea1",
+        "farmer_code": "NSK-246",
+        "survey_number": "SURV/NAS/773/4",
+        "acreage": 1.54,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.648248,
+              19.855748
+            ],
+            [
+              73.643574,
+              19.8603
+            ],
+            [
+              73.6438,
+              19.860196
+            ],
+            [
+              73.643127,
+              19.855013
+            ],
+            [
+              73.648248,
+              19.855748
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "21a404f8-67c8-4f05-8504-7dcc60f911f5",
+        "farmer_id": "190bb3c2-8cc3-45f2-9a53-d74156fadab4",
+        "farmer_code": "NSK-247",
+        "survey_number": "SURV/NAS/642/2",
+        "acreage": 2.47,
+        "soil_type": "Red Gravelly Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.975678,
+              20.315006
+            ],
+            [
+              73.970208,
+              20.314848
+            ],
+            [
+              73.969694,
+              20.315492
+            ],
+            [
+              73.96964,
+              20.309125
+            ],
+            [
+              73.975678,
+              20.315006
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "8ce4f8a8-e123-4255-bf27-c69ba416ed31",
+        "farmer_id": "2c7b364e-8d23-409a-ac12-e275ec6ed884",
+        "farmer_code": "NSK-248",
+        "survey_number": "SURV/NAS/674/4",
+        "acreage": 2.98,
+        "soil_type": "Medium Black Soil (Vertisol)",
+        "irrigation_source": "Farm Pond & Micro-Sprinkler"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.028501,
+              20.143901
+            ],
+            [
+              74.027851,
+              20.143097
+            ],
+            [
+              74.021241,
+              20.136641
+            ],
+            [
+              74.028371,
+              20.136446
+            ],
+            [
+              74.028501,
+              20.143901
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "4fe86374-d3e2-4c62-b5c5-e8fe5566d1fb",
+        "farmer_id": "6882514b-5e8b-4ebe-992b-70032faa65e3",
+        "farmer_code": "NSK-249",
+        "survey_number": "SURV/NAS/302/1",
+        "acreage": 4.96,
+        "soil_type": "Deep Black Cotton Soil",
+        "irrigation_source": "Perennial River Lift"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.830686,
+              19.865425
+            ],
+            [
+              73.830809,
+              19.865344
+            ],
+            [
+              73.822086,
+              19.865704
+            ],
+            [
+              73.832045,
+              19.856007
+            ],
+            [
+              73.830686,
+              19.865425
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parcel_id": "e8232bb6-e471-4836-a191-d4c956eb603c",
+        "farmer_id": "9cb7e790-2e7f-4f09-af08-c9e294e3466e",
+        "farmer_code": "NSK-250",
+        "survey_number": "SURV/NAS/471/3",
+        "acreage": 6.2,
+        "soil_type": "Alluvial Clay Loam",
+        "irrigation_source": "Canal Command Area"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.882873,
+              19.845581
+            ],
+            [
+              73.873001,
+              19.855174
+            ],
+            [
+              73.873513,
+              19.844252
+            ],
+            [
+              73.883865,
+              19.844827
+            ],
+            [
+              73.882873,
+              19.845581
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

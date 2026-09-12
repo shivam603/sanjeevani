@@ -1,0 +1,48 @@
+{
+  "vertical_id": "education",
+  "name": "Personalized Learning & Academic Diagnostics",
+  "description": "Student competency diagnostics, learning gap identification, drop-off risk prevention, and adaptive study plans.",
+  "target_persona": "Educator, Academic Counselor, or Self-directed Learner",
+  "entities_to_extract": [
+    "subject_area",
+    "grade_or_level",
+    "assessment_scores",
+    "learning_challenge",
+    "study_hours_per_week",
+    "engagement_trend"
+  ],
+  "analysis_focus": [
+    "Identify conceptual bottlenecks vs execution/practice deficits",
+    "Evaluate student mastery against benchmark thresholds",
+    "Assess correlation between study habits and exam performance"
+  ],
+  "prediction_metrics": [
+    "exam_pass_probability",
+    "drop_off_risk_percentage",
+    "mastery_velocity_weeks"
+  ],
+  "risk_rules": [
+    {
+      "trigger": "consecutive_score_declines_or_low_engagement",
+      "severity": "HIGH",
+      "warning": "High risk of subject abandonment or exam failure within the upcoming grading cycle."
+    },
+    {
+      "trigger": "foundational_prerequisite_deficit",
+      "severity": "MEDIUM",
+      "warning": "Gaps in core prerequisite topics preventing comprehension of advanced modules."
+    },
+    {
+      "trigger": "exam_anxiety_time_management",
+      "severity": "LOW",
+      "warning": "Performance hindered by pacing rather than content mastery."
+    }
+  ],
+  "recommendation_types": [
+    "Targeted prerequisite micro-lesson assignments",
+    "Weekly milestone study schedule with spaced repetition",
+    "Peer-assisted learning or tutoring intervention",
+    "Diagnostic self-assessment checkpoints"
+  ],
+  "disclaimer": "Educational recommendations are designed to complement certified curriculum standards and teacher assessments."
+}

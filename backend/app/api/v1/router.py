@@ -1,0 +1,15 @@
+"""API v1 master router."""
+
+from fastapi import APIRouter
+from app.api.v1.endpoints import health, auth, consent, ingestion, credit, fpo, lender, demo
+
+api_router = APIRouter()
+
+api_router.include_router(health.router, prefix="/health", tags=["System Health"])
+api_router.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+api_router.include_router(consent.router, prefix="/consent", tags=["Stage 5 Consent Management"])
+api_router.include_router(ingestion.router, prefix="/ingestion", tags=["Data Ingestion Connectors"])
+api_router.include_router(credit.router, tags=["Credit Intelligence & Passports"])
+api_router.include_router(fpo.router, tags=["FPO Cooperative Intelligence"])
+api_router.include_router(lender.router)
+api_router.include_router(demo.router, prefix="/demo", tags=["Demonstration Showcase"])

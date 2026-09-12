@@ -1,0 +1,17 @@
+{
+  "short_name": "Sanjeevani",
+  "name": "Sanjeevani — Farmer Credit & Satellite Passbook",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#090d16",
+  "theme_color": "#059669",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}

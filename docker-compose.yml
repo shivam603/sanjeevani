@@ -1,0 +1,166 @@
+services:
+  # ---------------------------------------------------------------------------
+  # Database: PostgreSQL 16 with PostGIS extension for geospatial farm boundaries
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: sanjeevani-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-sanjeevani}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sanjeevani_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-sanjeevani_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/docker/init-postgis.sql:/docker-entrypoint-initdb.d/init-postgis.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sanjeevani} -d ${POSTGRES_DB:-sanjeevani_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sanjeevani-network
+
+  # ---------------------------------------------------------------------------
+  # Message Broker & Job Queue: Redis 7
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: sanjeevani-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sanjeevani-network
+
+  # ---------------------------------------------------------------------------
+  # Core API Layer: FastAPI
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sanjeevani-api
+    restart: unless-stopped
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-sanjeevani}:${POSTGRES_PASSWORD:-sanjeevani_secret}@postgres:5432/${POSTGRES_DB:-sanjeevani_db}
+      SYNC_DATABASE_URL: postgresql://${POSTGRES_USER:-sanjeevani}:${POSTGRES_PASSWORD:-sanjeevani_secret}@postgres:5432/${POSTGRES_DB:-sanjeevani_db}
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-super_secret_jwt_key_for_sanjeevani_platform_2026}
+      CONSENT_SECRET_KEY: ${CONSENT_SECRET_KEY:-consent_master_secret_hmac_key_2026}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:5173,http://localhost:5174,http://localhost:5175}
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - sanjeevani-network
+
+  # ---------------------------------------------------------------------------
+  # Asynchronous ML Scoring & Ingestion Worker
+  # ---------------------------------------------------------------------------
+  ml-worker:
+    build:
+      context: ./ml-engine
+      dockerfile: Dockerfile
+    container_name: sanjeevani-ml-worker
+    restart: unless-stopped
+    command: ["python", "worker.py"]
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-sanjeevani}:${POSTGRES_PASSWORD:-sanjeevani_secret}@postgres:5432/${POSTGRES_DB:-sanjeevani_db}
+      REDIS_URL: redis://redis:6379/0
+      MLFLOW_TRACKING_URI: ${MLFLOW_TRACKING_URI:-http://mlflow:5000}
+    volumes:
+      - ./ml-engine:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - sanjeevani-network
+
+  # ---------------------------------------------------------------------------
+  # Frontend 1: Farmer-Facing PWA (Offline-First Mobile Web)
+  # ---------------------------------------------------------------------------
+  farmer-pwa:
+    image: node:18-alpine
+    container_name: sanjeevani-farmer-pwa
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./frontend-farmer-pwa:/app
+    command: ["sh", "-c", "npm install && npm run build && npm run preview -- --host 0.0.0.0 --port 3000"]
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_started
+    networks:
+      - sanjeevani-network
+
+  # ---------------------------------------------------------------------------
+  # Frontend 2: FPO Management Portal
+  # ---------------------------------------------------------------------------
+  fpo-portal:
+    image: node:18-alpine
+    container_name: sanjeevani-fpo-portal
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./frontend-fpo-portal:/app
+    command: ["sh", "-c", "npm install && npm run build && npm run preview -- --host 0.0.0.0 --port 3001"]
+    ports:
+      - "3001:3001"
+    depends_on:
+      api:
+        condition: service_started
+    networks:
+      - sanjeevani-network
+
+  # ---------------------------------------------------------------------------
+  # Frontend 3: Institutional Lender Underwriting Terminal
+  # ---------------------------------------------------------------------------
+  lender-dashboard:
+    image: node:18-alpine
+    container_name: sanjeevani-lender-dashboard
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./frontend-lender-dashboard:/app
+    command: ["sh", "-c", "npm install && npm run build && npm run preview -- --host 0.0.0.0 --port 3002"]
+    ports:
+      - "3002:3002"
+    depends_on:
+      api:
+        condition: service_started
+    networks:
+      - sanjeevani-network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  sanjeevani-network:
+    driver: bridge

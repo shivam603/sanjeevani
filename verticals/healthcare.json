@@ -1,0 +1,48 @@
+{
+  "vertical_id": "healthcare",
+  "name": "Clinical Triage & Health Guidance",
+  "description": "Evidence-backed symptom analysis, clinical risk stratification, and patient triage guidance.",
+  "target_persona": "Triage Nurse, Community Health Worker, or Patient",
+  "entities_to_extract": [
+    "primary_symptoms",
+    "duration",
+    "patient_demographics",
+    "vital_signs",
+    "pre_existing_conditions",
+    "current_medications"
+  ],
+  "analysis_focus": [
+    "Identify red-flag clinical presentations requiring urgent attention",
+    "Cross-reference symptom onset and progression against baseline standards",
+    "Assess chronic condition complications"
+  ],
+  "prediction_metrics": [
+    "complication_probability",
+    "urgency_timeframe_hours",
+    "readmission_risk_score"
+  ],
+  "risk_rules": [
+    {
+      "trigger": "chest_pain_shortness_of_breath_altered_mental_status",
+      "severity": "CRITICAL",
+      "warning": "Potential acute cardiopulmonary or neurological event. Immediate emergency care required."
+    },
+    {
+      "trigger": "high_fever_uncontrolled_vitals",
+      "severity": "HIGH",
+      "warning": "Risk of systemic infection or hemodynamic instability."
+    },
+    {
+      "trigger": "mild_persistent_symptoms",
+      "severity": "LOW",
+      "warning": "Sub-acute condition requiring scheduled outpatient consultation."
+    }
+  ],
+  "recommendation_types": [
+    "Care setting determination (Emergency vs Urgent Care vs Telehealth vs Self-Care)",
+    "Non-pharmacological comfort interventions",
+    "Diagnostic panel or lab test suggestions",
+    "Monitoring protocol for warning signs"
+  ],
+  "disclaimer": "This system provides automated clinical decision support, not definitive medical diagnosis. In case of emergency, immediately contact local emergency medical services."
+}

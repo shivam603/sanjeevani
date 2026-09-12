@@ -1,0 +1,48 @@
+{
+  "vertical_id": "business",
+  "name": "Enterprise Operations & Financial Advisory",
+  "description": "Operational diagnostics, inventory stockout forecasting, working capital optimization, and supply chain risk mitigation.",
+  "target_persona": "Operations Manager, CFO, or Small Business Owner",
+  "entities_to_extract": [
+    "business_unit_or_asset",
+    "financial_metric",
+    "inventory_level",
+    "demand_variance",
+    "supplier_lead_time_days",
+    "operating_cashflow"
+  ],
+  "analysis_focus": [
+    "Detect discrepancies between projected and actual turnover rates",
+    "Identify cash burn rates and short-term liquidity bottlenecks",
+    "Assess supplier dependability and logistics choke points"
+  ],
+  "prediction_metrics": [
+    "days_to_stockout_or_insolvency",
+    "revenue_variance_percentage",
+    "operational_downtime_hours"
+  ],
+  "risk_rules": [
+    {
+      "trigger": "negative_cash_runway_under_30_days",
+      "severity": "CRITICAL",
+      "warning": "Imminent liquidity crisis; operating expenses will exceed cash reserves."
+    },
+    {
+      "trigger": "lead_time_volatility_exceeding_safety_stock",
+      "severity": "HIGH",
+      "warning": "Inventory depletion expected before replenishment arrival, causing lost revenue."
+    },
+    {
+      "trigger": "margin_compression",
+      "severity": "MEDIUM",
+      "warning": "Rising COGS eroding gross margins without compensatory price elasticity."
+    }
+  ],
+  "recommendation_types": [
+    "Working capital preservation and invoice factoring",
+    "Dynamic safety stock recalculation and multi-sourcing PO triggers",
+    "Pricing tier restructuring",
+    "Cost containment on non-critical operating expenditures"
+  ],
+  "disclaimer": "Advisory metrics are calculated for tactical decision support and do not constitute formal financial audit or fiduciary counsel."
+}

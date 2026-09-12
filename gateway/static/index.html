@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IBM watsonx.ai Hackathon Engine</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ibm-blue: #0f62fe;
+      --ibm-blue-hover: #0353e9;
+      --ibm-dark: #161616;
+      --ibm-dark-secondary: #262626;
+      --ibm-card: #21272a;
+      --ibm-border: #393939;
+      --ibm-text: #f4f4f4;
+      --ibm-text-muted: #c6c6c6;
+      --ibm-accent-cyan: #1192e8;
+      --ibm-accent-green: #24a148;
+      --ibm-accent-amber: #f1c21b;
+      --ibm-accent-red: #da1e28;
+      --ibm-accent-purple: #8a3ffc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--ibm-dark);
+      color: var(--ibm-text);
+      line-height: 1.5;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #000;
+      border-bottom: 1px solid var(--ibm-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-tag {
+      background: var(--ibm-blue);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      letter-spacing: 0.5px;
+    }
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .status-badge {
+      font-size: 0.8rem;
+      font-family: 'IBM Plex Mono', monospace;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(36, 161, 72, 0.2);
+      color: #42be65;
+      border: 1px solid #24a148;
+    }
+    main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 960px) {
+      main { grid-template-columns: 1fr; }
+    }
+    .panel {
+      background: var(--ibm-dark-secondary);
+      border: 1px solid var(--ibm-border);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--ibm-border);
+      padding-bottom: 0.75rem;
+    }
+    label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ibm-text-muted);
+      margin-bottom: 4px;
+      display: block;
+    }
+    select, textarea, input {
+      width: 100%;
+      background: #121212;
+      border: 1px solid var(--ibm-border);
+      color: #fff;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    select:focus, textarea:focus, input:focus {
+      border-color: var(--ibm-blue);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+      font-family: inherit;
+    }
+    .sample-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pill-btn {
+      background: #333;
+      border: 1px solid var(--ibm-border);
+      color: var(--ibm-text-muted);
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pill-btn:hover {
+      background: #444;
+      color: #fff;
+      border-color: var(--ibm-blue);
+    }
+    .btn-submit {
+      background: var(--ibm-blue);
+      color: #fff;
+      border: none;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover {
+      background: var(--ibm-blue-hover);
+    }
+    .pipeline-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .stage-card {
+      background: var(--ibm-dark-secondary);
+      border: 1px solid var(--ibm-border);
+      border-left: 4px solid var(--ibm-blue);
+      padding: 1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+    .stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .stage-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ibm-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .stage-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .stage-body {
+      font-size: 0.9rem;
+      color: #e0e0e0;
+    }
+    .risk-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-left: 8px;
+    }
+    .risk-CRITICAL { background: rgba(218, 30, 40, 0.3); color: #ff8389; border: 1px solid var(--ibm-accent-red); }
+    .risk-HIGH { background: rgba(241, 194, 27, 0.2); color: #f1c21b; border: 1px solid var(--ibm-accent-amber); }
+    .risk-MEDIUM { background: rgba(17, 146, 232, 0.2); color: #78a9ff; border: 1px solid var(--ibm-accent-cyan); }
+    .risk-LOW { background: rgba(36, 161, 72, 0.2); color: #42be65; border: 1px solid var(--ibm-accent-green); }
+    .actions-list {
+      list-style: none;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .action-item {
+      background: #1c1c1c;
+      border: 1px solid var(--ibm-border);
+      padding: 8px 12px;
+      border-radius: 2px;
+    }
+    .action-header {
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+    }
+    .action-impact {
+      font-size: 0.8rem;
+      color: #a8a8a8;
+      margin-top: 4px;
+    }
+    .mono-box {
+      background: #101010;
+      border: 1px solid #333;
+      padding: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      color: #78a9ff;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 450px;
+    }
+    .loader {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #fff;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      animation: rotation 1s linear infinite;
+    }
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="brand-tag">watsonx.ai</span>
+      <h1>Hackathon AI Decision Engine</h1>
+    </div>
+    <div id="engineStatus" class="status-badge">Engine Online (Granite)</div>
+  </header>
+
+  <main>
+    <!-- Left: Request Configuration -->
+    <div class="panel">
+      <div class="panel-title">
+        <span>Channel Ingress</span>
+        <span style="font-size:0.75rem; color: var(--ibm-text-muted);">Decoupled Gateway</span>
+      </div>
+
+      <div>
+        <label for="channelSelect">Ingress Channel</label>
+        <select id="channelSelect">
+          <option value="web">Web Dashboard (Rich JSON)</option>
+          <option value="whatsapp">WhatsApp / Telegram (Mobile Markdown)</option>
+          <option value="api">Enterprise REST API (B2B Spec)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="verticalSelect">Vertical (Problem Domain)</label>
+        <select id="verticalSelect">
+          <option value="agriculture">Agriculture (Crop Advisory & Risks)</option>
+          <option value="healthcare">Healthcare (Clinical Triage & Alerts)</option>
+          <option value="education">Education (Diagnostics & Study Pathways)</option>
+          <option value="business">Business (Supply Chain & Cashflow)</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Sample Scenario Queries</label>
+        <div class="sample-prompts" id="sampleContainer">
+          <!-- Populated by JS based on vertical -->
+        </div>
+      </div>
+
+      <div>
+        <label for="queryInput">Observation / Query</label>
+        <textarea id="queryInput" placeholder="Enter problem statement or scenario observation..."></textarea>
+      </div>
+
+      <button id="submitBtn" class="btn-submit">
+        <span class="loader" id="spinner"></span>
+        <span id="btnText">Execute Decision Pipeline</span>
+      </button>
+
+      <div style="font-size:0.78rem; color:#8d8d8d; line-height: 1.4; border-top: 1px solid var(--ibm-border); padding-top: 0.75rem;">
+        ⚡ <strong>IBM Granite Stack:</strong> 6-stage cognitive reasoning (Understand &rarr; Analyze &rarr; Predict &rarr; Detect Risk &rarr; Recommend &rarr; Explain).
+      </div>
+    </div>
+
+    <!-- Right: Pipeline Execution Display -->
+    <div>
+      <div class="panel-title" style="margin-bottom: 1rem;">
+        <span>Pipeline Execution Stream</span>
+        <span id="execMeta" style="font-size:0.8rem; font-family:'IBM Plex Mono', monospace; color: var(--ibm-text-muted);">Awaiting trigger</span>
+      </div>
+
+      <div id="outputContainer" class="pipeline-grid">
+        <!-- Default State -->
+        <div class="stage-card" style="border-left-color: #525252;">
+          <div class="stage-title">Ready for Execution</div>
+          <div class="stage-body" style="color: #8d8d8d; margin-top: 4px;">
+            Select a domain vertical and submit a scenario query. The engine will ingest the request through the channel adapter, ground it with benchmark data, and run the complete 6-stage decision pipeline.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const sampleQueries = {
+      agriculture: [
+        "Tomato crop showing yellow leaves with brown lesions under high humidity in North District",
+        "Wheat fields showing severe moisture stress in Central Plains during flowering",
+        "Soybean crop exhibiting stunted vegetative growth and pale foliage"
+      ],
+      healthcare: [
+        "62yo patient with acute chest tightness and shortness of breath lasting 45 minutes",
+        "34yo with sudden onset fever (103F), body aches, and persistent productive cough",
+        "Type 2 diabetic patient reporting blurred vision and fasting glucose of 220 mg/dL"
+      ],
+      education: [
+        "Grade 10 algebra student failing consecutive quizzes and showing 40% homework completion",
+        "High school physics student struggling with kinematic formulas and exam time management",
+        "Middle school student showing rapid drop in reading comprehension engagement"
+      ],
+      business: [
+        "Main warehouse reporting 14 days of inventory left on top 3 SKUs with 25-day supplier lead time",
+        "Regional retail branch experiencing working capital deficit and delayed accounts receivable",
+        "Fleet logistics operating at 94% capacity with impending seasonal surge"
+      ]
+    };
+
+    const verticalSelect = document.getElementById('verticalSelect');
+    const sampleContainer = document.getElementById('sampleContainer');
+    const queryInput = document.getElementById('queryInput');
+    const channelSelect = document.getElementById('channelSelect');
+    const submitBtn = document.getElementById('submitBtn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btnText');
+    const outputContainer = document.getElementById('outputContainer');
+    const execMeta = document.getElementById('execMeta');
+
+    function updateSampleButtons() {
+      const v = verticalSelect.value;
+      const prompts = sampleQueries[v] || [];
+      sampleContainer.innerHTML = '';
+      prompts.forEach((p, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'pill-btn';
+        btn.textContent = `Scenario ${idx+1}`;
+        btn.title = p;
+        btn.onclick = () => { queryInput.value = p; };
+        sampleContainer.appendChild(btn);
+      });
+      if (prompts.length > 0 && !queryInput.value) {
+        queryInput.value = prompts[0];
+      }
+    }
+
+    verticalSelect.addEventListener('change', () => {
+      queryInput.value = '';
+      updateSampleButtons();
+    });
+
+    updateSampleButtons();
+
+    submitBtn.addEventListener('click', async () => {
+      const text = queryInput.value.trim();
+      if (!text) return;
+
+      spinner.style.display = 'inline-block';
+      btnText.textContent = 'Processing Pipeline...';
+      submitBtn.disabled = true;
+
+      const payload = {
+        channel: channelSelect.value,
+        text: text,
+        vertical: verticalSelect.value
+      };
+
+      try {
+        const res = await fetch('/message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        renderOutput(data, channelSelect.value);
+      } catch (err) {
+        outputContainer.innerHTML = `
+          <div class="stage-card" style="border-left-color: var(--ibm-accent-red);">
+            <div class="stage-title">Error executing pipeline</div>
+            <div class="stage-body">${err.message}</div>
+          </div>
+        `;
+      } finally {
+        spinner.style.display = 'none';
+        btnText.textContent = 'Execute Decision Pipeline';
+        submitBtn.disabled = false;
+      }
+    });
+
+    function renderOutput(data, channel) {
+      execMeta.textContent = `Channel: ${channel.toUpperCase()} | Runtime: ${data.execution_mode || 'Granite'}`;
+
+      if (channel === 'whatsapp') {
+        outputContainer.innerHTML = `
+          <div class="stage-card" style="border-left-color: #25D366;">
+            <div class="stage-header">
+              <span class="stage-badge" style="color: #25D366;">WhatsApp / Telegram Simulator</span>
+            </div>
+            <div class="mono-box" style="color: #25D366;">${escapeHtml(data.message)}</div>
+          </div>
+        `;
+        return;
+      }
+
+      if (channel === 'api') {
+        outputContainer.innerHTML = `
+          <div class="stage-card" style="border-left-color: var(--ibm-accent-cyan);">
+            <div class="stage-header">
+              <span class="stage-badge">REST API Response Envelope (JSON)</span>
+            </div>
+            <div class="mono-box">${escapeHtml(JSON.stringify(data, null, 2))}</div>
+          </div>
+        `;
+        return;
+      }
+
+      // Web channel - render full 6-stage cards
+      const p = data.pipeline;
+      const risk = p.risk;
+      const recs = p.recommend.recommendations || [];
+
+      outputContainer.innerHTML = `
+        <!-- Stage 1: Understand -->
+        <div class="stage-card" style="border-left-color: #0f62fe;">
+          <div class="stage-header">
+            <span class="stage-badge">1. UNDERSTAND</span>
+            <span style="font-size:0.8rem; color:#a8a8a8;">Intent & Entities</span>
+          </div>
+          <div class="stage-title">${escapeHtml(p.understand.intent)}</div>
+          <div class="stage-body" style="margin-top:6px;">
+            <strong>Entities:</strong> ${escapeHtml(JSON.stringify(p.understand.extracted_entities))}
+          </div>
+        </div>
+
+        <!-- Stage 2: Analyze -->
+        <div class="stage-card" style="border-left-color: #1192e8;">
+          <div class="stage-header">
+            <span class="stage-badge">2. ANALYZE</span>
+            <span style="font-size:0.8rem; color:#a8a8a8;">Grounding & Baseline</span>
+          </div>
+          <div class="stage-body">${escapeHtml(p.analyze.current_state_assessment)}</div>
+          <div style="font-size:0.8rem; color:#78a9ff; margin-top:6px;">
+            📊 <em>${escapeHtml(p.analyze.grounded_benchmarks || '')}</em>
+          </div>
+        </div>
+
+        <!-- Stage 3: Predict -->
+        <div class="stage-card" style="border-left-color: #8a3ffc;">
+          <div class="stage-header">
+            <span class="stage-badge">3. PREDICT</span>
+            <span style="font-size:0.8rem; color:#a8a8a8;">Outcome Projections (${(p.predict.probability_score * 100).toFixed(0)}% confidence)</span>
+          </div>
+          <div class="stage-body">
+            <ul style="padding-left: 1.2rem; margin-top:4px;">
+              ${p.predict.projected_outcomes.map(o => `<li>${escapeHtml(o)}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stage 4: Detect Risk -->
+        <div class="stage-card" style="border-left-color: ${getRiskColor(risk.overall_severity)};">
+          <div class="stage-header">
+            <span class="stage-badge">4. DETECT RISK</span>
+            <div>
+              <span class="risk-badge risk-${risk.overall_severity}">${risk.overall_severity} RISK</span>
+            </div>
+          </div>
+          <div class="stage-body">
+            ${risk.identified_risks.map(r => `
+              <div style="margin-top: 4px;">
+                ⚠️ <strong>${escapeHtml(r.factor)}:</strong> ${escapeHtml(r.warning)}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Stage 5: Recommend -->
+        <div class="stage-card" style="border-left-color: #24a148;">
+          <div class="stage-header">
+            <span class="stage-badge">5. RECOMMEND</span>
+            <span style="font-size:0.8rem; color:#42be65;">Actionable Interventions</span>
+          </div>
+          <div class="actions-list">
+            ${recs.map(r => `
+              <div class="action-item">
+                <div class="action-header">
+                  <span>#${r.priority} ${escapeHtml(r.action)}</span>
+                  <span style="font-size:0.75rem; color:#24a148; text-transform:uppercase;">${escapeHtml(r.category || '')}</span>
+                </div>
+                <div class="action-impact">↳ Impact: ${escapeHtml(r.expected_impact)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Stage 6: Explain -->
+        <div class="stage-card" style="border-left-color: #f1c21b;">
+          <div class="stage-header">
+            <span class="stage-badge">6. EXPLAIN</span>
+            <span style="font-size:0.8rem; color:#f1c21b;">Reasoning & Audit Trail</span>
+          </div>
+          <div class="stage-body">
+            <p>${escapeHtml(p.explain.rationale)}</p>
+            <div style="font-size:0.75rem; color:#8d8d8d; margin-top:8px;">
+              🛡️ <em>${escapeHtml(p.explain.disclaimer)}</em>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getRiskColor(sev) {
+      if (sev === 'CRITICAL') return '#da1e28';
+      if (sev === 'HIGH') return '#f1c21b';
+      if (sev === 'MEDIUM') return '#1192e8';
+      return '#24a148';
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>
