@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export default function CreditHealthCard({ score = 78, maxScore = 100 }) {
+  const { t } = useTranslation();
+
   // SVG circular gauge math
   const radius = 42;
   const circumference = 2 * Math.PI * radius;
@@ -11,13 +14,13 @@ export default function CreditHealthCard({ score = 78, maxScore = 100 }) {
       {/* Category & Title */}
       <div className="card-header-line">
         <div>
-          <div className="card-category-label">AGRITRUST SOVEREIGN RATING</div>
-          <div className="card-title-main">पत स्थिती (Credit Health)</div>
+          <div className="card-category-label">{t('ch_category')}</div>
+          <div className="card-title-main">{t('ch_title')}</div>
         </div>
 
         <div className="status-badge-leaf">
           <span>🍃</span>
-          <span>Good Standing (उत्कृष्ट पत)</span>
+          <span>{t('ch_good_standing')}</span>
         </div>
       </div>
 
@@ -52,25 +55,25 @@ export default function CreditHealthCard({ score = 78, maxScore = 100 }) {
 
           <div className="score-gauge-center-text">
             <span className="score-gauge-number">{score}</span>
-            <span className="score-gauge-subtext">out of {maxScore}</span>
+            <span className="score-gauge-subtext">{t('ch_score_out_of')}</span>
           </div>
         </div>
 
         {/* Reasons List */}
         <div className="score-reasons-list">
-          <div className="score-reasons-title">क्रेडिट वाढण्याचे कारण:</div>
+          <div className="score-reasons-title">{t('ch_reasons_title')}</div>
 
           <div className="score-reason-item">
             <div className="score-reason-check">✓</div>
             <div>
-              <strong>100% On-time</strong> repayment on SBI KCC loan (2024).
+              <strong>{t('ch_reason_1_bold')}</strong> {t('ch_reason_1_text')}
             </div>
           </div>
 
           <div className="score-reason-item">
             <div className="score-reason-check">✓</div>
             <div>
-              <strong>Verified E-Nam:</strong> 42 Quintal Gehu trade tracked via Khanna Mandi.
+              <strong>{t('ch_reason_2_bold')}</strong> {t('ch_reason_2_text')}
             </div>
           </div>
         </div>
@@ -79,9 +82,7 @@ export default function CreditHealthCard({ score = 78, maxScore = 100 }) {
       {/* No Agent Fees Lightbulb Notice */}
       <div className="card-footer-notice-box">
         <span style={{ fontSize: '15px' }}>💡</span>
-        <span>
-          No agent fees or CIBIL deductions. Your rating is backed directly by your land deeds and crop harvest history.
-        </span>
+        <span>{t('ch_notice')}</span>
       </div>
     </div>
   );

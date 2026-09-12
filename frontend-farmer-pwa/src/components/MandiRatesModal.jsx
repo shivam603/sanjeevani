@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export default function MandiRatesModal({ isOpen, onClose }) {
+  const { t } = useTranslation();
   if (!isOpen) return null;
 
   const rates = [
@@ -14,12 +16,12 @@ export default function MandiRatesModal({ isOpen, onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-card" style={{ maxWidth: '640px' }} onClick={(e) => e.stopPropagation()}>
         <div className="modal-header-row">
-          <div className="modal-title">🏬 Khanna Mandi Live Price Board</div>
+          <div className="modal-title">🏬 {t('modal_mandi_title')}</div>
           <button className="modal-close-btn" onClick={onClose}>&times;</button>
         </div>
 
         <p style={{ fontSize: '13px', color: '#64748b', marginTop: '-6px' }}>
-          Real-time price arrivals synced from AGMARKNET API & Khanna APMC Market Committee.
+          {t('modal_mandi_subtitle')}
         </p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -39,7 +41,7 @@ export default function MandiRatesModal({ isOpen, onClose }) {
               <div>
                 <div style={{ fontWeight: 700, fontSize: '14px', color: '#112618' }}>{r.crop}</div>
                 <div style={{ fontSize: '11.5px', color: '#64748b' }}>
-                  Min: {r.min} &bull; Max: {r.max} &bull; MSP: {r.msp}
+                  Min: {r.min} &bull; Max: {r.max} &bull; {t('modal_mandi_msp')}: {r.msp}
                 </div>
               </div>
 
@@ -56,7 +58,7 @@ export default function MandiRatesModal({ isOpen, onClose }) {
           onClick={onClose}
           style={{ alignSelf: 'flex-end', marginTop: '6px' }}
         >
-          बंद करा (Close)
+          {t('modal_mandi_close')}
         </button>
       </div>
     </div>

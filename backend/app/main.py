@@ -53,15 +53,15 @@ async def structured_logging_middleware(request: Request, call_next):
     )
     return response
 
-# Configure Cross-Origin Resource Sharing (CORS) for frontends
-origins = settings.CORS_ORIGINS if isinstance(settings.CORS_ORIGINS, list) else ["*"]
+# Configure Cross-Origin Resource Sharing (CORS) for frontends (Localhost & Render domains)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins else ["*"],
+    allow_origin_regex=r"https?://.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Top-level Health check endpoint for Docker / Load Balancers
 app.add_api_route(
@@ -111,3 +111,20 @@ async def root(request: Request):
 
 # Mount API version 1 routers
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+# Mount Static Frontends for Unified Fullstack Deployment on Render
+import os
+from fastapi.staticfiles import StaticFiles
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+frontend_mounts = [
+    ("/farmer", os.path.join(BASE_DIR, "frontend-farmer-pwa", "dist")),
+    ("/fpo", os.path.join(BASE_DIR, "frontend-fpo-portal", "dist")),
+    ("/lender", os.path.join(BASE_DIR, "frontend-lender-dashboard", "dist")),
+]
+
+for mount_path, dist_path in frontend_mounts:
+    if os.path.exists(dist_path):
+        app.mount(mount_path, StaticFiles(directory=dist_path, html=True), name=mount_path.replace("/", ""))
+        logger.info(f"Mounted frontend at {mount_path} from {dist_path}")
+

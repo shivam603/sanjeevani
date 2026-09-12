@@ -1,31 +1,34 @@
 import React from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export default function KhannaMandiCard({ onOpenMandiModal }) {
+  const { t } = useTranslation();
+
   return (
     <div className="agritrust-card" style={{ gap: '12px' }}>
       {/* Header */}
       <div className="card-header-line">
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span style={{ fontSize: '15px' }}>🏬</span>
-          <span className="card-category-label">KHANNA MANDI (LIVE)</span>
+          <span className="card-category-label">{t('km_category')}</span>
         </div>
 
-        <span className="green-tag-pill">+₹150 / Qtl</span>
+        <span className="green-tag-pill">{t('km_diff')}</span>
       </div>
 
       {/* Big Price */}
       <div className="mandi-big-price-text">
-        ₹2,275 <span style={{ fontSize: '18px', fontWeight: 600 }}>/ क्विंटल</span>
+        {t('km_price')} <span style={{ fontSize: '18px', fontWeight: 600 }}>{t('km_unit')}</span>
       </div>
 
       {/* Body Description */}
       <p className="mandi-card-body-text">
-        Wheat wholesale price steady at Khanna Mandi. Current quote is comfortably above Central MSP (₹2,125). Ideal for advance booking contracts.
+        {t('km_desc')}
       </p>
 
       {/* Footer */}
       <div className="mandi-card-footer-row">
-        <span className="mandi-arrivals-note">Arrivals: 4,120 Bags today</span>
+        <span className="mandi-arrivals-note">{t('km_arrivals')}</span>
         <button
           onClick={onOpenMandiModal}
           style={{
@@ -38,7 +41,7 @@ export default function KhannaMandiCard({ onOpenMandiModal }) {
             fontFamily: 'inherit',
           }}
         >
-          Mandi Rates &gt;
+          {t('km_btn')}
         </button>
       </div>
     </div>

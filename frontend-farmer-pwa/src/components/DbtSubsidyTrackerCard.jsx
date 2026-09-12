@@ -1,26 +1,29 @@
 import React from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export default function DbtSubsidyTrackerCard({ onCallMitra }) {
+  const { t } = useTranslation();
+
   return (
     <div className="agritrust-card" style={{ gap: '12px' }}>
       {/* Header */}
       <div className="card-header-line">
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span style={{ fontSize: '15px' }}>🏛️</span>
-          <span className="card-category-label">DBT SUBSIDY TRACKER</span>
+          <span className="card-category-label">{t('dbt_category')}</span>
         </div>
 
-        <span className="green-tag-pill">Verified ✓</span>
+        <span className="green-tag-pill">{t('dbt_verified')}</span>
       </div>
 
       {/* Main Headline */}
       <div className="dbt-amount-heading">
-        17th हप्ता जमा (₹2,000)
+        {t('dbt_heading')}
       </div>
 
       {/* Body Text */}
       <p className="mandi-card-body-text">
-        PM-KISAN installment credited into Bank of Baroda (A/C ...4019). Aadhaar e-KYC verified &amp; active on NPCI direct mapper.
+        {t('dbt_desc')}
       </p>
 
       {/* Field Mitra Profile Bar */}
@@ -33,20 +36,20 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
           </div>
 
           <div>
-            <div className="dbt-mitra-name-text">Sachin Shinde</div>
-            <div className="dbt-mitra-role-text">सह्याद्री / खन्ना FPO Field Mitra</div>
+            <div className="dbt-mitra-name-text">{t('dbt_mitra_name')}</div>
+            <div className="dbt-mitra-role-text">{t('dbt_mitra_role')}</div>
           </div>
         </div>
 
         <button
           className="btn-call-mitra"
           onClick={onCallMitra}
-          title="Contact FPO Field Officer"
+          title={t('dbt_call_btn')}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
           </svg>
-          <span>Call Mitra</span>
+          <span>{t('dbt_call_btn')}</span>
         </button>
       </div>
     </div>

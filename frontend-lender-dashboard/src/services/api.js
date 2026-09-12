@@ -4,8 +4,21 @@
  * Includes local resilient fallbacks for offline demo operations.
  */
 
-const API_BASE_URL = 'http://localhost:8000/api/v1/lender';
+// Dynamic API Base URL supporting localhost, Render environment variables, and production
+const getApiBase = () => {
+  if (import.meta.env?.VITE_API_BASE_URL) {
+    const custom = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+    return custom.endsWith('/lender') ? custom : `${custom}/api/v1/lender`;
+  }
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'http://localhost:8000/api/v1/lender';
+  }
+  return '/api/v1/lender';
+};
+
+const API_BASE_URL = getApiBase();
 const LENDER_API_KEY = 'test_lender_key_sbi_01';
+
 
 // Default headers for lender authentication
 const getHeaders = (consentToken = null) => {

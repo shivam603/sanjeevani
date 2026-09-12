@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 
-export default function FarmerGreetingBar({ onPlayAudio, isPlaying }) {
+export default function FarmerGreetingBar({ onPlayAudio, isPlaying, user }) {
+  const { t } = useTranslation();
   const [playbackSpeed, setPlaybackSpeed] = useState('1.0');
 
   const handleSpeedToggle = (speed) => {
     setPlaybackSpeed(speed);
     if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
-      // cancel and re-trigger with new speed if user changes rate
       window.speechSynthesis.cancel();
     }
   };
+
+  const farmerName = user?.name || t('farmer_name_display');
+  const cropDesc = user?.crop && user?.cluster 
+    ? `${user.acreage} ${user.crop} • ${user.cluster}` 
+    : t('farmer_crop_desc');
 
   return (
     <div className="greeting-assistant-bar">
       {/* Farmer Identity */}
       <div className="farmer-identity-section">
-        <div className="tractor-icon-box" title="FPO Agricultural Member">
-          {/* Tractor Icon SVG */}
+        <div className="tractor-icon-box" title={t('fpo_member_tag')}>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 17a3 3 0 1 0 6 0 3 3 0 1 0-6 0" />
             <path d="M14 14a5 5 0 1 0 10 0 5 5 0 1 0-10 0" />
@@ -27,16 +32,16 @@ export default function FarmerGreetingBar({ onPlayAudio, isPlaying }) {
 
         <div>
           <div className="farmer-greeting-title">
-            <span>नमस्ते, Ramesh Patel</span>
+            <span>{t('greeting_salutation')}, {farmerName}</span>
             <span className="fpo-member-pill">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
               </svg>
-              Khanna FPO Member
+              {t('fpo_member_tag')}
             </span>
           </div>
           <div className="farmer-crop-cluster-sub">
-            4.2 Acres Gehu (Wheat - HD 3086) • Village Bhadson, Ludhiana Cluster
+            {cropDesc}
           </div>
         </div>
       </div>
@@ -46,8 +51,8 @@ export default function FarmerGreetingBar({ onPlayAudio, isPlaying }) {
         <button
           className="audio-play-circle-btn"
           onClick={() => onPlayAudio(parseFloat(playbackSpeed))}
-          aria-label="Play Audio Advisory"
-          title="Play audio advisory in vernacular"
+          aria-label={t('audio_assistant_title')}
+          title={t('audio_assistant_sub')}
         >
           {isPlaying ? (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -64,10 +69,10 @@ export default function FarmerGreetingBar({ onPlayAudio, isPlaying }) {
         <div className="audio-label-group">
           <div className="audio-title-row">
             <span>ılııl</span>
-            <span>मराठी / हिन्दी आवाज सहाय्यक</span>
+            <span>{t('audio_assistant_title')}</span>
           </div>
           <div className="audio-subtitle-sub">
-            Tap to hear today's loan advisory & safe limit
+            {t('audio_assistant_sub')}
           </div>
         </div>
 

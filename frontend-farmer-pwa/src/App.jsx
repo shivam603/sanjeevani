@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles/pwa.css';
+import { useTranslation } from './i18n/LanguageContext';
 
+import LoginPage from './components/LoginPage';
 import TopNavbar from './components/TopNavbar';
 import FarmerGreetingBar from './components/FarmerGreetingBar';
 import CreditHealthCard from './components/CreditHealthCard';
@@ -17,8 +19,19 @@ import CallMitraModal from './components/CallMitraModal';
 import MandiRatesModal from './components/MandiRatesModal';
 
 export default function App() {
+  const { currentLang, getAdvisorySpeech } = useTranslation();
+
+  // Authentication State
+  const [user, setUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem('agritrust_farmer_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch (e) {
+      return null;
+    }
+  });
+
   const [activeNavTab, setActiveNavTab] = useState('overview');
-  const [currentLang, setCurrentLang] = useState('en');
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   // Modals state
@@ -26,12 +39,23 @@ export default function App() {
   const [isMitraModalOpen, setIsMitraModalOpen] = useState(false);
   const [isMandiModalOpen, setIsMandiModalOpen] = useState(false);
 
-  // Speech synthesis voice narration
-  const advisorySpeechText = 
-    "नमस्ते रमेश पाटील. तुमची कृषी पत स्थिती १०० पैकी ७८ आहे, जी उत्कृष्ट मानली जाते. " +
-    "तुमची सुरक्षित कर्ज मर्यादा १ लाख ६५ हजार रुपये आहे. रब्बी हंगामासाठी ४५ हजार रुपयांचे ४ टक्के व्याजदराचे कर्ज मंजूर आहे. " +
-    "खन्ना मंडईमध्ये गव्हाचा भाव २ हजार २७५ रुपये प्रति क्विंटल स्थिर आहे.";
+  const handleLogin = (userData) => {
+    setUser(userData);
+    if (userData.rememberMe) {
+      localStorage.setItem('agritrust_farmer_user', JSON.stringify(userData));
+    }
+  };
 
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('agritrust_farmer_user');
+    if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    }
+  };
+
+  // Multilingual Speech Synthesis
   const handleSpeak = (rate = 1.0) => {
     if (!('speechSynthesis' in window)) {
       alert('Speech synthesis is not supported on this browser.');
@@ -44,16 +68,18 @@ export default function App() {
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(advisorySpeechText);
+    const textToSpeak = getAdvisorySpeech();
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.rate = rate;
-    
-    // Find Hindi/Marathi or fallback voice
+
+    // Locate matching regional voice (Hindi, Marathi, Tamil, Indian English)
     const voices = window.speechSynthesis.getVoices();
-    const vernacularVoice = voices.find(
-      (v) => v.lang.includes('hi') || v.lang.includes('mr') || v.lang.includes('IN')
+    const targetLangCode = currentLang === 'hi' ? 'hi' : currentLang === 'mr' ? 'mr' : currentLang === 'ta' ? 'ta' : 'en';
+    const matchingVoice = voices.find(
+      (v) => v.lang.toLowerCase().includes(targetLangCode) || v.lang.includes('IN')
     );
-    if (vernacularVoice) {
-      utterance.voice = vernacularVoice;
+    if (matchingVoice) {
+      utterance.voice = matchingVoice;
     }
 
     utterance.onstart = () => setIsSpeaking(true);
@@ -82,16 +108,22 @@ export default function App() {
     }
   };
 
+  // 1. If not authenticated, show Login Page
+  if (!user) {
+    return <LoginPage onLogin={handleLogin} />;
+  }
+
+  // 2. If authenticated, show full home webpage with all components
   return (
     <div className="agritrust-app-wrapper">
       {/* 1. Top Navbar */}
       <TopNavbar
         activeTab={activeNavTab}
         onSelectTab={handleSelectTab}
-        currentLang={currentLang}
-        onSelectLang={(lang) => setCurrentLang(lang)}
         onTriggerSpeech={() => handleSpeak(1.0)}
         isSpeaking={isSpeaking}
+        onLogout={handleLogout}
+        user={user}
       />
 
       <main className="agritrust-main-container">
@@ -99,6 +131,7 @@ export default function App() {
         <FarmerGreetingBar
           onPlayAudio={(speed) => handleSpeak(speed)}
           isPlaying={isSpeaking}
+          user={user}
         />
 
         {/* 3. Main Dashboard 2-Column Grid */}

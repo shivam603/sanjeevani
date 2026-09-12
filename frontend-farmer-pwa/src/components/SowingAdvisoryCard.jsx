@@ -1,12 +1,15 @@
 import React from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export default function SowingAdvisoryCard() {
+  const { t } = useTranslation();
+
   const days = [
-    { day: 'Wed', icon: '☀️', temp: '26°' },
-    { day: 'Thu', icon: '☀️', temp: '27°' },
-    { day: 'Fri', icon: '☀️', temp: '25°' },
-    { day: 'Sat', icon: '🌤️', temp: '24°' },
-    { day: 'Sun', icon: '☀️', temp: '26°' },
+    { day: t('day_wed'), icon: '☀️', temp: '26°' },
+    { day: t('day_thu'), icon: '☀️', temp: '27°' },
+    { day: t('day_fri'), icon: '☀️', temp: '25°' },
+    { day: t('day_sat'), icon: '🌤️', temp: '24°' },
+    { day: t('day_sun'), icon: '☀️', temp: '26°' },
   ];
 
   return (
@@ -15,23 +18,23 @@ export default function SowingAdvisoryCard() {
       <div className="card-header-line">
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span style={{ fontSize: '15px' }}>☀️</span>
-          <span className="card-category-label">SOWING ADVISORY</span>
+          <span className="card-category-label">{t('sa_category')}</span>
         </div>
 
         <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 500 }}>
-          Bhadson Village
+          {t('sa_village')}
         </span>
       </div>
 
       {/* Main Temperature & Moisture Pill */}
       <div className="weather-main-row">
-        <span className="weather-temp-text">26°C Clear &amp; Dry</span>
-        <span className="weather-moisture-pill">Moisture: 22%</span>
+        <span className="weather-temp-text">{t('sa_temp')}</span>
+        <span className="weather-moisture-pill">{t('sa_moisture')}</span>
       </div>
 
       {/* Advisory Text */}
       <p className="mandi-card-body-text">
-        Zero rain expected for the next 5 days. High soil temp uniformity makes this weekend optimal for wheat drill sowing and initial basal fertilization.
+        {t('sa_desc')}
       </p>
 
       {/* 5-Day Forecast Row */}

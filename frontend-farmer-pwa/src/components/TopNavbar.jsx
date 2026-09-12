@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
+import { useTranslation, SUPPORTED_LANGUAGES } from '../i18n/LanguageContext';
 
 export default function TopNavbar({
   activeTab,
   onSelectTab,
-  currentLang,
-  onSelectLang,
   onTriggerSpeech,
   isSpeaking,
+  onLogout,
+  user,
 }) {
+  const { t, currentLang, setCurrentLang } = useTranslation();
   const [showLangMenu, setShowLangMenu] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-  const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'hi', label: 'हिन्दी (Hindi)' },
-    { code: 'mr', label: 'मराठी (Marathi)' },
-  ];
+  const currentLangLabel = SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.label || 'English';
 
-  const currentLangLabel = languages.find((l) => l.code === currentLang)?.label || 'English';
+  const farmerName = user?.name || t('farmer_name_display');
+  const fpoName = user?.fpo || t('fpo_member_tag');
 
   return (
     <nav className="agritrust-navbar">
@@ -25,8 +25,8 @@ export default function TopNavbar({
         <div className="nav-brand-group" onClick={() => onSelectTab('overview')}>
           <span className="nav-brand-dot"></span>
           <div>
-            <div className="nav-brand-title">AgriTrust</div>
-            <div className="nav-brand-subtitle">कृषि साख एवं संप्रभु विश्वास</div>
+            <div className="nav-brand-title">{t('app_name')}</div>
+            <div className="nav-brand-subtitle">{t('brand_subtitle')}</div>
           </div>
         </div>
 
@@ -37,7 +37,7 @@ export default function TopNavbar({
               className={`nav-link-btn ${activeTab === 'overview' ? 'active' : ''}`}
               onClick={() => onSelectTab('overview')}
             >
-              Overview
+              {t('nav_overview')}
             </button>
           </li>
           <li>
@@ -45,7 +45,7 @@ export default function TopNavbar({
               className={`nav-link-btn ${activeTab === 'loans' ? 'active' : ''}`}
               onClick={() => onSelectTab('loans')}
             >
-              My Loans & Safe Limit
+              {t('nav_loans')}
             </button>
           </li>
           <li>
@@ -53,7 +53,7 @@ export default function TopNavbar({
               className={`nav-link-btn ${activeTab === 'consent' ? 'active' : ''}`}
               onClick={() => onSelectTab('consent')}
             >
-              Sovereign Data Vault / Consent
+              {t('nav_consent')}
             </button>
           </li>
           <li>
@@ -61,7 +61,7 @@ export default function TopNavbar({
               className={`nav-link-btn ${activeTab === 'mandi' ? 'active' : ''}`}
               onClick={() => onSelectTab('mandi')}
             >
-              Mandi & Weather
+              {t('nav_mandi')}
             </button>
           </li>
           <li>
@@ -69,7 +69,7 @@ export default function TopNavbar({
               className={`nav-link-btn ${activeTab === 'support' ? 'active' : ''}`}
               onClick={() => onSelectTab('support')}
             >
-              Support
+              {t('nav_support')}
             </button>
           </li>
         </ul>
@@ -99,18 +99,18 @@ export default function TopNavbar({
                   borderRadius: '10px',
                   boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
                   padding: '6px',
-                  minWidth: '160px',
+                  minWidth: '170px',
                   zIndex: 200,
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '4px',
                 }}
               >
-                {languages.map((l) => (
+                {SUPPORTED_LANGUAGES.map((l) => (
                   <button
                     key={l.code}
                     onClick={() => {
-                      onSelectLang(l.code);
+                      setCurrentLang(l.code);
                       setShowLangMenu(false);
                     }}
                     style={{
@@ -124,9 +124,13 @@ export default function TopNavbar({
                       fontFamily: 'inherit',
                       fontSize: '13px',
                       cursor: 'pointer',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
                     }}
                   >
-                    {l.label}
+                    <span>{l.label}</span>
+                    {currentLang === l.code && <span style={{ color: '#166534' }}>✓</span>}
                   </button>
                 ))}
               </div>
@@ -137,23 +141,84 @@ export default function TopNavbar({
           <button
             className={`nav-voice-btn ${isSpeaking ? 'active-speaking' : ''}`}
             onClick={onTriggerSpeech}
-            title="Listen to today's summary"
+            title={isSpeaking ? t('nav_stop_listen') : t('nav_listen')}
           >
             <span>🔊</span>
-            <span>{isSpeaking ? 'थांबवा (Stop)' : 'बोलकर सुनें'}</span>
+            <span>{isSpeaking ? t('nav_stop_listen') : t('nav_listen')}</span>
           </button>
 
-          {/* Profile Badge */}
-          <div className="nav-profile-badge">
-            <div style={{ textAlign: 'right' }}>
-              <div className="nav-profile-name">Ramesh Patel</div>
-              <div className="nav-profile-sub">Khanna FPO</div>
+          {/* Profile Badge & Dropdown */}
+          <div style={{ position: 'relative' }}>
+            <div
+              className="nav-profile-badge"
+              onClick={() => setShowProfileMenu(!showProfileMenu)}
+              style={{ cursor: 'pointer' }}
+              title="Farmer Profile & Menu"
+            >
+              <div style={{ textAlign: 'right' }}>
+                <div className="nav-profile-name">{farmerName}</div>
+                <div className="nav-profile-sub">{fpoName}</div>
+              </div>
+              <div className="nav-profile-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+              </div>
             </div>
-            <div className="nav-profile-avatar" title="Farmer Profile">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-              </svg>
-            </div>
+
+            {showProfileMenu && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '115%',
+                  right: 0,
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #d1ded3',
+                  borderRadius: '12px',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+                  padding: '12px',
+                  minWidth: '200px',
+                  zIndex: 200,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                }}
+              >
+                <div style={{ borderBottom: '1px solid #e2ece3', paddingBottom: '8px' }}>
+                  <div style={{ fontWeight: 700, color: '#132a1b' }}>{farmerName}</div>
+                  <div style={{ fontSize: '12px', color: '#5b7362' }}>{fpoName}</div>
+                  <div style={{ fontSize: '11px', color: '#15803d', fontWeight: 600, marginTop: '2px' }}>
+                    {t('rl_pill')}
+                  </div>
+                </div>
+
+                {onLogout && (
+                  <button
+                    onClick={() => {
+                      setShowProfileMenu(false);
+                      onLogout();
+                    }}
+                    style={{
+                      background: '#fee2e2',
+                      color: '#b91c1c',
+                      border: '1px solid #fca5a5',
+                      borderRadius: '8px',
+                      padding: '8px 12px',
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      width: '100%',
+                    }}
+                  >
+                    <span>🚪</span>
+                    <span>{t('nav_logout')}</span>
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

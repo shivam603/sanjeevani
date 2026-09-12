@@ -3,8 +3,21 @@
  * Connects to FastAPI backend (/api/v1/...) with zero-breakage offline fallback.
  */
 
-const API_BASE = 'http://localhost:8000/api/v1';
+// Dynamic API Base URL supporting localhost, Render environment variables, and production
+const getApiBase = () => {
+  if (import.meta.env?.VITE_API_BASE_URL) {
+    const custom = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+    return custom.endsWith('/api/v1') ? custom : `${custom}/api/v1`;
+  }
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'http://localhost:8000/api/v1';
+  }
+  return '/api/v1';
+};
+
+const API_BASE = getApiBase();
 export const DEFAULT_FARMER_ID = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
+
 
 // Seeded high-fidelity fallback passbook matching Stage 3 & Stage 4 outputs
 export const SEEDED_FALLBACK_PASSPORT = {

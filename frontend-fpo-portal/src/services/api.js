@@ -3,8 +3,21 @@
  * Connects to /api/v1/fpo/... with tenant isolation headers and rich local fallback.
  */
 
-const API_BASE = 'http://localhost:8000/api/v1/fpo';
+// Dynamic API Base URL supporting localhost, Render environment variables, and production
+const getApiBase = () => {
+  if (import.meta.env?.VITE_API_BASE_URL) {
+    const custom = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+    return custom.endsWith('/fpo') ? custom : `${custom}/api/v1/fpo`;
+  }
+  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    return 'http://localhost:8000/api/v1/fpo';
+  }
+  return '/api/v1/fpo';
+};
+
+const API_BASE = getApiBase();
 export const DEFAULT_FPO_ID = '11111111-1111-1111-1111-111111111111';
+
 export const DEFAULT_ADMIN_KEY = 'fpo_admin_key_nashik_01';
 
 const HEADERS = {

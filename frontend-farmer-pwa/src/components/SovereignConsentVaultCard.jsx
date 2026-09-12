@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export default function SovereignConsentVaultCard({ onConsentChange }) {
+  const { t } = useTranslation();
   const [consentState, setConsentState] = useState('PENDING'); // 'PENDING', 'APPROVED', 'DECLINED'
 
   const handleAllow = () => {
@@ -20,16 +22,16 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
         <div>
           <div className="card-category-label">
             <span style={{ marginRight: '4px' }}>🔒</span>
-            DPDP ACT 2023 VERIFIED VAULT
+            {t('cv_category')}
           </div>
-          <div className="card-title-main">तुमचा डेटा, तुमचा अधिकार (Sovereign Consent)</div>
+          <div className="card-title-main">{t('cv_title')}</div>
         </div>
 
-        <div className="zero-otp-pill">Zero Data Sharing Without OTP</div>
+        <div className="zero-otp-pill">{t('cv_zero_otp')}</div>
       </div>
 
       <div className="sovereign-vault-desc">
-        You hold 100% sovereign ownership over your satellite farm boundary scans and Mandi sales slips. Revoke access anytime with single click.
+        {t('cv_desc')}
       </div>
 
       {/* Pending Consent Card */}
@@ -38,24 +40,24 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
         <div className="sbi-card-top-row">
           <div className="sbi-name-group">
             <div className="sbi-logo-square">SBI</div>
-            <div className="sbi-title-text">State Bank of India — Kisan Credit Card Wing</div>
+            <div className="sbi-title-text">{t('cv_sbi_title')}</div>
           </div>
 
           {consentState === 'PENDING' && (
-            <span className="pending-consent-pill">Pending Consent</span>
+            <span className="pending-consent-pill">{t('cv_pending_pill')}</span>
           )}
           {consentState === 'APPROVED' && (
-            <span className="approved-consent-pill">✓ Consent Active (30 Days)</span>
+            <span className="approved-consent-pill">{t('cv_active_pill')}</span>
           )}
           {consentState === 'DECLINED' && (
             <span style={{ backgroundColor: '#fee2e2', color: '#b91c1c', border: '1px solid #fca5a5', padding: '3px 10px', borderRadius: '9999px', fontSize: '12px', fontWeight: 600 }}>
-              ✕ Request Declined
+              {t('cv_declined_pill')}
             </span>
           )}
         </div>
 
         <div className="sbi-request-id-sub">
-          Request ID: #AGR-SBI-9021 • Expires in 48 hours
+          {t('cv_request_id')}
         </div>
 
         {/* Permissions Split Grid */}
@@ -64,10 +66,10 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
           <div className="consent-perm-box">
             <div className="consent-perm-box-title">
               <span>👁</span>
-              <span>Permitted For Inspection:</span>
+              <span>{t('cv_perm_title')}</span>
             </div>
             <div className="consent-perm-box-content">
-              Crop Type (Gehu), Acreage (4.2 A), & 3–Year Mandi Sales
+              {t('cv_perm_content')}
             </div>
           </div>
 
@@ -75,10 +77,10 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
           <div className="consent-perm-box">
             <div className="consent-perm-box-title">
               <span>🔒</span>
-              <span>Encrypted & Masked:</span>
+              <span>{t('cv_mask_title')}</span>
             </div>
             <div className="consent-perm-box-content">
-              Aadhaar number & bank savings account balance remain private
+              {t('cv_mask_content')}
             </div>
           </div>
         </div>
@@ -91,7 +93,7 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
                 className="btn-consent-decline"
                 onClick={handleDecline}
               >
-                Decline (नकार)
+                {t('cv_btn_decline')}
               </button>
 
               <button
@@ -99,7 +101,7 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
                 onClick={handleAllow}
               >
                 <span>🛡️</span>
-                <span>Allow Consent (संमती द्या)</span>
+                <span>{t('cv_btn_allow')}</span>
               </button>
             </>
           ) : (
@@ -108,7 +110,7 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
               onClick={() => setConsentState('PENDING')}
               style={{ fontSize: '12px' }}
             >
-              Change Decision / Reset
+              {t('cv_btn_reset')}
             </button>
           )}
         </div>

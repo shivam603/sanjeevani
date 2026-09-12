@@ -1,0 +1,101 @@
+# ==============================================================================
+# Render Blueprint Infrastructure as Code (render.yaml)
+# Sanjeevani: Agricultural Credit Intelligence & Farmer Financial Passport
+# ==============================================================================
+# Deploy with 1-click in Render by connecting your GitHub repo:
+# https://dashboard.render.com/blueprints
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # 1. FastAPI ASGI Backend Web Service
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: sanjeevani-backend
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install --upgrade pip && pip install -r backend/requirements.txt
+    startCommand: python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: false
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: PROJECT_NAME
+        value: Sanjeevani API
+      - key: DATABASE_URL
+        value: sqlite:///./sanjeevani.db
+
+  # ----------------------------------------------------------------------------
+  # 2. Farmer Sovereign Passbook (React PWA) - Global CDN Static Site
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: sanjeevani-farmer-pwa
+    runtime: static
+    plan: free
+    region: oregon
+    rootDir: frontend-farmer-pwa
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: sanjeevani-backend
+          property: host
+
+  # ----------------------------------------------------------------------------
+  # 3. FPO Cooperative Hub (React Portal) - Global CDN Static Site
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: sanjeevani-fpo-portal
+    runtime: static
+    plan: free
+    region: oregon
+    rootDir: frontend-fpo-portal
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: sanjeevani-backend
+          property: host
+
+  # ----------------------------------------------------------------------------
+  # 4. Institutional Lender Terminal - Global CDN Static Site
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: sanjeevani-lender-dashboard
+    runtime: static
+    plan: free
+    region: oregon
+    rootDir: frontend-lender-dashboard
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: sanjeevani-backend
+          property: host
