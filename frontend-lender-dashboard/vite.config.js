@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
+const lenderPort = Number(process.env.VITE_LENDER_PORT || process.env.PORT || 3002);
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -10,7 +12,11 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3002,
-    host: true,
+    port: lenderPort,
+    host: '0.0.0.0',
+  },
+  preview: {
+    port: lenderPort,
+    host: '0.0.0.0',
   },
 });

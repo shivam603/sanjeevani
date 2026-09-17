@@ -18,22 +18,14 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Sanjeevani API"
     VERSION: str = "0.1.0"
     API_V1_STR: str = "/api/v1"
-    ENVIRONMENT: str = "development"
-    DEBUG: bool = True
+    ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
+    DEBUG: bool = os.getenv("DEBUG", "true").lower() == "true"
 
-    # CORS configuration
-    CORS_ORIGINS: Union[List[str], str] = [
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "http://localhost:3002",
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:5175",
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:5173",
-        "http://127.0.0.1:5174",
-        "http://127.0.0.1:5175",
-    ]
+    # CORS configuration from environment, with localhost and Vite defaults
+    CORS_ORIGINS: Union[List[str], str] = os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:5173,http://localhost:5174,http://localhost:5175,http://127.0.0.1:3000,http://127.0.0.1:5173,http://127.0.0.1:5174,http://127.0.0.1:5175",
+    )
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod

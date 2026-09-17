@@ -133,6 +133,38 @@ export const SEEDED_LENDERS = [
   },
 ];
 
+// The API stores credit scores on a 300–900 scale; the farmer UI displays the
+// equivalent 0–100 AgriTrust scale.
+const normalizePassport = (payload) => {
+  const rawScore = Number(payload?.agritrust_score);
+  const score = rawScore > 100
+    ? Math.round(Math.max(0, Math.min(100, (rawScore - 300) / 6)))
+    : (Number.isFinite(rawScore) ? rawScore : SEEDED_FALLBACK_PASSPORT.agritrust_score);
+  const market = payload?.market_prices_scenario || {};
+  const risk = payload?.crop_risk || {};
+  const maxLimit = Number(payload?.safe_credit_max) || SEEDED_FALLBACK_PASSPORT.safe_credit_max;
+
+  return {
+    ...SEEDED_FALLBACK_PASSPORT,
+    ...payload,
+    agritrust_score: score,
+    score_grade: payload?.rating_tier || SEEDED_FALLBACK_PASSPORT.score_grade,
+    safe_credit_min: Number(payload?.safe_credit_min) || SEEDED_FALLBACK_PASSPORT.safe_credit_min,
+    safe_credit_max: maxLimit,
+    safe_limit: maxLimit,
+    risk_profile: {
+      ...SEEDED_FALLBACK_PASSPORT.risk_profile,
+      crop_risk: risk.risk_category?.toUpperCase() || SEEDED_FALLBACK_PASSPORT.risk_profile.crop_risk,
+    },
+    telemetry: {
+      ...SEEDED_FALLBACK_PASSPORT.telemetry,
+      last_mandi_price: market.base_realization_price || SEEDED_FALLBACK_PASSPORT.telemetry.last_mandi_price,
+      mandi_name: market.mandi_name || SEEDED_FALLBACK_PASSPORT.telemetry.mandi_name,
+      primary_crop: market.crop_name || SEEDED_FALLBACK_PASSPORT.telemetry.primary_crop,
+    },
+  };
+};
+
 class ApiClient {
   constructor() {
     this.cachedPassport = null;
@@ -151,9 +183,10 @@ class ApiClient {
       });
       if (res.ok) {
         const data = await res.json();
-        this.cachedPassport = data;
-        localStorage.setItem('kisancred_cached_passport', JSON.stringify(data));
-        return data;
+        const passport = normalizePassport(data);
+        this.cachedPassport = passport;
+        localStorage.setItem('kisancred_cached_passport', JSON.stringify(passport));
+        return passport;
       }
     } catch (err) {
       console.warn('API server unreachable, using cached/seeded passbook:', err.message);

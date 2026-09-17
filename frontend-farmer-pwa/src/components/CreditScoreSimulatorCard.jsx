@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
 
+const GOALS_STORAGE_KEY = 'agritrust_score_simulator_goals';
+const EMPTY_ACTIONS = { pmfby: false, earlyRepay: false, mandiSlip: false, soilTest: false, gpsPhoto: false };
+
+function loadSavedGoals() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(GOALS_STORAGE_KEY));
+    return { ...EMPTY_ACTIONS, ...(saved?.actions || {}) };
+  } catch {
+    return EMPTY_ACTIONS;
+  }
+}
+
 export default function CreditScoreSimulatorCard({ onOpenPassport }) {
   const { t } = useTranslation();
 
   const BASE_SCORE = 78;
   const BASE_LIMIT = 165000;
 
-  const [selectedActions, setSelectedActions] = useState({
-    pmfby: false,
-    earlyRepay: false,
-    mandiSlip: false,
-    soilTest: false,
-    gpsPhoto: false,
-  });
+  const [selectedActions, setSelectedActions] = useState(loadSavedGoals);
 
   const [toastMessage, setToastMessage] = useState(null);
 
@@ -33,13 +39,8 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
   };
 
   const handleReset = () => {
-    setSelectedActions({
-      pmfby: false,
-      earlyRepay: false,
-      mandiSlip: false,
-      soilTest: false,
-      gpsPhoto: false,
-    });
+    setSelectedActions(EMPTY_ACTIONS);
+    localStorage.removeItem(GOALS_STORAGE_KEY);
     setToastMessage(null);
   };
 
@@ -51,6 +52,18 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
         text: 'Select at least one booster action to set target goals.',
       });
     } else {
+      try {
+        localStorage.setItem(GOALS_STORAGE_KEY, JSON.stringify({
+          actions: selectedActions,
+          savedAt: new Date().toISOString(),
+        }));
+      } catch {
+        setToastMessage({
+          type: 'info',
+          text: 'Your goals are ready, but this browser cannot save them offline.',
+        });
+        return;
+      }
       setToastMessage({
         type: 'success',
         text: `🎯 ${activeCount} Target Milestones Saved! Progress will be tracked against your AgriTrust Sovereign rating.`,
