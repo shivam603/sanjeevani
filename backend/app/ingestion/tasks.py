@@ -100,6 +100,18 @@ def run_ingestion_now(source: str, **kwargs) -> Dict[str, Any]:
         ingestor = PMFBYIngestor()
     elif source_upper in ("FPO_ERP", "ERP", "TRANSACTION"):
         ingestor = FPOERPIngestor()
+    elif source_upper in ("NHB", "HORTICULTURE"):
+        from app.ingestion.nhb_ingestor import NHBIngestor
+        ingestor = NHBIngestor()
+    elif source_upper in ("PM_KISAN", "PMKISAN", "DBT"):
+        from app.ingestion.pmkisan_ingestor import PMKisanIngestor
+        ingestor = PMKisanIngestor()
+    elif source_upper in ("KCC_ADVISORY", "KCC", "ADVISORY"):
+        from app.ingestion.kcc_advisory_ingestor import KCCAdvisoryIngestor
+        ingestor = KCCAdvisoryIngestor()
+    elif source_upper in ("ICAR_DISEASE", "ICAR", "DISEASE", "PEST"):
+        from app.ingestion.icar_disease_ingestor import ICARDiseaseIngestor
+        ingestor = ICARDiseaseIngestor()
     else:
         raise ValueError(f"Unknown ingestion source: '{source}'")
 
