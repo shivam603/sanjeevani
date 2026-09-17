@@ -93,7 +93,9 @@ class CropRegionRiskEngine(ScoringModel):
 
         weather_anom = float(features.get("weather_anomaly_index", 0.15))
         pest_rate = float(features.get("pest_disease_incidence_pct", 12.0))
-        pmfby_claim_rate = float(features.get("pmfby_claim_rate", 0.18))
+        
+        # Grounded PMFBY claim rate lookup: if district PMFBY claim records exist, use it
+        pmfby_claim_rate = float(features.get("pmfby_claim_rate", features.get("historical_pmfby_claim_rate", 0.18)))
 
         irrigation = str(features.get("irrigation_source", "Borewell")).lower()
         if "drip" in irrigation or "canal" in irrigation:

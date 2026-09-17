@@ -73,8 +73,22 @@ class RepaymentCapacityCalculator(ScoringModel):
 
         for cycle in crop_cycles:
             crop = cycle.get("crop_name", "General").title()
-            exp_yield = float(cycle.get("expected_yield", 10.0))  # Total expected quintals
+            crop_key = crop.lower()
+
+            # NHB benchmark yield fallback (Quintals per Acre)
+            nhb_yield_lookup = {
+                "grapes": 85.0, "pomegranate": 48.0, "onion": 75.0,
+                "tomato": 110.0, "mango": 35.0, "banana": 220.0,
+                "soybean": 12.0, "wheat": 22.0, "cotton": 10.0, "paddy": 25.0
+            }
+            default_nhb_yield = nhb_yield_lookup.get(crop_key, 15.0)
+
             acres = float(cycle.get("acreage", total_acreage))
+            raw_exp_yield = cycle.get("expected_yield")
+            if raw_exp_yield is None or float(raw_exp_yield) <= 0:
+                exp_yield = default_nhb_yield * acres
+            else:
+                exp_yield = float(raw_exp_yield)
 
             # 1. Realization price (from Model D or benchmark)
             price_per_qtl = float(realization_prices.get(crop, 0.0))
@@ -83,6 +97,7 @@ class RepaymentCapacityCalculator(ScoringModel):
                 price_per_qtl = {
                     "Grapes": 4500.0, "Onion": 2200.0, "Tomato": 1600.0,
                     "Soybean": 4600.0, "Pomegranate": 6000.0, "Wheat": 2400.0,
+                    "Cotton": 6800.0, "Paddy": 2250.0,
                 }.get(crop, 2500.0)
 
             crop_rev = exp_yield * price_per_qtl
