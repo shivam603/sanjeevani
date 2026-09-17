@@ -77,6 +77,19 @@ export default function TopNavbar({
 
         {/* Right Tools */}
         <div className="nav-right-tools">
+          {/* Switch to Lender Underwriting Desk */}
+          <a
+            href="http://localhost:3002"
+            className="nav-portal-switch-btn"
+            title="Switch to Institutional Lender Underwriting Desk"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>🏦</span>
+            <span>Lender Desk</span>
+            <span style={{ fontSize: '10px' }}>↗</span>
+          </a>
+
           {/* 1-Click Credit Passport Button */}
           {onOpenPassport && (
             <button

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TopNav from './components/TopNav';
+import SingleSignOnPage from './components/SingleSignOnPage';
 import PortfolioSearchScreen from './screens/PortfolioSearchScreen';
 import FarmerDetailScreen from './screens/FarmerDetailScreen';
 import ConsentRequestScreen from './screens/ConsentRequestScreen';
@@ -7,12 +8,34 @@ import LoanDecisionLogScreen from './screens/LoanDecisionLogScreen';
 import { fetchConsentRequests, fetchLoanDecisions, recordLoanDecision } from './services/api';
 
 export default function App() {
+  // Lender user session
+  const [lenderUser, setLenderUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem('agritrust_lender_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch (e) {
+      return null;
+    }
+  });
+
   const [activeTab, setActiveTab] = useState('portfolio');
   const [selectedFarmerId, setSelectedFarmerId] = useState('3fa85f64-5717-4562-b3fc-2c963f66afa6');
   const [selectedConsentToken, setSelectedConsentToken] = useState('hmac_sha256_sbi_demo.78f92ab84c019d3e8');
   const [requestCount, setRequestCount] = useState(2);
   const [decisionCount, setDecisionCount] = useState(1);
   const [toastMessage, setToastMessage] = useState(null);
+
+  const handleLoginSuccess = (userData) => {
+    setLenderUser(userData);
+    if (userData.rememberMe) {
+      localStorage.setItem('agritrust_lender_user', JSON.stringify(userData));
+    }
+  };
+
+  const handleLogout = () => {
+    setLenderUser(null);
+    localStorage.removeItem('agritrust_lender_user');
+  };
 
   useEffect(() => {
     fetchConsentRequests().then((data) => setRequestCount(data.length)).catch(() => {});
@@ -41,6 +64,11 @@ export default function App() {
     }
   };
 
+  // If not authenticated, show institutional Single Sign-On Page
+  if (!lenderUser) {
+    return <SingleSignOnPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
   return (
     <div className="lender-app">
       <TopNav
@@ -48,6 +76,8 @@ export default function App() {
         onSelectTab={setActiveTab}
         requestCount={requestCount}
         decisionCount={decisionCount}
+        lenderUser={lenderUser}
+        onLogout={handleLogout}
       />
 
       {toastMessage && (

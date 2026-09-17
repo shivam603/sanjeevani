@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/pwa.css';
 import { useTranslation } from './i18n/LanguageContext';
 
-import LoginPage from './components/LoginPage';
+import SingleSignOnPage from './components/SingleSignOnPage';
 import TopNavbar from './components/TopNavbar';
 import FarmerGreetingBar from './components/FarmerGreetingBar';
 import CreditHealthCard from './components/CreditHealthCard';
@@ -44,6 +44,14 @@ export default function App() {
   const [isPassportModalOpen, setIsPassportModalOpen] = useState(false);
 
   const handleLogin = (userData) => {
+    if (userData.role === 'lender') {
+      try {
+        localStorage.setItem('agritrust_lender_user', JSON.stringify(userData));
+      } catch (e) {}
+      window.location.href = 'http://localhost:3002';
+      return;
+    }
+
     setUser(userData);
     if (userData.rememberMe) {
       localStorage.setItem('agritrust_farmer_user', JSON.stringify(userData));
@@ -112,9 +120,9 @@ export default function App() {
     }
   };
 
-  // 1. If not authenticated, show Login Page
+  // 1. If not authenticated, show Single Sign-On and Login Page
   if (!user) {
-    return <LoginPage onLogin={handleLogin} />;
+    return <SingleSignOnPage onLoginSuccess={handleLogin} />;
   }
 
   // 2. If authenticated, show full home webpage with all components
