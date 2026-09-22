@@ -24,14 +24,19 @@ export default function TopNavbar({
       <div className="agritrust-nav-inner">
         {/* Brand Group */}
         <div className="nav-brand-group" onClick={() => onSelectTab('overview')}>
-          <span className="nav-brand-dot"></span>
-          <div>
-            <div className="nav-brand-title">{t('app_name')}</div>
-            <div className="nav-brand-subtitle">{t('brand_subtitle')}</div>
+          <div className="nav-brand-icon-box">
+            <span className="nav-brand-icon">🌱</span>
+          </div>
+          <div className="nav-brand-text">
+            <div className="nav-brand-row">
+              <span className="nav-brand-title">{t('app_name')}</span>
+              <span className="nav-brand-badge">Farmer</span>
+            </div>
+            <div className="nav-brand-subtitle">Sovereign Credit</div>
           </div>
         </div>
 
-        {/* Center Menu Links */}
+        {/* Center Menu Links — Apple Segmented Control */}
         <ul className="nav-links-menu">
           <li>
             <button
@@ -75,106 +80,82 @@ export default function TopNavbar({
           </li>
         </ul>
 
-        {/* Right Tools */}
+        {/* Right Tools Cluster */}
         <div className="nav-right-tools">
-          {/* Switch to Lender Underwriting Desk */}
-          <a
-            href="http://localhost:3002"
-            className="nav-portal-switch-btn"
-            title="Switch to Institutional Lender Underwriting Desk"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>🏦</span>
-            <span>Lender Desk</span>
-            <span style={{ fontSize: '10px' }}>↗</span>
-          </a>
-
-          {/* 1-Click Credit Passport Button */}
-          {onOpenPassport && (
-            <button
-              className="nav-passport-btn"
-              onClick={onOpenPassport}
-              title={t('pass_btn_nav')}
+          {/* Action Cluster: Switch & Passport */}
+          <div className="nav-action-cluster">
+            {/* Switch to Lender Underwriting Desk */}
+            <a
+              href="http://localhost:3002"
+              className="nav-portal-switch-btn"
+              title="Switch to Institutional Lender Underwriting Desk"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <span>📄</span>
-              <span className="passport-btn-text">{t('pass_btn_nav')}</span>
-            </button>
-          )}
+              <span className="btn-icon">🏦</span>
+              <span>Lender Desk</span>
+              <span className="btn-arrow">↗</span>
+            </a>
 
-          {/* Language Dropdown */}
-          <div style={{ position: 'relative' }}>
-            <button
-              className="nav-lang-btn"
-              onClick={() => setShowLangMenu(!showLangMenu)}
-              aria-label="Select Language"
-            >
-              <span>🌐</span>
-              <span>{currentLangLabel.split(' ')[0]}</span>
-              <span style={{ fontSize: '10px' }}>▼</span>
-            </button>
-
-            {showLangMenu && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '115%',
-                  right: 0,
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
-                  backdropFilter: 'var(--glass-blur-lg)',
-                  WebkitBackdropFilter: 'var(--glass-blur-lg)',
-                  border: '1px solid rgba(255, 255, 255, 0.95)',
-                  borderRadius: '16px',
-                  boxShadow: 'var(--glass-highlight-prominent), 0 16px 36px rgba(30, 41, 59, 0.12)',
-                  padding: '8px',
-                  minWidth: '180px',
-                  zIndex: 200,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '4px',
-                }}
+            {/* 1-Click Credit Passport Button */}
+            {onOpenPassport && (
+              <button
+                className="nav-passport-btn"
+                onClick={onOpenPassport}
+                title={t('pass_btn_nav')}
               >
-                {SUPPORTED_LANGUAGES.map((l) => (
-                  <button
-                    key={l.code}
-                    onClick={() => {
-                      setCurrentLang(l.code);
-                      setShowLangMenu(false);
-                    }}
-                    style={{
-                      background: currentLang === l.code ? 'rgba(16, 185, 129, 0.12)' : 'transparent',
-                      color: currentLang === l.code ? '#059669' : '#1D1D1F',
-                      fontWeight: currentLang === l.code ? '700' : '500',
-                      border: 'none',
-                      borderRadius: '10px',
-                      padding: '8px 14px',
-                      textAlign: 'left',
-                      fontFamily: 'inherit',
-                      fontSize: '13px',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      transition: 'all var(--transition-glass-fast)',
-                    }}
-                  >
-                    <span>{l.label}</span>
-                    {currentLang === l.code && <span style={{ color: '#059669', fontWeight: 800 }}>✓</span>}
-                  </button>
-                ))}
-              </div>
+                <span className="btn-icon">📄</span>
+                <span className="passport-btn-text">{t('pass_btn_nav')}</span>
+              </button>
             )}
           </div>
 
-          {/* Voice Reading Trigger */}
-          <button
-            className={`nav-voice-btn ${isSpeaking ? 'active-speaking' : ''}`}
-            onClick={onTriggerSpeech}
-            title={isSpeaking ? t('nav_stop_listen') : t('nav_listen')}
-          >
-            <span>🔊</span>
-            <span>{isSpeaking ? t('nav_stop_listen') : t('nav_listen')}</span>
-          </button>
+          {/* Utility Cluster: Speech & Language */}
+          <div className="nav-utility-cluster">
+            {/* Voice Reading Trigger */}
+            <button
+              className={`nav-voice-btn ${isSpeaking ? 'active-speaking' : ''}`}
+              onClick={onTriggerSpeech}
+              title={isSpeaking ? t('nav_stop_listen') : t('nav_listen')}
+            >
+              <span className="btn-icon">🔊</span>
+              <span>{isSpeaking ? t('nav_stop_listen') : t('nav_listen')}</span>
+            </button>
+
+            {/* Language Dropdown */}
+            <div style={{ position: 'relative' }}>
+              <button
+                className="nav-lang-btn"
+                onClick={() => setShowLangMenu(!showLangMenu)}
+                aria-label="Select Language"
+              >
+                <span className="btn-icon">🌐</span>
+                <span>{currentLangLabel.split(' ')[0]}</span>
+                <span className="lang-caret">▼</span>
+              </button>
+
+              {showLangMenu && (
+                <div className="nav-lang-popover">
+                  {SUPPORTED_LANGUAGES.map((l) => (
+                    <button
+                      key={l.code}
+                      onClick={() => {
+                        setCurrentLang(l.code);
+                        setShowLangMenu(false);
+                      }}
+                      className={`lang-option-item ${currentLang === l.code ? 'selected' : ''}`}
+                    >
+                      <span>{l.label}</span>
+                      {currentLang === l.code && <span className="check-mark">✓</span>}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Profile Divider */}
+          <div className="nav-profile-divider" />
 
           {/* Profile Badge & Dropdown */}
           <div style={{ position: 'relative' }}>
@@ -184,12 +165,12 @@ export default function TopNavbar({
               style={{ cursor: 'pointer' }}
               title="Farmer Profile & Menu"
             >
-              <div style={{ textAlign: 'right' }}>
+              <div className="nav-profile-info">
                 <div className="nav-profile-name">{farmerName}</div>
                 <div className="nav-profile-sub">{fpoName}</div>
               </div>
               <div className="nav-profile-avatar">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                 </svg>
               </div>

@@ -17,8 +17,8 @@ export const translations = {
 
     // Navigation
     nav_overview: "Overview",
-    nav_loans: "My Loans & Safe Limit",
-    nav_consent: "Sovereign Data Vault / Consent",
+    nav_loans: "Loans & Limit",
+    nav_consent: "Consent Vault",
     nav_mandi: "Mandi & Weather",
     nav_support: "Support",
     nav_listen: "Listen",
@@ -193,7 +193,7 @@ export const translations = {
     sim_save_goals: "Save As Target Goals",
 
     // PDF Passport & QR Verification
-    pass_btn_nav: "📄 Download Passport",
+    pass_btn_nav: "Download Passport",
     pass_btn_card: "Official Bank Passport >",
     pass_modal_title: "Digital Agricultural Credit Passport",
     pass_print_btn: "🖨️ Print / Save as PDF",
@@ -393,7 +393,7 @@ export const translations = {
     sim_save_goals: "लक्ष्य सुरक्षित करें",
 
     // PDF Passport & QR Verification
-    pass_btn_nav: "📄 पासपोर्ट डाउनलोड",
+    pass_btn_nav: "पासपोर्ट डाउनलोड",
     pass_btn_card: "आधिकारिक बैंक पासपोर्ट देखें >",
     pass_modal_title: "डिजिटल कृषि साख पासपोर्ट",
     pass_print_btn: "🖨️ प्रिंट / पीडीएफ सेव करें",
@@ -593,7 +593,7 @@ export const translations = {
     sim_save_goals: "उद्दिष्टे जतन करा",
 
     // PDF Passport & QR Verification
-    pass_btn_nav: "📄 पासपोर्ट डाउनलोड",
+    pass_btn_nav: "पासपोर्ट डाउनलोड",
     pass_btn_card: "अधिकृत बँक पासपोर्ट पहा >",
     pass_modal_title: "डिजिटल कृषी पत पासपोर्ट",
     pass_print_btn: "🖨️ प्रिंट / पीडीएफ सेव्ह करा",
@@ -793,7 +793,7 @@ export const translations = {
     sim_save_goals: "இலக்குகளாக சேமிக்க",
 
     // PDF Passport & QR Verification
-    pass_btn_nav: "📄 பாஸ்போர்ட் பதிவிறக்கம்",
+    pass_btn_nav: "பாஸ்போர்ட் பதிவிறக்கம்",
     pass_btn_card: "வங்கி பாஸ்போர்ட் காண்க >",
     pass_modal_title: "டிஜிட்டல் விவசாய கடன் பாஸ்போர்ட்",
     pass_print_btn: "🖨️ அச்சிடுக / PDF சேமி",
