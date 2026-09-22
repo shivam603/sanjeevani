@@ -13,7 +13,7 @@ export default function PriceScenarioChart({ priceProjections }) {
             <span>📈</span> Model D — AGMARKNET Mandi Price Realization Horizons
           </h3>
           <p className="card-subtitle">
-            Benchmark: <strong style={{ color: 'var(--text-primary)' }}>{priceProjections.benchmark_mandi}</strong> • Current Modal: <strong style={{ color: '#38bdf8' }}>{formatINR(priceProjections.current_modal_price)}/Qtl</strong>
+            Benchmark: <strong style={{ color: 'var(--text-primary)' }}>{priceProjections.benchmark_mandi}</strong> • Current Modal: <strong style={{ color: '#0284C7' }}>{formatINR(priceProjections.current_modal_price)}/Qtl</strong>
           </p>
         </div>
         <span className="badge-grade">ARIMA + EXPONENTIAL SMOOTHING</span>

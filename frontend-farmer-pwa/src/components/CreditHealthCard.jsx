@@ -10,7 +10,7 @@ export default function CreditHealthCard({
   const { t } = useTranslation();
 
   // SVG circular gauge math
-  const radius = 42;
+  const radius = 46;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (score / maxScore) * circumference;
 
@@ -29,56 +29,73 @@ export default function CreditHealthCard({
         </div>
       </div>
 
-      {/* Score Gauge & Reasons Container */}
+      {/* Dominant Score Module with Luminous Glow */}
       <div className="score-gauge-container">
         {/* Circular Ring Gauge */}
-        <div className="score-circular-gauge-wrapper">
-          <svg width="104" height="104" viewBox="0 0 104 104" style={{ transform: 'rotate(-90deg)' }}>
+        <div className="score-circular-gauge-wrapper" style={{ width: '116px', height: '116px' }}>
+          <svg width="116" height="116" viewBox="0 0 116 116" style={{ transform: 'rotate(-90deg)' }}>
+            <defs>
+              <linearGradient id="scoreGaugeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#059669" />
+                <stop offset="60%" stopColor="#10B981" />
+                <stop offset="100%" stopColor="#34D399" />
+              </linearGradient>
+              <filter id="scoreGaugeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#10B981" floodOpacity="0.35" />
+              </filter>
+            </defs>
+
             {/* Background Track */}
             <circle
-              cx="52"
-              cy="52"
+              cx="58"
+              cy="58"
               r={radius}
               fill="none"
-              stroke="#cbd5e1"
-              strokeWidth="10"
+              stroke="rgba(16, 185, 129, 0.12)"
+              strokeWidth="11"
             />
-            {/* Active Green Stroke */}
+            {/* Active Luminous Emerald Stroke */}
             <circle
-              cx="52"
-              cy="52"
+              cx="58"
+              cy="58"
               r={radius}
               fill="none"
-              stroke="#13532f"
-              strokeWidth="10"
+              stroke="url(#scoreGaugeGrad)"
+              strokeWidth="11"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
               strokeLinecap="round"
-              style={{ transition: 'stroke-dashoffset 1s ease' }}
+              filter="url(#scoreGaugeGlow)"
+              style={{ transition: 'stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1)' }}
             />
           </svg>
 
           <div className="score-gauge-center-text">
-            <span className="score-gauge-number">{score}</span>
+            <span className="score-gauge-number" style={{ fontSize: '38px', fontWeight: 800 }}>{score}</span>
             <span className="score-gauge-subtext">{t('ch_score_out_of')}</span>
           </div>
         </div>
 
-        {/* Reasons List */}
+        {/* Reasons List with +12 Monthly Growth Pill */}
         <div className="score-reasons-list">
-          <div className="score-reasons-title">{t('ch_reasons_title')}</div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+            <div className="score-reasons-title">{t('ch_reasons_title')}</div>
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#059669', background: 'rgba(16, 185, 129, 0.12)', padding: '2px 8px', borderRadius: '9999px' }}>
+              +12 this month
+            </span>
+          </div>
 
           <div className="score-reason-item">
             <div className="score-reason-check">✓</div>
             <div>
-              <strong>{t('ch_reason_1_bold')}</strong> {t('ch_reason_1_text')}
+              <strong style={{ color: '#1D1D1F' }}>{t('ch_reason_1_bold')}</strong> {t('ch_reason_1_text')}
             </div>
           </div>
 
           <div className="score-reason-item">
             <div className="score-reason-check">✓</div>
             <div>
-              <strong>{t('ch_reason_2_bold')}</strong> {t('ch_reason_2_text')}
+              <strong style={{ color: '#1D1D1F' }}>{t('ch_reason_2_bold')}</strong> {t('ch_reason_2_text')}
             </div>
           </div>
         </div>
@@ -94,7 +111,7 @@ export default function CreditHealthCard({
               title={t('sim_title')}
             >
               <span>🚀</span>
-              <span>{t('sim_title')}</span>
+              <span>What-If Score & Limit Booster</span>
             </button>
           )}
           {onOpenPassport && (
@@ -104,13 +121,13 @@ export default function CreditHealthCard({
               title={t('pass_btn_card')}
             >
               <span>📄</span>
-              <span>{t('pass_btn_card')}</span>
+              <span>Official Bank Passport &gt;</span>
             </button>
           )}
         </div>
       )}
 
-      {/* No Agent Fees Lightbulb Notice */}
+      {/* No Agent Fees Notice */}
       <div className="card-footer-notice-box">
         <span style={{ fontSize: '15px' }}>💡</span>
         <span>{t('ch_notice')}</span>

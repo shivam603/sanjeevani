@@ -118,14 +118,16 @@ export default function TopNavbar({
               <div
                 style={{
                   position: 'absolute',
-                  top: '110%',
+                  top: '115%',
                   right: 0,
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #d1ded3',
-                  borderRadius: '10px',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-                  padding: '6px',
-                  minWidth: '170px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'var(--glass-blur-lg)',
+                  WebkitBackdropFilter: 'var(--glass-blur-lg)',
+                  border: '1px solid rgba(255, 255, 255, 0.95)',
+                  borderRadius: '16px',
+                  boxShadow: 'var(--glass-highlight-prominent), 0 16px 36px rgba(30, 41, 59, 0.12)',
+                  padding: '8px',
+                  minWidth: '180px',
                   zIndex: 200,
                   display: 'flex',
                   flexDirection: 'column',
@@ -140,12 +142,12 @@ export default function TopNavbar({
                       setShowLangMenu(false);
                     }}
                     style={{
-                      background: currentLang === l.code ? '#e2f2e5' : 'transparent',
-                      color: currentLang === l.code ? '#13532f' : '#334155',
+                      background: currentLang === l.code ? 'rgba(16, 185, 129, 0.12)' : 'transparent',
+                      color: currentLang === l.code ? '#059669' : '#1D1D1F',
                       fontWeight: currentLang === l.code ? '700' : '500',
                       border: 'none',
-                      borderRadius: '6px',
-                      padding: '8px 12px',
+                      borderRadius: '10px',
+                      padding: '8px 14px',
                       textAlign: 'left',
                       fontFamily: 'inherit',
                       fontSize: '13px',
@@ -153,10 +155,11 @@ export default function TopNavbar({
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
+                      transition: 'all var(--transition-glass-fast)',
                     }}
                   >
                     <span>{l.label}</span>
-                    {currentLang === l.code && <span style={{ color: '#166534' }}>✓</span>}
+                    {currentLang === l.code && <span style={{ color: '#059669', fontWeight: 800 }}>✓</span>}
                   </button>
                 ))}
               </div>
@@ -198,22 +201,24 @@ export default function TopNavbar({
                   position: 'absolute',
                   top: '115%',
                   right: 0,
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #d1ded3',
-                  borderRadius: '12px',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-                  padding: '12px',
-                  minWidth: '200px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'var(--glass-blur-lg)',
+                  WebkitBackdropFilter: 'var(--glass-blur-lg)',
+                  border: '1px solid rgba(255, 255, 255, 0.95)',
+                  borderRadius: '16px',
+                  boxShadow: 'var(--glass-highlight-prominent), 0 16px 36px rgba(30, 41, 59, 0.12)',
+                  padding: '14px',
+                  minWidth: '220px',
                   zIndex: 200,
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '8px',
+                  gap: '10px',
                 }}
               >
-                <div style={{ borderBottom: '1px solid #e2ece3', paddingBottom: '8px' }}>
-                  <div style={{ fontWeight: 700, color: '#132a1b' }}>{farmerName}</div>
-                  <div style={{ fontSize: '12px', color: '#5b7362' }}>{fpoName}</div>
-                  <div style={{ fontSize: '11px', color: '#15803d', fontWeight: 600, marginTop: '2px' }}>
+                <div style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.06)', paddingBottom: '10px' }}>
+                  <div style={{ fontWeight: 700, color: '#1D1D1F', fontSize: '14px' }}>{farmerName}</div>
+                  <div style={{ fontSize: '12px', color: '#515154' }}>{fpoName}</div>
+                  <div style={{ fontSize: '11px', color: '#059669', fontWeight: 600, marginTop: '4px' }}>
                     {t('rl_pill')}
                   </div>
                 </div>
@@ -225,18 +230,19 @@ export default function TopNavbar({
                       onOpenPassport();
                     }}
                     style={{
-                      background: '#e2f2e5',
-                      color: '#13532f',
-                      border: '1px solid #c2e2c9',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
+                      background: 'rgba(16, 185, 129, 0.10)',
+                      color: '#059669',
+                      border: '1px solid rgba(16, 185, 129, 0.25)',
+                      borderRadius: '10px',
+                      padding: '9px 14px',
                       fontSize: '13px',
                       fontWeight: 600,
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px',
+                      gap: '8px',
                       width: '100%',
+                      transition: 'all var(--transition-glass-fast)',
                     }}
                   >
                     <span>📄</span>
@@ -251,18 +257,19 @@ export default function TopNavbar({
                       onLogout();
                     }}
                     style={{
-                      background: '#fee2e2',
-                      color: '#b91c1c',
-                      border: '1px solid #fca5a5',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
+                      background: 'rgba(239, 68, 68, 0.08)',
+                      color: '#DC2626',
+                      border: '1px solid rgba(239, 68, 68, 0.2)',
+                      borderRadius: '10px',
+                      padding: '9px 14px',
                       fontSize: '13px',
                       fontWeight: 600,
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px',
+                      gap: '8px',
                       width: '100%',
+                      transition: 'all var(--transition-glass-fast)',
                     }}
                   >
                     <span>🚪</span>

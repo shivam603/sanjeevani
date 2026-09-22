@@ -94,249 +94,300 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
 
   return (
     <div className="lender-sso-wrapper">
-      {/* Top Header */}
+      {/* Level 1: Atmospheric Ambient Light Blooms */}
+      <div className="sso-ambient-bloom sso-bloom-sage" />
+      <div className="sso-ambient-bloom sso-bloom-sunlight" />
+      <div className="sso-ambient-bloom sso-bloom-sky" />
+
+      {/* Level 2: Floating Translucent Navigation Bar */}
       <header className="lender-sso-header">
         <div className="brand-section">
-          <div className="brand-logo-badge">SANJEEVANI</div>
-          <div>
+          <div className="brand-logo-badge">
+            <span className="brand-logo-dot" />
+            SANJEEVANI
+          </div>
+          <div className="brand-text-block">
             <h1 className="brand-title">Sanjeevani • Institutional Gateway</h1>
             <p className="brand-subtitle">Consent-Gated Sovereign Agricultural Credit Terminal</p>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="header-actions">
           <a
             href="http://localhost:3000"
             className="lender-external-portal-btn"
-            title="Open Farmer PWA"
+            title="Switch to Farmer Portal"
           >
-            <span>🌾 Switch to Farmer Portal</span>
-            <span>↗</span>
+            <span>Switch to Farmer Portal</span>
+            <span className="external-arrow">↗</span>
           </a>
         </div>
       </header>
 
-      {/* Main Card */}
+      {/* Main Spatial Composition */}
       <main className="lender-sso-main">
-        <div className="lender-sso-card">
-          {/* Role Toggle */}
+        <div className="sso-center-composition">
+          {/* Role Segmented Capsule */}
           <div className="lender-sso-role-toggle">
             <button
               type="button"
               className={`role-btn ${activeRole === 'lender' ? 'active' : ''}`}
               onClick={() => setActiveRole('lender')}
             >
-              <span>🏦</span>
-              <span>Lender Portal (Bank / NGO)</span>
+              <span>🏦 Institutional Underwriting Desk</span>
             </button>
             <button
               type="button"
               className={`role-btn ${activeRole === 'farmer' ? 'active' : ''}`}
               onClick={() => setActiveRole('farmer')}
             >
-              <span>🌾</span>
-              <span>Farmer Passbook Portal</span>
+              <span>🌾 Farmer Passbook Portal</span>
             </button>
           </div>
 
+          {/* Large Clean Hero Heading (Floating on the Atmospheric Canvas) */}
+          <div className="sso-hero-header">
+            <div className="sso-eyebrow-badge">
+              <span className="eyebrow-pulse" />
+              INSTITUTIONAL UNDERWRITING DESK
+            </div>
+            <h2 className="sso-primary-heading">Underwriting Single Sign-On</h2>
+            <p className="sso-hero-description">
+              Select your financial institution category to access secure agricultural credit dossiers.
+            </p>
+          </div>
+
+          {errorMsg && (
+            <div className="sso-error-alert">
+              <span className="alert-icon">⚠️</span>
+              <span>{errorMsg}</span>
+            </div>
+          )}
+
+          {/* Level 3: Floating Translucent Glass Form Surface */}
           {activeRole === 'lender' ? (
-            <div>
-              <div className="sso-title-block">
-                <span className="sso-pill">INSTITUTIONAL UNDERWRITING DESK</span>
-                <h2 className="sso-card-heading">Underwriting Single Sign-On</h2>
-                <p className="sso-card-sub">
-                  Select your financial institution category to access zero-PII satellite credit dossiers.
-                </p>
+            <form onSubmit={handleLenderSubmit} className="sso-form-surface">
+              {/* 1. Institution Classification Glass Selection Group */}
+              <div className="sso-field-group">
+                <label className="sso-label">Institution Classification</label>
+                <div className="sso-institution-list">
+                  <button
+                    type="button"
+                    className={`sso-inst-item ${lenderType === 'bank' ? 'selected' : ''}`}
+                    onClick={() => handleLenderTypeChange('bank')}
+                  >
+                    <span className="inst-item-emoji">🏦</span>
+                    <div className="inst-item-text">
+                      <span className="inst-item-title">Scheduled Commercial Bank</span>
+                      <span className="inst-item-sub">Apex PSU / Private Bank (SBI, HDFC, PNB)</span>
+                    </div>
+                    <span className="inst-item-radio">
+                      <span className="radio-dot" />
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`sso-inst-item ${lenderType === 'ngo' ? 'selected' : ''}`}
+                    onClick={() => handleLenderTypeChange('ngo')}
+                  >
+                    <span className="inst-item-emoji">🤝</span>
+                    <div className="inst-item-text">
+                      <span className="inst-item-title">NGO / MFI / Trust</span>
+                      <span className="inst-item-sub">Microfinance & Rural Livelihood Trusts (PRADAN)</span>
+                    </div>
+                    <span className="inst-item-radio">
+                      <span className="radio-dot" />
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`sso-inst-item ${lenderType === 'nbfc' ? 'selected' : ''}`}
+                    onClick={() => handleLenderTypeChange('nbfc')}
+                  >
+                    <span className="inst-item-emoji">💼</span>
+                    <div className="inst-item-text">
+                      <span className="inst-item-title">Agri NBFC / Value Chain</span>
+                      <span className="inst-item-sub">Agricultural Value Chain Financing (Samunnati)</span>
+                    </div>
+                    <span className="inst-item-radio">
+                      <span className="radio-dot" />
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`sso-inst-item ${lenderType === 'coop' ? 'selected' : ''}`}
+                    onClick={() => handleLenderTypeChange('coop')}
+                  >
+                    <span className="inst-item-emoji">🌱</span>
+                    <div className="inst-item-text">
+                      <span className="inst-item-title">Cooperative Society / PACS</span>
+                      <span className="inst-item-sub">District Central Cooperative Bank & Primary Agri Credit</span>
+                    </div>
+                    <span className="inst-item-radio">
+                      <span className="radio-dot" />
+                    </span>
+                  </button>
+                </div>
               </div>
 
-              {errorMsg && (
-                <div className="sso-error-alert">
-                  <span>⚠️</span>
-                  <span>{errorMsg}</span>
-                </div>
-              )}
-
-              <form onSubmit={handleLenderSubmit} className="sso-form">
-                {/* 1. Institution Classification Chips */}
-                <div className="sso-field-group">
-                  <label className="sso-label">Institution Classification</label>
-                  <div className="sso-chips-grid">
-                    <button
-                      type="button"
-                      className={`sso-chip ${lenderType === 'bank' ? 'selected' : ''}`}
-                      onClick={() => handleLenderTypeChange('bank')}
-                    >
-                      <span className="chip-emoji">🏦</span>
-                      <span className="chip-name">Scheduled Commercial Bank</span>
-                      <span className="chip-detail">SBI / HDFC / PNB (Tier-1)</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className={`sso-chip ${lenderType === 'ngo' ? 'selected' : ''}`}
-                      onClick={() => handleLenderTypeChange('ngo')}
-                    >
-                      <span className="chip-emoji">🤝</span>
-                      <span className="chip-name">NGO / MFI / Trust</span>
-                      <span className="chip-detail">PRADAN / Rural Livelihood</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className={`sso-chip ${lenderType === 'nbfc' ? 'selected' : ''}`}
-                      onClick={() => handleLenderTypeChange('nbfc')}
-                    >
-                      <span className="chip-emoji">💼</span>
-                      <span className="chip-name">Agri NBFC</span>
-                      <span className="chip-detail">Samunnati / Value Chain</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className={`sso-chip ${lenderType === 'coop' ? 'selected' : ''}`}
-                      onClick={() => handleLenderTypeChange('coop')}
-                    >
-                      <span className="chip-emoji">🌱</span>
-                      <span className="chip-name">Cooperative Bank / PACS</span>
-                      <span className="chip-detail">District Central Coop Bank</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* 2. Organization Name */}
-                <div className="sso-field-group">
-                  <label className="sso-label">Financial Institution / Entity</label>
+              {/* 2. Financial Institution Floating Input */}
+              <div className="sso-field-group">
+                <label className="sso-label">Financial Institution</label>
+                <div className="sso-input-surface">
+                  <span className="sso-input-leading-icon">🏛️</span>
                   <input
                     type="text"
-                    className="sso-input"
+                    className="sso-floating-input"
                     value={lenderOrgName}
                     onChange={(e) => setLenderOrgName(e.target.value)}
+                    placeholder="e.g. State Bank of India — Agri Division"
                     required
                   />
                 </div>
-
-                {/* 3. Official Email */}
-                <div className="sso-field-group">
-                  <label className="sso-label">Underwriter Work Email</label>
-                  <input
-                    type="email"
-                    className="sso-input"
-                    value={lenderEmail}
-                    onChange={(e) => setLenderEmail(e.target.value)}
-                    required
-                  />
-                </div>
-
-                {/* 4. Password */}
-                <div className="sso-field-group">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <label className="sso-label">Underwriting Token / Password</label>
-                    <button
-                      type="button"
-                      className="sso-toggle-pw"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? 'Hide' : 'Show'}
-                    </button>
-                  </div>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    className="sso-input"
-                    value={lenderPassword}
-                    onChange={(e) => setLenderPassword(e.target.value)}
-                    required
-                  />
-                </div>
-
-                {/* 5. Remember Session */}
-                <div className="sso-row-between">
-                  <label className="sso-checkbox-label">
-                    <input
-                      type="checkbox"
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                    />
-                    <span>Remember terminal desk</span>
-                  </label>
-                  <span style={{ fontSize: '11px', color: '#38bdf8', fontWeight: 600 }}>
-                    HSM Cryptographic Key Verified
-                  </span>
-                </div>
-
-                {/* Submit button */}
-                <button type="submit" className="sso-submit-btn">
-                  <span>Enter Underwriting Terminal ({lenderType.toUpperCase()})</span>
-                  <span>→</span>
-                </button>
-
-                <div className="sso-divider">
-                  <span>OR</span>
-                </div>
-
-                {/* 1-Click Demo */}
-                <button
-                  type="button"
-                  onClick={handleDemoLogin}
-                  className="sso-demo-btn"
-                >
-                  <span>🚀</span>
-                  <span>1-Click Demo Desk ({lenderType === 'ngo' ? 'NGO Credit Desk' : 'SBI Agri Lead'})</span>
-                </button>
-              </form>
-            </div>
-          ) : (
-            /* Farmer Portal Access Screen */
-            <div className="sso-farmer-redirect-box">
-              <div className="sso-title-block">
-                <span className="sso-pill" style={{ background: 'rgba(34, 197, 94, 0.15)', color: '#22c55e', borderColor: 'rgba(34, 197, 94, 0.3)' }}>
-                  FARMER PORTAL DISCOVERY
-                </span>
-                <h2 className="sso-card-heading">AgriTrust Farmer Passbook</h2>
-                <p className="sso-card-sub">
-                  Access your personal satellite credit health, pre-approved loan sanctions, and live Khanna mandi prices.
-                </p>
               </div>
 
-              <div className="sso-field-group" style={{ marginTop: '16px' }}>
+              {/* 3. Underwriter Work Email */}
+              <div className="sso-field-group">
+                <label className="sso-label">Underwriter Work Email</label>
+                <div className="sso-input-surface">
+                  <span className="sso-input-leading-icon">✉️</span>
+                  <input
+                    type="email"
+                    className="sso-floating-input"
+                    value={lenderEmail}
+                    onChange={(e) => setLenderEmail(e.target.value)}
+                    placeholder="officer.name@institution.gov.in"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* 4. Underwriting Token / Password */}
+              <div className="sso-field-group">
+                <div className="sso-label-row">
+                  <label className="sso-label">Underwriting Token / Password</label>
+                  <button
+                    type="button"
+                    className="sso-pw-glass-btn"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? 'Hide' : 'Show'}
+                  </button>
+                </div>
+                <div className="sso-input-surface">
+                  <span className="sso-input-leading-icon">🔑</span>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    className="sso-floating-input"
+                    value={lenderPassword}
+                    onChange={(e) => setLenderPassword(e.target.value)}
+                    placeholder="••••••••••••"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* 5. Custom Rounded Glass Checkbox & Trust Badge */}
+              <div className="sso-action-meta-row">
+                <label className="sso-custom-checkbox-wrap">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="sso-native-checkbox"
+                  />
+                  <span className={`sso-glass-check-box ${rememberMe ? 'is-active' : ''}`}>
+                    {rememberMe && (
+                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6.2L4.8 9L10 3" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </span>
+                  <span className="sso-check-text">Remember terminal desk</span>
+                </label>
+
+                <div className="sso-trust-badge">
+                  <span className="sso-trust-dot" />
+                  <span>HSM Cryptographic Key Verified</span>
+                </div>
+              </div>
+
+              {/* Primary CTA Button */}
+              <button type="submit" className="sso-primary-btn">
+                <span>Enter Underwriting Terminal</span>
+                <span className="sso-btn-arrow">→</span>
+              </button>
+
+              <div className="sso-or-separator">
+                <span>OR</span>
+              </div>
+
+              {/* 1-Click Quick Demo Access */}
+              <button
+                type="button"
+                onClick={handleDemoLogin}
+                className="sso-demo-glass-btn"
+              >
+                <span>⚡ Instant Demo Access ({lenderType === 'ngo' ? 'NGO Credit Desk' : 'SBI Agri Lead'})</span>
+              </button>
+            </form>
+          ) : (
+            /* Farmer Portal Access Screen */
+            <div className="sso-form-surface sso-farmer-panel">
+              <div className="sso-field-group">
                 <label className="sso-label">Mobile Number / Farmer ID</label>
-                <input
-                  type="text"
-                  className="sso-input"
-                  value={farmerMobile}
-                  onChange={(e) => setFarmerMobile(e.target.value)}
-                  placeholder="Enter 10-digit mobile number"
-                />
+                <div className="sso-input-surface">
+                  <span className="sso-input-leading-icon">📱</span>
+                  <input
+                    type="text"
+                    className="sso-floating-input"
+                    value={farmerMobile}
+                    onChange={(e) => setFarmerMobile(e.target.value)}
+                    placeholder="Enter 10-digit mobile number"
+                  />
+                </div>
               </div>
 
               <div className="sso-field-group">
                 <label className="sso-label">Security MPIN</label>
-                <input
-                  type="password"
-                  className="sso-input"
-                  value={farmerPin}
-                  onChange={(e) => setFarmerPin(e.target.value)}
-                  placeholder="Enter 4-digit security PIN"
-                />
+                <div className="sso-input-surface">
+                  <span className="sso-input-leading-icon">🔒</span>
+                  <input
+                    type="password"
+                    className="sso-floating-input"
+                    value={farmerPin}
+                    onChange={(e) => setFarmerPin(e.target.value)}
+                    placeholder="Enter 4-digit security PIN"
+                  />
+                </div>
               </div>
 
               <button
                 type="button"
                 onClick={handleFarmerRedirect}
-                className="sso-submit-btn"
-                style={{ backgroundColor: '#10b981', borderColor: '#10b981', marginTop: '14px' }}
+                className="sso-primary-btn sso-farmer-cta"
               >
                 <span>Launch Farmer Dashboard (Port 3000)</span>
-                <span>↗</span>
+                <span className="sso-btn-arrow">↗</span>
               </button>
             </div>
           )}
 
-          {/* Compliance Guarantee */}
-          <div className="sso-footer-compliance">
-            <span>🛡️</span>
-            <span>
-              DPDP Act 2023 Consent Gated • Zero-PII Cryptographic Passports • Multi-Institution Underwriting Architecture
-            </span>
+          {/* Level 4: Supporting Glass Elements & Security Badges */}
+          <div className="sso-supporting-status-pill">
+            <span className="sec-status-dot" />
+            <span className="sec-status-item">● Secure institutional connection</span>
+            <span className="sec-bullet">•</span>
+            <span className="sec-status-item">✓ HSM verified</span>
+            <span className="sec-bullet">•</span>
+            <span className="sec-status-item">✓ Consent gateway active</span>
+          </div>
+
+          <div className="sso-compliance-footnote">
+            <span>🛡️ DPDP Act 2023 Consent Gated • Zero-PII Cryptographic Passports • Multi-Institution Underwriting Architecture</span>
           </div>
         </div>
       </main>

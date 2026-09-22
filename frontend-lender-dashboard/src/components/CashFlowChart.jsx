@@ -23,8 +23,8 @@ export default function CashFlowChart({ cashFlow }) {
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>DEBT SERVICE COVERAGE RATIO</div>
-          <div style={{ fontSize: '1.4rem', fontWeight: 800, color: cashFlow.dscr >= 1.5 ? '#10b981' : '#f59e0b', fontFamily: 'var(--font-mono)' }}>
+          <div style={{ fontSize: '0.75rem', color: '#6B7280', fontWeight: 600 }}>DEBT SERVICE COVERAGE RATIO</div>
+          <div style={{ fontSize: '1.4rem', fontWeight: 800, color: cashFlow.dscr >= 1.5 ? '#00966A' : '#D97706', fontFamily: 'var(--font-mono)' }}>
             {cashFlow.dscr}x DSCR
           </div>
         </div>
@@ -34,37 +34,37 @@ export default function CashFlowChart({ cashFlow }) {
       <div className="cashflow-breakdown-grid">
         <div className="cashflow-item">
           <span className="stat-label">Expected Yield</span>
-          <span className="stat-value">{cashFlow.expected_yield_qtl} <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Qtl</span></span>
+          <span className="stat-value">{cashFlow.expected_yield_qtl} <span style={{ fontSize: '0.9rem', color: '#6B7280' }}>Qtl</span></span>
           <span className="stat-subtext">@ {formatINR(cashFlow.realization_price_inr)} / Qtl</span>
         </div>
 
         <div className="cashflow-item">
           <span className="stat-label">Gross Seasonal Revenue</span>
-          <span className="stat-value" style={{ color: '#38bdf8' }}>{formatINR(cashFlow.gross_revenue_inr)}</span>
+          <span className="stat-value" style={{ color: '#0879C9' }}>{formatINR(cashFlow.gross_revenue_inr)}</span>
           <span className="stat-subtext">100% Projected Topline</span>
         </div>
 
         <div className="cashflow-item highlight-cost">
           <span className="stat-label">Input & Cultivation Costs</span>
-          <span className="stat-value" style={{ color: '#f43f5e' }}>{formatINR(cashFlow.input_costs_inr)}</span>
+          <span className="stat-value" style={{ color: '#B91C1C' }}>{formatINR(cashFlow.input_costs_inr)}</span>
           <span className="stat-subtext">{inputCostPct}% of Gross Revenue</span>
         </div>
 
         <div className="cashflow-item highlight-cost">
           <span className="stat-label">Existing Debt Service</span>
-          <span className="stat-value" style={{ color: '#fb923c' }}>{formatINR(cashFlow.existing_obligations_inr)}</span>
+          <span className="stat-value" style={{ color: '#D97706' }}>{formatINR(cashFlow.existing_obligations_inr)}</span>
           <span className="stat-subtext">{obligationsPct}% Debt Obligations</span>
         </div>
 
         <div className="cashflow-item highlight-net">
           <span className="stat-label">Net Repayment Capacity</span>
-          <span className="stat-value" style={{ color: '#10b981' }}>{formatINR(cashFlow.net_cashflow_inr)}</span>
+          <span className="stat-value" style={{ color: '#00966A' }}>{formatINR(cashFlow.net_cashflow_inr)}</span>
           <span className="stat-subtext">Net Unencumbered Surplus</span>
         </div>
 
-        <div className="cashflow-item" style={{ border: '1px solid rgba(56, 189, 248, 0.4)' }}>
+        <div className="cashflow-item" style={{ border: '1px solid rgba(8, 121, 201, 0.3)' }}>
           <span className="stat-label">Recommended Safe Credit Limit</span>
-          <span className="stat-value" style={{ color: '#38bdf8' }}>{formatINR(cashFlow.safe_credit_limit_inr)}</span>
+          <span className="stat-value" style={{ color: '#0879C9' }}>{formatINR(cashFlow.safe_credit_limit_inr)}</span>
           <span className="stat-subtext">Max Safe Exposure Cap</span>
         </div>
       </div>

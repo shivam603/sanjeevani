@@ -47,10 +47,10 @@ export default function PortfolioSearchScreen({ onSelectFarmer }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       {/* Portfolio Title & Legal Gating Alert */}
       <div>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.02em' }}>
+        <h2 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#14213D', letterSpacing: '-0.02em' }}>
           Active Consented Borrower Pipeline
         </h2>
-        <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+        <p style={{ fontSize: '0.88rem', color: '#4B5563', marginTop: '4px' }}>
           Underwriting pipeline strictly restricted to farmers who have granted active, unexpired sovereign data consents to State Bank of India.
         </p>
       </div>
@@ -163,14 +163,14 @@ export default function PortfolioSearchScreen({ onSelectFarmer }) {
 
                   return (
                     <tr key={farmer.farmer_id}>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--color-primary)' }}>
+                      <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#0879C9' }}>
                         {farmer.farmer_code}
                       </td>
-                      <td>{farmer.crop_name}</td>
-                      <td style={{ color: 'var(--text-secondary)' }}>{farmer.region}</td>
+                      <td style={{ color: '#27364D', fontWeight: 500 }}>{farmer.crop_name}</td>
+                      <td style={{ color: '#4B5563' }}>{farmer.region}</td>
                       <td>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 800, fontSize: '1.05rem', color: '#fff' }}>
+                          <span className="score-number-badge">
                             {farmer.agritrust_score}
                           </span>
                           <span className="badge-grade">{farmer.score_grade}</span>
@@ -181,16 +181,15 @@ export default function PortfolioSearchScreen({ onSelectFarmer }) {
                           {farmer.risk_category}
                         </span>
                       </td>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#10b981' }}>
+                      <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#00966A' }}>
                         ₹{Number(farmer.safe_limit).toLocaleString('en-IN')}
                       </td>
-                      <td style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                      <td style={{ fontSize: '0.8rem', color: '#5F6B7A', fontFamily: 'var(--font-mono)' }}>
                         {expiryDate}
                       </td>
                       <td>
                         <button
-                          className="btn-primary"
-                          style={{ padding: '6px 14px', fontSize: '0.82rem' }}
+                          className="btn-table-action"
                           onClick={() => onSelectFarmer(farmer.farmer_id, farmer.consent_token)}
                         >
                           Open Dossier →

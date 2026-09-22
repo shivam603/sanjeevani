@@ -147,9 +147,14 @@ export default function App() {
           user={user}
         />
 
-        {/* 3. Main Dashboard 2-Column Grid */}
+        {/* 3. Immersive Hero Section: Pre-Approved Rabi Sowing Loan Assistance */}
+        <div id="hero-loan-section" className="hero-loan-wrapper">
+          <RabiLoanHeroCard onRequestLoan={() => setIsLoanModalOpen(true)} />
+        </div>
+
+        {/* 4. Core Financial Health & Sovereign Privacy Modules */}
         <div className="main-dashboard-grid">
-          {/* Left Column */}
+          {/* Column 1: Dominant Credit Score & Safe Limit */}
           <div className="dashboard-col">
             {/* Card 1: Sovereign Rating & Credit Health (78 / 100) */}
             <CreditHealthCard
@@ -165,12 +170,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right Column */}
+          {/* Column 2: Sovereign Consent Vault (Apple Privacy & Security Control) */}
           <div className="dashboard-col">
-            {/* Card 3: Pre-Approved Rabi Sowing Loan (Wheat Field Banner) */}
-            <RabiLoanHeroCard onRequestLoan={() => setIsLoanModalOpen(true)} />
-
-            {/* Card 4: DPDP Act 2023 Verified Vault (Sovereign Consent) */}
             <div id="consent-vault-section">
               <SovereignConsentVaultCard />
             </div>

@@ -76,12 +76,12 @@ export default function FarmerDetailScreen({ farmerId, consentToken, onBack, onD
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <h2 style={{ fontSize: '1.65rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontSize: '1.65rem', fontWeight: 700, color: '#14213D', letterSpacing: '-0.02em' }}>
                 Underwriting Dossier: Farmer [{dossier.farmer_code}]
               </h2>
               <span className="badge-grade">{dossier.score_grade}</span>
             </div>
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '4px', fontFamily: 'var(--font-mono)' }}>
+            <p style={{ fontSize: '0.84rem', color: '#6B7280', marginTop: '4px', fontFamily: 'var(--font-mono)' }}>
               PASSPORT ID: {dossier.passport_id} • FARMER ID: {dossier.farmer_id}
             </p>
           </div>
@@ -89,13 +89,13 @@ export default function FarmerDetailScreen({ farmerId, consentToken, onBack, onD
           <div style={{ display: 'flex', gap: '16px' }}>
             <div className="stat-box" style={{ minWidth: '130px', textAlign: 'center' }}>
               <span className="stat-label">AgriTrust Score</span>
-              <span className="stat-value" style={{ color: '#38bdf8' }}>{dossier.agritrust_score}</span>
+              <span className="stat-value" style={{ color: '#0879C9' }}>{dossier.agritrust_score}</span>
               <span className="stat-subtext">Scale: 0–100</span>
             </div>
 
             <div className="stat-box" style={{ minWidth: '130px', textAlign: 'center' }}>
               <span className="stat-label">Data Confidence</span>
-              <span className="stat-value" style={{ color: '#10b981' }}>{Math.round(dossier.data_confidence * 100)}%</span>
+              <span className="stat-value" style={{ color: '#00966A' }}>{Math.round(dossier.data_confidence * 100)}%</span>
               <span className="stat-subtext">3 Verified Sources</span>
             </div>
           </div>
@@ -131,32 +131,32 @@ export default function FarmerDetailScreen({ farmerId, consentToken, onBack, onD
               {dossier.lender_explanation.summary}
             </p>
 
-            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '12px' }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#38bdf8', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <div style={{ borderTop: '1px solid rgba(0, 0, 0, 0.08)', paddingTop: '12px' }}>
+              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#14213D', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Key Quantitative Underwriting Metrics
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Estimated Probability of Default:</span>
-                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ fontSize: '0.75rem', color: '#52637A', fontWeight: 600 }}>Estimated Probability of Default:</span>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#00966A', fontFamily: 'var(--font-mono)' }}>
                     {dossier.lender_explanation.key_metrics?.probability_of_default_pct}%
                   </div>
                 </div>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Debt Service Coverage:</span>
-                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ fontSize: '0.75rem', color: '#52637A', fontWeight: 600 }}>Debt Service Coverage:</span>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#00966A', fontFamily: 'var(--font-mono)' }}>
                     {dossier.lender_explanation.key_metrics?.dscr}x
                   </div>
                 </div>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Safe Credit Boundary:</span>
-                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#38bdf8', fontFamily: 'var(--font-mono)' }}>
+                  <span style={{ fontSize: '0.75rem', color: '#52637A', fontWeight: 600 }}>Safe Credit Boundary:</span>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0879C9', fontFamily: 'var(--font-mono)' }}>
                     ₹{Number(dossier.lender_explanation.key_metrics?.safe_credit_boundary_inr || 0).toLocaleString('en-IN')}
                   </div>
                 </div>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Biomass Remote Sensing:</span>
-                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981' }}>
+                  <span style={{ fontSize: '0.75rem', color: '#52637A', fontWeight: 600 }}>Biomass Remote Sensing:</span>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#00966A' }}>
                     {dossier.lender_explanation.key_metrics?.satellite_biomass_verified ? 'Verified (Sentinel-2)' : 'Unverified'}
                   </div>
                 </div>
@@ -164,8 +164,8 @@ export default function FarmerDetailScreen({ farmerId, consentToken, onBack, onD
             </div>
 
             {dossier.lender_explanation.underwriting_covenants && (
-              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '12px' }}>
-                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#f59e0b', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              <div style={{ borderTop: '1px solid rgba(0, 0, 0, 0.08)', paddingTop: '12px' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#D97706', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                   Recommended Sanction Covenants & Pre-Disbursement Conditions
                 </div>
                 <ul className="covenants-list">

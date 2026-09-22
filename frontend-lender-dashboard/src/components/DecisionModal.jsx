@@ -38,13 +38,13 @@ export default function DecisionModal({ dossier, onClose, onSubmit }) {
   return (
     <div className="modal-backdrop">
       <div className="modal-content">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '14px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(0, 0, 0, 0.08)', paddingBottom: '14px' }}>
           <div>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#f8fafc' }}>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#14213D' }}>
               Record Institutional Underwriting Decision
             </h2>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-              Logged against Passport ID: <strong style={{ color: 'var(--color-primary)' }}>{dossier.passport_id}</strong>
+            <p style={{ fontSize: '0.8rem', color: '#6B7280' }}>
+              Logged against Passport ID: <strong style={{ color: '#0879C9' }}>{dossier.passport_id}</strong>
             </p>
           </div>
           <button

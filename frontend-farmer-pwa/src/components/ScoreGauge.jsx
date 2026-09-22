@@ -47,7 +47,7 @@ export default function ScoreGauge({ score = 78, maxScore = 100, grade = 'Grade 
         <path
           d="M 30 110 A 80 80 0 0 1 190 110"
           fill="none"
-          stroke="#1e293b"
+          stroke="rgba(0, 0, 0, 0.08)"
           strokeWidth="16"
           strokeLinecap="round"
         />

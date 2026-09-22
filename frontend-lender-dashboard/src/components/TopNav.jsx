@@ -71,7 +71,7 @@ export default function TopNav({
               className={`nav-tab-btn ${activeTab === tab.id ? 'active' : ''}`}
               onClick={() => onSelectTab(tab.id)}
             >
-              <span>{tab.icon}</span>
+              <span className="nav-icon">{tab.icon}</span>
               <span>{tab.label}</span>
               {Boolean(tab.badge) && <span className="tab-badge">{tab.badge}</span>}
             </button>

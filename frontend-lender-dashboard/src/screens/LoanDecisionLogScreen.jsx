@@ -31,10 +31,10 @@ export default function LoanDecisionLogScreen() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
       <div>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.02em' }}>
+        <h2 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#14213D', letterSpacing: '-0.02em' }}>
           Credit Committee Sanction Audit & Model Feedback Log
         </h2>
-        <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+        <p style={{ fontSize: '0.88rem', color: '#4B5563', marginTop: '4px' }}>
           All recorded underwriter loan decisions linked directly to passport_id hashes for regulatory compliance, portfolio audit, and ML scoring model retraining loops.
         </p>
       </div>
@@ -49,13 +49,13 @@ export default function LoanDecisionLogScreen() {
 
         <div className="stat-box">
           <span className="stat-label">Sanction Approval Rate</span>
-          <span className="stat-value" style={{ color: '#10b981' }}>{approvalRate}%</span>
+          <span className="stat-value" style={{ color: '#00966A' }}>{approvalRate}%</span>
           <span className="stat-subtext">{approvedCount} of {totalDecisions} approved</span>
         </div>
 
         <div className="stat-box">
           <span className="stat-label">Cumulative Sanctioned Exposure</span>
-          <span className="stat-value" style={{ color: '#38bdf8' }}>
+          <span className="stat-value" style={{ color: '#0879C9' }}>
             ₹{totalApprovedVolume.toLocaleString('en-IN')}
           </span>
           <span className="stat-subtext">Priority sector agricultural lending</span>
@@ -63,7 +63,7 @@ export default function LoanDecisionLogScreen() {
 
         <div className="stat-box">
           <span className="stat-label">Model Retraining Feedback</span>
-          <span className="stat-value" style={{ color: '#818cf8' }}>100%</span>
+          <span className="stat-value" style={{ color: '#4338CA' }}>100%</span>
           <span className="stat-subtext">Mapped to Passport ID ground-truth</span>
         </div>
       </div>
@@ -85,11 +85,11 @@ export default function LoanDecisionLogScreen() {
         </div>
 
         {loading ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
+          <div style={{ padding: '40px', textAlign: 'center', color: '#6B7280' }}>
             Loading loan decision logs...
           </div>
         ) : decisions.length === 0 ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
+          <div style={{ padding: '40px', textAlign: 'center', color: '#6B7280' }}>
             No underwriting decisions logged yet.
           </div>
         ) : (
@@ -118,10 +118,10 @@ export default function LoanDecisionLogScreen() {
 
                   return (
                     <tr key={d.decision_id}>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--color-primary)' }}>
+                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: '#0879C9', fontWeight: 700 }}>
                         {d.decision_id.substring(0, 12)}...
                       </td>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: '#4B5563' }}>
                         {d.passport_id.substring(0, 16)}...
                       </td>
                       <td>
@@ -137,22 +137,22 @@ export default function LoanDecisionLogScreen() {
                           {d.decision}
                         </span>
                       </td>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: d.decision === 'APPROVED' ? '#10b981' : 'var(--text-muted)' }}>
+                      <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: d.decision === 'APPROVED' ? '#00966A' : '#6B7280' }}>
                         {d.approved_amount ? `₹${Number(d.approved_amount).toLocaleString('en-IN')}` : '—'}
                       </td>
-                      <td style={{ fontFamily: 'var(--font-mono)' }}>
+                      <td style={{ fontFamily: 'var(--font-mono)', color: '#27364D' }}>
                         {d.tenure_months ? `${d.tenure_months} Mo` : '—'}
                       </td>
-                      <td style={{ fontFamily: 'var(--font-mono)', color: '#38bdf8' }}>
+                      <td style={{ fontFamily: 'var(--font-mono)', color: '#0879C9' }}>
                         {d.interest_rate_pct ? `${d.interest_rate_pct}%` : '—'}
                       </td>
-                      <td style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', maxWidth: '240px' }}>
+                      <td style={{ fontSize: '0.78rem', color: '#4B5563', maxWidth: '240px' }}>
                         {d.covenants || 'None specified'}
                       </td>
-                      <td style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                      <td style={{ fontSize: '0.8rem', color: '#52637A' }}>
                         {d.underwriter_id}
                       </td>
-                      <td style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                      <td style={{ fontSize: '0.8rem', color: '#5F6B7A', fontFamily: 'var(--font-mono)' }}>
                         {dateStr}
                       </td>
                     </tr>

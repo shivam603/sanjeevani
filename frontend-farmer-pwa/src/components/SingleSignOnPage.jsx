@@ -369,10 +369,18 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
+                    style={{ display: 'none' }}
                   />
+                  <span className={`custom-glass-check ${rememberMe ? 'checked' : ''}`}>
+                    {rememberMe && (
+                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6.2L4.8 9L10 3" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </span>
                   <span>{t('login_remember_me')}</span>
                 </label>
-                <span style={{ fontSize: '12px', color: '#166534', fontWeight: 600 }}>
+                <span style={{ fontSize: '12px', color: '#10B981', fontWeight: 600 }}>
                   Demo MPIN: 1234
                 </span>
               </div>
@@ -523,11 +531,20 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
+                    style={{ display: 'none' }}
                   />
-                  <span>Remember institutional desk session</span>
+                  <span className={`custom-glass-check ${rememberMe ? 'checked' : ''}`}>
+                    {rememberMe && (
+                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6.2L4.8 9L10 3" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </span>
+                  <span>Remember terminal desk</span>
                 </label>
-                <span style={{ fontSize: '11.5px', color: '#0284c7', fontWeight: 600 }}>
-                  256-bit HSM Gated
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11.5px', color: '#059669', background: 'rgba(16, 185, 129, 0.08)', padding: '3px 10px', borderRadius: '9999px', border: '1px solid rgba(16, 185, 129, 0.25)', fontWeight: 600 }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981' }}></span>
+                  HSM Cryptographic Key Verified
                 </span>
               </div>
 

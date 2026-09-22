@@ -26,7 +26,7 @@ export default function ConsentBadgeIndicator({ consentInfo, farmerCode }) {
               : `CONSENT EXPIRED OR REVOKED • ACCESS RESTRICTED`}
           </div>
           <div className="consent-meta">
-            TOKEN: <span style={{ color: '#38bdf8' }}>{tokenSnippet}</span> • VALID UNTIL: {formattedExpiry}
+            TOKEN: <span style={{ color: '#0879C9' }}>{tokenSnippet}</span> • VALID UNTIL: {formattedExpiry}
           </div>
         </div>
       </div>

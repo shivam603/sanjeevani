@@ -6,7 +6,7 @@ export default function RabiLoanHeroCard({ onRequestLoan }) {
 
   return (
     <div className="agritrust-card rabi-loan-card">
-      {/* Top Banner with Real Wheat Field Photograph & Overlay */}
+      {/* Environmental Agricultural Wheat Photograph with Soft Masking */}
       <div className="rabi-hero-banner-image">
         <div className="rabi-hero-overlay"></div>
         <div className="rabi-hero-content">
@@ -15,25 +15,25 @@ export default function RabiLoanHeroCard({ onRequestLoan }) {
         </div>
       </div>
 
-      {/* Inner Card Body */}
+      {/* Inner Card Body with Connected Floating Financial Object */}
       <div className="rabi-loan-inner-body">
-        {/* Trio Stat Grid */}
+        {/* Visually Connected Glass Information Composition */}
         <div className="rabi-stats-trio-grid">
           <div className="rabi-stat-box">
             <span className="rabi-stat-label">{t('rl_sanctioned_label')}</span>
-            <span className="rabi-stat-val">{t('rl_sanctioned_val')}</span>
+            <span className="rabi-stat-val" style={{ color: '#1D1D1F' }}>{t('rl_sanctioned_val')}</span>
             <span className="rabi-stat-sub">{t('rl_sanctioned_sub')}</span>
           </div>
 
           <div className="rabi-stat-box">
             <span className="rabi-stat-label">{t('rl_rate_label')}</span>
-            <span className="rabi-stat-val">{t('rl_rate_val')}</span>
+            <span className="rabi-stat-val" style={{ color: '#059669' }}>{t('rl_rate_val')}</span>
             <span className="rabi-stat-sub">{t('rl_rate_sub')}</span>
           </div>
 
           <div className="rabi-stat-box">
             <span className="rabi-stat-label">{t('rl_tenure_label')}</span>
-            <span className="rabi-stat-val">{t('rl_tenure_val')}</span>
+            <span className="rabi-stat-val" style={{ color: '#1D1D1F' }}>{t('rl_tenure_val')}</span>
             <span className="rabi-stat-sub">{t('rl_tenure_sub')}</span>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function RabiLoanHeroCard({ onRequestLoan }) {
         {/* Bottom Action Bar */}
         <div className="rabi-loan-bottom-action-bar">
           <div className="rabi-dbt-instant-note">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#15803d">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#10B981">
               <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
             <span>{t('rl_dbt_note')}</span>
@@ -52,8 +52,8 @@ export default function RabiLoanHeroCard({ onRequestLoan }) {
             onClick={onRequestLoan}
             title={t('rl_btn_request')}
           >
-            <span>{t('rl_btn_request')}</span>
-            <span>→</span>
+            <span>Request Bank Loan</span>
+            <span style={{ fontSize: '16px' }}>→</span>
           </button>
         </div>
       </div>

@@ -19,11 +19,41 @@ export default function ConsentRequestScreen() {
   const [successMsg, setSuccessMsg] = useState(null);
 
   const availableScopes = [
-    { id: 'agritrust_score', label: 'AgriTrust Credit Score (0-100)' },
-    { id: 'safe_limit', label: 'Safe Borrowing Capacity (₹)' },
-    { id: 'crop_risk', label: 'Model C Crop & Climate Risk Matrix' },
-    { id: 'satellite_ndvi', label: 'Sentinel-2 Satellite Biomass Index' },
-    { id: 'cash_flow', label: 'Model B Net Cashflow & DSCR Engine' },
+    {
+      id: 'agritrust_score',
+      icon: '📊',
+      title: 'AgriTrust Credit Score',
+      tag: '0–100 Rating',
+      sub: 'Composite sovereign credit health rating',
+    },
+    {
+      id: 'safe_limit',
+      icon: '💳',
+      title: 'Borrowing Capacity',
+      tag: '₹ Max Limit',
+      sub: 'Underwritten safe seasonal debt ceiling',
+    },
+    {
+      id: 'crop_risk',
+      icon: '🌱',
+      title: 'Crop & Climate Risk',
+      tag: 'Model C Matrix',
+      sub: 'Drought, flood & temperature resilience',
+    },
+    {
+      id: 'satellite_ndvi',
+      icon: '🛰️',
+      title: 'Satellite Biomass Index',
+      tag: 'Sentinel-2 Telemetry',
+      sub: '10m vegetation density & vigor telemetry',
+    },
+    {
+      id: 'cash_flow',
+      icon: '📈',
+      title: 'Net Cashflow & DSCR',
+      tag: 'Model B Engine',
+      sub: 'Seasonal cash revenue & repayment coverage',
+    },
   ];
 
   const loadRequests = async () => {
@@ -59,7 +89,7 @@ export default function ConsentRequestScreen() {
         requested_validity_days: Number(validityDays),
         requested_attributes: selectedScopes,
       });
-      setSuccessMsg(`Consent request initiated! Request ID: ${created.request_id}. Pending farmer authorization on KisanCred PWA.`);
+      setSuccessMsg(`Consent handshake initiated! Request #${created.request_id || created.id}. Awaiting sovereign farmer authorization on KisanCred PWA.`);
       loadRequests();
     } catch (err) {
       alert(`Error creating consent request: ${err.message}`);
@@ -69,186 +99,303 @@ export default function ConsentRequestScreen() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <div>
-        <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.02em' }}>
-          Sovereign Data Consent Request Hub
-        </h2>
-        <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-          Initiate time-bound, purpose-specific consent requests. Once approved by the farmer in their mobile PWA, underwriting access is cryptographically activated.
-        </p>
-      </div>
+    <div className="consent-hub-screen">
+      {/* Level 1: Screen Header with Status & Privacy Badges */}
+      <header className="consent-hub-header">
+        <div className="consent-hub-title-group">
+          <div className="consent-gateway-status">
+            <span className="gateway-dot" />
+            <span>Consent gateway active</span>
+          </div>
+          <h1 className="consent-hub-heading">
+            Sovereign Data<br />Consent Hub
+          </h1>
+          <p className="consent-hub-subtext">
+            Initiate time-bound, purpose-specific cryptographic consent handshakes for sovereign agricultural underwriting.
+          </p>
+        </div>
 
+        <div className="consent-hub-trust-badges">
+          <div className="trust-pill">
+            <span className="trust-icon">🔒</span>
+            <span>DPDP Act 2023 Aligned</span>
+          </div>
+          <div className="trust-pill">
+            <span className="trust-icon">✓</span>
+            <span>Purpose-Specific</span>
+          </div>
+          <div className="trust-pill">
+            <span className="trust-icon">✓</span>
+            <span>Time-Bound (30d)</span>
+          </div>
+          <div className="trust-pill">
+            <span className="trust-icon">✓</span>
+            <span>Consent-Gated Handshake</span>
+          </div>
+        </div>
+      </header>
+
+      {/* Success Notification Banner */}
       {successMsg && (
-        <div style={{ background: 'rgba(16, 185, 129, 0.12)', border: '1px solid #10b981', color: '#10b981', padding: '14px 18px', borderRadius: 'var(--radius-md)', fontSize: '0.88rem' }}>
-          ✓ {successMsg}
+        <div className="consent-success-banner">
+          <span className="success-icon">✓</span>
+          <span className="success-text">{successMsg}</span>
+          <button
+            type="button"
+            className="success-dismiss-btn"
+            onClick={() => setSuccessMsg(null)}
+          >
+            ✕
+          </button>
         </div>
       )}
 
-      {/* Initiation Form */}
-      <div className="terminal-card">
-        <div className="card-header">
-          <div>
-            <h3 className="card-title">
-              <span>✍️</span> Initiate Consent Request (Stage 5/6 Gated Handshake)
-            </h3>
-            <p className="card-subtitle">
-              Dispatches push consent prompt to farmer's KisanCred PWA Consent Manager
-            </p>
+      {/* Level 2 & 3: Two-Column Spatial Consent Request Composition */}
+      <form onSubmit={handleCreateRequest} className="consent-request-grid">
+        {/* Left Column: Consent Request Parameters */}
+        <div className="consent-glass-panel consent-params-panel">
+          <div className="panel-header">
+            <span className="panel-eyebrow">HANDSHAKE PARAMETERS</span>
+            <h2 className="panel-title">Consent Request</h2>
+            <p className="panel-desc">Configure target farmer identity, loan purpose, and validity window.</p>
           </div>
-          <span className="badge-grade">DPDP COMPLIANT</span>
+
+          <div className="panel-fields-list">
+            {/* Target Farmer */}
+            <div className="glass-field-block">
+              <label className="glass-field-label">TARGET FARMER</label>
+              <div className="glass-input-wrapper">
+                <span className="glass-field-leading-icon">👤</span>
+                <div className="glass-field-input-box">
+                  <span className="glass-input-sublabel">Farmer ID or Code</span>
+                  <input
+                    type="text"
+                    className="glass-control-input"
+                    value={farmerId}
+                    onChange={(e) => setFarmerId(e.target.value)}
+                    placeholder="UUID or Farmer Code (e.g. NSK-103)"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Loan Purpose */}
+            <div className="glass-field-block">
+              <label className="glass-field-label">LOAN FACILITY</label>
+              <div className="glass-input-wrapper">
+                <span className="glass-field-leading-icon">💳</span>
+                <div className="glass-field-input-box">
+                  <span className="glass-input-sublabel">Assessment Purpose</span>
+                  <input
+                    type="text"
+                    className="glass-control-input"
+                    value={loanPurpose}
+                    onChange={(e) => setLoanPurpose(e.target.value)}
+                    placeholder="e.g. Kisan Credit Card Seasonal Limit"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Validity Duration */}
+            <div className="glass-field-block">
+              <label className="glass-field-label">VALIDITY PERIOD</label>
+              <div className="glass-input-wrapper">
+                <span className="glass-field-leading-icon">⏱️</span>
+                <div className="glass-field-input-box">
+                  <span className="glass-input-sublabel">Time-Bound Expiration</span>
+                  <div className="validity-input-inline">
+                    <input
+                      type="number"
+                      min="1"
+                      max="90"
+                      className="glass-control-input validity-num"
+                      value={validityDays}
+                      onChange={(e) => setValidityDays(e.target.value)}
+                      required
+                    />
+                    <span className="validity-tag">days authorization</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <form onSubmit={handleCreateRequest} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-            <div className="form-group">
-              <label className="form-label">Target Farmer ID or Code</label>
-              <input
-                type="text"
-                className="form-input"
-                value={farmerId}
-                onChange={(e) => setFarmerId(e.target.value)}
-                placeholder="UUID or Farmer Code (e.g. NSK-103)"
-                required
-              />
+        {/* Right Column: Telemetry Scopes (Data Permissions Visualization) */}
+        <div className="consent-glass-panel consent-scopes-panel">
+          <div className="panel-header-row">
+            <div>
+              <span className="panel-eyebrow">TELEMETRY ACCESS</span>
+              <h2 className="panel-title">Data Permissions</h2>
+              <p className="panel-desc">Select only the information required for this underwriting request.</p>
             </div>
-
-            <div className="form-group">
-              <label className="form-label">Loan Facility Purpose</label>
-              <input
-                type="text"
-                className="form-input"
-                value={loanPurpose}
-                onChange={(e) => setLoanPurpose(e.target.value)}
-                placeholder="E.g. Kisan Credit Card Seasonal Limit"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Requested Validity Period (Days)</label>
-              <input
-                type="number"
-                min="1"
-                max="90"
-                className="form-input"
-                value={validityDays}
-                onChange={(e) => setValidityDays(e.target.value)}
-                required
-              />
+            <div className="scope-count-badge">
+              <span className="scope-count-num">0{selectedScopes.length}</span>
+              <span className="scope-count-text">scopes selected</span>
+              <span className="scope-count-sub">Minimum necessary</span>
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Requested Telemetry Scopes (Minimum Necessary)</label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px', marginTop: '4px' }}>
-              {availableScopes.map((scope) => (
-                <label
+          {/* Floating Glass Permission Tiles */}
+          <div className="scope-tiles-grid">
+            {availableScopes.map((scope) => {
+              const isSelected = selectedScopes.includes(scope.id);
+              return (
+                <button
+                  type="button"
                   key={scope.id}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    background: 'var(--bg-surface)',
-                    border: selectedScopes.includes(scope.id) ? '1px solid var(--color-primary)' : '1px solid var(--border-subtle)',
-                    padding: '10px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    cursor: 'pointer',
-                    fontSize: '0.85rem',
-                  }}
+                  onClick={() => handleScopeToggle(scope.id)}
+                  className={`scope-glass-tile ${isSelected ? 'selected' : ''}`}
                 >
-                  <input
-                    type="checkbox"
-                    checked={selectedScopes.includes(scope.id)}
-                    onChange={() => handleScopeToggle(scope.id)}
-                  />
-                  <span>{scope.label}</span>
-                </label>
-              ))}
-            </div>
+                  <div className="tile-top-row">
+                    <span className="tile-icon">{scope.icon}</span>
+                    <span className={`tile-check-indicator ${isSelected ? 'checked' : ''}`}>
+                      {isSelected && (
+                        <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                          <path d="M2.5 6L5 8.5L9.5 3.5" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                    </span>
+                  </div>
+                  <div className="tile-content">
+                    <span className="tile-title">{scope.title}</span>
+                    <span className="tile-tag">{scope.tag}</span>
+                    <span className="tile-desc">{scope.sub}</span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px' }}>
-            <button type="submit" className="btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? 'Dispatching...' : '🚀 Dispatch Sovereign Consent Request'}
+          {/* Action Footer */}
+          <div className="dispatch-action-row">
+            <div className="compliance-inline-badge">
+              <span className="lock-dot">🔒</span>
+              <span>DPDP Act 2023 Consent-Gated Push Handshake</span>
+            </div>
+
+            <button
+              type="submit"
+              className="dispatch-primary-cta"
+              disabled={isSubmitting || selectedScopes.length === 0}
+            >
+              <span>{isSubmitting ? 'Dispatching...' : 'Dispatch Consent Request'}</span>
+              <span className="cta-arrow">→</span>
             </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
 
-      {/* Requests History Table */}
-      <div className="terminal-card">
-        <div className="card-header">
+      {/* Level 4: Recent Consent Requests Tracker */}
+      <section className="recent-requests-section">
+        <div className="tracker-header-row">
           <div>
-            <h3 className="card-title">
-              <span>📋</span> Consent Request Tracker ({requests.length})
-            </h3>
-            <p className="card-subtitle">
-              Live authorization status of pending and granted sovereign access tokens
+            <span className="tracker-eyebrow">AUDIT & LOG</span>
+            <h2 className="tracker-title">Recent Consent Requests</h2>
+            <p className="tracker-subtitle">
+              Live authorization status of pending and granted sovereign access tokens ({requests.length})
             </p>
           </div>
-          <button className="btn-secondary" onClick={loadRequests} style={{ padding: '6px 12px', fontSize: '0.8rem' }}>
-            ↻ Refresh
+          <button
+            type="button"
+            className={`glass-refresh-btn ${loading ? 'spinning' : ''}`}
+            onClick={loadRequests}
+            title="Refresh requests"
+            aria-label="Refresh requests"
+          >
+            ↻
           </button>
         </div>
 
         {loading ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
-            Loading consent requests...
+          <div className="tracker-status-box">
+            <div className="tracker-spinner" />
+            <span>Synchronizing cryptographic consent ledger...</span>
           </div>
         ) : requests.length === 0 ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
-            No consent requests logged yet.
+          <div className="tracker-status-box">
+            <span>No consent requests logged yet. Dispatch a new handshake above.</span>
           </div>
         ) : (
-          <div className="terminal-table-container">
-            <table className="terminal-table">
-              <thead>
-                <tr>
-                  <th>Request ID</th>
-                  <th>Farmer ID</th>
-                  <th>Loan Purpose</th>
-                  <th>Requested Scopes</th>
-                  <th>Status</th>
-                  <th>Initiated Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {requests.map((r) => {
-                  const dateStr = new Date(r.created_at).toLocaleDateString('en-IN', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                  });
+          <div className="tracker-glass-list">
+            <div className="tracker-list-header">
+              <span className="col-req">REQUEST</span>
+              <span className="col-farmer">FARMER</span>
+              <span className="col-purpose">PURPOSE</span>
+              <span className="col-scopes">DATA SCOPES</span>
+              <span className="col-status">STATUS</span>
+              <span className="col-date">INITIATED</span>
+            </div>
 
-                  return (
-                    <tr key={r.request_id}>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--color-primary)' }}>
-                        {r.request_id}
-                      </td>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                        {r.farmer_id.substring(0, 16)}...
-                      </td>
-                      <td>{r.loan_purpose}</td>
-                      <td style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                        {(r.requested_attributes || []).join(', ')}
-                      </td>
-                      <td>
-                        <span className={r.status === 'APPROVED' ? 'badge-status-approved' : 'badge-status-pending'}>
-                          {r.status}
-                        </span>
-                      </td>
-                      <td style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-                        {dateStr}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div className="tracker-list-body">
+              {requests.map((r) => {
+                const dateStr = new Date(r.created_at).toLocaleDateString('en-IN', {
+                  day: '2-digit',
+                  month: 'short',
+                  year: 'numeric',
+                });
+
+                const isApproved = r.status === 'APPROVED' || r.status === 'GRANTED';
+                const isPending = r.status === 'PENDING';
+                const isRejected = r.status === 'REJECTED';
+
+                return (
+                  <div key={r.request_id || r.id} className="tracker-row-item">
+                    <div className="col-req">
+                      <span className="req-id-badge">
+                        #{String(r.request_id || r.id).substring(0, 8)}
+                      </span>
+                    </div>
+
+                    <div className="col-farmer">
+                      <span className="farmer-id-pill" title={r.farmer_id}>
+                        👤 {String(r.farmer_id).substring(0, 10)}...
+                      </span>
+                    </div>
+
+                    <div className="col-purpose">
+                      <span className="purpose-text">{r.loan_purpose}</span>
+                    </div>
+
+                    <div className="col-scopes">
+                      <div className="scopes-chip-wrap">
+                        {(r.requested_attributes || []).slice(0, 3).map((attr) => (
+                          <span key={attr} className="scope-micro-chip">
+                            {attr.replace('agritrust_', '').replace('satellite_', '')}
+                          </span>
+                        ))}
+                        {(r.requested_attributes || []).length > 3 && (
+                          <span className="scope-micro-chip more">
+                            +{(r.requested_attributes || []).length - 3}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="col-status">
+                      <span
+                        className={`status-glass-pill ${
+                          isApproved ? 'status-granted' : isPending ? 'status-pending' : isRejected ? 'status-rejected' : 'status-expired'
+                        }`}
+                      >
+                        <span className="status-dot-indicator" />
+                        {isApproved ? 'Granted' : isPending ? 'Pending' : isRejected ? 'Rejected' : 'Expired'}
+                      </span>
+                    </div>
+
+                    <div className="col-date">
+                      <span className="date-caption">{dateStr}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
-      </div>
+      </section>
     </div>
   );
 }
