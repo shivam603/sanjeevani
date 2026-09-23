@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Lock, Eye, ShieldCheck } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function SovereignConsentVaultCard({ onConsentChange }) {
@@ -19,12 +20,16 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
     <div className="agritrust-card sovereign-vault-card-unified">
       {/* Category & Title with Zero Data Sharing Badge */}
       <div className="card-header-line">
-        <div>
-          <div className="card-category-label">
-            <span style={{ marginRight: '4px' }}>🔒</span>
-            {t('cv_category')}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className="card-feature-icon-box" style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#4f46e5' }}>
+            <Lock size={20} strokeWidth={2} />
           </div>
-          <div className="card-title-main">{t('cv_title')}</div>
+          <div>
+            <div className="card-category-label">
+              {t('cv_category')}
+            </div>
+            <div className="card-title-main">{t('cv_title')}</div>
+          </div>
         </div>
 
         <div className="zero-otp-pill">{t('cv_zero_otp')}</div>
@@ -64,8 +69,8 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
         <div className="consent-permissions-split-grid">
           {/* Permitted for Inspection */}
           <div className="consent-perm-box">
-            <div className="consent-perm-box-title">
-              <span>👁</span>
+            <div className="consent-perm-box-title" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Eye size={14} strokeWidth={2} style={{ color: '#059669' }} />
               <span>{t('cv_perm_title')}</span>
             </div>
             <div className="consent-perm-box-content">
@@ -75,8 +80,8 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
 
           {/* Encrypted & Masked */}
           <div className="consent-perm-box">
-            <div className="consent-perm-box-title">
-              <span>🔒</span>
+            <div className="consent-perm-box-title" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Lock size={14} strokeWidth={2} style={{ color: '#4f46e5' }} />
               <span>{t('cv_mask_title')}</span>
             </div>
             <div className="consent-perm-box-content">
@@ -99,8 +104,9 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
               <button
                 className="btn-consent-allow"
                 onClick={handleAllow}
+                style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
               >
-                <span>🛡️</span>
+                <ShieldCheck size={15} strokeWidth={2.2} />
                 <span>{t('cv_btn_allow')}</span>
               </button>
             </>

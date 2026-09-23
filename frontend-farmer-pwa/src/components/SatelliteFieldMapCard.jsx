@@ -1,5 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
+import {
+  Map,
+  MapPin,
+  Radio,
+  Sprout,
+  Droplets,
+  Layers,
+  ChevronDown,
+  FileText,
+} from 'lucide-react';
 
 export default function SatelliteFieldMapCard({ user }) {
   const { t } = useTranslation();
@@ -380,27 +390,32 @@ export default function SatelliteFieldMapCard({ user }) {
     <div className="agritrust-card satellite-map-card">
       {/* 1. Header Bar: Title + Farm Location + Add Field Button */}
       <div className="card-header-line">
-        <div>
-          <div className="card-category-label">
-            <span className="sat-pulsing-dot"></span>
-            {t('fm_badge')}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="card-feature-icon-box" style={{ background: '#ecfdf5', color: '#059669' }}>
+            <Map size={18} strokeWidth={2.2} />
           </div>
-          <div className="card-title-main">{t('fm_title')}</div>
+          <div>
+            <div className="card-category-label">
+              <span className="sat-pulsing-dot"></span>
+              {t('fm_badge')}
+            </div>
+            <div className="card-title-main">{t('fm_title')}</div>
+          </div>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {/* Farm Location Badge (Clickable for Manual Cluster Change) */}
           <button
             className="parcel-id-badge"
-            style={{ cursor: 'pointer', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid #cbd5e1' }}
+            style={{ cursor: 'pointer', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid #cbd5e1', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
             onClick={() => setIsLocationModalOpen(true)}
             title="Click to view or switch farm cluster location"
           >
-            <span>{farmLocation.isGps ? '📡' : '📍'}</span>
+            {farmLocation.isGps ? <Radio size={12} strokeWidth={2} /> : <MapPin size={12} strokeWidth={2} />}
             <span style={{ maxWidth: '170px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {farmLocation.name.split(',')[0]}
             </span>
-            <span style={{ fontSize: '10px', color: '#64748b' }}>▼</span>
+            <ChevronDown size={11} strokeWidth={2.4} style={{ color: '#64748b' }} />
           </button>
 
           {/* Add Field Button */}
@@ -459,22 +474,25 @@ export default function SatelliteFieldMapCard({ user }) {
         <button
           className={`map-layer-btn ${activeLayer === 'ndvi' ? 'active' : ''}`}
           onClick={() => setActiveLayer('ndvi')}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
         >
-          <span>🌱</span>
+          <Sprout size={13} strokeWidth={2} />
           <span>{t('map_layer_ndvi')}</span>
         </button>
         <button
           className={`map-layer-btn ${activeLayer === 'moisture' ? 'active' : ''}`}
           onClick={() => setActiveLayer('moisture')}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
         >
-          <span>💧</span>
+          <Droplets size={13} strokeWidth={2} />
           <span>{t('map_layer_moisture')}</span>
         </button>
         <button
           className={`map-layer-btn ${activeLayer === 'satellite' ? 'active' : ''}`}
           onClick={() => setActiveLayer('satellite')}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
         >
-          <span>🛰️</span>
+          <Layers size={13} strokeWidth={2} />
           <span>{t('map_layer_satellite')}</span>
         </button>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -744,15 +762,30 @@ export default function SatelliteFieldMapCard({ user }) {
           </div>
 
           <div className="ew-meta-chips" style={{ marginTop: '8px' }}>
-            <span className="ew-chip">🌱 Stage: <strong>{selectedField.cropStage}</strong></span>
-            <span className="ew-chip">🛰️ NDVI Biomass: <strong>{selectedField.ndvi ?? '0.74'}</strong></span>
-            <span className="ew-chip">💧 Soil Moisture: <strong>{selectedField.moisture ?? '22%'}</strong></span>
-            <span className="ew-chip">📐 Boundary: <strong>{selectedField.polygon?.length || 4} Corners</strong></span>
+            <span className="ew-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <Sprout size={11} strokeWidth={2} />
+              <span>Stage: <strong>{selectedField.cropStage}</strong></span>
+            </span>
+            <span className="ew-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <Layers size={11} strokeWidth={2} />
+              <span>NDVI Biomass: <strong>{selectedField.ndvi ?? '0.74'}</strong></span>
+            </span>
+            <span className="ew-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <Droplets size={11} strokeWidth={2} />
+              <span>Soil Moisture: <strong>{selectedField.moisture ?? '22%'}</strong></span>
+            </span>
+            <span className="ew-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <Map size={11} strokeWidth={2} />
+              <span>Boundary: <strong>{selectedField.polygon?.length || 4} Corners</strong></span>
+            </span>
           </div>
 
           {selectedField.description && (
             <div className="ew-detail-block" style={{ marginTop: '8px' }}>
-              <div className="ew-detail-label"><span>📝</span> Notes:</div>
+              <div className="ew-detail-label" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <FileText size={12} strokeWidth={2} />
+                <span>Notes:</span>
+              </div>
               <div className="ew-detail-text">{selectedField.description}</div>
             </div>
           )}

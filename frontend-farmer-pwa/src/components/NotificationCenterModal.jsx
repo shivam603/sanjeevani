@@ -1,4 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Bell,
+  CloudRain,
+  CloudSun,
+  TrendingUp,
+  TriangleAlert,
+  Leaf,
+  Landmark,
+  CalendarClock,
+  Check,
+  X,
+  Inbox,
+} from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import {
   loadStoredNotifications,
@@ -8,6 +21,35 @@ import {
   markAllAsRead,
   generateSmartNotifications,
 } from '../services/notificationEngine';
+
+function getNotificationIcon(notif) {
+  const cat = notif?.category;
+  const icon = notif?.icon;
+
+  if (cat === 'WEATHER' || icon === 'CloudRain' || icon === '🌧️') {
+    return icon === 'CloudSun' || icon === '☀️' ? (
+      <CloudSun size={18} strokeWidth={2} />
+    ) : (
+      <CloudRain size={18} strokeWidth={2} />
+    );
+  }
+  if (cat === 'MARKET' || icon === 'TrendingUp' || icon === '💰') {
+    return <TrendingUp size={18} strokeWidth={2} />;
+  }
+  if (cat === 'RISK' || icon === 'TriangleAlert' || icon === '⚠️') {
+    return <TriangleAlert size={18} strokeWidth={2} />;
+  }
+  if (cat === 'CROP' || icon === 'Leaf' || icon === '🌾') {
+    return <Leaf size={18} strokeWidth={2} />;
+  }
+  if (cat === 'SCHEME' || icon === 'Landmark' || icon === '🏛️') {
+    return <Landmark size={18} strokeWidth={2} />;
+  }
+  if (cat === 'CALENDAR' || icon === 'CalendarClock' || icon === '📅') {
+    return <CalendarClock size={18} strokeWidth={2} />;
+  }
+  return <Bell size={18} strokeWidth={2} />;
+}
 
 export default function NotificationCenterModal({
   isOpen,
@@ -130,7 +172,7 @@ export default function NotificationCenterModal({
       onClick={() => handleItemClick(item)}
     >
       <div className="nc-item-icon-box">
-        <span>{item.icon || '🔔'}</span>
+        {getNotificationIcon(item)}
       </div>
 
       <div className="nc-item-content">
@@ -155,8 +197,16 @@ export default function NotificationCenterModal({
               type="button"
               className="nc-read-toggle-btn"
               onClick={(e) => handleToggleRead(e, item.id)}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
             >
-              {item.read ? 'Mark unread' : '✓ Read'}
+              {item.read ? (
+                'Mark unread'
+              ) : (
+                <>
+                  <Check size={12} strokeWidth={2.4} />
+                  <span>Read</span>
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -170,7 +220,7 @@ export default function NotificationCenterModal({
         {/* Header */}
         <div className="nc-header">
           <div className="nc-title-row">
-            <span style={{ fontSize: '18px' }}>🔔</span>
+            <Bell size={18} strokeWidth={2} style={{ color: '#059669' }} />
             <h3 className="nc-title">Notification Center</h3>
             {unreadCount > 0 && <span className="nc-unread-pill">{unreadCount}</span>}
           </div>
@@ -190,8 +240,9 @@ export default function NotificationCenterModal({
               className="nc-close-btn"
               onClick={onClose}
               aria-label="Close"
+              style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
             >
-              ✕
+              <X size={18} strokeWidth={2} />
             </button>
           </div>
         </div>
@@ -225,7 +276,9 @@ export default function NotificationCenterModal({
         <div className="nc-body">
           {filtered.length === 0 ? (
             <div className="nc-empty">
-              <div className="nc-empty-icon">📭</div>
+              <div className="nc-empty-icon" style={{ display: 'flex', justifyContent: 'center' }}>
+                <Inbox size={42} strokeWidth={1.5} style={{ color: '#94a3b8' }} />
+              </div>
               <h4>No notifications</h4>
               <p>You are all caught up with your farm activities and alerts.</p>
             </div>

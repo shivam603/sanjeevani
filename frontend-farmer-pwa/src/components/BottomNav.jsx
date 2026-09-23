@@ -1,21 +1,29 @@
 import React from 'react';
+import {
+  LayoutDashboard,
+  Lightbulb,
+  ShieldCheck,
+  Upload,
+  Wheat,
+} from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function BottomNav({ activeTab, onSelectTab, pendingUploadCount = 0 }) {
   const { t } = useTranslation();
 
   const navItems = [
-    { id: 'dashboard', labelKey: 'nav_dashboard', icon: '📊' },
-    { id: 'insights', labelKey: 'nav_insights', icon: '💡' },
-    { id: 'consent', labelKey: 'nav_consent', icon: '🛡️' },
-    { id: 'upload', labelKey: 'nav_upload', icon: '📤', badge: pendingUploadCount },
-    { id: 'fpo', labelKey: 'nav_fpo', icon: '🌾' },
+    { id: 'dashboard', labelKey: 'nav_dashboard', icon: LayoutDashboard },
+    { id: 'insights', labelKey: 'nav_insights', icon: Lightbulb },
+    { id: 'consent', labelKey: 'nav_consent', icon: ShieldCheck },
+    { id: 'upload', labelKey: 'nav_upload', icon: Upload, badge: pendingUploadCount },
+    { id: 'fpo', labelKey: 'nav_fpo', icon: Wheat },
   ];
 
   return (
     <nav className="bottom-nav" aria-label="Main Navigation">
       {navItems.map((item) => {
         const isActive = activeTab === item.id;
+        const IconComponent = item.icon;
         return (
           <button
             key={item.id}
@@ -24,7 +32,9 @@ export default function BottomNav({ activeTab, onSelectTab, pendingUploadCount =
             onClick={() => onSelectTab(item.id)}
             aria-current={isActive ? 'page' : undefined}
           >
-            <span className="nav-icon">{item.icon}</span>
+            <span className="nav-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+              <IconComponent size={19} strokeWidth={isActive ? 2.3 : 1.9} />
+            </span>
             <span>{t(item.labelKey)}</span>
 
             {/* Offline Pending Badge */}

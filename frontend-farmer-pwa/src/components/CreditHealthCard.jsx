@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
+import { Leaf, Sparkles, FileText, Lightbulb } from 'lucide-react';
 
 export default function CreditHealthCard({
   score = 78,
@@ -23,8 +24,8 @@ export default function CreditHealthCard({
           <div className="card-title-main">{t('ch_title')}</div>
         </div>
 
-        <div className="status-badge-leaf">
-          <span>🍃</span>
+        <div className="status-badge-leaf" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <Leaf size={13} strokeWidth={2.2} style={{ color: '#059669', marginRight: '4px' }} />
           <span>{t('ch_good_standing')}</span>
         </div>
       </div>
@@ -109,8 +110,9 @@ export default function CreditHealthCard({
               className="card-action-link-btn"
               onClick={onOpenSimulator}
               title={t('sim_title')}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
             >
-              <span>🚀</span>
+              <Sparkles size={13} strokeWidth={2} />
               <span>What-If Score & Limit Booster</span>
             </button>
           )}
@@ -119,8 +121,9 @@ export default function CreditHealthCard({
               className="card-action-link-btn passport-variant"
               onClick={onOpenPassport}
               title={t('pass_btn_card')}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
             >
-              <span>📄</span>
+              <FileText size={13} strokeWidth={2} />
               <span>Official Bank Passport &gt;</span>
             </button>
           )}
@@ -128,8 +131,8 @@ export default function CreditHealthCard({
       )}
 
       {/* No Agent Fees Notice */}
-      <div className="card-footer-notice-box">
-        <span style={{ fontSize: '15px' }}>💡</span>
+      <div className="card-footer-notice-box" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <Lightbulb size={14} strokeWidth={2} style={{ flexShrink: 0, color: '#f59e0b' }} />
         <span>{t('ch_notice')}</span>
       </div>
     </div>

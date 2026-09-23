@@ -1,4 +1,5 @@
 import React from 'react';
+import { ShieldCheck } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function SafeBorrowingCard({
@@ -23,7 +24,10 @@ export default function SafeBorrowingCard({
     <div className="pwa-card">
       <div className="card-header-row">
         <div>
-          <div className="card-title-sm">⚖️ {t('dash_borrowing_limit')}</div>
+          <div className="card-title-sm" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <ShieldCheck size={16} strokeWidth={2} style={{ color: '#38bdf8' }} />
+            <span>{t('dash_borrowing_limit')}</span>
+          </div>
           <div className="card-title-main" style={{ fontSize: '1.8rem', color: '#38bdf8' }}>
             {formatCurrency(safeLimit)}
           </div>

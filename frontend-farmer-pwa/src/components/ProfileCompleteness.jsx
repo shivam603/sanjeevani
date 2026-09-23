@@ -1,4 +1,13 @@
 import React from 'react';
+import {
+  BadgeCheck,
+  MapPin,
+  Radio,
+  TrendingUp,
+  ShieldCheck,
+  Users,
+  Check,
+} from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function ProfileCompleteness({ confidence = 0.88 }) {
@@ -6,18 +15,21 @@ export default function ProfileCompleteness({ confidence = 0.88 }) {
   const percentage = Math.round(confidence * 100);
 
   const verificationItems = [
-    { label: 'GIS Land Parcel Survey #184/A', verified: true, icon: '🗺️' },
-    { label: 'Sentinel-2 Satellite Biomass (NDVI)', verified: true, icon: '🛰️' },
-    { label: 'Lasalgaon APMC Price Benchmarking', verified: true, icon: '📊' },
-    { label: 'PMFBY Crop Insurance Shield', verified: true, icon: '🛡️' },
-    { label: 'Nashik FPO 2.4-Year Delivery History', verified: true, icon: '🤝' },
+    { label: 'GIS Land Parcel Survey #184/A', verified: true, icon: <MapPin size={14} strokeWidth={2} style={{ color: '#059669' }} /> },
+    { label: 'Sentinel-2 Satellite Biomass (NDVI)', verified: true, icon: <Radio size={14} strokeWidth={2} style={{ color: '#0284c7' }} /> },
+    { label: 'Lasalgaon APMC Price Benchmarking', verified: true, icon: <TrendingUp size={14} strokeWidth={2} style={{ color: '#d97706' }} /> },
+    { label: 'PMFBY Crop Insurance Shield', verified: true, icon: <ShieldCheck size={14} strokeWidth={2} style={{ color: '#10b981' }} /> },
+    { label: 'Nashik FPO 2.4-Year Delivery History', verified: true, icon: <Users size={14} strokeWidth={2} style={{ color: '#7c3aed' }} /> },
   ];
 
   return (
     <div className="pwa-card">
       <div className="card-header-row">
         <div>
-          <div className="card-title-sm">✅ {t('dash_data_confidence')}</div>
+          <div className="card-title-sm" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <BadgeCheck size={16} strokeWidth={2} style={{ color: '#10b981' }} />
+            <span>{t('dash_data_confidence')}</span>
+          </div>
           <div className="card-title-main" style={{ fontSize: '1.25rem' }}>
             {percentage}% Verified Telemetry
           </div>
@@ -57,10 +69,12 @@ export default function ProfileCompleteness({ confidence = 0.88 }) {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span>{item.icon}</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center' }}>{item.icon}</span>
               <span>{item.label}</span>
             </div>
-            <span style={{ color: '#10b981', fontWeight: 800, fontSize: '0.85rem' }}>✓</span>
+            <span style={{ color: '#10b981', display: 'inline-flex', alignItems: 'center' }}>
+              <Check size={14} strokeWidth={2.4} />
+            </span>
           </div>
         ))}
       </div>

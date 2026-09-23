@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CheckCircle2, BadgeCheck, X } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function RequestLoanModal({ isOpen, onClose }) {
@@ -25,15 +26,20 @@ export default function RequestLoanModal({ isOpen, onClose }) {
     <div className="modal-overlay" onClick={handleClose}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header-row">
-          <div className="modal-title">
-            {isSuccess ? `✅ ${t('rl_pill')}` : t('modal_loan_title')}
+          <div className="modal-title" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            {isSuccess && <CheckCircle2 size={18} strokeWidth={2.2} style={{ color: '#10B981' }} />}
+            <span>{isSuccess ? t('rl_pill') : t('modal_loan_title')}</span>
           </div>
-          <button className="modal-close-btn" onClick={handleClose}>&times;</button>
+          <button className="modal-close-btn" onClick={handleClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <X size={18} strokeWidth={2} />
+          </button>
         </div>
 
         {isSuccess ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'center', padding: '10px 0' }}>
-            <div style={{ fontSize: '48px' }}>🎉</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'center', padding: '10px 0', alignItems: 'center' }}>
+            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#059669' }}>
+              <BadgeCheck size={36} strokeWidth={2} />
+            </div>
             <div style={{ fontSize: '20px', fontWeight: 800, color: '#13532f' }}>
               {t('modal_loan_success')}
             </div>

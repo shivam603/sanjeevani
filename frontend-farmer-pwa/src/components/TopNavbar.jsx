@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation, SUPPORTED_LANGUAGES } from '../i18n/LanguageContext';
 import { loadStoredNotifications } from '../services/notificationEngine';
+import {
+  Menu,
+  Sprout,
+  Wheat,
+  MapPin,
+  Building2,
+  FileText,
+  Bell,
+  Volume2,
+  Globe,
+  ChevronDown,
+  Check,
+  LogOut,
+  ArrowRightLeft,
+  ArrowUpRight,
+} from 'lucide-react';
 
 export default function TopNavbar({
-  activeTab,
+  onToggleSidebar,
   onSelectTab,
   onTriggerSpeech,
   isSpeaking,
@@ -43,65 +59,52 @@ export default function TopNavbar({
   const fpoName = user?.fpo || t('fpo_member_tag');
 
   return (
-    <nav className="agritrust-navbar">
+    <header className="agritrust-navbar">
       <div className="agritrust-nav-inner">
-        {/* Brand Group */}
-        <div className="nav-brand-group" onClick={() => onSelectTab('overview')}>
-          <div className="nav-brand-icon-box">
-            <span className="nav-brand-icon">🌱</span>
-          </div>
-          <div className="nav-brand-text">
-            <div className="nav-brand-row">
-              <span className="nav-brand-title">{t('app_name')}</span>
-              <span className="nav-brand-badge">Farmer</span>
+        {/* Left Side: Hamburger (Mobile) & Brand / App Heading */}
+        <div className="nav-left-cluster">
+          {onToggleSidebar && (
+            <button
+              type="button"
+              className="nav-hamburger-btn"
+              onClick={onToggleSidebar}
+              aria-label="Open navigation sidebar"
+            >
+              <Menu size={22} strokeWidth={2.2} />
+            </button>
+          )}
+
+          {/* Mobile-only Brand */}
+          <div
+            className="nav-brand-group nav-brand-mobile-only"
+            onClick={() => onSelectTab && onSelectTab('discover')}
+            role="button"
+            tabIndex={0}
+            aria-label="SANJEEVANI Quick Access & Discover"
+          >
+            <div className="nav-brand-icon-box">
+              <Sprout size={18} strokeWidth={2.4} className="nav-brand-icon" />
             </div>
-            <div className="nav-brand-subtitle">Sovereign Credit</div>
+            <div className="nav-brand-text">
+              <div className="nav-brand-row">
+                <span className="nav-brand-title">{t('app_name')}</span>
+                <span className="nav-brand-badge">Farmer</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop App Context Bar */}
+          <div className="nav-desktop-title-cluster">
+            <span className="nav-desktop-badge">
+              <Wheat size={14} strokeWidth={2} style={{ display: 'inline-block', verticalAlign: '-2px', marginRight: '5px' }} />
+              Kisan Dashboard
+            </span>
+            <span className="nav-desktop-location-chip" title={user?.cluster || 'Khanna, Punjab'}>
+              <MapPin size={13} strokeWidth={2} style={{ display: 'inline-block', verticalAlign: '-2px', marginRight: '4px' }} />
+              {user?.cluster || 'Khanna, Punjab'}
+            </span>
           </div>
         </div>
-
-        {/* Center Menu Links — Apple Segmented Control */}
-        <ul className="nav-links-menu">
-          <li>
-            <button
-              className={`nav-link-btn ${activeTab === 'overview' ? 'active' : ''}`}
-              onClick={() => onSelectTab('overview')}
-            >
-              {t('nav_overview')}
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-link-btn ${activeTab === 'loans' ? 'active' : ''}`}
-              onClick={() => onSelectTab('loans')}
-            >
-              {t('nav_loans')}
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-link-btn ${activeTab === 'consent' ? 'active' : ''}`}
-              onClick={() => onSelectTab('consent')}
-            >
-              {t('nav_consent')}
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-link-btn ${activeTab === 'mandi' ? 'active' : ''}`}
-              onClick={() => onSelectTab('mandi')}
-            >
-              {t('nav_mandi')}
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-link-btn ${activeTab === 'support' ? 'active' : ''}`}
-              onClick={() => onSelectTab('support')}
-            >
-              {t('nav_support')}
-            </button>
-          </li>
-        </ul>
 
         {/* Right Tools Cluster */}
         <div className="nav-right-tools">
@@ -116,9 +119,9 @@ export default function TopNavbar({
                 title="Switch to Institutional Lender Underwriting Desk"
                 style={{ cursor: 'pointer', border: 'none' }}
               >
-                <span className="btn-icon">🏦</span>
+                <Building2 size={15} strokeWidth={2} className="btn-icon" />
                 <span>Lender Desk</span>
-                <span className="btn-arrow">↔</span>
+                <ArrowRightLeft size={13} strokeWidth={2} className="btn-arrow" />
               </button>
             ) : (
               <a
@@ -128,9 +131,9 @@ export default function TopNavbar({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="btn-icon">🏦</span>
+                <Building2 size={15} strokeWidth={2} className="btn-icon" />
                 <span>Lender Desk</span>
-                <span className="btn-arrow">↗</span>
+                <ArrowUpRight size={13} strokeWidth={2} className="btn-arrow" />
               </a>
             )}
 
@@ -141,7 +144,7 @@ export default function TopNavbar({
                 onClick={onOpenPassport}
                 title={t('pass_btn_nav')}
               >
-                <span className="btn-icon">📄</span>
+                <FileText size={15} strokeWidth={2} className="btn-icon" />
                 <span className="passport-btn-text">{t('pass_btn_nav')}</span>
               </button>
             )}
@@ -157,7 +160,7 @@ export default function TopNavbar({
               title="Open Smart Notification Center"
               aria-label="Notifications"
             >
-              <span style={{ fontSize: '16px' }}>🔔</span>
+              <Bell size={17} strokeWidth={2} />
               {unreadCount > 0 && <span className="nav-notif-badge">{unreadCount}</span>}
             </button>
 
@@ -167,7 +170,7 @@ export default function TopNavbar({
               onClick={onTriggerSpeech}
               title={isSpeaking ? t('nav_stop_listen') : t('nav_listen')}
             >
-              <span className="btn-icon">🔊</span>
+              <Volume2 size={15} strokeWidth={2} className="btn-icon" />
               <span>{isSpeaking ? t('nav_stop_listen') : t('nav_listen')}</span>
             </button>
 
@@ -178,9 +181,9 @@ export default function TopNavbar({
                 onClick={() => setShowLangMenu(!showLangMenu)}
                 aria-label="Select Language"
               >
-                <span className="btn-icon">🌐</span>
+                <Globe size={15} strokeWidth={2} className="btn-icon" />
                 <span>{currentLangLabel.split(' ')[0]}</span>
-                <span className="lang-caret">▼</span>
+                <ChevronDown size={12} strokeWidth={2.4} className="lang-caret" />
               </button>
 
               {showLangMenu && (
@@ -195,7 +198,7 @@ export default function TopNavbar({
                       className={`lang-option-item ${currentLang === l.code ? 'selected' : ''}`}
                     >
                       <span>{l.label}</span>
-                      {currentLang === l.code && <span className="check-mark">✓</span>}
+                      {currentLang === l.code && <Check size={14} strokeWidth={2.5} className="check-mark" />}
                     </button>
                   ))}
                 </div>
@@ -275,7 +278,7 @@ export default function TopNavbar({
                       transition: 'all var(--transition-glass-fast)',
                     }}
                   >
-                    <span>📄</span>
+                    <FileText size={15} strokeWidth={2} />
                     <span>{t('pass_btn_nav')}</span>
                   </button>
                 )}
@@ -302,7 +305,7 @@ export default function TopNavbar({
                       transition: 'all var(--transition-glass-fast)',
                     }}
                   >
-                    <span>🚪</span>
+                    <LogOut size={15} strokeWidth={2} />
                     <span>{t('nav_logout')}</span>
                   </button>
                 )}
@@ -311,6 +314,6 @@ export default function TopNavbar({
           </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }

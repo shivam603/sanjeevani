@@ -1,4 +1,5 @@
 import React from 'react';
+import { Wifi, WifiOff } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function OfflineBanner({ isOnline, pendingCount, onSync, isSyncing }) {
@@ -18,7 +19,11 @@ export default function OfflineBanner({ isOnline, pendingCount, onSync, isSyncin
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <span>{isOnline ? '🟢' : '📶'}</span>
+        {isOnline ? (
+          <Wifi size={15} strokeWidth={2.2} style={{ color: '#ffffff' }} />
+        ) : (
+          <WifiOff size={15} strokeWidth={2.2} style={{ color: '#ffffff' }} />
+        )}
         <span>
           {!isOnline
             ? t('offline_status')

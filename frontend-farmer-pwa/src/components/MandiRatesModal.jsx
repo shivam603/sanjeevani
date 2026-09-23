@@ -1,4 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Store,
+  TrendingUp,
+  TrendingDown,
+  MapPin,
+  Tag,
+  Clock,
+  Lightbulb,
+  IndianRupee,
+  X,
+} from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { fetchMandiPrices, calculateMandiRevenue } from '../services/api';
 
@@ -58,18 +69,21 @@ export default function MandiRatesModal({ isOpen, onClose }) {
         {/* Header */}
         <div className="modal-header-row">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '20px' }}>💰</span>
+            <Store size={20} strokeWidth={2} style={{ color: '#059669' }} />
             <div className="modal-title">{t('mi_title')}</div>
           </div>
-          <button className="modal-close-btn" onClick={onClose}>&times;</button>
+          <button className="modal-close-btn" onClick={onClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <X size={18} strokeWidth={2} />
+          </button>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
           <p style={{ fontSize: '13px', color: '#64748b', margin: 0 }}>
             Real-time AGMARKNET comparison across Punjab & regional APMCs
           </p>
-          <span className="mandi-datasource-badge">
-            🏷️ {mandiData?.data_source || 'Demo Market Data'}
+          <span className="mandi-datasource-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <Tag size={12} strokeWidth={2} />
+            <span>{mandiData?.data_source || 'Demo Market Data'}</span>
           </span>
         </div>
 
@@ -94,22 +108,28 @@ export default function MandiRatesModal({ isOpen, onClose }) {
             type="button"
             className={`mandi-sort-btn ${sortBy === 'highest' ? 'active' : ''}`}
             onClick={() => setSortBy('highest')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            ⬆️ {t('mi_sort_highest')}
+            <TrendingUp size={13} strokeWidth={2} />
+            <span>{t('mi_sort_highest')}</span>
           </button>
           <button
             type="button"
             className={`mandi-sort-btn ${sortBy === 'lowest' ? 'active' : ''}`}
             onClick={() => setSortBy('lowest')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            ⬇️ {t('mi_sort_lowest')}
+            <TrendingDown size={13} strokeWidth={2} />
+            <span>{t('mi_sort_lowest')}</span>
           </button>
           <button
             type="button"
             className={`mandi-sort-btn ${sortBy === 'nearest' ? 'active' : ''}`}
             onClick={() => setSortBy('nearest')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            📍 {t('mi_sort_nearest')}
+            <MapPin size={13} strokeWidth={2} />
+            <span>{t('mi_sort_nearest')}</span>
           </button>
         </div>
 
@@ -145,8 +165,9 @@ export default function MandiRatesModal({ isOpen, onClose }) {
                   <div style={{ fontSize: '11.5px', color: '#64748b', marginTop: '2px' }}>
                     Min: ₹{m.min_price} &bull; Max: ₹{m.max_price} &bull; Arrivals: {m.arrival_volume_qtl.toLocaleString('en-IN')} Qtl
                   </div>
-                  <div style={{ fontSize: '10.5px', color: '#94a3b8' }}>
-                    ⏱️ {m.last_updated} ({m.price_date})
+                  <div style={{ fontSize: '10.5px', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
+                    <Clock size={11} strokeWidth={2} />
+                    <span>{m.last_updated} ({m.price_date})</span>
                   </div>
                 </div>
 
@@ -162,7 +183,10 @@ export default function MandiRatesModal({ isOpen, onClose }) {
             {/* Factual Market Insight */}
             {mandiData.market_insight && (
               <div className="mandi-insight-banner" style={{ marginTop: '6px' }}>
-                <span className="mandi-insight-tag">💡 {t('mi_insight_title')}:</span>
+                <span className="mandi-insight-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <Lightbulb size={13} strokeWidth={2} />
+                  <span>{t('mi_insight_title')}:</span>
+                </span>
                 <p className="mandi-insight-text">{mandiData.market_insight}</p>
               </div>
             )}
@@ -170,7 +194,10 @@ export default function MandiRatesModal({ isOpen, onClose }) {
             {/* Revenue Estimator in Modal */}
             <div className="mandi-revenue-calculator-box" style={{ marginTop: '8px' }}>
               <div className="mandi-calc-header-row">
-                <span className="mandi-calc-title">💵 {t('mi_revenue_title')}</span>
+                <span className="mandi-calc-title" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                  <IndianRupee size={15} strokeWidth={2} />
+                  <span>{t('mi_revenue_title')}</span>
+                </span>
               </div>
               <div className="mandi-calc-input-row">
                 <div style={{ flex: 1 }}>

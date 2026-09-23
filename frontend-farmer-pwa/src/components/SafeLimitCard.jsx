@@ -1,4 +1,5 @@
 import React from 'react';
+import { Volume2, ShieldCheck, CreditCard } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function SafeLimitCard({ onSpeakLimit, safeLimit = 165000, minLimit = 120000 }) {
@@ -8,9 +9,17 @@ export default function SafeLimitCard({ onSpeakLimit, safeLimit = 165000, minLim
   return (
     <div className="agritrust-card">
       <div className="card-header-line">
-        <div><div className="card-category-label">{t('sl_category')}</div><div className="card-title-main">{t('sl_title')}</div></div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className="card-feature-icon-box" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#059669' }}>
+            <CreditCard size={20} strokeWidth={2} />
+          </div>
+          <div>
+            <div className="card-category-label">{t('sl_category')}</div>
+            <div className="card-title-main">{t('sl_title')}</div>
+          </div>
+        </div>
         <button className="safe-limit-speaker-btn" onClick={onSpeakLimit} title={t('sl_title')} aria-label={t('sl_title')}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" /></svg>
+          <Volume2 size={16} strokeWidth={2} />
         </button>
       </div>
       <div className="safe-limit-content-grid">
@@ -25,7 +34,7 @@ export default function SafeLimitCard({ onSpeakLimit, safeLimit = 165000, minLim
           <div className="safe-limit-progress-bottom-row"><span>{t('sl_used_sub')}</span><span>From {formatINR(minLimit)}</span></div>
         </div>
       </div>
-      <div className="card-footer-notice-box"><span style={{ fontSize: '15px' }}>🛡️</span><span>{t('sl_notice')}</span></div>
+      <div className="card-footer-notice-box"><ShieldCheck size={16} strokeWidth={2} style={{ color: 'var(--brand-green, #15803d)', flexShrink: 0 }} /><span>{t('sl_notice')}</span></div>
     </div>
   );
 }

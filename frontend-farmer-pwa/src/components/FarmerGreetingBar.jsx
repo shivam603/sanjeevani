@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Check, Play, Pause, RotateCcw } from 'lucide-react';
 import { useTranslation, SUPPORTED_LANGUAGES } from '../i18n/LanguageContext';
 
 export default function FarmerGreetingBar({ onPlayAudio, isPlaying, user }) {
@@ -40,11 +41,9 @@ export default function FarmerGreetingBar({ onPlayAudio, isPlaying, user }) {
         <div>
           <div className="farmer-greeting-title">
             <span>{t('greeting_salutation')}, {farmerName}</span>
-            <span className="fpo-member-pill">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-              </svg>
-              {t('fpo_member_tag')}
+            <span className="fpo-member-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <Check size={11} strokeWidth={2.5} />
+              <span>{t('fpo_member_tag')}</span>
             </span>
           </div>
           <div className="farmer-crop-cluster-sub">
@@ -65,17 +64,15 @@ export default function FarmerGreetingBar({ onPlayAudio, isPlaying, user }) {
             boxShadow: isPlaying 
               ? '0 0 0 6px rgba(16, 185, 129, 0.28), 0 4px 16px rgba(16, 185, 129, 0.45)' 
               : '0 0 0 4px rgba(16, 185, 129, 0.15), 0 4px 12px rgba(16, 185, 129, 0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           {isPlaying ? (
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="6" y="4" width="4" height="16" />
-              <rect x="14" y="4" width="4" height="16" />
-            </svg>
+            <Pause size={15} strokeWidth={2.4} fill="currentColor" />
           ) : (
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style={{ marginLeft: '2px' }}>
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
+            <Play size={15} strokeWidth={2.4} fill="currentColor" style={{ marginLeft: '2px' }} />
           )}
         </button>
 
@@ -139,8 +136,9 @@ export default function FarmerGreetingBar({ onPlayAudio, isPlaying, user }) {
           onClick={() => onPlayAudio(parseFloat(playbackSpeed))}
           title="Replay Audio"
           aria-label="Replay Audio"
+          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          ↺
+          <RotateCcw size={13} strokeWidth={2} />
         </button>
       </div>
     </div>

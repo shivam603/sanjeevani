@@ -1,4 +1,16 @@
 import React, { useState } from 'react';
+import {
+  Zap,
+  Sparkles,
+  ShieldCheck,
+  FileText,
+  FlaskConical,
+  Camera,
+  Check,
+  ArrowRight,
+  RotateCcw,
+  Save,
+} from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 const GOALS_STORAGE_KEY = 'agritrust_score_simulator_goals';
@@ -24,11 +36,11 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
   const [toastMessage, setToastMessage] = useState(null);
 
   const actions = [
-    { id: 'pmfby', labelKey: 'sim_act_pmfby', points: 8, limitBoost: 15000, icon: '🛡️' },
-    { id: 'earlyRepay', labelKey: 'sim_act_early_repay', points: 6, limitBoost: 12000, icon: '⚡' },
-    { id: 'mandiSlip', labelKey: 'sim_act_mandi_slip', points: 5, limitBoost: 20000, icon: '📜' },
-    { id: 'soilTest', labelKey: 'sim_act_soil_test', points: 4, limitBoost: 10000, icon: '🧪' },
-    { id: 'gpsPhoto', labelKey: 'sim_act_gps_photo', points: 3, limitBoost: 5000, icon: '📸' },
+    { id: 'pmfby', labelKey: 'sim_act_pmfby', points: 8, limitBoost: 15000, icon: <ShieldCheck size={16} strokeWidth={2} style={{ color: '#059669' }} /> },
+    { id: 'earlyRepay', labelKey: 'sim_act_early_repay', points: 6, limitBoost: 12000, icon: <Zap size={16} strokeWidth={2} style={{ color: '#d97706' }} /> },
+    { id: 'mandiSlip', labelKey: 'sim_act_mandi_slip', points: 5, limitBoost: 20000, icon: <FileText size={16} strokeWidth={2} style={{ color: '#2563eb' }} /> },
+    { id: 'soilTest', labelKey: 'sim_act_soil_test', points: 4, limitBoost: 10000, icon: <FlaskConical size={16} strokeWidth={2} style={{ color: '#7c3aed' }} /> },
+    { id: 'gpsPhoto', labelKey: 'sim_act_gps_photo', points: 3, limitBoost: 5000, icon: <Camera size={16} strokeWidth={2} style={{ color: '#059669' }} /> },
   ];
 
   const toggleAction = (id) => {
@@ -100,16 +112,18 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
     <div className="agritrust-card simulator-card">
       {/* Header */}
       <div className="card-header-line">
-        <div>
-          <div className="card-category-label">
-            <span>⚡</span>
-            {t('sim_category')}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div className="card-feature-icon-box" style={{ background: 'rgba(245, 158, 11, 0.1)', color: '#d97706' }}>
+            <Zap size={20} strokeWidth={2} />
           </div>
-          <div className="card-title-main">{t('sim_title')}</div>
+          <div>
+            <div className="card-category-label">{t('sim_category')}</div>
+            <div className="card-title-main">{t('sim_title')}</div>
+          </div>
         </div>
 
         <div className="status-badge-leaf" style={{ background: '#ecfdf5', borderColor: '#a7f3d0' }}>
-          <span>🚀</span>
+          <Sparkles size={12} strokeWidth={2.2} />
           <span>{addedPoints > 0 ? `+${addedPoints} pts boost` : 'Interactive'}</span>
         </div>
       </div>
@@ -176,7 +190,7 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
           </div>
           <div className="sim-gauge-caption">
             <span className="sim-old-val">{t('sim_current_score')} {BASE_SCORE}</span>
-            <span className="sim-arrow-right">➔</span>
+            <span className="sim-arrow-right"><ArrowRight size={11} strokeWidth={2} /></span>
             <span className="sim-new-val">{t('sim_projected_score')} {simulatedScore}</span>
           </div>
         </div>
@@ -188,7 +202,7 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
             <div className="sim-limit-val base-val">{formatINR(BASE_LIMIT)}</div>
           </div>
 
-          <div className="sim-limit-arrow-center">⬇ Potential Limit Headroom ⬇</div>
+          <div className="sim-limit-arrow-center">Potential Limit Headroom</div>
 
           <div className="sim-limit-box boosted">
             <div className="sim-limit-sub">{t('sim_projected_limit')}</div>
@@ -213,7 +227,7 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
               onClick={() => toggleAction(act.id)}
             >
               <div className="sim-action-checkbox">
-                {isChecked ? '✓' : ''}
+                {isChecked ? <Check size={12} strokeWidth={2.4} /> : null}
               </div>
               <div className="sim-action-icon">{act.icon}</div>
               <div className="sim-action-text-box">
@@ -240,18 +254,18 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
       {/* Footer Buttons */}
       <div className="sim-card-actions-bar">
         <button className="sim-btn-reset" onClick={handleReset}>
-          <span>↺</span>
+          <RotateCcw size={13} strokeWidth={2} style={{ marginRight: '4px' }} />
           <span>{t('sim_reset_btn')}</span>
         </button>
 
         <button className="sim-btn-save" onClick={handleSaveGoals}>
-          <span>💾</span>
+          <Save size={13} strokeWidth={2} style={{ marginRight: '4px' }} />
           <span>{t('sim_save_goals')}</span>
         </button>
 
         {onOpenPassport && (
           <button className="sim-btn-passport" onClick={onOpenPassport}>
-            <span>📄</span>
+            <FileText size={13} strokeWidth={2} style={{ marginRight: '4px' }} />
             <span>{t('pass_btn_card')}</span>
           </button>
         )}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Sprout, User, Phone, MessageCircle, X } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function CallMitraModal({ isOpen, onClose }) {
@@ -9,13 +10,18 @@ export default function CallMitraModal({ isOpen, onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header-row">
-          <div className="modal-title">🌾 {t('modal_mitra_title')}</div>
-          <button className="modal-close-btn" onClick={onClose}>&times;</button>
+          <div className="modal-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Sprout size={18} strokeWidth={2.2} style={{ color: '#15803d' }} />
+            <span>{t('modal_mitra_title')}</span>
+          </div>
+          <button className="modal-close-btn" onClick={onClose} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <X size={18} strokeWidth={2} />
+          </button>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px', background: '#f7fbf8', border: '1px solid #e1efe4', borderRadius: '12px', padding: '16px' }}>
-          <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: '#13532f', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px' }}>
-            👨‍🌾
+          <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: '#13532f', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <User size={24} strokeWidth={2} />
           </div>
           <div>
             <div style={{ fontSize: '16px', fontWeight: 800, color: '#112618' }}>{t('dbt_mitra_name')}</div>
@@ -45,7 +51,8 @@ export default function CallMitraModal({ isOpen, onClose }) {
               fontSize: '14px',
             }}
           >
-            <span>📞 {t('modal_mitra_call_now')} (+91 98220 41829)</span>
+            <Phone size={16} strokeWidth={2} />
+            <span>{t('modal_mitra_call_now')} (+91 98220 41829)</span>
           </a>
 
           <a
@@ -66,7 +73,8 @@ export default function CallMitraModal({ isOpen, onClose }) {
               fontSize: '14px',
             }}
           >
-            <span>💬 {t('modal_mitra_whatsapp')}</span>
+            <MessageCircle size={16} strokeWidth={2} />
+            <span>{t('modal_mitra_whatsapp')}</span>
           </a>
         </div>
       </div>

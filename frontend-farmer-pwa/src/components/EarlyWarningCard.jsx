@@ -1,6 +1,23 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { fetchEarlyWarnings } from '../services/api';
+import {
+  TriangleAlert,
+  Wheat,
+  MapPin,
+  Flame,
+  AlertCircle,
+  ListFilter,
+  RotateCcw,
+  Sprout,
+  Leaf,
+  Clock,
+  Search,
+  Lightbulb,
+  ShieldCheck,
+  CheckCircle2,
+  Zap,
+} from 'lucide-react';
 
 export default function EarlyWarningCard({ user }) {
   const { t } = useTranslation();
@@ -102,7 +119,7 @@ export default function EarlyWarningCard({ user }) {
           text: '#b91c1c',
           dot: '#ef4444',
           label: 'HIGH RISK',
-          icon: '⚠️',
+          icon: <TriangleAlert size={16} strokeWidth={2.2} color="#b91c1c" />,
         };
       case 'MEDIUM':
         return {
@@ -111,7 +128,7 @@ export default function EarlyWarningCard({ user }) {
           text: '#b45309',
           dot: '#f59e0b',
           label: 'MEDIUM RISK',
-          icon: '⚡',
+          icon: <Zap size={16} strokeWidth={2.2} color="#b45309" />,
         };
       default:
         return {
@@ -120,7 +137,7 @@ export default function EarlyWarningCard({ user }) {
           text: '#15803d',
           dot: '#22c55e',
           label: 'LOW RISK',
-          icon: '✅',
+          icon: <CheckCircle2 size={16} strokeWidth={2.2} color="#15803d" />,
         };
     }
   };
@@ -130,7 +147,9 @@ export default function EarlyWarningCard({ user }) {
       {/* 1. Header Bar */}
       <div className="card-header-line">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '20px' }}>⚠️</span>
+          <div className="card-feature-icon-box" style={{ background: '#fef3c7', color: '#b45309' }}>
+            <TriangleAlert size={18} strokeWidth={2.2} />
+          </div>
           <div>
             <div className="card-category-label" style={{ color: '#b45309', letterSpacing: '0.06em' }}>
               {t('ew_badge')}
@@ -172,7 +191,7 @@ export default function EarlyWarningCard({ user }) {
           className={`ew-tab-btn ${selectedFieldId === 'all' ? 'active' : ''}`}
           onClick={() => setSelectedFieldId('all')}
         >
-          <span>🌾</span>
+          <Wheat size={13} strokeWidth={2} />
           <span>{t('ew_all_fields')} (3)</span>
         </button>
         {defaultFields.map((f) => (
@@ -181,7 +200,7 @@ export default function EarlyWarningCard({ user }) {
             className={`ew-tab-btn ${selectedFieldId === f.id ? 'active' : ''}`}
             onClick={() => setSelectedFieldId(f.id)}
           >
-            <span>📍</span>
+            <MapPin size={12} strokeWidth={2} />
             <span>{f.name.split(' ')[0]} {f.name.split(' ')[1]}</span>
           </button>
         ))}
@@ -189,27 +208,33 @@ export default function EarlyWarningCard({ user }) {
 
       {/* 3. Severity Filter Pills */}
       <div className="ew-filter-bar">
-        <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '11px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase' }}>
             Filter:
           </span>
           <button
             className={`ew-pill-btn ${severityFilter === 'active' ? 'active' : ''}`}
             onClick={() => setSeverityFilter('active')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            🔥 Active Risks (High & Med)
+            <Flame size={12} strokeWidth={2} />
+            <span>Active Risks (High & Med)</span>
           </button>
           <button
             className={`ew-pill-btn ${severityFilter === 'high' ? 'active' : ''}`}
             onClick={() => setSeverityFilter('high')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            🔴 High Only ({warningData?.high_count ?? 0})
+            <AlertCircle size={12} strokeWidth={2} />
+            <span>High Only ({warningData?.high_count ?? 0})</span>
           </button>
           <button
             className={`ew-pill-btn ${severityFilter === 'all' ? 'active' : ''}`}
             onClick={() => setSeverityFilter('all')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            📋 All ({warningData?.total_risks_evaluated ?? 0})
+            <ListFilter size={12} strokeWidth={2} />
+            <span>All ({warningData?.total_risks_evaluated ?? 0})</span>
           </button>
         </div>
       </div>
@@ -225,10 +250,11 @@ export default function EarlyWarningCard({ user }) {
       {/* 5. Error State */}
       {!loading && error && (
         <div className="weather-error-container" style={{ padding: '24px 16px' }}>
-          <span style={{ fontSize: '28px' }}>⚠️</span>
+          <TriangleAlert size={28} strokeWidth={2} color="#f59e0b" />
           <p className="weather-error-text">{error}</p>
-          <button className="weather-retry-btn" onClick={loadWarnings}>
-            🔄 {t('ew_retry')}
+          <button className="weather-retry-btn" onClick={loadWarnings} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <RotateCcw size={13} strokeWidth={2} />
+            {t('ew_retry')}
           </button>
         </div>
       )}
@@ -236,8 +262,10 @@ export default function EarlyWarningCard({ user }) {
       {/* 6. Empty State */}
       {!loading && !error && displayedWarnings.length === 0 && (
         <div className="ew-empty-box">
-          <span style={{ fontSize: '32px' }}>🌱</span>
-          <div style={{ fontWeight: 700, fontSize: '14px', color: '#166534', marginTop: '6px' }}>
+          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', color: '#16a34a' }}>
+            <Sprout size={28} strokeWidth={2.2} />
+          </div>
+          <div style={{ fontWeight: 700, fontSize: '14px', color: '#166534', marginTop: '8px' }}>
             {t('ew_empty_title')}
           </div>
           <p style={{ fontSize: '12px', color: '#64748b', margin: '4px 0 10px' }}>
@@ -268,9 +296,9 @@ export default function EarlyWarningCard({ user }) {
                 {/* Warning Card Header */}
                 <div className="ew-card-top-row">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '18px' }}>{item.icon}</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center' }}>{badge.icon}</span>
                     <strong style={{ fontSize: '14px', color: badge.text, letterSpacing: '0.02em' }}>
-                      {item.title.toUpperCase()}
+                      {item.title.replace(/^[^\w\s]+/g, '').trim().toUpperCase()}
                     </strong>
                   </div>
 
@@ -297,31 +325,36 @@ export default function EarlyWarningCard({ user }) {
 
                 {/* Field & Crop Association */}
                 <div className="ew-meta-chips">
-                  <span className="ew-chip">
-                    📍 <strong>{item.field_name}</strong>
+                  <span className="ew-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    <MapPin size={11} strokeWidth={2} />
+                    <strong>{item.field_name}</strong>
                   </span>
-                  <span className="ew-chip">
-                    🌱 {item.crop} ({item.crop_stage})
+                  <span className="ew-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    <Leaf size={11} strokeWidth={2} />
+                    {item.crop} ({item.crop_stage})
                   </span>
                   {item.urgency && (
-                    <span className="ew-chip urgency-chip" style={{ color: badge.text }}>
-                      ⏱️ {item.urgency}
+                    <span className="ew-chip urgency-chip" style={{ color: badge.text, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                      <Clock size={11} strokeWidth={2} />
+                      {item.urgency}
                     </span>
                   )}
                 </div>
 
                 {/* Reason (Agronomic Microclimate Cause) */}
                 <div className="ew-detail-block">
-                  <div className="ew-detail-label">
-                    <span>🔍</span> {t('ew_reason_label')}:
+                  <div className="ew-detail-label" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <Search size={12} strokeWidth={2} />
+                    <span>{t('ew_reason_label')}:</span>
                   </div>
                   <div className="ew-detail-text">{item.reason}</div>
                 </div>
 
                 {/* Recommended Action */}
                 <div className="ew-action-block">
-                  <div className="ew-detail-label" style={{ color: '#166534' }}>
-                    <span>💡</span> {t('ew_action_label')}:
+                  <div className="ew-detail-label" style={{ color: '#166534', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <Lightbulb size={12} strokeWidth={2} />
+                    <span>{t('ew_action_label')}:</span>
                   </div>
                   <div className="ew-action-text">{item.action}</div>
                 </div>
@@ -344,8 +377,8 @@ export default function EarlyWarningCard({ user }) {
       )}
 
       {/* 8. Decision-Support Disclaimer Footnote */}
-      <div className="card-footer-notice-box" style={{ marginTop: '8px' }}>
-        <span style={{ fontSize: '14px' }}>🛡️</span>
+      <div className="card-footer-notice-box" style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <ShieldCheck size={14} strokeWidth={2} style={{ flexShrink: 0 }} />
         <span style={{ fontSize: '11px', color: '#64748b', lineHeight: 1.35 }}>
           {t('ew_disclaimer')}
         </span>

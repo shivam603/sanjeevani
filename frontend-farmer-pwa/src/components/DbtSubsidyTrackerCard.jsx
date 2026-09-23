@@ -1,5 +1,14 @@
 import React from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
+import {
+  Landmark,
+  ShieldCheck,
+  Wheat,
+  CreditCard,
+  Building2,
+  Phone,
+  BadgeCheck,
+} from 'lucide-react';
 
 export default function DbtSubsidyTrackerCard({ onCallMitra }) {
   const { t } = useTranslation();
@@ -11,7 +20,7 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'Credited',
       badgeClass: 'dbt-badge-success',
       desc: '17th Installment direct credit to Bank of Baroda (...4019).',
-      icon: '🏛️',
+      icon: Landmark,
     },
     {
       scheme: 'PMFBY Rabi Insurance',
@@ -19,7 +28,7 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'Active Policy',
       badgeClass: 'dbt-badge-active',
       desc: 'Policy #PB-RABI-9012 • 4.2 Acres Wheat protected against hail & unseasonal rain.',
-      icon: '🛡️',
+      icon: ShieldCheck,
     },
     {
       scheme: 'Fertilizer Direct Subsidy',
@@ -27,7 +36,7 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'e-PoS Linked',
       badgeClass: 'dbt-badge-info',
       desc: 'Aadhaar authenticated allocation for Neem Coated Urea & DAP.',
-      icon: '🌾',
+      icon: Wheat,
     },
     {
       scheme: 'KCC 3% Interest Subvention',
@@ -35,7 +44,7 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'Eligible',
       badgeClass: 'dbt-badge-warning',
       desc: 'Prompt repayment subvention verified with Khanna FPO cluster.',
-      icon: '💳',
+      icon: CreditCard,
     },
   ];
 
@@ -43,12 +52,17 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
     <div className="agritrust-card dbt-card-enhanced" style={{ gap: '12px' }}>
       {/* 1. Header */}
       <div className="card-header-line">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ fontSize: '15px' }}>🏛️</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="card-feature-icon-box">
+            <Landmark size={18} strokeWidth={2.2} />
+          </div>
           <span className="card-category-label">{t('dbt_category')}</span>
         </div>
 
-        <span className="green-tag-pill">{t('dbt_verified')}</span>
+        <span className="green-tag-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+          <BadgeCheck size={13} strokeWidth={2.2} />
+          {t('dbt_verified')}
+        </span>
       </div>
 
       {/* 2. Main Headline */}
@@ -58,7 +72,9 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
 
       {/* 3. Bank Account & Aadhaar Mapping Bar */}
       <div className="dbt-bank-mapping-strip">
-        <span className="dbt-bank-icon">🏦</span>
+        <span className="dbt-bank-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Building2 size={16} strokeWidth={2} />
+        </span>
         <div className="dbt-bank-text">
           <strong>Bank of Baroda</strong> • A/C Ending in <strong>...4019</strong>
         </div>
@@ -67,21 +83,26 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
 
       {/* 4. Structured DBT Scheme Status Bars */}
       <div className="dbt-status-bars-list">
-        {dbtItems.map((item, idx) => (
-          <div key={idx} className="dbt-scheme-row-bar">
-            <div className="dbt-scheme-left">
-              <span className="dbt-scheme-icon">{item.icon}</span>
-              <div className="dbt-scheme-info">
-                <div className="dbt-scheme-title-row">
-                  <span className="dbt-scheme-name">{item.scheme}</span>
-                  <span className={`dbt-status-pill ${item.badgeClass}`}>{item.status}</span>
+        {dbtItems.map((item, idx) => {
+          const IconComp = item.icon;
+          return (
+            <div key={idx} className="dbt-scheme-row-bar">
+              <div className="dbt-scheme-left">
+                <span className="dbt-scheme-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <IconComp size={16} strokeWidth={2} />
+                </span>
+                <div className="dbt-scheme-info">
+                  <div className="dbt-scheme-title-row">
+                    <span className="dbt-scheme-name">{item.scheme}</span>
+                    <span className={`dbt-status-pill ${item.badgeClass}`}>{item.status}</span>
+                  </div>
+                  <div className="dbt-scheme-desc">{item.desc}</div>
                 </div>
-                <div className="dbt-scheme-desc">{item.desc}</div>
               </div>
+              <span className="dbt-scheme-amount">{item.amount}</span>
             </div>
-            <span className="dbt-scheme-amount">{item.amount}</span>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* 5. Field Mitra Profile Bar */}
@@ -105,9 +126,7 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
           title={t('dbt_call_btn')}
           type="button"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-          </svg>
+          <Phone size={14} strokeWidth={2} />
           <span>{t('dbt_call_btn')}</span>
         </button>
       </div>

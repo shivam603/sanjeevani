@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Printer, X, Wheat, CreditCard, Sparkles } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
 export default function DownloadPassportModal({ isOpen, onClose, farmerData }) {
@@ -40,12 +41,13 @@ export default function DownloadPassportModal({ isOpen, onClose, farmerData }) {
               className="passport-print-btn"
               onClick={handlePrint}
               title={t('pass_print_btn')}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
             >
-              <span>🖨️</span>
+              <Printer size={15} strokeWidth={2} />
               <span>{t('pass_print_btn')}</span>
             </button>
-            <button className="modal-close-btn" onClick={onClose} aria-label="Close">
-              ✕
+            <button className="modal-close-btn" onClick={onClose} aria-label="Close" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <X size={18} strokeWidth={2} />
             </button>
           </div>
         </div>
@@ -83,8 +85,8 @@ export default function DownloadPassportModal({ isOpen, onClose, farmerData }) {
 
           {/* Farmer & Land Demographics Card */}
           <div className="passport-section-box">
-            <div className="passport-section-header">
-              <span>🌾</span>
+            <div className="passport-section-header" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Wheat size={16} strokeWidth={2} style={{ color: '#13532f' }} />
               <span>I. CADASTRAL & FARMER IDENTIFICATION (ZERO-PII)</span>
             </div>
             <div className="passport-demographics-grid">
@@ -117,8 +119,8 @@ export default function DownloadPassportModal({ isOpen, onClose, farmerData }) {
 
           {/* Financial Capacity & Credit Health Grid */}
           <div className="passport-section-box">
-            <div className="passport-section-header">
-              <span>💳</span>
+            <div className="passport-section-header" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CreditCard size={16} strokeWidth={2} style={{ color: '#13532f' }} />
               <span>II. VERIFIED CREDIT CAPACITY & CEILING SUMMARY</span>
             </div>
             <div className="passport-score-limit-grid">
@@ -147,8 +149,8 @@ export default function DownloadPassportModal({ isOpen, onClose, farmerData }) {
 
           {/* Machine Learning Model Explainability (TreeSHAP) */}
           <div className="passport-section-box">
-            <div className="passport-section-header">
-              <span>🧠</span>
+            <div className="passport-section-header" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sparkles size={16} strokeWidth={2} style={{ color: '#13532f' }} />
               <span>III. XAI MODEL EXPLAINABILITY (TREESHAP FEATURE CONTRIBUTIONS)</span>
             </div>
             <div className="passport-shap-table">

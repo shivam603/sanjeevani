@@ -1,6 +1,37 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { fetchWeatherAction } from '../services/api';
+import {
+  CloudSun,
+  CloudRain,
+  Sun,
+  CloudLightning,
+  Droplets,
+  Wind,
+  Thermometer,
+  MapPin,
+  Wheat,
+  Sprout,
+  Clock,
+  Zap,
+  TriangleAlert,
+  RotateCcw,
+  Info,
+} from 'lucide-react';
+
+function getWeatherIcon(conditionStr, size = 16) {
+  const cond = (conditionStr || '').toLowerCase();
+  if (cond.includes('rain') || cond.includes('shower') || cond.includes('drizzle')) {
+    return <CloudRain size={size} strokeWidth={2} />;
+  }
+  if (cond.includes('thunder') || cond.includes('storm')) {
+    return <CloudLightning size={size} strokeWidth={2} />;
+  }
+  if (cond.includes('cloud') || cond.includes('overcast')) {
+    return <CloudSun size={size} strokeWidth={2} />;
+  }
+  return <Sun size={size} strokeWidth={2} />;
+}
 
 export default function SowingAdvisoryCard({ user }) {
   const { t } = useTranslation();
@@ -87,7 +118,9 @@ export default function SowingAdvisoryCard({ user }) {
       <div className="agritrust-card weather-action-card" style={{ gap: '14px', minHeight: '260px' }}>
         <div className="card-header-line">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '18px' }}>🌦️</span>
+            <div className="card-feature-icon-box">
+              <CloudSun size={18} strokeWidth={2.2} />
+            </div>
             <span className="card-category-label">{t('wa_badge')}</span>
           </div>
           <span style={{ fontSize: '12px', color: '#64748b' }}>{farmLocation.split(',')[0]}</span>
@@ -109,19 +142,22 @@ export default function SowingAdvisoryCard({ user }) {
       <div className="agritrust-card weather-action-card" style={{ gap: '14px', minHeight: '220px' }}>
         <div className="card-header-line">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '18px' }}>🌦️</span>
+            <div className="card-feature-icon-box">
+              <CloudSun size={18} strokeWidth={2.2} />
+            </div>
             <span className="card-category-label">{t('wa_badge')}</span>
           </div>
           <span style={{ fontSize: '12px', color: '#64748b' }}>{farmLocation.split(',')[0]}</span>
         </div>
 
         <div className="weather-error-container">
-          <span style={{ fontSize: '24px' }}>⚠️</span>
+          <TriangleAlert size={26} strokeWidth={2} color="#f59e0b" />
           <p className="weather-error-text">
             {error || t('wa_error')}
           </p>
-          <button className="weather-retry-btn" onClick={() => loadWeather(false)}>
-            🔄 {t('wa_retry')}
+          <button className="weather-retry-btn" onClick={() => loadWeather(false)} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <RotateCcw size={13} strokeWidth={2} />
+            {t('wa_retry')}
           </button>
         </div>
       </div>
@@ -136,7 +172,9 @@ export default function SowingAdvisoryCard({ user }) {
       {/* 1. Header Line: Badge + Last Updated */}
       <div className="card-header-line">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '18px' }}>🌦️</span>
+          <div className="card-feature-icon-box">
+            <CloudSun size={18} strokeWidth={2.2} />
+          </div>
           <span className="card-category-label" style={{ letterSpacing: '0.06em' }}>
             {t('wa_badge')}
           </span>
@@ -152,17 +190,30 @@ export default function SowingAdvisoryCard({ user }) {
 
       {/* 2. Farm & Crop Context Pill Bar: Flow (Location -> Field -> Crop -> Stage) */}
       <div className="weather-context-chip-row">
-        <span className="weather-context-chip">📍 {farmLocation.split(',')[0]}</span>
-        <span className="weather-context-chip">🌾 {cropName} ({fieldArea})</span>
-        <span className="weather-context-chip stage-chip">🌱 {cropStage}</span>
+        <span className="weather-context-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+          <MapPin size={12} strokeWidth={2} />
+          {farmLocation.split(',')[0]}
+        </span>
+        <span className="weather-context-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+          <Wheat size={12} strokeWidth={2} />
+          {cropName} ({fieldArea})
+        </span>
+        <span className="weather-context-chip stage-chip" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+          <Sprout size={12} strokeWidth={2} />
+          {cropStage}
+        </span>
       </div>
 
       {/* 3. Primary Weather Action Banner (The Decision-Support Callout) */}
       <div className="weather-action-banner">
         <div className="weather-action-header-row">
-          <span className="weather-timing-badge">⏱️ {timing}</span>
-          <span className="weather-condition-tag">
-            {current.icon} {current.condition}
+          <span className="weather-timing-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <Clock size={12} strokeWidth={2} />
+            {timing}
+          </span>
+          <span className="weather-condition-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+            {getWeatherIcon(current.condition, 14)}
+            <span>{current.condition}</span>
           </span>
         </div>
 
@@ -175,7 +226,9 @@ export default function SowingAdvisoryCard({ user }) {
         {/* Recommended Action */}
         <div className="weather-action-box">
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-            <span style={{ fontSize: '16px', marginTop: '1px' }}>⚡</span>
+            <div style={{ marginTop: '2px', color: '#16a34a' }}>
+              <Zap size={16} strokeWidth={2.2} />
+            </div>
             <div>
               <span className="weather-action-tag">{t('wa_action_label')}:</span>
               <p className="weather-action-main-text">{recommended_action}</p>
@@ -188,31 +241,46 @@ export default function SowingAdvisoryCard({ user }) {
       <div className="weather-telemetry-grid">
         {/* Metric 1: Temperature */}
         <div className="weather-telemetry-pill">
-          <span className="telemetry-pill-label">Temp</span>
+          <span className="telemetry-pill-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+            <Thermometer size={11} strokeWidth={2} />
+            Temp
+          </span>
           <span className="telemetry-pill-value">{Math.round(current.temperature)}°C</span>
         </div>
 
         {/* Metric 2: Rain Probability */}
         <div className="weather-telemetry-pill highlight-rain">
-          <span className="telemetry-pill-label">{t('wa_rain_prob')}</span>
-          <span className="telemetry-pill-value">💧 {current.rain_probability}%</span>
+          <span className="telemetry-pill-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+            <CloudRain size={11} strokeWidth={2} />
+            {t('wa_rain_prob')}
+          </span>
+          <span className="telemetry-pill-value">{current.rain_probability}%</span>
         </div>
 
         {/* Metric 3: Expected Rainfall */}
         <div className="weather-telemetry-pill">
-          <span className="telemetry-pill-label">{t('wa_rainfall')}</span>
+          <span className="telemetry-pill-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+            <Droplets size={11} strokeWidth={2} />
+            {t('wa_rainfall')}
+          </span>
           <span className="telemetry-pill-value">{current.rainfall_mm} mm</span>
         </div>
 
         {/* Metric 4: Wind Speed */}
         <div className="weather-telemetry-pill">
-          <span className="telemetry-pill-label">{t('wa_wind')}</span>
+          <span className="telemetry-pill-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+            <Wind size={11} strokeWidth={2} />
+            {t('wa_wind')}
+          </span>
           <span className="telemetry-pill-value">{Math.round(current.wind_speed_kmh)} km/h</span>
         </div>
 
         {/* Metric 5: Humidity */}
         <div className="weather-telemetry-pill">
-          <span className="telemetry-pill-label">{t('wa_humidity')}</span>
+          <span className="telemetry-pill-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+            <Droplets size={11} strokeWidth={2} />
+            {t('wa_humidity')}
+          </span>
           <span className="telemetry-pill-value">{current.humidity}%</span>
         </div>
       </div>
@@ -237,12 +305,17 @@ export default function SowingAdvisoryCard({ user }) {
                   title={`${d.day_name}: ${d.agricultural_impact}`}
                 >
                   <span className="weather-day-name">{d.day_name}</span>
-                  <span className="weather-day-icon">{d.icon}</span>
+                  <span className="weather-day-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {getWeatherIcon(d.condition || d.agricultural_impact, 16)}
+                  </span>
                   <span className="weather-day-temp">
                     {Math.round(d.temp_max)}°<span className="weather-min-temp">/{Math.round(d.temp_min)}°</span>
                   </span>
                   {d.rain_probability > 0 && (
-                    <span className="weather-day-rain-prob">💧 {d.rain_probability}%</span>
+                    <span className="weather-day-rain-prob" style={{ display: 'inline-flex', alignItems: 'center', gap: '2px' }}>
+                      <Droplets size={10} strokeWidth={2} />
+                      {d.rain_probability}%
+                    </span>
                   )}
                 </button>
               );
@@ -260,8 +333,9 @@ export default function SowingAdvisoryCard({ user }) {
       )}
 
       {/* 6. Legal / Decision-Support Disclaimer */}
-      <div className="weather-disclaimer-row">
-        <span>ℹ️ {disclaimer || t('wa_disclaimer')}</span>
+      <div className="weather-disclaimer-row" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+        <Info size={13} strokeWidth={2} style={{ flexShrink: 0 }} />
+        <span>{disclaimer || t('wa_disclaimer')}</span>
       </div>
     </div>
   );

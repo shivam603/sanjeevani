@@ -1,4 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import {
+  CalendarDays,
+  CalendarClock,
+  Wheat,
+  Sprout,
+  Droplets,
+  FlaskConical,
+  ShieldCheck,
+  CheckCircle2,
+  Check,
+  Clock,
+  FileText,
+  RotateCcw,
+  ArrowRight,
+  Info,
+  AlertCircle,
+  X,
+} from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import {
   generateCropSchedule,
@@ -6,6 +24,23 @@ import {
   saveCalendarToStorage,
   CROP_TEMPLATES,
 } from '../services/calendarEngine';
+
+function getActivityIcon(act) {
+  const text = `${act?.activity_name || ''} ${act?.crop_stage || ''}`.toLowerCase();
+  if (text.includes('irrigation') || text.includes('water')) {
+    return <Droplets size={14} strokeWidth={2} style={{ color: '#0284c7' }} />;
+  }
+  if (text.includes('harvest')) {
+    return <Wheat size={14} strokeWidth={2} style={{ color: '#d97706' }} />;
+  }
+  if (text.includes('fertilizer') || text.includes('urea') || text.includes('nutrient') || text.includes('spray')) {
+    return <FlaskConical size={14} strokeWidth={2} style={{ color: '#7c3aed' }} />;
+  }
+  if (text.includes('weed') || text.includes('protection') || text.includes('disease') || text.includes('fungicide')) {
+    return <ShieldCheck size={14} strokeWidth={2} style={{ color: '#059669' }} />;
+  }
+  return <Sprout size={14} strokeWidth={2} style={{ color: '#15803d' }} />;
+}
 
 export default function CropCalendarModal({ isOpen, onClose, user }) {
   const { t } = useTranslation();
@@ -309,14 +344,17 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
         {/* Modal Header */}
         <div className="cc-modal-header">
           <div className="cc-modal-title-group">
-            <span className="cc-modal-badge">🌱 {t('cc_badge') || 'PERSONALIZED CROP CALENDAR'}</span>
+            <span className="cc-modal-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+              <Sprout size={13} strokeWidth={2.2} />
+              <span>{t('cc_badge') || 'PERSONALIZED CROP CALENDAR'}</span>
+            </span>
             <h2 className="cc-modal-title">{t('cc_title') || 'Crop Lifecycle Timeline & Activities'}</h2>
             <p className="cc-modal-subtitle">
               {t('cc_subtitle') || 'Personalized to your field, crop, sowing date, and growth stage.'}
             </p>
           </div>
-          <button type="button" className="cc-modal-close-btn" onClick={onClose}>
-            ✕
+          <button type="button" className="cc-modal-close-btn" onClick={onClose} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <X size={18} strokeWidth={2} />
           </button>
         </div>
 
@@ -338,7 +376,7 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
             </select>
           </div>
 
-          <div className="cc-flow-arrow">➔</div>
+          <div className="cc-flow-arrow"><ArrowRight size={14} strokeWidth={2} /></div>
 
           {/* 2. CROP SELECTOR */}
           <div className="cc-flow-item">
@@ -348,15 +386,15 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
               value={selectedCrop}
               onChange={(e) => handleCropChange(e.target.value)}
             >
-              <option value="Wheat (HD 3086)">🌾 Wheat (HD 3086)</option>
-              <option value="Mustard (Pusa Bold)">🌼 Mustard (Pusa Bold)</option>
-              <option value="Rice (Pusa 1121)">🍚 Rice / Paddy</option>
-              <option value="Sugarcane (Co 0238)">🎋 Sugarcane</option>
-              <option value="Gram / Chana">🌱 Chickpea / Gram</option>
+              <option value="Wheat (HD 3086)">Wheat (HD 3086)</option>
+              <option value="Mustard (Pusa Bold)">Mustard (Pusa Bold)</option>
+              <option value="Rice (Pusa 1121)">Rice / Paddy</option>
+              <option value="Sugarcane (Co 0238)">Sugarcane</option>
+              <option value="Gram / Chana">Chickpea / Gram</option>
             </select>
           </div>
 
-          <div className="cc-flow-arrow">➔</div>
+          <div className="cc-flow-arrow"><ArrowRight size={14} strokeWidth={2} /></div>
 
           {/* 3. SOWING DATE PICKER */}
           <div className="cc-flow-item">
@@ -369,7 +407,7 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
             />
           </div>
 
-          <div className="cc-flow-arrow">➔</div>
+          <div className="cc-flow-arrow"><ArrowRight size={14} strokeWidth={2} /></div>
 
           {/* 4. CURRENT STAGE DISPLAY */}
           <div className="cc-flow-item">
@@ -384,7 +422,10 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
         {/* CROP LIFECYCLE TIMELINE VISUALIZATION */}
         <div className="cc-lifecycle-timeline-box">
           <div className="cc-timeline-banner">
-            <span className="cc-timeline-heading">🌾 Crop Growth Lifecycle Stage Pathway</span>
+            <span className="cc-timeline-heading" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <Wheat size={16} strokeWidth={2} style={{ color: '#059669' }} />
+              <span>Crop Growth Lifecycle Stage Pathway</span>
+            </span>
             <span className="cc-timeline-stat">
               {calendarData?.completed_count || 0} of {calendarData?.total_activities || 0} stages completed (
               {calendarData?.progress_percentage || 0}%)
@@ -403,8 +444,8 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
                     className={`cc-pipeline-step ${isCompleted ? 'step-completed' : ''} ${isNext ? 'step-current' : ''}`}
                     title={`${act.crop_stage} — ${act.activity_name}`}
                   >
-                    <div className="cc-step-bubble">
-                      {isCompleted ? '✓' : act.icon || '🌱'}
+                    <div className="cc-step-bubble" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {isCompleted ? <Check size={14} strokeWidth={2.5} /> : getActivityIcon(act)}
                     </div>
                     <div className="cc-step-details">
                       <span className="cc-step-name">{act.crop_stage}</span>
@@ -412,7 +453,9 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
                     </div>
                   </div>
                   {index < calendarData.activities.length - 1 && (
-                    <div className={`cc-pipeline-connector ${isCompleted ? 'connector-done' : ''}`}>➔</div>
+                    <div className={`cc-pipeline-connector ${isCompleted ? 'connector-done' : ''}`}>
+                      <ArrowRight size={12} strokeWidth={2} />
+                    </div>
                   )}
                 </React.Fragment>
               );
@@ -450,7 +493,10 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
             </div>
 
             <div className="cc-activities-meta">
-              <span className="cc-approx-note">ℹ️ All timing dates are <strong>Estimated / Approximate</strong>.</span>
+              <span className="cc-approx-note" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <Info size={13} strokeWidth={2} />
+                <span>All timing dates are <strong>Estimated / Approximate</strong>.</span>
+              </span>
             </div>
           </div>
 
@@ -458,7 +504,7 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
           <div className="cc-activities-list">
             {filteredActivities.length === 0 ? (
               <div className="cc-empty-activities">
-                <span>🎉 No {activeTab} activities for this view.</span>
+                <span>No {activeTab} activities for this view.</span>
               </div>
             ) : (
               filteredActivities.map((act) => {
@@ -479,26 +525,29 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
                           className={`cc-act-checkbox ${act.is_completed ? 'checked' : ''}`}
                           onClick={() => handleToggleComplete(act.id)}
                           title={act.is_completed ? 'Mark as Incomplete' : 'Mark as Completed'}
+                          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                         >
-                          {act.is_completed ? '✓' : ''}
+                          {act.is_completed ? <Check size={12} strokeWidth={2.4} /> : ''}
                         </button>
                       </div>
 
                       <div className="cc-act-body">
                         <div className="cc-act-header-row">
-                          <span className="cc-act-icon">{act.icon || '🌱'}</span>
+                          <span className="cc-act-icon">{getActivityIcon(act)}</span>
                           <h4 className="cc-act-title">{act.activity_name}</h4>
                           <span className="cc-act-stage-pill">{act.crop_stage}</span>
                           {getStatusBadge(act)}
                         </div>
 
                         <div className="cc-act-timing-row">
-                          <span className="cc-act-date-pill">
-                            📅 {act.approximate_date}
+                          <span className="cc-act-date-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                            <CalendarDays size={12} strokeWidth={2} />
+                            <span>{act.approximate_date}</span>
                           </span>
                           {act.due_label && (
-                            <span className="cc-act-due-pill">
-                              ⏰ {act.due_label}
+                            <span className="cc-act-due-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                              <Clock size={12} strokeWidth={2} />
+                              <span>{act.due_label}</span>
                             </span>
                           )}
                           <span className="cc-act-das-pill">
@@ -509,7 +558,10 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
                         {/* Note Section */}
                         {act.notes && !isEditingNote && (
                           <div className="cc-act-notes-box">
-                            <span className="cc-note-prefix">📝 Field Note:</span> {act.notes}
+                            <span className="cc-note-prefix" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                              <FileText size={12} strokeWidth={2} />
+                              <span>Field Note:</span>
+                            </span> {act.notes}
                           </div>
                         )}
 
@@ -582,8 +634,10 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
                         className="cc-action-btn cc-btn-note"
                         onClick={() => handleOpenAddNote(act)}
                         title="Add or Edit Task Note"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
                       >
-                        {act.notes ? '✏️ Edit Note' : '📝 Add Note'}
+                        <FileText size={12} strokeWidth={2} />
+                        <span>{act.notes ? 'Edit Note' : 'Add Note'}</span>
                       </button>
 
                       {!act.is_completed && (
@@ -592,8 +646,10 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
                           className="cc-action-btn cc-btn-reschedule"
                           onClick={() => handleOpenReschedule(act)}
                           title="Reschedule approximate activity date"
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
                         >
-                          📅 Reschedule
+                          <CalendarClock size={12} strokeWidth={2} />
+                          <span>Reschedule</span>
                         </button>
                       )}
 
@@ -601,8 +657,19 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
                         type="button"
                         className={`cc-action-btn cc-btn-status-toggle ${act.is_completed ? 'completed' : ''}`}
                         onClick={() => handleToggleComplete(act.id)}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
                       >
-                        {act.is_completed ? (t('cc_reopen') || '↩ Reopen') : (t('cc_mark_done') || '✓ Mark Done')}
+                        {act.is_completed ? (
+                          <>
+                            <RotateCcw size={12} strokeWidth={2} />
+                            <span>{t('cc_reopen') || 'Reopen'}</span>
+                          </>
+                        ) : (
+                          <>
+                            <CheckCircle2 size={12} strokeWidth={2} />
+                            <span>{t('cc_mark_done') || 'Mark Done'}</span>
+                          </>
+                        )}
                       </button>
                     </div>
                   </div>
@@ -614,8 +681,9 @@ export default function CropCalendarModal({ isOpen, onClose, user }) {
 
         {/* Modal Footer */}
         <div className="cc-modal-footer">
-          <div className="cc-footer-disclaimer">
-            <span>⚠️ {calendarData?.disclaimer || t('cc_disclaimer')}</span>
+          <div className="cc-footer-disclaimer" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <AlertCircle size={13} strokeWidth={2} style={{ color: '#d97706', flexShrink: 0 }} />
+            <span>{calendarData?.disclaimer || t('cc_disclaimer')}</span>
           </div>
           <button type="button" className="cc-btn-modal-close" onClick={onClose}>
             {t('fm_close') || 'Close Calendar'}

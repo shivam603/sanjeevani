@@ -1,4 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import {
+  CloudRain,
+  CloudSun,
+  TrendingUp,
+  TriangleAlert,
+  Leaf,
+  Landmark,
+  CalendarClock,
+  Bell,
+  ArrowRight,
+  X,
+} from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 import {
   loadStoredNotifications,
@@ -6,6 +18,35 @@ import {
   markAsRead,
   generateSmartNotifications,
 } from '../services/notificationEngine';
+
+function getNotificationIcon(notif) {
+  const cat = notif?.category;
+  const icon = notif?.icon;
+
+  if (cat === 'WEATHER' || icon === 'CloudRain' || icon === '🌧️') {
+    return icon === 'CloudSun' || icon === '☀️' ? (
+      <CloudSun size={20} strokeWidth={2} />
+    ) : (
+      <CloudRain size={20} strokeWidth={2} />
+    );
+  }
+  if (cat === 'MARKET' || icon === 'TrendingUp' || icon === '💰') {
+    return <TrendingUp size={20} strokeWidth={2} />;
+  }
+  if (cat === 'RISK' || icon === 'TriangleAlert' || icon === '⚠️') {
+    return <TriangleAlert size={20} strokeWidth={2} />;
+  }
+  if (cat === 'CROP' || icon === 'Leaf' || icon === '🌾') {
+    return <Leaf size={20} strokeWidth={2} />;
+  }
+  if (cat === 'SCHEME' || icon === 'Landmark' || icon === '🏛️') {
+    return <Landmark size={20} strokeWidth={2} />;
+  }
+  if (cat === 'CALENDAR' || icon === 'CalendarClock' || icon === '📅') {
+    return <CalendarClock size={20} strokeWidth={2} />;
+  }
+  return <Bell size={20} strokeWidth={2} />;
+}
 
 export default function DashboardNotificationBanner({
   user,
@@ -86,7 +127,7 @@ export default function DashboardNotificationBanner({
     <div className={`dashboard-notif-banner ${isHighRisk ? 'high-risk' : ''}`}>
       <div className="dnb-left" onClick={handleAction} style={{ cursor: 'pointer' }}>
         <div className="dnb-icon-box">
-          <span>{topNotification.icon || '🔔'}</span>
+          {getNotificationIcon(topNotification)}
         </div>
 
         <div className="dnb-content">
@@ -109,8 +150,10 @@ export default function DashboardNotificationBanner({
           type="button"
           className="dnb-btn-action"
           onClick={handleAction}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
         >
-          {topNotification.actionLabel || 'View Detail'} →
+          <span>{topNotification.actionLabel || 'View Detail'}</span>
+          <ArrowRight size={14} strokeWidth={2} />
         </button>
 
         <button
@@ -118,8 +161,9 @@ export default function DashboardNotificationBanner({
           className="dnb-btn-dismiss"
           onClick={handleDismiss}
           title="Mark as read"
+          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          ✕
+          <X size={14} strokeWidth={2} />
         </button>
       </div>
     </div>

@@ -1,6 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { fetchMandiFilters, fetchMandiPrices, calculateMandiRevenue } from '../services/api';
+import {
+  TrendingUp,
+  TrendingDown,
+  Store,
+  MapPin,
+  Wheat,
+  Building2,
+  Clock,
+  RotateCcw,
+  Package,
+  CheckCircle2,
+  Lightbulb,
+  IndianRupee,
+  TriangleAlert,
+  Tag,
+} from 'lucide-react';
 
 export default function KhannaMandiCard({ onOpenMandiModal, user }) {
   const { t } = useTranslation();
@@ -103,18 +119,33 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
       {/* 1. Header Line: Badge + Demo/Live Label */}
       <div className="card-header-line">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '18px' }}>💰</span>
+          <div className="card-feature-icon-box">
+            <Store size={18} strokeWidth={2.2} />
+          </div>
           <span className="card-category-label">{t('mi_badge')}</span>
         </div>
 
-        <span className="mandi-datasource-badge">
-          {mandiData?.data_source === 'Live AGMARKNET Feed' ? '🟢 ' + t('mi_live_badge') : '🏷️ ' + t('mi_demo_badge')}
+        <span className="mandi-datasource-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+          {mandiData?.data_source === 'Live AGMARKNET Feed' ? (
+            <>
+              <span className="sat-pulsing-dot" style={{ width: '6px', height: '6px', backgroundColor: '#10B981' }}></span>
+              <span>{t('mi_live_badge')}</span>
+            </>
+          ) : (
+            <>
+              <Tag size={12} strokeWidth={2} />
+              <span>{t('mi_demo_badge')}</span>
+            </>
+          )}
         </span>
       </div>
 
       {/* 2. Crop Selector Chips (Horizontal Scrollable) */}
       <div className="mandi-crop-selector-row">
-        <span className="mandi-selector-prefix">🌾 {t('mi_crop_label')}:</span>
+        <span className="mandi-selector-prefix" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+          <Wheat size={14} strokeWidth={2} />
+          {t('mi_crop_label')}:
+        </span>
         <div className="mandi-crop-chips">
           {cropsList.map((c) => (
             <button
@@ -132,7 +163,10 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
       {/* 3. Location Selectors: State & District */}
       <div className="mandi-location-row">
         <div className="mandi-select-group">
-          <label className="mandi-select-label">📍 {t('mi_state_label')}</label>
+          <label className="mandi-select-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <MapPin size={12} strokeWidth={2} />
+            {t('mi_state_label')}
+          </label>
           <select
             className="mandi-select-dropdown"
             value={selectedState}
@@ -154,7 +188,10 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
         </div>
 
         <div className="mandi-select-group">
-          <label className="mandi-select-label">🏢 {t('mi_district_label')}</label>
+          <label className="mandi-select-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <Building2 size={12} strokeWidth={2} />
+            {t('mi_district_label')}
+          </label>
           <select
             className="mandi-select-dropdown"
             value={selectedDistrict}
@@ -176,29 +213,37 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
           type="button"
           className={`mandi-sort-btn ${sortBy === 'highest' ? 'active' : ''}`}
           onClick={() => setSortBy('highest')}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
         >
-          ⬆️ {t('mi_sort_highest')}
+          <TrendingUp size={12} strokeWidth={2} />
+          {t('mi_sort_highest')}
         </button>
         <button
           type="button"
           className={`mandi-sort-btn ${sortBy === 'lowest' ? 'active' : ''}`}
           onClick={() => setSortBy('lowest')}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
         >
-          ⬇️ {t('mi_sort_lowest')}
+          <TrendingDown size={12} strokeWidth={2} />
+          {t('mi_sort_lowest')}
         </button>
         <button
           type="button"
           className={`mandi-sort-btn ${sortBy === 'nearest' ? 'active' : ''}`}
           onClick={() => setSortBy('nearest')}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
         >
-          📍 {t('mi_sort_nearest')}
+          <MapPin size={12} strokeWidth={2} />
+          {t('mi_sort_nearest')}
         </button>
         <button
           type="button"
           className={`mandi-sort-btn ${sortBy === 'recent' ? 'active' : ''}`}
           onClick={() => setSortBy('recent')}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
         >
-          ⏱️ {t('mi_sort_recent')}
+          <Clock size={12} strokeWidth={2} />
+          {t('mi_sort_recent')}
         </button>
       </div>
 
@@ -210,15 +255,16 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
         </div>
       ) : error ? (
         <div className="weather-error-container" style={{ padding: '20px 0' }}>
-          <span style={{ fontSize: '24px' }}>⚠️</span>
+          <TriangleAlert size={26} strokeWidth={2} color="#f59e0b" />
           <p className="weather-error-text">{t('mi_error')}</p>
-          <button className="weather-retry-btn" onClick={loadPrices}>
-            🔄 {t('mi_retry')}
+          <button className="weather-retry-btn" onClick={loadPrices} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <RotateCcw size={13} strokeWidth={2} />
+            {t('mi_retry')}
           </button>
         </div>
       ) : !mandiData || mandiData.mandis.length === 0 ? (
         <div className="weather-loading-container" style={{ padding: '20px 0' }}>
-          <span style={{ fontSize: '20px' }}>📦</span>
+          <Package size={22} strokeWidth={2} color="#64748b" />
           <span className="weather-loading-text">{t('mi_empty')}</span>
         </div>
       ) : (
@@ -237,18 +283,25 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
                     <div className="mandi-item-title-row">
                       <span className="mandi-item-name">{m.mandi_name}</span>
                       {m.distance_km && (
-                        <span className="mandi-distance-badge">📍 {m.distance_km} km</span>
+                        <span className="mandi-distance-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                          <MapPin size={10} strokeWidth={2} />
+                          {m.distance_km} km
+                        </span>
                       )}
                       {m.is_most_recent && (
-                        <span className="mandi-recent-badge">✓ Latest</span>
+                        <span className="mandi-recent-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                          <CheckCircle2 size={11} strokeWidth={2.4} />
+                          Latest
+                        </span>
                       )}
                     </div>
 
                     <div className="mandi-range-subtext">
                       Min: ₹{m.min_price.toLocaleString('en-IN')} &bull; Max: ₹{m.max_price.toLocaleString('en-IN')}
                     </div>
-                    <div className="mandi-updated-time">
-                      ⏱️ {m.last_updated} &bull; Arrivals: {m.arrival_volume_qtl.toLocaleString('en-IN')} Qtl
+                    <div className="mandi-updated-time" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Clock size={11} strokeWidth={2} />
+                      <span>{m.last_updated} &bull; Arrivals: {m.arrival_volume_qtl.toLocaleString('en-IN')} Qtl</span>
                     </div>
                   </div>
 
@@ -266,7 +319,10 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
           {/* 7. Market Insight Banner (Factual Comparison) */}
           {mandiData.market_insight && (
             <div className="mandi-insight-banner">
-              <span className="mandi-insight-tag">💡 {t('mi_insight_title')}:</span>
+              <span className="mandi-insight-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <Lightbulb size={13} strokeWidth={2} />
+                {t('mi_insight_title')}:
+              </span>
               <p className="mandi-insight-text">{mandiData.market_insight}</p>
             </div>
           )}
@@ -274,7 +330,10 @@ export default function KhannaMandiCard({ onOpenMandiModal, user }) {
           {/* 8. Estimated Gross Revenue Calculator */}
           <div className="mandi-revenue-calculator-box">
             <div className="mandi-calc-header-row">
-              <span className="mandi-calc-title">💵 {t('mi_revenue_title')}</span>
+              <span className="mandi-calc-title" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <IndianRupee size={15} strokeWidth={2.2} />
+                {t('mi_revenue_title')}
+              </span>
               <span className="mandi-calc-target-mandi">
                 Selected: <strong>{selectedMandiName || mandiData.mandis[0].mandi_name}</strong>
               </span>

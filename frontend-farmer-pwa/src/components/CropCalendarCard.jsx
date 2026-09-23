@@ -5,6 +5,34 @@ import {
   loadSavedCalendar,
   saveCalendarToStorage,
 } from '../services/calendarEngine';
+import {
+  CalendarDays,
+  CalendarClock,
+  Wheat,
+  Clock,
+  Sprout,
+  Lightbulb,
+  CheckCircle2,
+  RotateCcw,
+  Info,
+  Droplets,
+  ShieldCheck,
+  ArrowRight,
+} from 'lucide-react';
+
+function getActivityIcon(activityName, fallbackIcon, size = 16) {
+  const name = (activityName || '').toLowerCase();
+  if (name.includes('irrigation') || name.includes('water') || name.includes('rain')) {
+    return <Droplets size={size} strokeWidth={2} />;
+  }
+  if (name.includes('harvest') || name.includes('heading') || name.includes('grain')) {
+    return <Wheat size={size} strokeWidth={2} />;
+  }
+  if (name.includes('fertilizer') || name.includes('protection') || name.includes('spray')) {
+    return <ShieldCheck size={size} strokeWidth={2} />;
+  }
+  return <Sprout size={size} strokeWidth={2} />;
+}
 
 export default function CropCalendarCard({ onOpenCalendar, user }) {
   const { t } = useTranslation();
@@ -227,9 +255,15 @@ export default function CropCalendarCard({ onOpenCalendar, user }) {
           <div className="crop-calendar-next-banner">
             <div className="cc-next-header-row">
               <div className="cc-next-title-group">
-                <span className="cc-next-kicker">📅 {t('cc_next_badge') || 'NEXT ACTIVITY'}</span>
-                <h3 className="cc-next-activity-name">
-                  {nextAct?.icon || '🌱'} {nextAct?.activity_name || 'Crop Monitoring & Irrigation'}
+                <span className="cc-next-kicker" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <CalendarClock size={13} strokeWidth={2} />
+                  {t('cc_next_badge') || 'NEXT ACTIVITY'}
+                </span>
+                <h3 className="cc-next-activity-name" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ color: '#059669', display: 'inline-flex' }}>
+                    {getActivityIcon(nextAct?.activity_name, nextAct?.icon, 18)}
+                  </span>
+                  <span>{nextAct?.activity_name || 'Crop Monitoring & Irrigation'}</span>
                 </h3>
               </div>
 
@@ -248,17 +282,26 @@ export default function CropCalendarCard({ onOpenCalendar, user }) {
 
             <div className="cc-next-meta-grid">
               <div className="cc-meta-cell">
-                <span className="cc-meta-label">🌾 {t('cc_current_stage') || 'Crop Stage'}</span>
+                <span className="cc-meta-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <Wheat size={12} strokeWidth={2} />
+                  {t('cc_current_stage') || 'Crop Stage'}
+                </span>
                 <span className="cc-meta-val">{nextAct?.crop_stage || activeField.cropStage || 'Vegetative'}</span>
               </div>
               <div className="cc-meta-cell">
-                <span className="cc-meta-label">⏰ {t('cc_due') || 'Due Date'}</span>
+                <span className="cc-meta-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <Clock size={12} strokeWidth={2} />
+                  {t('cc_due') || 'Due Date'}
+                </span>
                 <span className="cc-meta-val cc-due-val">
                   {nextAct?.due_label ? `${nextAct.due_label} (${nextAct.approximate_date})` : (nextAct?.approximate_date || 'Approximate')}
                 </span>
               </div>
               <div className="cc-meta-cell">
-                <span className="cc-meta-label">🌱 {t('cc_sowing_date') || 'Sowing Date'}</span>
+                <span className="cc-meta-label" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                  <Sprout size={12} strokeWidth={2} />
+                  {t('cc_sowing_date') || 'Sowing Date'}
+                </span>
                 <span className="cc-meta-val">
                   {calendarData?.sowing_date_formatted || 'Approximate'} ({calendarData?.days_after_sowing || 0} DAS)
                 </span>
@@ -266,8 +309,9 @@ export default function CropCalendarCard({ onOpenCalendar, user }) {
             </div>
 
             {nextAct?.notes && (
-              <div className="cc-next-notes-preview">
-                <strong>💡 Note:</strong> {nextAct.notes}
+              <div className="cc-next-notes-preview" style={{ display: 'flex', alignItems: 'flex-start', gap: '5px' }}>
+                <Lightbulb size={13} strokeWidth={2} style={{ flexShrink: 0, marginTop: '2px', color: '#b45309' }} />
+                <span><strong>Note:</strong> {nextAct.notes}</span>
               </div>
             )}
 
@@ -279,8 +323,19 @@ export default function CropCalendarCard({ onOpenCalendar, user }) {
                   className={`cc-btn-quick-complete ${nextAct.is_completed ? 'completed' : ''}`}
                   onClick={handleQuickComplete}
                   title="Toggle Completion Status"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}
                 >
-                  {nextAct.is_completed ? (t('cc_reopen') || '↩ Reopen Task') : (t('cc_mark_done') || '✓ Mark Complete')}
+                  {nextAct.is_completed ? (
+                    <>
+                      <RotateCcw size={13} strokeWidth={2} />
+                      <span>{t('cc_reopen') || 'Reopen Task'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 size={14} strokeWidth={2.2} />
+                      <span>{t('cc_mark_done') || 'Mark Complete'}</span>
+                    </>
+                  )}
                 </button>
               )}
 
@@ -288,8 +343,11 @@ export default function CropCalendarCard({ onOpenCalendar, user }) {
                 type="button"
                 className="cc-btn-open-full"
                 onClick={onOpenCalendar}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}
               >
-                {t('cc_open_calendar') || '📅 View Full Crop Calendar'} →
+                <CalendarDays size={14} strokeWidth={2} />
+                <span>{t('cc_open_calendar') || 'View Full Crop Calendar'}</span>
+                <ArrowRight size={13} strokeWidth={2} />
               </button>
             </div>
           </div>
@@ -321,7 +379,13 @@ export default function CropCalendarCard({ onOpenCalendar, user }) {
                     title={`${act.crop_stage}: ${act.activity_name} (${act.approximate_date})`}
                     onClick={onOpenCalendar}
                   >
-                    <span className="cc-step-icon">{act.icon || '🌱'}</span>
+                    <span className="cc-step-icon">
+                      {isDone ? (
+                        <CheckCircle2 size={13} strokeWidth={2.4} color="#16a34a" />
+                      ) : (
+                        getActivityIcon(act.activity_name, act.icon, 13)
+                      )}
+                    </span>
                     <span className="cc-step-label">{act.crop_stage.split(' ')[0]}</span>
                   </div>
                 );
@@ -329,8 +393,9 @@ export default function CropCalendarCard({ onOpenCalendar, user }) {
             </div>
           </div>
 
-          <div className="crop-calendar-disclaimer-bar">
-            <span>ℹ️ {calendarData?.disclaimer || t('cc_disclaimer')}</span>
+          <div className="crop-calendar-disclaimer-bar" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Info size={12} strokeWidth={2} style={{ flexShrink: 0 }} />
+            <span>{calendarData?.disclaimer || t('cc_disclaimer')}</span>
           </div>
         </div>
       )}
