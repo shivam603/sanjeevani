@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation, SUPPORTED_LANGUAGES } from '../i18n/LanguageContext';
+import { loadStoredNotifications } from '../services/notificationEngine';
 
 export default function TopNavbar({
   activeTab,
@@ -10,10 +11,31 @@ export default function TopNavbar({
   user,
   onOpenPassport,
   onSwitchToLender,
+  onOpenNotifications,
 }) {
   const { t, currentLang, setCurrentLang } = useTranslation();
   const [showLangMenu, setShowLangMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  const userId = user?.id || 'ramesh_patel';
+
+  const updateCount = () => {
+    const list = loadStoredNotifications(userId);
+    const unread = list.filter((n) => !n.read).length;
+    setUnreadCount(unread);
+  };
+
+  useEffect(() => {
+    updateCount();
+    const handleUpdate = () => updateCount();
+    window.addEventListener('sanjeevani_notifications_updated', handleUpdate);
+    window.addEventListener('storage', handleUpdate);
+    return () => {
+      window.removeEventListener('sanjeevani_notifications_updated', handleUpdate);
+      window.removeEventListener('storage', handleUpdate);
+    };
+  }, [userId]);
 
   const currentLangLabel = SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.label || 'English';
 
@@ -125,8 +147,20 @@ export default function TopNavbar({
             )}
           </div>
 
-          {/* Utility Cluster: Speech & Language */}
+          {/* Utility Cluster: Notifications, Speech & Language */}
           <div className="nav-utility-cluster">
+            {/* Smart Notification Center Trigger */}
+            <button
+              type="button"
+              className="nav-notification-btn"
+              onClick={onOpenNotifications}
+              title="Open Smart Notification Center"
+              aria-label="Notifications"
+            >
+              <span style={{ fontSize: '16px' }}>🔔</span>
+              {unreadCount > 0 && <span className="nav-notif-badge">{unreadCount}</span>}
+            </button>
+
             {/* Voice Reading Trigger */}
             <button
               className={`nav-voice-btn ${isSpeaking ? 'active-speaking' : ''}`}

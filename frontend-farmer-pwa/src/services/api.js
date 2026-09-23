@@ -716,4 +716,53 @@ export async function fetchEarlyWarnings(params = {}) {
   return { success: true, data: fallbackResults, isFallback: true };
 }
 
+/**
+ * Fetch Personalized Crop Calendar
+ * Calls GET /api/v1/crop-calendar with offline fallback to calendarEngine
+ */
+export async function fetchCropCalendar(params = {}) {
+  const crop = encodeURIComponent(params.crop || 'Wheat (HD 3086)');
+  const fieldName = encodeURIComponent(params.fieldName || 'Field A (Plot #184/A)');
+  const sowingDateParam = params.sowingDate ? `&sowing_date=${encodeURIComponent(params.sowingDate)}` : '';
+  const currentStageParam = params.currentStage ? `&current_stage=${encodeURIComponent(params.currentStage)}` : '';
+
+  const cacheKey = `sanjeevani_calendar_api_${params.fieldId || 'default'}_${params.crop || 'wheat'}`;
+
+  try {
+    const res = await fetch(
+      `${API_BASE}/crop-calendar?crop=${crop}&field_name=${fieldName}${sowingDateParam}${currentStageParam}`,
+      { headers: { Accept: 'application/json' } }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      try {
+        localStorage.setItem(cacheKey, JSON.stringify({ data, savedAt: new Date().toISOString() }));
+      } catch (e) {}
+      return { success: true, data };
+    }
+  } catch (err) {
+    console.warn('Network crop calendar fetch failed, using offline calendar engine:', err);
+  }
+
+  // Check offline cached calendar
+  try {
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      return { success: true, data: parsed.data, isCached: true };
+    }
+  } catch (e) {}
+
+  // Fallback to client-side calendar engine
+  const { generateCropSchedule } = await import('./calendarEngine');
+  const fallbackSchedule = generateCropSchedule({
+    crop: params.crop || 'Wheat (HD 3086)',
+    sowingDateStr: params.sowingDate,
+    fieldName: params.fieldName || 'Field A (Plot #184/A)',
+    currentStage: params.currentStage || 'Grain Filling',
+  });
+
+  return { success: true, data: fallbackSchedule, isFallback: true };
+}
+
 export const apiClient = new ApiClient();

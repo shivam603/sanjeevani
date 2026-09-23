@@ -21,6 +21,10 @@ import SatelliteFieldMapCard from './components/SatelliteFieldMapCard';
 import CreditScoreSimulatorCard from './components/CreditScoreSimulatorCard';
 import DownloadPassportModal from './components/DownloadPassportModal';
 import EarlyWarningCard from './components/EarlyWarningCard';
+import CropCalendarCard from './components/CropCalendarCard';
+import CropCalendarModal from './components/CropCalendarModal';
+import DashboardNotificationBanner from './components/DashboardNotificationBanner';
+import NotificationCenterModal from './components/NotificationCenterModal';
 import LenderTerminalApp from './lender/LenderTerminalApp';
 
 export default function App() {
@@ -62,6 +66,23 @@ export default function App() {
   const [isMitraModalOpen, setIsMitraModalOpen] = useState(false);
   const [isMandiModalOpen, setIsMandiModalOpen] = useState(false);
   const [isPassportModalOpen, setIsPassportModalOpen] = useState(false);
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
+  const [isNotificationCenterOpen, setIsNotificationCenterOpen] = useState(false);
+
+  const handleNavigateToNotificationTarget = (targetSection) => {
+    if (targetSection === 'crop-calendar-section') {
+      setIsCalendarModalOpen(true);
+      return;
+    }
+    if (targetSection === 'dbt-mitra-section') {
+      setIsMitraModalOpen(true);
+      return;
+    }
+    const elem = document.getElementById(targetSection);
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleLogin = (userData) => {
     if (userData.role === 'lender') {
@@ -225,6 +246,7 @@ export default function App() {
         user={user}
         onOpenPassport={() => setIsPassportModalOpen(true)}
         onSwitchToLender={handleSwitchToLender}
+        onOpenNotifications={() => setIsNotificationCenterOpen(true)}
       />
 
       <main className="agritrust-main-container">
@@ -233,6 +255,13 @@ export default function App() {
           onPlayAudio={(speed) => handleSpeak(speed)}
           isPlaying={isSpeaking}
           user={user}
+        />
+
+        {/* Centralized Smart Notification Engine Banner (High-Priority Unread Alerts) */}
+        <DashboardNotificationBanner
+          user={user}
+          onOpenNotificationCenter={() => setIsNotificationCenterOpen(true)}
+          onNavigateToSection={handleNavigateToNotificationTarget}
         />
 
         {/* 3. Immersive Hero Section: Pre-Approved Rabi Sowing Loan Assistance */}
@@ -265,6 +294,11 @@ export default function App() {
           {/* Predictive Early-Warning System (Prioritized Agro-Meteorological Risk Intelligence) */}
           <div id="early-warning-section" className="dashboard-full-width-card" style={{ marginTop: '16px' }}>
             <EarlyWarningCard user={user} />
+          </div>
+
+          {/* Personalized Crop Calendar (Next Activity & Lifecycle Timeline) */}
+          <div id="crop-calendar-section" className="dashboard-full-width-card" style={{ marginTop: '16px' }}>
+            <CropCalendarCard onOpenCalendar={() => setIsCalendarModalOpen(true)} user={user} />
           </div>
         </div>
 
@@ -320,6 +354,21 @@ export default function App() {
         isOpen={isPassportModalOpen}
         onClose={() => setIsPassportModalOpen(false)}
         farmerData={user}
+      />
+
+      {/* Personalized Crop Calendar Modal */}
+      <CropCalendarModal
+        isOpen={isCalendarModalOpen}
+        onClose={() => setIsCalendarModalOpen(false)}
+        user={user}
+      />
+
+      {/* Centralized Smart Notification Center Drawer */}
+      <NotificationCenterModal
+        isOpen={isNotificationCenterOpen}
+        onClose={() => setIsNotificationCenterOpen(false)}
+        user={user}
+        onNavigateToSection={handleNavigateToNotificationTarget}
       />
     </div>
   );
