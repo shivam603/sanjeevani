@@ -20,6 +20,7 @@ import MandiRatesModal from './components/MandiRatesModal';
 import SatelliteFieldMapCard from './components/SatelliteFieldMapCard';
 import CreditScoreSimulatorCard from './components/CreditScoreSimulatorCard';
 import DownloadPassportModal from './components/DownloadPassportModal';
+import EarlyWarningCard from './components/EarlyWarningCard';
 import LenderTerminalApp from './lender/LenderTerminalApp';
 
 export default function App() {
@@ -260,13 +261,18 @@ export default function App() {
           <div id="safe-limit-section" className="dashboard-full-width-card">
             <SafeLimitCard onSpeakLimit={handleSafeLimitSpeak} />
           </div>
+
+          {/* Predictive Early-Warning System (Prioritized Agro-Meteorological Risk Intelligence) */}
+          <div id="early-warning-section" className="dashboard-full-width-card" style={{ marginTop: '16px' }}>
+            <EarlyWarningCard user={user} />
+          </div>
         </div>
 
         {/* 4. Interactive Satellite Field Map & What-If Credit Score Simulator */}
         <div className="interactive-features-grid">
-          {/* Option D: Interactive Satellite Field Map (NDVI Heatmap) */}
+          {/* Option D: Interactive Satellite Field Map (NDVI Heatmap & Boundaries) */}
           <div id="satellite-map-section">
-            <SatelliteFieldMapCard />
+            <SatelliteFieldMapCard user={user} />
           </div>
 
           {/* Option C: What-If Credit Score & Limit Simulator */}
@@ -279,11 +285,11 @@ export default function App() {
 
         {/* 5. Bottom 3-Card Row */}
         <div className="bottom-three-cards-grid" id="mandi-weather-section">
-          {/* Card 1: Khanna Mandi Live Price */}
-          <KhannaMandiCard onOpenMandiModal={() => setIsMandiModalOpen(true)} />
+          {/* Card 1: Mandi Price Intelligence */}
+          <KhannaMandiCard onOpenMandiModal={() => setIsMandiModalOpen(true)} user={user} />
 
-          {/* Card 2: Sowing Advisory & 5-Day Weather */}
-          <SowingAdvisoryCard />
+          {/* Card 2: Weather-to-Action & 5-Day Forecast */}
+          <SowingAdvisoryCard user={user} />
 
           {/* Card 3: DBT Subsidy Tracker & Field Mitra */}
           <DbtSubsidyTrackerCard onCallMitra={() => setIsMitraModalOpen(true)} />

@@ -1,7 +1,7 @@
 """API v1 master router."""
 
 from fastapi import APIRouter
-from app.api.v1.endpoints import health, auth, consent, ingestion, credit, fpo, lender, demo
+from app.api.v1.endpoints import health, auth, consent, ingestion, credit, fpo, lender, demo, weather, mandi, warnings
 
 api_router = APIRouter()
 
@@ -13,3 +13,6 @@ api_router.include_router(credit.router, tags=["Credit Intelligence & Passports"
 api_router.include_router(fpo.router, tags=["FPO Cooperative Intelligence"])
 api_router.include_router(lender.router)
 api_router.include_router(demo.router, prefix="/demo", tags=["Demonstration Showcase"])
+api_router.include_router(weather.router, prefix="/weather", tags=["Weather Intelligence & Actions"])
+api_router.include_router(mandi.router, prefix="/mandi", tags=["Mandi Price Intelligence"])
+api_router.include_router(warnings.router, prefix="/warnings", tags=["Predictive Early-Warning System"])
