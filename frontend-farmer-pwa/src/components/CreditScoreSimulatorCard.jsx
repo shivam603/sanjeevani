@@ -122,8 +122,8 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
       <div className="sim-comparison-wrapper">
         {/* Score Circular Gauge */}
         <div className="sim-gauge-column">
-          <div className="score-circular-gauge-wrapper">
-            <svg width="120" height="120" viewBox="0 0 120 120" style={{ transform: 'rotate(-90deg)' }}>
+          <div className="score-circular-gauge-wrapper" style={{ width: '120px', height: '120px' }}>
+            <svg width="120" height="120" viewBox="0 0 120 120" style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', display: 'block' }}>
               {/* Background Track */}
               <circle
                 cx="60"
@@ -165,11 +165,11 @@ export default function CreditScoreSimulatorCard({ onOpenPassport }) {
               )}
             </svg>
 
-            <div className="score-gauge-center-text">
-              <span className="score-gauge-number" style={{ fontSize: '32px', color: '#13532f' }}>
+            <div className="score-gauge-center-text" style={{ position: 'absolute', top: 0, left: 0, width: '120px', height: '120px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none', margin: 0, padding: 0 }}>
+              <span className="score-gauge-number" style={{ fontSize: '32px', fontWeight: 800, color: '#13532f', lineHeight: 1, margin: 0, padding: 0, textAlign: 'center' }}>
                 {simulatedScore}
               </span>
-              <span className="score-gauge-subtext">
+              <span className="score-gauge-subtext" style={{ fontSize: '9.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.4px', lineHeight: 1, marginTop: '4px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                 {addedPoints > 0 ? `(+${addedPoints} pts)` : t('ch_score_out_of')}
               </span>
             </div>

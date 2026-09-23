@@ -154,27 +154,24 @@ export default function App() {
 
         {/* 4. Core Financial Health & Sovereign Privacy Modules */}
         <div className="main-dashboard-grid">
-          {/* Column 1: Dominant Credit Score & Safe Limit */}
-          <div className="dashboard-col">
-            {/* Card 1: Sovereign Rating & Credit Health (78 / 100) */}
+          {/* Card 1: Sovereign Rating & Credit Health (78 / 100) */}
+          <div id="credit-health-section" className="dashboard-card-wrapper">
             <CreditHealthCard
               score={78}
               maxScore={100}
               onOpenSimulator={() => document.getElementById('score-simulator-section')?.scrollIntoView({ behavior: 'smooth' })}
               onOpenPassport={() => setIsPassportModalOpen(true)}
             />
-
-            {/* Card 2: Smart Stress-Free Cap (Safe Limit: ₹1,65,000) */}
-            <div id="safe-limit-section">
-              <SafeLimitCard onSpeakLimit={handleSafeLimitSpeak} />
-            </div>
           </div>
 
-          {/* Column 2: Sovereign Consent Vault (Apple Privacy & Security Control) */}
-          <div className="dashboard-col">
-            <div id="consent-vault-section">
-              <SovereignConsentVaultCard />
-            </div>
+          {/* Card 2: Sovereign Consent Vault (Apple Privacy & Security Control) */}
+          <div id="consent-vault-section" className="dashboard-card-wrapper">
+            <SovereignConsentVaultCard />
+          </div>
+
+          {/* Card 3: Smart Stress-Free Cap (Safe Limit: ₹1,65,000) */}
+          <div id="safe-limit-section" className="dashboard-full-width-card">
+            <SafeLimitCard onSpeakLimit={handleSafeLimitSpeak} />
           </div>
         </div>
 

@@ -783,15 +783,45 @@ body {
 
 .main-dashboard-grid {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
-.dashboard-col {
+.dashboard-card-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  height: 100%;
+}
+
+.dashboard-full-width-card {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.credit-health-card-unified,
+.sovereign-vault-card-unified {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.credit-health-card-unified .card-footer-notice-box {
+  margin-top: auto;
+}
+
+.safe-limit-content-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .safe-limit-content-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ==========================================================================
@@ -965,6 +995,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -972,6 +1004,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  pointer-events: none;
+  box-sizing: border-box;
 }
 
 .score-gauge-number {
@@ -1829,6 +1863,11 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 6px;
+}
+
+.sim-gauge-column .score-circular-gauge-wrapper {
+  width: 120px;
+  height: 120px;
 }
 
 .sim-gauge-caption {

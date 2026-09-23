@@ -16,7 +16,7 @@ export default function SovereignConsentVaultCard({ onConsentChange }) {
   };
 
   return (
-    <div className="agritrust-card">
+    <div className="agritrust-card sovereign-vault-card-unified">
       {/* Category & Title with Zero Data Sharing Badge */}
       <div className="card-header-line">
         <div>

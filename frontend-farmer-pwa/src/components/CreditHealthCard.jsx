@@ -15,7 +15,7 @@ export default function CreditHealthCard({
   const strokeDashoffset = circumference - (score / maxScore) * circumference;
 
   return (
-    <div className="agritrust-card">
+    <div className="agritrust-card credit-health-card-unified">
       {/* Category & Title */}
       <div className="card-header-line">
         <div>
@@ -33,7 +33,7 @@ export default function CreditHealthCard({
       <div className="score-gauge-container">
         {/* Circular Ring Gauge */}
         <div className="score-circular-gauge-wrapper" style={{ width: '116px', height: '116px' }}>
-          <svg width="116" height="116" viewBox="0 0 116 116" style={{ transform: 'rotate(-90deg)' }}>
+          <svg width="116" height="116" viewBox="0 0 116 116" style={{ transform: 'rotate(-90deg)', transformOrigin: 'center', display: 'block' }}>
             <defs>
               <linearGradient id="scoreGaugeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#059669" />
@@ -70,9 +70,9 @@ export default function CreditHealthCard({
             />
           </svg>
 
-          <div className="score-gauge-center-text">
-            <span className="score-gauge-number" style={{ fontSize: '38px', fontWeight: 800 }}>{score}</span>
-            <span className="score-gauge-subtext">{t('ch_score_out_of')}</span>
+          <div className="score-gauge-center-text" style={{ position: 'absolute', top: 0, left: 0, width: '116px', height: '116px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none', margin: 0, padding: 0 }}>
+            <span className="score-gauge-number" style={{ fontSize: '38px', fontWeight: 800, lineHeight: 1, margin: 0, padding: 0, textAlign: 'center' }}>{score}</span>
+            <span className="score-gauge-subtext" style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1, marginTop: '4px', textAlign: 'center', whiteSpace: 'nowrap' }}>{t('ch_score_out_of')}</span>
           </div>
         </div>
 
