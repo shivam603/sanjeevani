@@ -25,10 +25,17 @@ export const translations = {
     nav_stop_listen: "Stop",
     nav_logout: "Log Out",
 
-    // Login Page
+    // Login & Registration Page
     login_badge: "Sovereign Farmer Credit Gateway",
     login_title: "AgriTrust Passbook",
     login_subtitle: "Zero-broker access to your satellite credit score, safe borrowing limit, and pre-approved loans.",
+    login_tab_signin: "Sign In",
+    login_tab_signup: "Create Account",
+    login_submode_mpin: "MPIN Login",
+    login_submode_otp: "Login with OTP",
+    login_btn_send_otp: "Send Verification OTP",
+    login_btn_verify_otp: "Verify OTP & Open Passbook",
+    login_label_otp: "Enter 4-Digit OTP",
     login_label_id: "Mobile Number / Farmer ID",
     login_placeholder_id: "Enter 10-digit mobile or Farmer ID (e.g. FMR-001)",
     login_label_pin: "Security MPIN / Password",
@@ -40,6 +47,16 @@ export const translations = {
     login_trust_footer: "DPDP Act 2023 Verified • End-to-End Cryptographic Zero-PII • NPCI & AgriStack Enabled",
     login_error_empty: "Please enter your Mobile Number or Farmer ID and MPIN.",
     login_error_invalid: "Invalid credentials. For demonstration, use mobile 9876543210 or click 1-Click Demo.",
+    signup_title: "Create Sovereign Farmer Account",
+    signup_name_label: "Farmer Full Name",
+    signup_mobile_label: "Mobile Number (10 digits)",
+    signup_cluster_label: "Village / Cluster / FPO",
+    signup_acreage_label: "Land Holding (Acres)",
+    signup_crop_label: "Primary Crop",
+    signup_pin_label: "Set 4-Digit Security MPIN",
+    signup_confirm_pin_label: "Confirm MPIN",
+    signup_btn_submit: "Register & Open Passbook",
+    signup_consent_text: "I consent to Sovereign Land & Mandi data registry under DPDPA 2023 with zero-PII sharing.",
 
     // Farmer Greeting Bar
     greeting_salutation: "Namaste",
@@ -225,10 +242,17 @@ export const translations = {
     nav_stop_listen: "रोकें",
     nav_logout: "लॉग आउट",
 
-    // Login Page
+    // Login & Registration Page
     login_badge: "किसान संप्रभु ऋण पोर्टल",
     login_title: "एग्रीट्रस्ट किसान पासबुक",
     login_subtitle: "बिना किसी बिचौलिए के अपने उपग्रह क्रेडिट स्कोर, सुरक्षित ऋण सीमा और पूर्व-स्वीकृत ऋण तक सीधी पहुंच।",
+    login_tab_signin: "लॉग इन",
+    login_tab_signup: "नया खाता बनाएं",
+    login_submode_mpin: "एमपिन लॉगिन",
+    login_submode_otp: "ओटीपी से लॉगिन",
+    login_btn_send_otp: "सत्यापन ओटीपी भेजें",
+    login_btn_verify_otp: "ओटीपी सत्यापित कर पासबुक खोलें",
+    login_label_otp: "४-अंकीय ओटीपी दर्ज करें",
     login_label_id: "मोबाइल नंबर / किसान आईडी",
     login_placeholder_id: "१०-अंकीय मोबाइल नंबर या किसान आईडी दर्ज करें",
     login_label_pin: "सुरक्षा एमपिन (MPIN) / पासवर्ड",
@@ -240,6 +264,16 @@ export const translations = {
     login_trust_footer: "डीपीडीपी अधिनियम २०२३ प्रमाणित • शून्य-पीआईआई क्रिप्टोग्राफ़िक सुरक्षा • एग्रीस्टैक एवं एनपीसीआई अधिकृत",
     login_error_empty: "कृपया अपना मोबाइल नंबर/आईडी और सुरक्षा एमपिन दर्ज करें।",
     login_error_invalid: "अमान्य विवरण। प्रदर्शन हेतु मोबाइल ९८७६५४३२१० उपयोग करें या १-क्लिक डेमो बटन दबाएं।",
+    signup_title: "किसान संप्रभु खाता बनाएं",
+    signup_name_label: "किसान का पूरा नाम",
+    signup_mobile_label: "मोबाइल नंबर (१० अंक)",
+    signup_cluster_label: "गांव / क्लस्टर / एफपीओ",
+    signup_acreage_label: "भूमि जोत (एकड़)",
+    signup_crop_label: "मुख्य फसल",
+    signup_pin_label: "४-अंकीय सुरक्षा एमपिन बनाएं",
+    signup_confirm_pin_label: "सुरक्षा एमपिन की पुष्टि करें",
+    signup_btn_submit: "पंजीकरण कर पासबुक खोलें",
+    signup_consent_text: "मैं डीपीडीपी अधिनियम २०२३ के तहत शून्य-पीआईआई साझाकरण के साथ सार्वभौम रजिस्ट्री हेतु सहमति देता हूँ।",
 
     // Farmer Greeting Bar
     greeting_salutation: "नमस्ते",
@@ -425,10 +459,17 @@ export const translations = {
     nav_stop_listen: "थांबवा",
     nav_logout: "बाहेर पडा",
 
-    // Login Page
+    // Login & Registration Page
     login_badge: "शेतकरी संप्रभू कर्ज प्रवेशद्वार",
     login_title: "ॲग्रीट्रस्ट शेतकरी पासबुक",
     login_subtitle: "कोणत्याही दलालाशिवाय आपला उपग्रह क्रेडिट स्कोअर, सुरक्षित कर्ज मर्यादा आणि मंजूर कर्जांपर्यंत थेट प्रवेश.",
+    login_tab_signin: "लॉगिन",
+    login_tab_signup: "नवीन खाते तयार करा",
+    login_submode_mpin: "एमपिन लॉगिन",
+    login_submode_otp: "ओटीपीने लॉगिन",
+    login_btn_send_otp: "सत्यापन ओटीपी पाठवा",
+    login_btn_verify_otp: "ओटीपी सत्यापित करून पासबुक उघडा",
+    login_label_otp: "४-अंकी ओटीपी टाका",
     login_label_id: "मोबाईल क्रमांक / शेतकरी आयडी",
     login_placeholder_id: "१०-अंकी मोबाईल नंबर किंवा शेतकरी आयडी टाका",
     login_label_pin: "सुरक्षा एमपिन (MPIN) / पासवर्ड",
@@ -440,6 +481,16 @@ export const translations = {
     login_trust_footer: "डीपीडीपी कायदा २०२३ प्रमाणित • शून्य-पीआयआय सुरक्षा • ॲग्रीस्टॅक व एनपीसीआय मान्यताप्राप्त",
     login_error_empty: "कृपया आपला मोबाईल नंबर/आयडी आणि सुरक्षा एमपिन प्रविष्ट करा.",
     login_error_invalid: "अवैध माहिती. प्रात्यक्षिकासाठी मोबाईल ९८७६५४३२१० वापरा किंवा १-क्लिक डेमो बटण दाबा.",
+    signup_title: "शेतकरी संप्रभू खाते तयार करा",
+    signup_name_label: "शेतकऱ्याचे पूर्ण नाव",
+    signup_mobile_label: "मोबाईल नंबर (१० अंक)",
+    signup_cluster_label: "गाव / क्लस्टर / एफपीओ",
+    signup_acreage_label: "जमीन धारणा (एकर)",
+    signup_crop_label: "मुख्य पीक",
+    signup_pin_label: "४-अंकी सुरक्षा एमपिन तयार करा",
+    signup_confirm_pin_label: "सुरक्षा एमपिन पुष्टी करा",
+    signup_btn_submit: "नोंदणी करून पासबुक उघडा",
+    signup_consent_text: "मी डीपीडीपी कायदा २०२३ अंतर्गत शून्य-पीआयआय डेटा नोंदणीस संमती देतो.",
 
     // Farmer Greeting Bar
     greeting_salutation: "नमस्ते",
@@ -625,10 +676,17 @@ export const translations = {
     nav_stop_listen: "நிறுத்துக",
     nav_logout: "வெளியேறு",
 
-    // Login Page
+    // Login & Registration Page
     login_badge: "விவசாயிகள் இறையாண்மை கடன் போர்டல்",
     login_title: "அக்ரிட்ரஸ்ட் உழவர் பாஸ்புக்",
     login_subtitle: "இடைத்தரகர் இன்றி உங்கள் செயற்கைக்கோள் கடன் மதிப்பெண், பாதுகாப்பான கடன் வரம்பு மற்றும் முன்-அங்கீகரிக்கப்பட்ட கடன்களை நேரடியாக அணுகுங்கள்.",
+    login_tab_signin: "உள்நுழைக",
+    login_tab_signup: "புதிய கணக்கு",
+    login_submode_mpin: "MPIN உள்நுழைவு",
+    login_submode_otp: "OTP மூலம் உள்நுழைக",
+    login_btn_send_otp: "சரிபார்ப்பு OTP அனுப்புக",
+    login_btn_verify_otp: "OTP சரிபார்த்து பாஸ்புக் திறக்கவும்",
+    login_label_otp: "4-இலக்க OTP உள்ளிடவும்",
     login_label_id: "மொபைல் எண் / விவசாயி ஐடி",
     login_placeholder_id: "10 இலக்க மொபைல் எண் அல்லது விவசாயி ஐடியை உள்ளிடவும்",
     login_label_pin: "பாதுகாப்பு MPIN / கடவுச்சொல்",
@@ -640,6 +698,16 @@ export const translations = {
     login_trust_footer: "DPDP சட்டம் 2023 சரிபார்க்கப்பட்டது • முழுமையான Zero-PII பாதுகாப்பு • AgriStack மற்றும் NPCI அங்கீகரிக்கப்பட்டது",
     login_error_empty: "தயவுசெய்து மொபைல் எண்/ஐடி மற்றும் பாதுகாப்பு MPIN-ஐ உள்ளிடவும்.",
     login_error_invalid: "தவறான விவரங்கள். செய்முறை விளக்கத்திற்கு 9876543210 ஐப் பயன்படுத்தவும் அல்லது 1-கிளிக் டெமோவை அழுத்தவும்.",
+    signup_title: "விவசாயி கணக்கை உருவாக்கவும்",
+    signup_name_label: "விவசாயியின் முழு பெயர்",
+    signup_mobile_label: "மொபைல் எண் (10 இலக்கங்கள்)",
+    signup_cluster_label: "கிராமம் / கிளஸ்டர் / FPO",
+    signup_acreage_label: "நில அளவு (ஏக்கர்)",
+    signup_crop_label: "முக்கிய பயிர்",
+    signup_pin_label: "4-இலக்க பாதுகாப்பு MPIN உருவாக்கவும்",
+    signup_confirm_pin_label: "பாதுகாப்பு MPIN உறுதிப்படுத்தவும்",
+    signup_btn_submit: "பதிவு செய்து பாஸ்புக் திறக்கவும்",
+    signup_consent_text: "DPDPA 2023 இன் கீழ் Zero-PII பகிர்வுடன் இறையாண்மை பதிவேட்டிற்கு ஒப்புதல் அளிக்கிறேன்.",
 
     // Farmer Greeting Bar
     greeting_salutation: "வணக்கம்",

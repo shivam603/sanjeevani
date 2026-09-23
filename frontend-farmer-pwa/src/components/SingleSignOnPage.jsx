@@ -10,9 +10,29 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
   // Lender Institution Type: 'bank', 'ngo', 'nbfc', 'coop'
   const [lenderType, setLenderType] = useState('bank');
 
-  // Form states - Farmer
+  // Form states - Farmer Login
   const [farmerMobile, setFarmerMobile] = useState('9876543210');
   const [farmerPin, setFarmerPin] = useState('1234');
+
+  // Farmer Mode & Method States
+  const [farmerAuthMode, setFarmerAuthMode] = useState('signin'); // 'signin' | 'signup'
+  const [farmerLoginMethod, setFarmerLoginMethod] = useState('mpin'); // 'mpin' | 'otp'
+
+  // OTP Login States
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpValue, setOtpValue] = useState('');
+  const [otpCountdown, setOtpCountdown] = useState(30);
+
+  // Farmer Sign Up States
+  const [signupName, setSignupName] = useState('');
+  const [signupMobile, setSignupMobile] = useState('');
+  const [signupCluster, setSignupCluster] = useState('Village Bhadson, Ludhiana Cluster');
+  const [signupAcreage, setSignupAcreage] = useState('3.5 Acres');
+  const [signupCrop, setSignupCrop] = useState('Wheat (HD 3086)');
+  const [signupPin, setSignupPin] = useState('');
+  const [signupConfirmPin, setSignupConfirmPin] = useState('');
+  const [showSignupPin, setShowSignupPin] = useState(false);
+  const [signupConsent, setSignupConsent] = useState(true);
 
   // Form states - Lender
   const [lenderEmail, setLenderEmail] = useState('vikram.mehta@sbi.co.in');
@@ -24,6 +44,19 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
   const [errorMsg, setErrorMsg] = useState('');
   const [showLangMenu, setShowLangMenu] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+
+  // Countdown timer for OTP resend
+  React.useEffect(() => {
+    let timer = null;
+    if (otpSent && otpCountdown > 0) {
+      timer = setInterval(() => {
+        setOtpCountdown((prev) => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [otpSent, otpCountdown]);
 
   const currentLangLabel = SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.label || 'English';
 
@@ -100,7 +133,7 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
     }
   };
 
-  // Farmer Form Submit
+  // Farmer Form Submit (MPIN)
   const handleFarmerSubmit = (e) => {
     e.preventDefault();
     if (!farmerMobile.trim() || !farmerPin.trim()) {
@@ -112,6 +145,38 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
       return;
     }
 
+    let farmerName = 'Farmer Member';
+    let cluster = 'Village Bhadson, Ludhiana Cluster';
+    let acreage = '4.2 Acres';
+    let crop = 'Wheat (HD 3086)';
+    let fpo = 'Khanna FPO';
+
+    // Check registered accounts in localStorage
+    try {
+      const stored = localStorage.getItem('agritrust_registered_farmers');
+      if (stored) {
+        const list = JSON.parse(stored);
+        const found = list.find((u) => u.mobile === farmerMobile.trim() || u.id === farmerMobile.trim());
+        if (found) {
+          if (found.pin && found.pin !== farmerPin.trim()) {
+            setErrorMsg('Invalid MPIN for registered account. Please check your MPIN.');
+            return;
+          }
+          farmerName = found.name || farmerName;
+          cluster = found.cluster || cluster;
+          acreage = found.acreage || acreage;
+          crop = found.crop || crop;
+          fpo = found.fpo || fpo;
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    if (farmerMobile.includes('001') || farmerMobile === '9876543210') {
+      farmerName = 'Ramesh Patel';
+    }
+
     setErrorMsg('');
     if (window.speechSynthesis && window.speechSynthesis.speaking) {
       window.speechSynthesis.cancel();
@@ -120,12 +185,148 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
     const userData = {
       role: 'farmer',
       id: farmerMobile.trim(),
-      name: farmerMobile.includes('001') || farmerMobile === '9876543210' ? 'Ramesh Patel' : 'Farmer Member',
-      fpo: 'Khanna FPO',
-      cluster: 'Village Bhadson, Ludhiana Cluster',
-      acreage: '4.2 Acres',
-      crop: 'Wheat (HD 3086)',
+      name: farmerName,
+      fpo,
+      cluster,
+      acreage,
+      crop,
       rememberMe,
+    };
+
+    onLoginSuccess(userData);
+  };
+
+  // Farmer OTP Send Handler
+  const handleSendOtp = () => {
+    const cleanMobile = farmerMobile.trim();
+    if (!cleanMobile || cleanMobile.length < 10) {
+      setErrorMsg('Please enter a valid 10-digit mobile number to receive OTP.');
+      return;
+    }
+    setErrorMsg('');
+    setOtpSent(true);
+    setOtpCountdown(30);
+  };
+
+  // Farmer OTP Verify Handler
+  const handleVerifyOtp = (e) => {
+    e.preventDefault();
+    const cleanMobile = farmerMobile.trim();
+    if (!cleanMobile || cleanMobile.length < 10) {
+      setErrorMsg('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    if (!otpValue.trim() || otpValue.trim().length < 4) {
+      setErrorMsg(t('login_error_invalid_otp') || 'Please enter the 4-digit verification OTP.');
+      return;
+    }
+
+    let farmerName = 'Farmer Member';
+    let cluster = 'Village Bhadson, Ludhiana Cluster';
+    let acreage = '4.2 Acres';
+    let crop = 'Wheat (HD 3086)';
+    let fpo = 'Khanna FPO';
+
+    if (cleanMobile.includes('001') || cleanMobile === '9876543210') {
+      farmerName = 'Ramesh Patel';
+    } else {
+      try {
+        const stored = localStorage.getItem('agritrust_registered_farmers');
+        if (stored) {
+          const list = JSON.parse(stored);
+          const found = list.find((u) => u.mobile === cleanMobile || u.id === cleanMobile);
+          if (found) {
+            farmerName = found.name || farmerName;
+            cluster = found.cluster || cluster;
+            acreage = found.acreage || acreage;
+            crop = found.crop || crop;
+            fpo = found.fpo || fpo;
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    setErrorMsg('');
+    if (window.speechSynthesis && window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+    }
+
+    const userData = {
+      role: 'farmer',
+      id: cleanMobile,
+      name: farmerName,
+      fpo,
+      cluster,
+      acreage,
+      crop,
+      rememberMe,
+    };
+
+    onLoginSuccess(userData);
+  };
+
+  // Farmer Sign Up Handler
+  const handleFarmerSignup = (e) => {
+    e.preventDefault();
+    if (!signupName.trim() || !signupMobile.trim() || !signupPin.trim()) {
+      setErrorMsg('Please fill in all required registration fields.');
+      return;
+    }
+    if (signupMobile.trim().length < 10) {
+      setErrorMsg('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    if (signupPin.trim().length < 4) {
+      setErrorMsg('Security MPIN must be at least 4 digits.');
+      return;
+    }
+    if (signupPin.trim() !== signupConfirmPin.trim()) {
+      setErrorMsg('MPIN and Confirm MPIN do not match.');
+      return;
+    }
+    if (!signupConsent) {
+      setErrorMsg('Please accept the DPDPA 2023 zero-PII data consent to register your account.');
+      return;
+    }
+
+    const newFarmer = {
+      id: signupMobile.trim(),
+      mobile: signupMobile.trim(),
+      name: signupName.trim(),
+      cluster: signupCluster.trim() || 'Village Bhadson, Ludhiana Cluster',
+      acreage: signupAcreage.trim() || '3.5 Acres',
+      crop: signupCrop.trim() || 'Wheat (HD 3086)',
+      pin: signupPin.trim(),
+      fpo: 'Punjab Agri Producer Co.',
+      registeredAt: new Date().toISOString(),
+    };
+
+    try {
+      const stored = localStorage.getItem('agritrust_registered_farmers');
+      const list = stored ? JSON.parse(stored) : [];
+      const filtered = list.filter((u) => u.mobile !== newFarmer.mobile);
+      filtered.push(newFarmer);
+      localStorage.setItem('agritrust_registered_farmers', JSON.stringify(filtered));
+    } catch (err) {
+      console.error('Failed to save farmer account:', err);
+    }
+
+    setErrorMsg('');
+    if (window.speechSynthesis && window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+    }
+
+    const userData = {
+      role: 'farmer',
+      id: newFarmer.id,
+      name: newFarmer.name,
+      fpo: newFarmer.fpo,
+      cluster: newFarmer.cluster,
+      acreage: newFarmer.acreage,
+      crop: newFarmer.crop,
+      rememberMe: true,
     };
 
     onLoginSuccess(userData);
@@ -312,99 +513,465 @@ export default function SingleSignOnPage({ onLoginSuccess }) {
           {/* ========================================================= */}
           {/* ROLE 1: FARMER LOGIN FORM                                 */}
           {/* ========================================================= */}
+          {/* ========================================================= */}
+          {/* ROLE 1: FARMER PORTAL (SIGN IN & CREATE ACCOUNT)         */}
+          {/* ========================================================= */}
           {activeRole === 'farmer' ? (
-            <form onSubmit={handleFarmerSubmit} className="login-form-body">
-              {/* Mobile / ID Field */}
-              <div className="login-input-group">
-                <label className="login-input-label" htmlFor="farmer-id-input">
-                  {t('login_label_id')}
-                </label>
-                <div className="login-input-wrapper">
-                  <span className="login-input-icon">📱</span>
-                  <input
-                    id="farmer-id-input"
-                    type="text"
-                    className="login-text-input"
-                    value={farmerMobile}
-                    onChange={(e) => setFarmerMobile(e.target.value)}
-                    placeholder={t('login_placeholder_id')}
-                    required
-                  />
-                </div>
+            <div className="farmer-auth-container">
+              {/* Top Sub-Navigation: Sign In vs Create Account */}
+              <div className="farmer-auth-mode-switch">
+                <button
+                  type="button"
+                  className={`farmer-mode-pill ${farmerAuthMode === 'signin' ? 'active' : ''}`}
+                  onClick={() => {
+                    setFarmerAuthMode('signin');
+                    setErrorMsg('');
+                  }}
+                >
+                  <span>🔑</span>
+                  <span>{t('login_tab_signin')}</span>
+                </button>
+                <button
+                  type="button"
+                  className={`farmer-mode-pill ${farmerAuthMode === 'signup' ? 'active' : ''}`}
+                  onClick={() => {
+                    setFarmerAuthMode('signup');
+                    setErrorMsg('');
+                  }}
+                >
+                  <span>✨</span>
+                  <span>{t('login_tab_signup')}</span>
+                </button>
               </div>
 
-              {/* MPIN / Password Field */}
-              <div className="login-input-group">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <label className="login-input-label" htmlFor="farmer-pin-input">
-                    {t('login_label_pin')}
-                  </label>
-                  <button
-                    type="button"
-                    className="login-toggle-pw-btn"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? 'Hide' : 'Show'}
+              {farmerAuthMode === 'signin' ? (
+                <>
+                  {/* Sub-Mode Toggle: MPIN vs OTP */}
+                  <div className="farmer-method-toggle-row">
+                    <button
+                      type="button"
+                      className={`farmer-method-chip ${farmerLoginMethod === 'mpin' ? 'active' : ''}`}
+                      onClick={() => {
+                        setFarmerLoginMethod('mpin');
+                        setErrorMsg('');
+                      }}
+                    >
+                      <span>🔒</span>
+                      <span>{t('login_submode_mpin')}</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={`farmer-method-chip ${farmerLoginMethod === 'otp' ? 'active' : ''}`}
+                      onClick={() => {
+                        setFarmerLoginMethod('otp');
+                        setErrorMsg('');
+                      }}
+                    >
+                      <span>📲</span>
+                      <span>{t('login_submode_otp')}</span>
+                    </button>
+                  </div>
+
+                  {farmerLoginMethod === 'mpin' ? (
+                    /* MPIN LOGIN FORM */
+                    <form onSubmit={handleFarmerSubmit} className="login-form-body">
+                      {/* Mobile / ID Field */}
+                      <div className="login-input-group">
+                        <label className="login-input-label" htmlFor="farmer-id-input">
+                          {t('login_label_id')}
+                        </label>
+                        <div className="login-input-wrapper">
+                          <span className="login-input-icon">📱</span>
+                          <input
+                            id="farmer-id-input"
+                            type="text"
+                            className="login-text-input"
+                            value={farmerMobile}
+                            onChange={(e) => setFarmerMobile(e.target.value)}
+                            placeholder={t('login_placeholder_id')}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* MPIN / Password Field */}
+                      <div className="login-input-group">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <label className="login-input-label" htmlFor="farmer-pin-input">
+                            {t('login_label_pin')}
+                          </label>
+                          <button
+                            type="button"
+                            className="login-toggle-pw-btn"
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? 'Hide' : 'Show'}
+                          </button>
+                        </div>
+                        <div className="login-input-wrapper">
+                          <span className="login-input-icon">🔒</span>
+                          <input
+                            id="farmer-pin-input"
+                            type={showPassword ? 'text' : 'password'}
+                            className="login-text-input"
+                            value={farmerPin}
+                            onChange={(e) => setFarmerPin(e.target.value)}
+                            placeholder={t('login_placeholder_pin')}
+                            maxLength={12}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* Remember Me */}
+                      <div className="login-remember-row">
+                        <label className="login-checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={rememberMe}
+                            onChange={(e) => setRememberMe(e.target.checked)}
+                            style={{ display: 'none' }}
+                          />
+                          <span className={`custom-glass-check ${rememberMe ? 'checked' : ''}`}>
+                            {rememberMe && (
+                              <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                                <path d="M2 6.2L4.8 9L10 3" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            )}
+                          </span>
+                          <span>{t('login_remember_me')}</span>
+                        </label>
+                        <span style={{ fontSize: '12px', color: '#10B981', fontWeight: 600 }}>
+                          Demo MPIN: 1234
+                        </span>
+                      </div>
+
+                      {/* Submit Button */}
+                      <button type="submit" className="login-submit-btn">
+                        <span>{t('login_btn_submit')}</span>
+                        <span>→</span>
+                      </button>
+
+                      <div className="login-divider-row">
+                        <span>OR</span>
+                      </div>
+
+                      {/* 1-Click Demo Login */}
+                      <button
+                        type="button"
+                        onClick={handleDemoLogin}
+                        className="login-demo-btn"
+                      >
+                        <span>🚀</span>
+                        <span>{t('login_btn_demo')}</span>
+                      </button>
+                    </form>
+                  ) : (
+                    /* OTP LOGIN FORM */
+                    <form onSubmit={handleVerifyOtp} className="login-form-body">
+                      {/* Mobile Field */}
+                      <div className="login-input-group">
+                        <label className="login-input-label" htmlFor="farmer-otp-mobile">
+                          {t('login_label_id')}
+                        </label>
+                        <div className="login-input-wrapper">
+                          <span className="login-input-icon">📱</span>
+                          <input
+                            id="farmer-otp-mobile"
+                            type="tel"
+                            className="login-text-input"
+                            value={farmerMobile}
+                            onChange={(e) => setFarmerMobile(e.target.value)}
+                            placeholder="Enter 10-digit mobile number"
+                            maxLength={10}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {!otpSent ? (
+                        <button
+                          type="button"
+                          onClick={handleSendOtp}
+                          className="login-submit-btn"
+                          style={{ marginTop: '4px' }}
+                        >
+                          <span>📨</span>
+                          <span>{t('login_btn_send_otp')}</span>
+                          <span>→</span>
+                        </button>
+                      ) : (
+                        <>
+                          <div className="otp-sent-banner">
+                            <div className="otp-sent-text-group">
+                              <span className="otp-sent-icon">✅</span>
+                              <div>
+                                <div className="otp-sent-title">OTP Sent to +91 {farmerMobile}</div>
+                                <div className="otp-sent-sub">
+                                  Demo verification code: <strong className="otp-code-highlight">4829</strong>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              className="otp-autofill-btn"
+                              onClick={() => setOtpValue('4829')}
+                            >
+                              Auto-fill 4829
+                            </button>
+                          </div>
+
+                          {/* OTP Input Field */}
+                          <div className="login-input-group">
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <label className="login-input-label" htmlFor="farmer-otp-input">
+                                {t('login_label_otp')}
+                              </label>
+                              <div style={{ fontSize: '12px', color: otpCountdown > 0 ? '#64748B' : '#0284C7', fontWeight: 600 }}>
+                                {otpCountdown > 0 ? (
+                                  <span>Resend in {otpCountdown}s</span>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={handleSendOtp}
+                                    style={{ background: 'none', border: 'none', color: '#0284C7', fontWeight: 700, cursor: 'pointer', padding: 0 }}
+                                  >
+                                    Resend OTP 🔄
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                            <div className="login-input-wrapper">
+                              <span className="login-input-icon">🔢</span>
+                              <input
+                                id="farmer-otp-input"
+                                type="text"
+                                className="login-text-input otp-digit-input"
+                                value={otpValue}
+                                onChange={(e) => setOtpValue(e.target.value.replace(/\D/g, '').slice(0, 4))}
+                                placeholder="• • • •"
+                                maxLength={4}
+                                autoFocus
+                                required
+                              />
+                            </div>
+                          </div>
+
+                          <button type="submit" className="login-submit-btn">
+                            <span>{t('login_btn_verify_otp')}</span>
+                            <span>→</span>
+                          </button>
+                        </>
+                      )}
+
+                      <div className="login-divider-row">
+                        <span>OR</span>
+                      </div>
+
+                      {/* 1-Click Demo Login */}
+                      <button
+                        type="button"
+                        onClick={handleDemoLogin}
+                        className="login-demo-btn"
+                      >
+                        <span>🚀</span>
+                        <span>{t('login_btn_demo')}</span>
+                      </button>
+                    </form>
+                  )}
+                </>
+              ) : (
+                /* FARMER SIGN UP / REGISTRATION FORM */
+                <form onSubmit={handleFarmerSignup} className="login-form-body">
+                  {/* Full Name */}
+                  <div className="login-input-group">
+                    <label className="login-input-label" htmlFor="signup-name">
+                      {t('signup_name_label')} *
+                    </label>
+                    <div className="login-input-wrapper">
+                      <span className="login-input-icon">👤</span>
+                      <input
+                        id="signup-name"
+                        type="text"
+                        className="login-text-input"
+                        value={signupName}
+                        onChange={(e) => setSignupName(e.target.value)}
+                        placeholder="e.g. Gurpreet Singh"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* 10-Digit Mobile */}
+                  <div className="login-input-group">
+                    <label className="login-input-label" htmlFor="signup-mobile">
+                      {t('signup_mobile_label')} *
+                    </label>
+                    <div className="login-input-wrapper">
+                      <span className="login-input-icon">📱</span>
+                      <input
+                        id="signup-mobile"
+                        type="tel"
+                        className="login-text-input"
+                        value={signupMobile}
+                        onChange={(e) => setSignupMobile(e.target.value)}
+                        placeholder="10-digit mobile number"
+                        maxLength={10}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Split Row: Acreage & Crop */}
+                  <div className="signup-grid-split">
+                    <div className="login-input-group">
+                      <label className="login-input-label" htmlFor="signup-acreage">
+                        {t('signup_acreage_label')}
+                      </label>
+                      <div className="login-input-wrapper">
+                        <span className="login-input-icon">🚜</span>
+                        <input
+                          id="signup-acreage"
+                          type="text"
+                          className="login-text-input"
+                          value={signupAcreage}
+                          onChange={(e) => setSignupAcreage(e.target.value)}
+                          placeholder="e.g. 4.5 Acres"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="login-input-group">
+                      <label className="login-input-label" htmlFor="signup-crop">
+                        {t('signup_crop_label')}
+                      </label>
+                      <div className="login-input-wrapper">
+                        <span className="login-input-icon">🌾</span>
+                        <input
+                          id="signup-crop"
+                          type="text"
+                          className="login-text-input"
+                          value={signupCrop}
+                          onChange={(e) => setSignupCrop(e.target.value)}
+                          placeholder="e.g. Wheat, Paddy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Village / Cluster */}
+                  <div className="login-input-group">
+                    <label className="login-input-label" htmlFor="signup-cluster">
+                      {t('signup_cluster_label')}
+                    </label>
+                    <div className="login-input-wrapper">
+                      <span className="login-input-icon">📍</span>
+                      <input
+                        id="signup-cluster"
+                        type="text"
+                        className="login-text-input"
+                        value={signupCluster}
+                        onChange={(e) => setSignupCluster(e.target.value)}
+                        placeholder="Village / Tehsil / District Cluster"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Split Row: Set MPIN & Confirm MPIN */}
+                  <div className="signup-grid-split">
+                    <div className="login-input-group">
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <label className="login-input-label" htmlFor="signup-pin">
+                          {t('signup_pin_label')} *
+                        </label>
+                        <button
+                          type="button"
+                          className="login-toggle-pw-btn"
+                          onClick={() => setShowSignupPin(!showSignupPin)}
+                        >
+                          {showSignupPin ? 'Hide' : 'Show'}
+                        </button>
+                      </div>
+                      <div className="login-input-wrapper">
+                        <span className="login-input-icon">🔒</span>
+                        <input
+                          id="signup-pin"
+                          type={showSignupPin ? 'text' : 'password'}
+                          className="login-text-input"
+                          value={signupPin}
+                          onChange={(e) => setSignupPin(e.target.value)}
+                          placeholder="4-digit MPIN"
+                          maxLength={6}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="login-input-group">
+                      <label className="login-input-label" htmlFor="signup-confirm-pin">
+                        {t('signup_confirm_pin_label')} *
+                      </label>
+                      <div className="login-input-wrapper">
+                        <span className="login-input-icon">🛡️</span>
+                        <input
+                          id="signup-confirm-pin"
+                          type={showSignupPin ? 'text' : 'password'}
+                          className="login-text-input"
+                          value={signupConfirmPin}
+                          onChange={(e) => setSignupConfirmPin(e.target.value)}
+                          placeholder="Repeat MPIN"
+                          maxLength={6}
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* DPDPA Consent Checkbox */}
+                  <div className="login-remember-row" style={{ marginTop: '2px' }}>
+                    <label className="login-checkbox-label" style={{ alignItems: 'flex-start', gap: '10px' }}>
+                      <input
+                        type="checkbox"
+                        checked={signupConsent}
+                        onChange={(e) => setSignupConsent(e.target.checked)}
+                        style={{ display: 'none' }}
+                      />
+                      <span className={`custom-glass-check ${signupConsent ? 'checked' : ''}`} style={{ marginTop: '2px' }}>
+                        {signupConsent && (
+                          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                            <path d="M2 6.2L4.8 9L10 3" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </span>
+                      <span style={{ fontSize: '11.5px', lineHeight: 1.4, color: '#475569' }}>
+                        {t('signup_consent_text')}
+                      </span>
+                    </label>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button type="submit" className="login-submit-btn" style={{ marginTop: '4px' }}>
+                    <span>{t('signup_btn_submit')}</span>
+                    <span>→</span>
                   </button>
-                </div>
-                <div className="login-input-wrapper">
-                  <span className="login-input-icon">🔒</span>
-                  <input
-                    id="farmer-pin-input"
-                    type={showPassword ? 'text' : 'password'}
-                    className="login-text-input"
-                    value={farmerPin}
-                    onChange={(e) => setFarmerPin(e.target.value)}
-                    placeholder={t('login_placeholder_pin')}
-                    maxLength={12}
-                    required
-                  />
-                </div>
-              </div>
 
-              {/* Remember Me */}
-              <div className="login-remember-row">
-                <label className="login-checkbox-label">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    style={{ display: 'none' }}
-                  />
-                  <span className={`custom-glass-check ${rememberMe ? 'checked' : ''}`}>
-                    {rememberMe && (
-                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-                        <path d="M2 6.2L4.8 9L10 3" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
-                  </span>
-                  <span>{t('login_remember_me')}</span>
-                </label>
-                <span style={{ fontSize: '12px', color: '#10B981', fontWeight: 600 }}>
-                  Demo MPIN: 1234
-                </span>
-              </div>
-
-              {/* Submit Button */}
-              <button type="submit" className="login-submit-btn">
-                <span>{t('login_btn_submit')}</span>
-                <span>→</span>
-              </button>
-
-              <div className="login-divider-row">
-                <span>OR</span>
-              </div>
-
-              {/* 1-Click Demo Login */}
-              <button
-                type="button"
-                onClick={handleDemoLogin}
-                className="login-demo-btn"
-              >
-                <span>🚀</span>
-                <span>{t('login_btn_demo')}</span>
-              </button>
-            </form>
+                  {/* Switch back to sign in */}
+                  <div className="auth-switch-link-row">
+                    <span>Already have an account?</span>
+                    <button
+                      type="button"
+                      className="auth-switch-link-btn"
+                      onClick={() => {
+                        setFarmerAuthMode('signin');
+                        setErrorMsg('');
+                      }}
+                    >
+                      Sign In here
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
           ) : (
             /* ========================================================= */
             /* ROLE 2: LENDER / INSTITUTIONAL LOGIN FORM                 */

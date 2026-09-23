@@ -2885,6 +2885,192 @@ body {
 }
 
 /* ==========================================================================
+   Farmer Sign In, Create Account & OTP Styles
+   ========================================================================== */
+.farmer-auth-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.farmer-auth-mode-switch {
+  display: flex;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  gap: 4px;
+}
+
+.farmer-mode-pill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-glass);
+}
+
+.farmer-mode-pill:hover {
+  color: var(--color-text-main);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.farmer-mode-pill.active {
+  background: #FFFFFF;
+  color: #059669;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.farmer-method-toggle-row {
+  display: flex;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px dashed rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-md);
+  padding: 6px;
+}
+
+.farmer-method-chip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-glass);
+}
+
+.farmer-method-chip:hover {
+  color: var(--color-text-main);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.farmer-method-chip.active {
+  background: #FFFFFF;
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.otp-sent-banner {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.otp-sent-text-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.otp-sent-icon {
+  font-size: 18px;
+}
+
+.otp-sent-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #065F46;
+}
+
+.otp-sent-sub {
+  font-size: 11.5px;
+  color: #047857;
+  margin-top: 1px;
+}
+
+.otp-code-highlight {
+  font-family: monospace;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  letter-spacing: 1px;
+}
+
+.otp-autofill-btn {
+  background: #10B981;
+  color: #FFFFFF;
+  border: none;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+  transition: all var(--transition-glass);
+}
+
+.otp-autofill-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.otp-digit-input {
+  letter-spacing: 8px;
+  font-size: 18px !important;
+  font-weight: 800;
+  text-align: center;
+  padding-left: 20px !important;
+}
+
+.signup-grid-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auth-switch-link-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+.auth-switch-link-btn {
+  background: none;
+  border: none;
+  color: #059669;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
    Digital Credit Passport Modal & Sheet
    ========================================================================== */
 .passport-modal-container {

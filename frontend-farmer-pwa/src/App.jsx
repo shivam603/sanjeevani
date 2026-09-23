@@ -48,7 +48,8 @@ export default function App() {
       try {
         localStorage.setItem('agritrust_lender_user', JSON.stringify(userData));
       } catch (e) {}
-      window.location.href = 'http://localhost:3002';
+      const lenderUrl = import.meta.env?.VITE_LENDER_URL || 'http://localhost:3002';
+      window.location.href = lenderUrl;
       return;
     }
 
