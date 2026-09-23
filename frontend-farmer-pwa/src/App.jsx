@@ -20,17 +20,36 @@ import MandiRatesModal from './components/MandiRatesModal';
 import SatelliteFieldMapCard from './components/SatelliteFieldMapCard';
 import CreditScoreSimulatorCard from './components/CreditScoreSimulatorCard';
 import DownloadPassportModal from './components/DownloadPassportModal';
+import LenderTerminalApp from './lender/LenderTerminalApp';
 
 export default function App() {
   const { currentLang, getAdvisorySpeech } = useTranslation();
 
-  // Authentication State
+  // Authentication State - Farmer
   const [user, setUser] = useState(() => {
     try {
       const stored = localStorage.getItem('agritrust_farmer_user');
       return stored ? JSON.parse(stored) : null;
     } catch (e) {
       return null;
+    }
+  });
+
+  // Authentication State - Lender
+  const [lenderUser, setLenderUser] = useState(() => {
+    try {
+      const stored = localStorage.getItem('agritrust_lender_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch (e) {
+      return null;
+    }
+  });
+
+  const [activePortal, setActivePortal] = useState(() => {
+    try {
+      return localStorage.getItem('agritrust_active_portal') || 'farmer';
+    } catch (e) {
+      return 'farmer';
     }
   });
 
@@ -47,13 +66,18 @@ export default function App() {
     if (userData.role === 'lender') {
       try {
         localStorage.setItem('agritrust_lender_user', JSON.stringify(userData));
+        localStorage.setItem('agritrust_active_portal', 'lender');
       } catch (e) {}
-      const lenderUrl = import.meta.env?.VITE_LENDER_URL || 'http://localhost:3002';
-      window.location.href = lenderUrl;
+      setLenderUser(userData);
+      setActivePortal('lender');
       return;
     }
 
     setUser(userData);
+    setActivePortal('farmer');
+    try {
+      localStorage.setItem('agritrust_active_portal', 'farmer');
+    } catch (e) {}
     if (userData.rememberMe) {
       localStorage.setItem('agritrust_farmer_user', JSON.stringify(userData));
     }
@@ -62,10 +86,60 @@ export default function App() {
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('agritrust_farmer_user');
+    localStorage.setItem('agritrust_active_portal', 'farmer');
     if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
       window.speechSynthesis.cancel();
       setIsSpeaking(false);
     }
+  };
+
+  const handleLenderLogout = () => {
+    setLenderUser(null);
+    localStorage.removeItem('agritrust_lender_user');
+    localStorage.setItem('agritrust_active_portal', 'farmer');
+    setActivePortal('farmer');
+  };
+
+  const handleSwitchToLender = () => {
+    const activeLender = lenderUser || {
+      role: 'lender',
+      lenderType: 'bank',
+      email: 'vikram.mehta@sbi.co.in',
+      institutionName: 'State Bank of India — Agri Division',
+      officerName: 'Vikram Mehta',
+      officerRole: 'Lead Agri Underwriter • Maharashtra Hub',
+      rememberMe: true,
+    };
+    setLenderUser(activeLender);
+    setActivePortal('lender');
+    try {
+      localStorage.setItem('agritrust_lender_user', JSON.stringify(activeLender));
+      localStorage.setItem('agritrust_active_portal', 'lender');
+    } catch (e) {}
+  };
+
+  const handleSwitchToFarmer = () => {
+    // If no farmer session is active, populate default demo farmer for seamless review
+    if (!user) {
+      const demoFarmer = {
+        role: 'farmer',
+        id: '9876543210',
+        name: 'Ramesh Patel',
+        fpo: 'Khanna FPO',
+        cluster: 'Village Bhadson, Ludhiana Cluster',
+        acreage: '4.2 Acres',
+        crop: 'Wheat (HD 3086)',
+        rememberMe: true,
+      };
+      setUser(demoFarmer);
+      try {
+        localStorage.setItem('agritrust_farmer_user', JSON.stringify(demoFarmer));
+      } catch (e) {}
+    }
+    setActivePortal('farmer');
+    try {
+      localStorage.setItem('agritrust_active_portal', 'farmer');
+    } catch (e) {}
   };
 
   // Multilingual Speech Synthesis
@@ -121,12 +195,23 @@ export default function App() {
     }
   };
 
-  // 1. If not authenticated, show Single Sign-On and Login Page
+  // 1. If currently in institutional lender portal
+  if (activePortal === 'lender' && lenderUser) {
+    return (
+      <LenderTerminalApp
+        lenderUser={lenderUser}
+        onLogout={handleLenderLogout}
+        onSwitchToFarmer={handleSwitchToFarmer}
+      />
+    );
+  }
+
+  // 2. If not authenticated as farmer, show Single Sign-On and Login Page
   if (!user) {
     return <SingleSignOnPage onLoginSuccess={handleLogin} />;
   }
 
-  // 2. If authenticated, show full home webpage with all components
+  // 3. If authenticated as farmer, show full home webpage with all components
   return (
     <div className="agritrust-app-wrapper">
       {/* 1. Top Navbar */}
@@ -138,6 +223,7 @@ export default function App() {
         onLogout={handleLogout}
         user={user}
         onOpenPassport={() => setIsPassportModalOpen(true)}
+        onSwitchToLender={handleSwitchToLender}
       />
 
       <main className="agritrust-main-container">

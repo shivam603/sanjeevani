@@ -9,6 +9,7 @@ export default function TopNavbar({
   onLogout,
   user,
   onOpenPassport,
+  onSwitchToLender,
 }) {
   const { t, currentLang, setCurrentLang } = useTranslation();
   const [showLangMenu, setShowLangMenu] = useState(false);
@@ -85,17 +86,31 @@ export default function TopNavbar({
           {/* Action Cluster: Switch & Passport */}
           <div className="nav-action-cluster">
             {/* Switch to Lender Underwriting Desk */}
-            <a
-              href="http://localhost:3002"
-              className="nav-portal-switch-btn"
-              title="Switch to Institutional Lender Underwriting Desk"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="btn-icon">🏦</span>
-              <span>Lender Desk</span>
-              <span className="btn-arrow">↗</span>
-            </a>
+            {onSwitchToLender ? (
+              <button
+                type="button"
+                className="nav-portal-switch-btn"
+                onClick={onSwitchToLender}
+                title="Switch to Institutional Lender Underwriting Desk"
+                style={{ cursor: 'pointer', border: 'none' }}
+              >
+                <span className="btn-icon">🏦</span>
+                <span>Lender Desk</span>
+                <span className="btn-arrow">↔</span>
+              </button>
+            ) : (
+              <a
+                href="http://localhost:3002"
+                className="nav-portal-switch-btn"
+                title="Switch to Institutional Lender Underwriting Desk"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="btn-icon">🏦</span>
+                <span>Lender Desk</span>
+                <span className="btn-arrow">↗</span>
+              </a>
+            )}
 
             {/* 1-Click Credit Passport Button */}
             {onOpenPassport && (
