@@ -7207,4 +7207,183 @@ body {
   transform: scale(1.08);
 }
 
+/* ==========================================================================
+   SANJEEVANI Custom Modern Mouse Cursor
+   ========================================================================== */
+
+/* Native cursor suppression only on desktop fine-pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor *:not(
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="url"],
+    input:not([type]),
+    textarea,
+    [contenteditable="true"],
+    [draggable="true"],
+    .draggable,
+    .cursor-grab,
+    .leaflet-container,
+    .satellite-map-container
+  ) {
+    cursor: none !important;
+  }
+
+  /* Restore native text selection cursor */
+  body.has-custom-cursor input[type="text"],
+  body.has-custom-cursor input[type="password"],
+  body.has-custom-cursor input[type="email"],
+  body.has-custom-cursor input[type="number"],
+  body.has-custom-cursor input[type="search"],
+  body.has-custom-cursor input[type="tel"],
+  body.has-custom-cursor input[type="url"],
+  body.has-custom-cursor input:not([type]),
+  body.has-custom-cursor textarea,
+  body.has-custom-cursor [contenteditable="true"] {
+    cursor: text !important;
+  }
+
+  /* Restore native grab/grabbing cursor for draggable elements & maps */
+  body.has-custom-cursor [draggable="true"],
+  body.has-custom-cursor .draggable,
+  body.has-custom-cursor .cursor-grab,
+  body.has-custom-cursor .leaflet-container,
+  body.has-custom-cursor .satellite-map-container {
+    cursor: grab !important;
+  }
+
+  body.has-custom-cursor [draggable="true"]:active,
+  body.has-custom-cursor .draggable:active,
+  body.has-custom-cursor .cursor-grab:active,
+  body.has-custom-cursor .leaflet-container:active,
+  body.has-custom-cursor .satellite-map-container:active {
+    cursor: grabbing !important;
+  }
+}
+
+/* Custom Cursor Portal Container */
+.sanjeevani-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none !important;
+  user-select: none !important;
+  z-index: 2147483647;
+  overflow: hidden;
+  transition: opacity 0.22s ease;
+}
+
+.sanjeevani-cursor-container.is-hidden {
+  opacity: 0 !important;
+}
+
+/* Central Green Dot */
+.sanjeevani-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background-color: var(--accent-emerald, #10b981);
+  border-radius: 50%;
+  pointer-events: none !important;
+  user-select: none !important;
+  transform: translate3d(-100px, -100px, 0);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.75), 0 0 2px rgba(255, 255, 255, 0.85);
+  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+/* Outer Smooth Follow Ring */
+.sanjeevani-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(16, 185, 129, 0.45);
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.09) 0%, rgba(16, 185, 129, 0.01) 70%, transparent 100%);
+  pointer-events: none !important;
+  user-select: none !important;
+  transform: translate3d(-100px, -100px, 0);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.16);
+  transition: width 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s ease,
+              background-color 0.22s ease,
+              box-shadow 0.22s ease;
+  will-change: transform;
+}
+
+/* Hovering over Interactive Elements (Buttons, Links, Cards, Tiles) */
+.sanjeevani-cursor-container.state-pointer .sanjeevani-cursor-ring {
+  width: 50px;
+  height: 50px;
+  border-color: rgba(16, 185, 129, 0.85);
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(16, 185, 129, 0.04) 70%, transparent 100%);
+  box-shadow: 0 0 22px rgba(16, 185, 129, 0.38), inset 0 0 8px rgba(16, 185, 129, 0.18);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.sanjeevani-cursor-container.state-pointer .sanjeevani-cursor-dot {
+  width: 9px;
+  height: 9px;
+  background-color: #059669;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.95), 0 0 3px #ffffff;
+}
+
+/* Active / Mousedown Tactile Click State */
+.sanjeevani-cursor-container.is-clicking .sanjeevani-cursor-ring {
+  width: 24px;
+  height: 24px;
+  border-color: #059669;
+  background-color: rgba(16, 185, 129, 0.28);
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.55);
+}
+
+.sanjeevani-cursor-container.is-clicking .sanjeevani-cursor-dot {
+  width: 5px;
+  height: 5px;
+}
+
+/* Text Input State: Hide custom elements to reveal native I-beam text cursor */
+.sanjeevani-cursor-container.state-text {
+  opacity: 0 !important;
+}
+
+/* Draggable / Map State: Hide custom elements to reveal native grab hand cursor */
+.sanjeevani-cursor-container.state-grab {
+  opacity: 0 !important;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .sanjeevani-cursor-container,
+  .sanjeevani-cursor-dot,
+  .sanjeevani-cursor-ring {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Mobile & Touch Fallback */
+@media (hover: none) and (pointer: coarse) {
+  .sanjeevani-cursor-container {
+    display: none !important;
+  }
+}
+
+
 

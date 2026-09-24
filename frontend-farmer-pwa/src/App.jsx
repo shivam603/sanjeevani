@@ -48,6 +48,7 @@ import KhannaMandiCard from './components/KhannaMandiCard';
 import SowingAdvisoryCard from './components/SowingAdvisoryCard';
 import DbtSubsidyTrackerCard from './components/DbtSubsidyTrackerCard';
 import AgriTrustFooter from './components/AgriTrustFooter';
+import CustomCursor from './components/CustomCursor';
 
 import RequestLoanModal from './components/RequestLoanModal';
 import CallMitraModal from './components/CallMitraModal';
@@ -387,17 +388,25 @@ export default function App() {
   // 1. If currently in institutional lender portal
   if (activePortal === 'lender' && lenderUser) {
     return (
-      <LenderTerminalApp
-        lenderUser={lenderUser}
-        onLogout={handleLenderLogout}
-        onSwitchToFarmer={handleSwitchToFarmer}
-      />
+      <>
+        <CustomCursor />
+        <LenderTerminalApp
+          lenderUser={lenderUser}
+          onLogout={handleLenderLogout}
+          onSwitchToFarmer={handleSwitchToFarmer}
+        />
+      </>
     );
   }
 
   // 2. If not authenticated as farmer, show Single Sign-On and Login Page
   if (!user) {
-    return <SingleSignOnPage onLoginSuccess={handleLogin} />;
+    return (
+      <>
+        <CustomCursor />
+        <SingleSignOnPage onLoginSuccess={handleLogin} />
+      </>
+    );
   }
 
   const activeConfig = FEATURE_CONFIG[activeNavTab] || {
@@ -410,7 +419,9 @@ export default function App() {
 
   // 3. If authenticated as farmer, show full home webpage with vertical sidebar layout
   return (
-    <div className="agritrust-app-layout">
+    <>
+      <CustomCursor />
+      <div className="agritrust-app-layout">
       {/* 1. Left Vertical Navigation Sidebar */}
       <Sidebar
         activeTab={activeNavTab}
@@ -1152,5 +1163,6 @@ export default function App() {
         onNavigateToSection={handleNavigateToNotificationTarget}
       />
     </div>
+    </>
   );
 }
