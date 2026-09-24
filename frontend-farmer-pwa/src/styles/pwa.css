@@ -103,11 +103,12 @@
 }
 
 html,
-body {
+body,
+#root {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent body scrolling the entire page as one unit */
 }
 
 body {
@@ -137,7 +138,6 @@ body {
 .agritrust-app-wrapper,
 .agritrust-app-layout {
   height: 100vh;
-  max-height: 100vh;
   display: flex;
   background-color: var(--color-canvas);
   position: relative;
@@ -187,8 +187,7 @@ body {
 .agritrust-main-wrapper {
   flex: 1;
   min-width: 0;
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -203,7 +202,7 @@ body {
   max-width: 100%;
   margin: 0;
   padding: 10px 24px;
-  position: relative;
+  position: sticky;
   top: 0;
   z-index: 60;
   background: rgba(255, 255, 255, 0.85);
@@ -220,8 +219,9 @@ body {
 
 /* Independently Scrollable Main Content Container */
 .agritrust-scroll-area {
-  flex: 1;
-  min-height: 0; /* CRITICAL: Enables flex child to scroll */
+  flex: 1 1 0%;
+  height: 100%;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -261,6 +261,7 @@ body {
   gap: 28px;
   position: relative;
   z-index: 1;
+  flex-shrink: 0;
 }
 
 .agritrust-nav-inner {
@@ -396,9 +397,10 @@ body {
   width: 260px;
   min-width: 260px;
   max-width: 260px;
-  height: 100vh;
+  height: 100%;
   position: sticky;
   top: 0;
+  flex-shrink: 0;
   z-index: 120;
   display: flex;
   flex-direction: column;
@@ -3488,10 +3490,11 @@ body {
    ========================================================================== */
 .agritrust-footer {
   margin-top: auto;
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.65);
   border-top: 1px solid rgba(255, 255, 255, 0.85);
   backdrop-filter: var(--glass-blur-sm);
-  padding: 24px 32px;
+  padding: 24px 32px 56px;
   font-size: 13px;
   color: var(--color-text-muted);
 }
@@ -6800,6 +6803,15 @@ body {
   flex-direction: column;
   gap: 22px;
   padding-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.secondary-feature-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 /* Discover Hero Banner */
