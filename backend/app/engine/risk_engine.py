@@ -62,13 +62,24 @@ def calculate_rain_risk(
         action = "Maintain routine irrigation and field cultivation activities."
         urgency = "Routine"
 
+    confidence = 0.92 if level == "HIGH" else (0.84 if level == "MEDIUM" else 0.76)
+    what_desc = (
+        f"Potential heavy rain risk on {crop} ({level} alert)"
+        if level == "HIGH"
+        else (f"Possible rainfall alert for {crop}" if level == "MEDIUM" else f"Normal precipitation levels for {crop}")
+    )
+
     return {
         "risk_type": "heavy_rain",
         "title": "Heavy Rain Risk",
         "level": level,
         "icon": "🌧️",
-        "reason": reason,
+        "what": what_desc,
+        "why": reason,
+        "when": urgency,
         "action": action,
+        "confidence": confidence,
+        "reason": reason,
         "urgency": urgency,
         "metrics_trigger": {
             "rainfall_mm": precip_sum,
@@ -119,13 +130,24 @@ def calculate_heat_risk(
         action = "Continue standard agronomic practices."
         urgency = "Routine"
 
+    confidence = 0.90 if level == "HIGH" else (0.82 if level == "MEDIUM" else 0.75)
+    what_desc = (
+        f"Potential heat stress risk on {crop} ({level} alert)"
+        if level == "HIGH"
+        else (f"Possible elevated daytime temperature for {crop}" if level == "MEDIUM" else f"Optimal temperature range for {crop}")
+    )
+
     return {
         "risk_type": "heat_stress",
         "title": "Heat Stress Risk",
         "level": level,
         "icon": "☀️",
-        "reason": reason,
+        "what": what_desc,
+        "why": reason,
+        "when": urgency,
         "action": action,
+        "confidence": confidence,
+        "reason": reason,
         "urgency": urgency,
         "metrics_trigger": {
             "temp_max_c": temp_max,
@@ -177,13 +199,24 @@ def calculate_pest_risk(
         action = "Maintain regular bi-weekly field walkthroughs."
         urgency = "Routine"
 
+    confidence = 0.88 if level == "HIGH" else (0.80 if level == "MEDIUM" else 0.72)
+    what_desc = (
+        f"Potential pest infestation risk on {crop} ({level} alert)"
+        if level == "HIGH"
+        else (f"Possible pest colonization conditions for {crop}" if level == "MEDIUM" else f"Low pest proliferation pressure for {crop}")
+    )
+
     return {
         "risk_type": "pest",
         "title": "Pest Risk",
         "level": level,
         "icon": "🐛",
-        "reason": reason,
+        "what": what_desc,
+        "why": reason,
+        "when": urgency,
         "action": action,
+        "confidence": confidence,
+        "reason": reason,
         "urgency": urgency,
         "metrics_trigger": {
             "humidity_pct": humidity,
@@ -237,13 +270,24 @@ def calculate_disease_risk(
         action = "Routine crop monitoring."
         urgency = "Routine"
 
+    confidence = 0.89 if level == "HIGH" else (0.81 if level == "MEDIUM" else 0.73)
+    what_desc = (
+        f"Potential fungal disease risk on {crop} ({level} alert)"
+        if level == "HIGH"
+        else (f"Possible disease vulnerability conditions for {crop}" if level == "MEDIUM" else f"Dry canopy; low fungal risk for {crop}")
+    )
+
     return {
         "risk_type": "disease",
         "title": "Disease Risk",
         "level": level,
         "icon": "🦠",
-        "reason": reason,
+        "what": what_desc,
+        "why": reason,
+        "when": urgency,
         "action": action,
+        "confidence": confidence,
+        "reason": reason,
         "urgency": urgency,
         "metrics_trigger": {
             "humidity_pct": humidity,
@@ -306,13 +350,24 @@ def calculate_water_risk(
         action = "Avoid over-irrigation to conserve water and prevent nutrient leaching."
         urgency = "Routine"
 
+    confidence = 0.91 if level == "HIGH" else (0.83 if level == "MEDIUM" else 0.76)
+    what_desc = (
+        f"Potential water stress & root deficit on {crop} ({level} alert)"
+        if level == "HIGH"
+        else (f"Possible soil moisture depletion for {crop}" if level == "MEDIUM" else f"Adequate root-zone soil moisture for {crop}")
+    )
+
     return {
         "risk_type": "water_stress",
         "title": "Water Stress Risk",
         "level": level,
         "icon": "💧",
-        "reason": reason,
+        "what": what_desc,
+        "why": reason,
+        "when": urgency,
         "action": action,
+        "confidence": confidence,
+        "reason": reason,
         "urgency": urgency,
         "metrics_trigger": {
             "soil_moisture_pct": moisture_val,
@@ -363,13 +418,24 @@ def calculate_wind_risk(
         action = "Safe for all spraying, dusting, and standard field equipment operations."
         urgency = "Routine"
 
+    confidence = 0.90 if level == "HIGH" else (0.82 if level == "MEDIUM" else 0.75)
+    what_desc = (
+        f"Potential crop lodging / high wind hazard on {crop} ({level} alert)"
+        if level == "HIGH"
+        else (f"Possible spray drift due to breezy winds" if level == "MEDIUM" else f"Calm wind conditions for {crop}")
+    )
+
     return {
         "risk_type": "wind",
         "title": "Wind Risk",
         "level": level,
         "icon": "💨",
-        "reason": reason,
+        "what": what_desc,
+        "why": reason,
+        "when": urgency,
         "action": action,
+        "confidence": confidence,
+        "reason": reason,
         "urgency": urgency,
         "metrics_trigger": {
             "wind_speed_kmh": wind_speed,

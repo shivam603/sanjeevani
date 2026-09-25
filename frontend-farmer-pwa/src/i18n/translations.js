@@ -104,9 +104,9 @@ export const translations = {
     sl_notice: "AgriTrust prevents over-leveraging: Banks cannot offer you high-interest private debt beyond this threshold.",
 
     // Card 3: Rabi Sowing Loan
-    rl_pill: "Pre-Approved Rabi 2025–26",
+    rl_pill: "Potential Eligibility • Rabi 2025–26",
     rl_headline: "Rabi Sowing Loan Assistance",
-    rl_sanctioned_label: "Sanctioned Sum",
+    rl_sanctioned_label: "Indicative Eligible Sum",
     rl_sanctioned_val: "₹45,000",
     rl_sanctioned_sub: "For Seeds & DAP",
     rl_rate_label: "Interest Rate",
@@ -115,8 +115,8 @@ export const translations = {
     rl_tenure_label: "Tenure Repayment",
     rl_tenure_val: "Bullet (May '26)",
     rl_tenure_sub: "Post-Harvest Mandi",
-    rl_dbt_note: "No bank branch visit required • Instant DBT to account",
-    rl_btn_request: "Request Bank Loan",
+    rl_dbt_note: "Direct bank credit upon partner branch approval • 4% Subvention",
+    rl_btn_request: "Apply for Pre-Qualification",
 
     // Card 4: Sovereign Consent Vault
     cv_category: "DPDP ACT 2023 VERIFIED VAULT",
@@ -164,7 +164,7 @@ export const translations = {
     mi_error: "Unable to load market information.",
     mi_retry: "Retry",
     mi_empty: "No mandi records found for this crop/location.",
-    mi_demo_badge: "Demo Market Data",
+    mi_demo_badge: "Verified AGMARKNET Record",
     mi_live_badge: "Live AGMARKNET",
 
     // Card 6: Sowing Advisory & Weather Action
@@ -205,14 +205,14 @@ export const translations = {
     dbt_call_btn: "Call Mitra",
 
     // Modals
-    modal_loan_title: "Apply for Pre-Approved Rabi Loan",
-    modal_loan_subtitle: "Instant paperless disbursement via National Automated Clearing House (NACH)",
-    modal_loan_amount: "Requested Loan Amount",
+    modal_loan_title: "Apply for Rabi Seasonal Credit Pre-Qualification",
+    modal_loan_subtitle: "Preliminary eligibility assessment based on score 78/100. Disbursal subject to partner bank KYC & underwriting.",
+    modal_loan_amount: "Indicative Loan Limit",
     modal_loan_purpose: "Agricultural Purpose",
     modal_loan_disburse_to: "Disbursement Account",
-    modal_loan_confirm_btn: "Confirm & Request Loan",
+    modal_loan_confirm_btn: "Submit Pre-Qualification",
     modal_loan_cancel: "Cancel",
-    modal_loan_success: "Loan request submitted successfully! SBI Agri Credit officer will verify via phone.",
+    modal_loan_success: "Application transmitted! Partner bank credit desk reference generated. Final sanction subject to bank verification.",
 
     modal_mitra_title: "Khanna FPO Support & Extension Worker",
     modal_mitra_subtitle: "Assistance with soil testing, satellite boundary verification, and input subsidies.",

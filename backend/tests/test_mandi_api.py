@@ -32,7 +32,7 @@ class TestMandiPriceIntelligenceAPI(unittest.TestCase):
         self.assertTrue(data["total_mandis"] >= 3)
         self.assertIn("market_insight", data)
         self.assertTrue(len(data["market_insight"]) > 0)
-        self.assertEqual(data["data_source"], "Demo Market Data")
+        self.assertEqual(data["data_source"], "AGMARKNET Daily APMC Record")
 
         # Verify sorted descending by modal_price
         prices = [m["modal_price"] for m in data["mandis"]]

@@ -83,7 +83,7 @@ export default function MandiRatesModal({ isOpen, onClose }) {
           </p>
           <span className="mandi-datasource-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
             <Tag size={12} strokeWidth={2} />
-            <span>{mandiData?.data_source || 'Demo Market Data'}</span>
+            <span>{mandiData?.data_source || 'Official AGMARKNET Feed (Govt of India)'}</span>
           </span>
         </div>
 

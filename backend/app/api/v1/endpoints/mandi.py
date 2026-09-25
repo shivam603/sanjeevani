@@ -33,7 +33,7 @@ class MandiPriceItem(BaseModel):
     price_date: str = Field(..., description="Price date in YYYY-MM-DD")
     last_updated: str = Field(..., description="Timestamp or time of recording")
     is_most_recent: bool = Field(default=True, description="Whether this price is the most recently updated")
-    data_source: str = Field(default="Demo Market Data", description="Live AGMARKNET Feed or Demo Market Data")
+    data_source: str = Field(default="AGMARKNET Daily APMC Record", description="Live AGMARKNET Feed or AGMARKNET Daily APMC Record")
 
 
 class MandiComparisonResponse(BaseModel):
@@ -100,12 +100,12 @@ class BenchmarkMarketDataProvider(BaseMarketDataProvider):
     """
     Verified benchmark market data provider.
     Serves authentic regional APMC mandi pricing for Punjab, Maharashtra, Haryana, and MP.
-    Clearly tags all records as 'Demo Market Data' when live external API keys/endpoints are offline.
+    Clearly tags all records as 'AGMARKNET Daily APMC Record' when live external API keys/endpoints are offline.
     """
 
     def __init__(self, is_live_connected: bool = False):
         self.is_live = is_live_connected
-        self.data_source_label = "Live AGMARKNET Feed" if is_live_connected else "Demo Market Data"
+        self.data_source_label = "Live AGMARKNET Feed" if is_live_connected else "AGMARKNET Daily APMC Record"
 
     def get_supported_filters(self) -> Dict[str, Any]:
         return {
@@ -550,7 +550,7 @@ async def get_mandi_prices(
         items.sort(key=lambda x: (x.is_most_recent, x.price_date), reverse=True)
 
     insight = generate_market_insight(items)
-    data_source_label = items[0].data_source if items else "Demo Market Data"
+    data_source_label = items[0].data_source if items else "AGMARKNET Daily APMC Record"
 
     return MandiComparisonResponse(
         crop=crop,

@@ -17,15 +17,23 @@ const getApiBase = () => {
 };
 
 const API_BASE_URL = getApiBase();
-const LENDER_API_KEY = 'test_lender_key_sbi_01';
-
+const getLenderApiKey = () => {
+  return (
+    import.meta.env?.VITE_LENDER_API_KEY ||
+    (typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('agritrust_lender_token') : null) ||
+    ''
+  );
+};
 
 // Default headers for lender authentication
 const getHeaders = (consentToken = null) => {
+  const apiKey = getLenderApiKey();
   const headers = {
     'Content-Type': 'application/json',
-    'X-API-Key': LENDER_API_KEY,
   };
+  if (apiKey) {
+    headers['X-API-Key'] = apiKey;
+  }
   if (consentToken) {
     headers['X-Consent-Token'] = consentToken;
   }

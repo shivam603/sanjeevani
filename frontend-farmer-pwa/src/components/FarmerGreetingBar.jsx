@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { Check, Play, Pause, RotateCcw } from 'lucide-react';
 import { useTranslation, SUPPORTED_LANGUAGES } from '../i18n/LanguageContext';
 
-export default function FarmerGreetingBar({ onPlayAudio, isPlaying, user }) {
+export default function FarmerGreetingBar({
+  onPlayAudio,
+  isPlaying,
+  user,
+  fields = [],
+  activeFieldId,
+  onSelectField,
+  onOpenOnboarding,
+}) {
   const { t, currentLang, setCurrentLang } = useTranslation();
   const [playbackSpeed, setPlaybackSpeed] = useState('1.0');
 
@@ -49,6 +57,59 @@ export default function FarmerGreetingBar({ onPlayAudio, isPlaying, user }) {
           <div className="farmer-crop-cluster-sub">
             {cropDesc}
           </div>
+
+          {/* Interactive Field Parcel Switcher (Single Source of Truth) */}
+          {fields && fields.length > 0 && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 700 }}>Field Parcel:</span>
+              {fields.map((f) => {
+                const isSelected = f.id === activeFieldId;
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => onSelectField && onSelectField(f.id)}
+                    style={{
+                      background: isSelected ? '#ecfdf5' : '#ffffff',
+                      color: isSelected ? '#065f46' : '#475569',
+                      border: `1.5px solid ${isSelected ? '#10b981' : '#e2e8f0'}`,
+                      borderRadius: '999px',
+                      padding: '3px 10px',
+                      fontSize: '11.5px',
+                      fontWeight: isSelected ? 800 : 500,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      boxShadow: isSelected ? '0 1px 3px rgba(16, 185, 129, 0.2)' : 'none',
+                    }}
+                  >
+                    <span>{f.name.split('(')[0].trim()}</span>
+                    <span style={{ opacity: 0.8, fontSize: '10.5px' }}>• {f.crop.split('(')[0].trim()}</span>
+                  </button>
+                );
+              })}
+              {onOpenOnboarding && (
+                <button
+                  type="button"
+                  onClick={onOpenOnboarding}
+                  style={{
+                    background: 'none',
+                    border: '1px dashed #10b981',
+                    borderRadius: '999px',
+                    padding: '3px 8px',
+                    fontSize: '11px',
+                    color: '#059669',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                  }}
+                  title="Add new field parcel"
+                >
+                  + Add Field
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

@@ -8,6 +8,7 @@ import {
   Building2,
   Phone,
   BadgeCheck,
+  ExternalLink,
 } from 'lucide-react';
 
 export default function DbtSubsidyTrackerCard({ onCallMitra }) {
@@ -20,6 +21,8 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'Credited',
       badgeClass: 'dbt-badge-success',
       desc: '17th Installment direct credit to Bank of Baroda (...4019).',
+      officialUrl: 'https://pmkisan.gov.in',
+      officialPortal: 'pmkisan.gov.in',
       icon: Landmark,
     },
     {
@@ -28,6 +31,8 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'Active Policy',
       badgeClass: 'dbt-badge-active',
       desc: 'Policy #PB-RABI-9012 • 4.2 Acres Wheat protected against hail & unseasonal rain.',
+      officialUrl: 'https://pmfby.gov.in',
+      officialPortal: 'pmfby.gov.in',
       icon: ShieldCheck,
     },
     {
@@ -36,6 +41,8 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'e-PoS Linked',
       badgeClass: 'dbt-badge-info',
       desc: 'Aadhaar authenticated allocation for Neem Coated Urea & DAP.',
+      officialUrl: 'https://urvarak.nic.in',
+      officialPortal: 'urvarak.nic.in',
       icon: Wheat,
     },
     {
@@ -44,6 +51,8 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
       status: 'Eligible',
       badgeClass: 'dbt-badge-warning',
       desc: 'Prompt repayment subvention verified with Khanna FPO cluster.',
+      officialUrl: 'https://agricoop.nic.in',
+      officialPortal: 'agricoop.nic.in',
       icon: CreditCard,
     },
   ];
@@ -96,13 +105,30 @@ export default function DbtSubsidyTrackerCard({ onCallMitra }) {
                     <span className="dbt-scheme-name">{item.scheme}</span>
                     <span className={`dbt-status-pill ${item.badgeClass}`}>{item.status}</span>
                   </div>
-                  <div className="dbt-scheme-desc">{item.desc}</div>
+                  <div className="dbt-scheme-desc">
+                    {item.desc}
+                    {item.officialUrl && (
+                      <a
+                        href={item.officialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', marginLeft: '6px', color: '#059669', fontSize: '11px', textDecoration: 'none', fontWeight: 600 }}
+                      >
+                        Official Portal ({item.officialPortal}) <ExternalLink size={10} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
               <span className="dbt-scheme-amount">{item.amount}</span>
             </div>
           );
         })}
+      </div>
+
+      {/* Regulatory Informational Disclaimer */}
+      <div style={{ fontSize: '11px', color: '#64748b', lineHeight: 1.35, background: 'rgba(255,255,255,0.6)', padding: '6px 10px', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.05)' }}>
+        * Informational status tracking aggregated from public DBT MIS portals. Official benefit approvals and fund disbursements are managed exclusively by respective central/state department authorities.
       </div>
 
       {/* 5. Field Mitra Profile Bar */}

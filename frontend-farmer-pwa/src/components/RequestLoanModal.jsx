@@ -44,7 +44,7 @@ export default function RequestLoanModal({ isOpen, onClose }) {
               {t('modal_loan_success')}
             </div>
             <p style={{ fontSize: '13px', color: '#475569', lineHeight: 1.5 }}>
-              Sanction reference <strong>#AGR-RABI-2025-9941</strong>. {t('rl_dbt_note')}.
+              Application Reference <strong>#AGR-RABI-2025-9941</strong> transmitted to Bank of Baroda KCC Desk. Final sanction and disbursal are subject to partner bank credit verification.
             </p>
             <button
               className="rabi-request-loan-btn"

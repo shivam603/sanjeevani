@@ -259,22 +259,102 @@ class OpenAICompatibleProvider(BaseLLMProvider):
             return self._mock_fallback.generate(prompt, system_prompt, max_tokens, temperature)
 
 
+class GeminiProvider(BaseLLMProvider):
+    """
+    Provider for Google Gemini API (gemini-flash-latest).
+    Includes strict token cap handling and automatic fallback to deterministic
+    local generation when quotas are reached.
+    """
+
+    provider_name: str = "gemini"
+
+    def __init__(
+        self,
+        api_key: Optional[str] = None,
+        model_id: Optional[str] = None,
+        max_token_cap: int = 20,
+    ):
+        self.api_key = (api_key or os.getenv("GEMINI_API_KEY", "")).strip()
+        self.model_id = model_id or os.getenv("GEMINI_MODEL_ID", "gemini-flash-latest")
+        self.max_token_cap = int(os.getenv("GEMINI_MAX_OUTPUT_TOKENS", str(max_token_cap)))
+        self._mock_fallback = MockLocalLLMProvider()
+
+    def generate(
+        self,
+        prompt: str,
+        system_prompt: Optional[str] = None,
+        max_tokens: int = 700,
+        temperature: float = 0.2,
+    ) -> str:
+        if not self.api_key or "your_" in self.api_key:
+            logger.info("Gemini API key not configured; using local deterministic generation.")
+            return self._mock_fallback.generate(prompt, system_prompt, max_tokens, temperature)
+
+        # Enforce token cap for quota-conserving accounts
+        effective_max_tokens = min(max_tokens, self.max_token_cap)
+
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model_id}:generateContent?key={self.api_key}"
+            contents = []
+            if system_prompt:
+                contents.append({"role": "user", "parts": [{"text": f"SYSTEM INSTRUCTION: {system_prompt}"}]})
+            contents.append({"role": "user", "parts": [{"text": prompt}]})
+
+            payload = {
+                "contents": contents,
+                "generationConfig": {
+                    "maxOutputTokens": effective_max_tokens,
+                    "temperature": temperature,
+                },
+            }
+
+            with httpx.Client(timeout=10.0) as client:
+                resp = client.post(url, json=payload)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    candidates = data.get("candidates", [])
+                    if candidates:
+                        parts = candidates[0].get("content", {}).get("parts", [])
+                        if parts and "text" in parts[0]:
+                            return parts[0]["text"].strip()
+                else:
+                    logger.warning(
+                        f"Gemini API returned status {resp.status_code}: {resp.text[:120]}. "
+                        "Falling back to local deterministic generation."
+                    )
+        except Exception as e:
+            logger.warning(f"Gemini API generation error: {e}. Falling back to local generation.")
+
+        return self._mock_fallback.generate(prompt, system_prompt, max_tokens, temperature)
+
+
 def get_llm_provider(provider_name: Optional[str] = None) -> BaseLLMProvider:
     """
     Factory function returning the configured LLM provider.
     Resolution priority:
     1. Explicit provider_name argument
     2. EXPLANATION_LLM_PROVIDER environment variable
-    3. Default: watsonx (with automatic fallback to mock)
+    3. Auto-detected available credentials (Gemini, watsonx, OpenAI)
+    4. Default: watsonx (with automatic fallback to mock)
     """
-    selected = (provider_name or os.getenv("EXPLANATION_LLM_PROVIDER", "watsonx")).strip().lower()
+    selected = (
+        provider_name
+        or os.getenv("EXPLANATION_LLM_PROVIDER", "")
+    ).strip().lower()
 
-    if selected in ("watsonx", "granite", "ibm"):
+    if selected in ("gemini", "google"):
+        return GeminiProvider()
+    elif selected in ("watsonx", "granite", "ibm"):
         return WatsonxGraniteProvider()
     elif selected in ("openai", "litellm", "ollama", "vllm"):
         return OpenAICompatibleProvider()
     elif selected in ("mock", "local", "rule"):
         return MockLocalLLMProvider()
-    else:
-        logger.warning(f"Unknown LLM provider '{selected}', defaulting to WatsonxGraniteProvider")
-        return WatsonxGraniteProvider()
+
+    # Auto-detect if provider not explicitly specified
+    if os.getenv("GEMINI_API_KEY") and "your_" not in os.getenv("GEMINI_API_KEY", ""):
+        return GeminiProvider()
+    if os.getenv("OPENAI_API_KEY") and "your_" not in os.getenv("OPENAI_API_KEY", ""):
+        return OpenAICompatibleProvider()
+
+    return WatsonxGraniteProvider()

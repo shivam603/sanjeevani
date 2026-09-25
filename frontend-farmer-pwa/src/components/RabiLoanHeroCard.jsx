@@ -51,9 +51,14 @@ export default function RabiLoanHeroCard({ onRequestLoan }) {
             onClick={onRequestLoan}
             title={t('rl_btn_request')}
           >
-            <span>Request Bank Loan</span>
+            <span>{t('rl_btn_request')}</span>
             <ArrowRight size={16} strokeWidth={2.2} />
           </button>
+        </div>
+
+        {/* Regulatory Distinction Footnote */}
+        <div style={{ fontSize: '11px', color: '#64748b', marginTop: '10px', lineHeight: 1.35, borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '8px' }}>
+          <strong>Notice:</strong> Preliminary eligibility assessment based on sovereign score. Final sanction & disbursal are determined exclusively by authorized partner bank underwriting.
         </div>
       </div>
     </div>

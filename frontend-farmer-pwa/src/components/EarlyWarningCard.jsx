@@ -341,35 +341,52 @@ export default function EarlyWarningCard({ user }) {
                   )}
                 </div>
 
-                {/* Reason (Agronomic Microclimate Cause) */}
-                <div className="ew-detail-block">
-                  <div className="ew-detail-label" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <Search size={12} strokeWidth={2} />
-                    <span>{t('ew_reason_label')}:</span>
+                {/* WHAT -> WHY -> WHEN -> ACTION Structure */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', margin: '10px 0 6px 0' }}>
+                  {/* 1. WHAT */}
+                  <div style={{ background: 'rgba(255, 255, 255, 0.9)', borderRadius: '8px', padding: '8px 12px', border: '1px solid rgba(0, 0, 0, 0.08)' }}>
+                    <div style={{ fontSize: '10.5px', fontWeight: 800, color: '#0284c7', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      WHAT:
+                    </div>
+                    <div style={{ fontSize: '12.5px', fontWeight: 700, color: '#1e293b', marginTop: '2px' }}>
+                      {item.what || `Potential ${item.title.toLowerCase()} on ${item.crop} (${item.level} Risk)`}
+                    </div>
+                    {item.confidence && (
+                      <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
+                        Evaluated Confidence: <strong>{Math.round(item.confidence * 100)}%</strong> (Decision Support)
+                      </div>
+                    )}
                   </div>
-                  <div className="ew-detail-text">{item.reason}</div>
-                </div>
 
-                {/* Recommended Action */}
-                <div className="ew-action-block">
-                  <div className="ew-detail-label" style={{ color: '#166534', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <Lightbulb size={12} strokeWidth={2} />
-                    <span>{t('ew_action_label')}:</span>
+                  {/* 2. WHY */}
+                  <div style={{ background: 'rgba(255, 255, 255, 0.9)', borderRadius: '8px', padding: '8px 12px', border: '1px solid rgba(0, 0, 0, 0.08)' }}>
+                    <div style={{ fontSize: '10.5px', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      WHY (Scientific & Environmental Cause):
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#334155', lineHeight: 1.45, marginTop: '2px' }}>
+                      {item.why || item.reason}
+                    </div>
                   </div>
-                  <div className="ew-action-text">{item.action}</div>
-                </div>
 
-                {/* Trigger Factors Mini Meter */}
-                {item.metrics_trigger && (
-                  <div className="ew-metrics-footer">
-                    <span className="ew-metrics-title">{t('ew_metrics_label')}:</span>
-                    {Object.entries(item.metrics_trigger).map(([k, val]) => (
-                      <span key={k} className="ew-metric-pill">
-                        {k.replace(/_/g, ' ')}: <strong>{String(val)}</strong>
-                      </span>
-                    ))}
+                  {/* 3. WHEN */}
+                  <div style={{ background: '#fffbeb', borderRadius: '8px', padding: '8px 12px', border: '1px solid #fef3c7' }}>
+                    <div style={{ fontSize: '10.5px', fontWeight: 800, color: '#b45309', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      WHEN (Timeframe):
+                    </div>
+                    <div style={{ fontSize: '12px', fontWeight: 600, color: '#92400e', marginTop: '2px' }}>
+                      {item.when || item.urgency || 'Immediate (within 24–48 hours)'}
+                    </div>
                   </div>
-                )}
+
+                  {/* 4. ACTION */}
+                  <div className="ew-action-block" style={{ marginTop: '0' }}>
+                    <div className="ew-detail-label" style={{ color: '#166534', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Lightbulb size={13} strokeWidth={2.2} />
+                      <span style={{ fontSize: '10.5px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>ACTION REQUIRED:</span>
+                    </div>
+                    <div className="ew-action-text" style={{ marginTop: '2px' }}>{item.action}</div>
+                  </div>
+                </div>
               </div>
             );
           })}

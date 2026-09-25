@@ -61,6 +61,8 @@ import CropCalendarCard from './components/CropCalendarCard';
 import CropCalendarModal from './components/CropCalendarModal';
 import DashboardNotificationBanner from './components/DashboardNotificationBanner';
 import NotificationCenterModal from './components/NotificationCenterModal';
+import CropDoctorCard from './components/CropDoctorCard';
+import OnboardingWizardModal from './components/OnboardingWizardModal';
 import LenderTerminalApp from './lender/LenderTerminalApp';
 import { loadStoredNotifications } from './services/notificationEngine';
 
@@ -181,6 +183,80 @@ export default function App() {
   const [isFeatureLoading, setIsFeatureLoading] = useState(false);
   const [featureError, setFeatureError] = useState(null);
 
+  // Single Source of Truth for Farmer Parcels, Crops, and Phenological Stages
+  const [fields, setFields] = useState(() => {
+    try {
+      const stored = localStorage.getItem('sanjeevani_farmer_fields');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {}
+    return [
+      {
+        id: 'field-a',
+        name: 'Field A (Plot #184/A - Main)',
+        crop: user?.crop || 'Wheat (HD 3086)',
+        crop_stage: 'Crown Root Initiation (CRI)',
+        area: user?.acreage || '4.2 Acres',
+        ndvi: 0.74,
+        moisture: '22%',
+        sowingDate: '2025-11-15',
+      },
+      {
+        id: 'field-b',
+        name: 'Field B (Plot #183 - North)',
+        crop: 'Mustard (Pusa Bold)',
+        crop_stage: 'Pod Formation',
+        area: '2.8 Acres',
+        ndvi: 0.62,
+        moisture: '18%',
+        sowingDate: '2025-10-28',
+      },
+      {
+        id: 'field-c',
+        name: 'Field C (Plot #185 - South)',
+        crop: 'Sugarcane (Co 0238)',
+        crop_stage: 'Grand Growth',
+        area: '3.5 Acres',
+        ndvi: 0.68,
+        moisture: '26%',
+        sowingDate: '2025-04-10',
+      },
+    ];
+  });
+
+  const [activeFieldId, setActiveFieldId] = useState('field-a');
+  const activeField = fields.find((f) => f.id === activeFieldId) || fields[0];
+
+  const handleSelectField = (fieldId) => {
+    setActiveFieldId(fieldId);
+  };
+
+  const handleOnboardingComplete = (updatedUser) => {
+    setUser(updatedUser);
+    try {
+      localStorage.setItem('agritrust_farmer_user', JSON.stringify(updatedUser));
+    } catch (e) {}
+
+    const newField = {
+      id: `field-${Date.now()}`,
+      name: updatedUser.fieldName || 'New Farm Parcel',
+      crop: updatedUser.crop || 'Wheat (HD 3086)',
+      crop_stage: 'Vegetative Canopy',
+      area: updatedUser.acreage || '4.0 Acres',
+      ndvi: 0.72,
+      moisture: '24%',
+      sowingDate: updatedUser.sowingDate || '2025-11-10',
+    };
+
+    setFields((prev) => {
+      const updated = [newField, ...prev];
+      try {
+        localStorage.setItem('sanjeevani_farmer_fields', JSON.stringify(updated));
+      } catch (e) {}
+      return updated;
+    });
+    setActiveFieldId(newField.id);
+  };
+
   // Sync unread notifications count for sidebar badge
   useEffect(() => {
     const updateCount = () => {
@@ -204,6 +280,7 @@ export default function App() {
   const [isPassportModalOpen, setIsPassportModalOpen] = useState(false);
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isNotificationCenterOpen, setIsNotificationCenterOpen] = useState(false);
+  const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
 
   const handleNavigateToNotificationTarget = (targetSection) => {
     if (targetSection === 'crop-calendar-section') {
@@ -465,7 +542,11 @@ export default function App() {
             <FarmerGreetingBar
               onPlayAudio={(speed) => handleSpeak(speed)}
               isPlaying={isSpeaking}
-              user={user}
+              user={{ ...user, crop: activeField.crop, acreage: activeField.area }}
+              fields={fields}
+              activeFieldId={activeFieldId}
+              onSelectField={handleSelectField}
+              onOpenOnboarding={() => setIsOnboardingOpen(true)}
             />
 
             {/* Centralized Smart Notification Engine Banner (High-Priority Unread Alerts) */}
@@ -481,7 +562,163 @@ export default function App() {
                ========================================================================= */}
             {activeNavTab === 'discover' || !activeNavTab ? (
               <div className="discover-view-container">
-                {/* 1. Discover Hero Banner */}
+                {/* 1. Farmer-First "What Should I Do Today?" Action Feed */}
+                <div className="what-to-do-today-container" style={{ background: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', padding: '18px 20px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', marginBottom: '18px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div style={{ background: '#ecfdf5', color: '#059669', padding: '7px', borderRadius: '10px', display: 'flex' }}>
+                        <CheckCircle2 size={20} strokeWidth={2.5} />
+                      </div>
+                      <div>
+                        <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a', margin: 0 }}>
+                          What Should I Do Today?
+                        </h2>
+                        <div style={{ fontSize: '12px', color: '#64748b' }}>
+                          Prioritized farm actions for <strong>{activeField.name}</strong> • {activeField.crop} ({activeField.crop_stage})
+                        </div>
+                      </div>
+                    </div>
+                    <span style={{ fontSize: '11px', background: '#f1f5f9', color: '#334155', padding: '4px 10px', borderRadius: '999px', fontWeight: 700 }}>
+                      {new Date().toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' })}
+                    </span>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: '12px' }}>
+                    {/* Action 1: Disease Risk Alert (What -> Why -> When -> Action) */}
+                    <div style={{ background: '#fffbeb', border: '1.5px solid #fde68a', borderRadius: '12px', padding: '12px 14px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                          <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#b45309', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <TriangleAlert size={13} />
+                            Fungal Disease Risk
+                          </span>
+                          <span style={{ fontSize: '10px', background: '#fef3c7', color: '#92400e', padding: '1px 6px', borderRadius: '4px', fontWeight: 800 }}>
+                            Immediate
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: '#78350f', lineHeight: 1.35 }}>
+                          Inspect {activeField.name} for Yellow Rust lesions
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#92400e', marginTop: '3px', lineHeight: 1.35 }}>
+                          <strong>Why:</strong> High humidity (88%) creates favorable spore germination conditions.
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#166534', marginTop: '6px', background: 'rgba(255,255,255,0.7)', padding: '5px 8px', borderRadius: '6px', fontWeight: 600 }}>
+                          <strong>Action:</strong> Check lower leaves; avoid overhead flood irrigation.
+                        </div>
+                      </div>
+                      <div style={{ marginTop: '10px' }}>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectTab('crop-doctor')}
+                          style={{ width: '100%', background: '#059669', color: '#ffffff', border: 'none', borderRadius: '8px', padding: '6px 10px', fontSize: '11.5px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                        >
+                          <ScanSearch size={13} /> Check with Crop Doctor
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Action 2: Weather & Spray Window */}
+                    <div style={{ background: '#f0fdf4', border: '1.5px solid #bbf7d0', borderRadius: '12px', padding: '12px 14px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                          <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#166534', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <CloudSun size={13} />
+                            Agro-Weather Window
+                          </span>
+                          <span style={{ fontSize: '10px', background: '#dcfce7', color: '#14532d', padding: '1px 6px', borderRadius: '4px', fontWeight: 800 }}>
+                            Clear 48h
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: '#14532d', lineHeight: 1.35 }}>
+                          Optimal Spray & Field Operation Window
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#166534', marginTop: '3px', lineHeight: 1.35 }}>
+                          <strong>Why:</strong> Mild winds (9 km/h) & minimal rain (15%) through Thursday afternoon.
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#14532d', marginTop: '6px', background: 'rgba(255,255,255,0.7)', padding: '5px 8px', borderRadius: '6px', fontWeight: 600 }}>
+                          <strong>Action:</strong> Complete foliar feeding before expected weekend showers.
+                        </div>
+                      </div>
+                      <div style={{ marginTop: '10px' }}>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectTab('weather')}
+                          style={{ width: '100%', background: '#166534', color: '#ffffff', border: 'none', borderRadius: '8px', padding: '6px 10px', fontSize: '11.5px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                        >
+                          <CloudSun size={13} /> View Weather Radar
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Action 3: Upcoming Crop Task */}
+                    <div style={{ background: '#f8fafc', border: '1.5px solid #e2e8f0', borderRadius: '12px', padding: '12px 14px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                          <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <CalendarDays size={13} />
+                            Crop Calendar Task
+                          </span>
+                          <span style={{ fontSize: '10px', background: '#e0f2fe', color: '#0369a1', padding: '1px 6px', borderRadius: '4px', fontWeight: 800 }}>
+                            CRI Stage
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', lineHeight: 1.35 }}>
+                          First Irrigation & Nitrogen Top-Dressing
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#475569', marginTop: '3px', lineHeight: 1.35 }}>
+                          <strong>Why:</strong> Day 21–25 Crown Root Initiation is the most critical yield phase.
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#0369a1', marginTop: '6px', background: 'rgba(255,255,255,0.7)', padding: '5px 8px', borderRadius: '6px', fontWeight: 600 }}>
+                          <strong>Action:</strong> Apply 45 kg Urea/acre immediately prior to irrigation.
+                        </div>
+                      </div>
+                      <div style={{ marginTop: '10px' }}>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectTab('calendar')}
+                          style={{ width: '100%', background: '#0284c7', color: '#ffffff', border: 'none', borderRadius: '8px', padding: '6px 10px', fontSize: '11.5px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                        >
+                          <CalendarDays size={13} /> Open Crop Calendar
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Action 4: Mandi Selling Gain */}
+                    <div style={{ background: '#fdf4ff', border: '1.5px solid #fae8ff', borderRadius: '12px', padding: '12px 14px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                          <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#7e22ce', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <TrendingUp size={13} />
+                            Mandi Intelligence
+                          </span>
+                          <span style={{ fontSize: '10px', background: '#fae8ff', color: '#6b21a8', padding: '1px 6px', borderRadius: '4px', fontWeight: 800 }}>
+                            +₹40 / Qtl
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: '#581c87', lineHeight: 1.35 }}>
+                          Sirhind Mandi rate at ₹2,290 / Qtl
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#6b21a8', marginTop: '3px', lineHeight: 1.35 }}>
+                          <strong>Why:</strong> Highest rate in district (₹110 higher than Samrala Mandi).
+                        </div>
+                        <div style={{ fontSize: '11.5px', color: '#581c87', marginTop: '6px', background: 'rgba(255,255,255,0.7)', padding: '5px 8px', borderRadius: '6px', fontWeight: 600 }}>
+                          <strong>Action:</strong> Compare transportation vs. selling locally at Khanna (₹2,275).
+                        </div>
+                      </div>
+                      <div style={{ marginTop: '10px' }}>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectTab('mandi')}
+                          style={{ width: '100%', background: '#7e22ce', color: '#ffffff', border: 'none', borderRadius: '8px', padding: '6px 10px', fontSize: '11.5px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                        >
+                          <TrendingUp size={13} /> Compare Mandi Sheet
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Discover Hero Banner & Quick Actions */}
                 <div className="discover-hero-banner">
                   <div className="discover-hero-content">
                     <div className="discover-hero-top">
@@ -555,6 +792,16 @@ export default function App() {
                       >
                         <CalendarClock size={15} color="#047857" />
                         <span>Crop Calendar</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className="discover-action-chip"
+                        onClick={() => setIsOnboardingOpen(true)}
+                        title="Farm Setup Wizard"
+                      >
+                        <Sprout size={15} color="#059669" />
+                        <span>Setup Farm Profile</span>
                       </button>
                     </div>
                   </div>
@@ -632,7 +879,7 @@ export default function App() {
                       </div>
                       <div>
                         <div className="telemetry-value">₹1,65,000</div>
-                        <div className="telemetry-label">Pre-Approved Safe Cap</div>
+                        <div className="telemetry-label">Indicative Safe Borrowing Cap</div>
                       </div>
                     </div>
 
@@ -746,7 +993,7 @@ export default function App() {
                         <span className="feature-launcher-tag">Zero Collateral</span>
                       </div>
                       <div className="feature-launcher-info">
-                        <div className="feature-launcher-title">Pre-Approved Credit & Safe Limit</div>
+                        <div className="feature-launcher-title">Safe Borrowing & Sovereign Limit</div>
                         <div className="feature-launcher-desc">
                           ₹1,65,000 stress-free borrowing cap, instant 1-click disbursal, and interactive score simulator.
                         </div>
@@ -1036,7 +1283,11 @@ export default function App() {
                     {/* 2. My Farm / Satellite Sentinel Tab */}
                     {activeNavTab === 'my-farm' && (
                       <div id="satellite-map-section" className="feature-module-wrapper">
-                        <SatelliteFieldMapCard user={user} />
+                        <SatelliteFieldMapCard
+                          user={{ ...user, ...activeField, acreage: activeField.area }}
+                          activeField={activeField}
+                          fields={fields}
+                        />
                       </div>
                     )}
 
@@ -1044,10 +1295,17 @@ export default function App() {
                     {activeNavTab === 'crops' && (
                       <div className="feature-module-wrapper">
                         <div id="crop-calendar-section" className="dashboard-full-width-card" style={{ marginBottom: '16px' }}>
-                          <CropCalendarCard onOpenCalendar={() => setIsCalendarModalOpen(true)} user={user} />
+                          <CropCalendarCard
+                            onOpenCalendar={() => setIsCalendarModalOpen(true)}
+                            user={{ ...user, crop: activeField.crop, stage: activeField.crop_stage, fieldName: activeField.name }}
+                            activeField={activeField}
+                          />
                         </div>
                         <div id="sowing-advisory-section">
-                          <SowingAdvisoryCard user={user} />
+                          <SowingAdvisoryCard
+                            user={{ ...user, crop: activeField.crop, stage: activeField.crop_stage, acreage: activeField.area }}
+                            activeField={activeField}
+                          />
                         </div>
                       </div>
                     )}
@@ -1072,35 +1330,52 @@ export default function App() {
                     {/* 5. Weather Tab */}
                     {activeNavTab === 'weather' && (
                       <div id="sowing-advisory-section" className="feature-module-wrapper">
-                        <SowingAdvisoryCard user={user} />
+                        <SowingAdvisoryCard
+                          user={{ ...user, crop: activeField.crop, stage: activeField.crop_stage, acreage: activeField.area }}
+                          activeField={activeField}
+                        />
                       </div>
                     )}
 
                     {/* 6. Mandi & Market Tab */}
                     {activeNavTab === 'mandi' && (
                       <div id="khanna-mandi-section" className="feature-module-wrapper">
-                        <KhannaMandiCard onOpenMandiModal={() => setIsMandiModalOpen(true)} user={user} />
+                        <KhannaMandiCard
+                          onOpenMandiModal={() => setIsMandiModalOpen(true)}
+                          user={{ ...user, crop: activeField.crop }}
+                          activeField={activeField}
+                        />
                       </div>
                     )}
 
                     {/* 7. Crop Doctor Tab */}
                     {activeNavTab === 'crop-doctor' && (
-                      <div id="satellite-map-section" className="feature-module-wrapper">
-                        <SatelliteFieldMapCard user={user} />
+                      <div id="crop-doctor-section" className="dashboard-full-width-card feature-module-wrapper">
+                        <CropDoctorCard
+                          user={{ ...user, crop: activeField.crop, stage: activeField.crop_stage }}
+                          activeField={activeField}
+                        />
                       </div>
                     )}
 
                     {/* 8. Risk Alerts Tab */}
                     {activeNavTab === 'risk-alerts' && (
                       <div id="early-warning-section" className="dashboard-full-width-card feature-module-wrapper">
-                        <EarlyWarningCard user={user} />
+                        <EarlyWarningCard
+                          user={{ ...user, crop: activeField.crop, stage: activeField.crop_stage, activeField }}
+                          fields={fields}
+                        />
                       </div>
                     )}
 
                     {/* 9. Crop Calendar Tab */}
                     {activeNavTab === 'calendar' && (
                       <div id="crop-calendar-section" className="dashboard-full-width-card feature-module-wrapper">
-                        <CropCalendarCard onOpenCalendar={() => setIsCalendarModalOpen(true)} user={user} />
+                        <CropCalendarCard
+                          onOpenCalendar={() => setIsCalendarModalOpen(true)}
+                          user={{ ...user, crop: activeField.crop, stage: activeField.crop_stage, fieldName: activeField.name }}
+                          activeField={activeField}
+                        />
                       </div>
                     )}
 
@@ -1153,7 +1428,7 @@ export default function App() {
       <CropCalendarModal
         isOpen={isCalendarModalOpen}
         onClose={() => setIsCalendarModalOpen(false)}
-        user={user}
+        user={{ ...user, crop: activeField.crop, stage: activeField.crop_stage, fieldName: activeField.name }}
       />
 
       <NotificationCenterModal
@@ -1161,6 +1436,13 @@ export default function App() {
         onClose={() => setIsNotificationCenterOpen(false)}
         user={user}
         onNavigateToSection={handleNavigateToNotificationTarget}
+      />
+
+      <OnboardingWizardModal
+        isOpen={isOnboardingOpen}
+        onClose={() => setIsOnboardingOpen(false)}
+        initialUser={user}
+        onComplete={handleOnboardingComplete}
       />
     </div>
     </>
